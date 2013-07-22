@@ -1,3 +1,4 @@
 [submodule "app/Framework/Library"]
 	path = app/Framework/Library
-	url = /srv/git/werlibrary.git
+	url = ssh://wer@www.wereveal.com/srv/git/werlibrary
+	update = rebase
