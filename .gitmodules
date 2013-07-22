@@ -1,0 +1,3 @@
+[submodule "app/Framework/Library"]
+	path = app/Framework/Library
+	url = /srv/git/werlibrary.git
