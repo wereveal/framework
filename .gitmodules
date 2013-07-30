@@ -1,4 +1,4 @@
 [submodule "app/Framework/Library"]
 	path = app/Framework/Library
-	url = ssh://wer@www.wereveal.com/srv/git/werlibrary
+	url = ssh://wer@www.wereveal.com/srv/git/ritclibrary
 	update = rebase

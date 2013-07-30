@@ -5,7 +5,6 @@
         "zendframework/zftool": "dev-master",
         "zendframework/zend-developer-tools": "dev-master",
         "zendframework/zendservice-recaptcha": "dev-master",
-        "mustache/mustache": "dev-master",
 		"twig/twig": "dev-master"
     }
 }
