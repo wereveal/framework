@@ -1,0 +1,3 @@
+[submodule "app/Library"]
+	path = app/Library
+	url = ssh://wer@www.wereveal.com/srv/git/ritclibrary
