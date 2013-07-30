@@ -1,4 +1,5 @@
 {
+    "name": "ritc/framework",
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "dev-master",
