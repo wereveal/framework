@@ -1,9 +1,9 @@
 <?php
-namespace Wer\Framework\Library;
+namespace Ritc\Framework\Library;
 
 include dirname($_SERVER['DOCUMENT_ROOT']) . '/app/setup.php';
 
-$o_files = new Files('index.tpl', 'templates', 'default', 'Wer\Guide');
+$o_files = new Files('index.tpl', 'templates', 'default', 'Ritc\Guide');
 $file_w_path = $o_files->locateFile();
 print "<h1>Files Test</h1>";
 print "{$file_w_path}<br><br>";

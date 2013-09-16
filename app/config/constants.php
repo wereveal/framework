@@ -6,11 +6,11 @@
  *      _PATH = Full server path
  *      _DIR  = Path in web site (URI)
  *      _NAME = Name of item without any path information
- *  @ingroup wer_framework configs
+ *  @ingroup ritc_framework configs
 **/
 
 // Empty some global vars we don't use and don't want to have values in
-namespace Wer;
+namespace Ritc;
 if (!defined('APP_PATH')) exit('This file cannot be called directly');
 if (!isset($allow_get) || $allow_get === false) {
     $_GET = array();

@@ -1,5 +1,5 @@
 <?php
 
 return array(
-    'Wer\\Framework\\Library'   => APP_PATH,
+    'Ritc\\Framework\\Library'   => APP_PATH,
 );

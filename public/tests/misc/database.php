@@ -3,7 +3,7 @@ try {
     $o_db = new PDO('mysql:host=localhost;dbname=mxg', 'mxg', 'letmxgin');
     $sql = "
         SELECT item_id
-        FROM wer_item
+        FROM ritc_item
         ORDER BY item_id
     ";
     $o_db_stmt_1 = $o_db->query($sql);
@@ -22,7 +22,7 @@ try {
     /*
     $sql = "
         SELECT i.*, d.*
-        FROM wer_item as i, wer_item_data as d
+        FROM ritc_item as i, ritc_item_data as d
         WHERE i.item_id = :item_id
         AND i.item_id = d.data_item_id
         ORDER BY i.item_name
@@ -30,7 +30,7 @@ try {
     */
     $sql = "
         SELECT item_id, item_name
-        FROM wer_item
+        FROM ritc_item
         WHERE item_id = :item_id
         AND item_active = 1
         ORDER BY item_name

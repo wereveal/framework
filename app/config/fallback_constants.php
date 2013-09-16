@@ -8,7 +8,7 @@
  *  _DIR = Path in web site (URI)
  *  _NAME = Name of item without any path information
 **/
-namespace Wer;
+namespace Ritc;
 
 define('DISPLAY_DATE_FORMAT', 'm/d/Y');
 define('DISPLAY_PHONE_FORMAT', 'XXX-XXX-XXXX');
