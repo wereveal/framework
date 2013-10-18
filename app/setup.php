@@ -35,7 +35,7 @@
 */
 namespace Ritc;
 
-use Ritc\Framework\Library\Config;
+use Ritc\Library\Core\Config;
 
 if (!defined('SITE_PATH')) {
     define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
