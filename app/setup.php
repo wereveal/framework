@@ -37,6 +37,7 @@ namespace Ritc;
 
 use Ritc\Library\Core\Config;
 use Ritc\Library\Core\DbFactory;
+use Ritc\Library\Core\Elog;
 
 if (!defined('SITE_PATH')) {
     define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
@@ -55,6 +56,7 @@ $loader = require_once VENDOR_PATH . '/autoload.php';
 $my_classmap = require_once APP_PATH . '/config/autoload_classmap.php';
 $loader->addClassMap($my_classmap);
 
+$o_elog = Elog::start();
 $o_default_dbf = DbFactory::start('db_config.php', 'rw');
 $o_default_pdo = $o_default_dbf->connect();
 
@@ -62,10 +64,11 @@ require_once APP_PATH . '/config/constants.php';
 if ($o_default_pdo !== false) {
     $o_default_db = new Database($o_default_pdo);
     if (!Config::start($o_default_db)) {
-        error_log("Couldn't create the constants\n\n");
+        $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
         require_once APP_PATH . '/config/fallback_constants.php';
     }
 }
 else {
+    $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
     require_once APP_PATH . '/config/fallback_constants.php';
 }

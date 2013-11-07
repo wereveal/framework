@@ -3,3 +3,5 @@ composer.lock
 /app/twig_cache*
 /nbproject/
 /vendor/
+/work/
+*.log

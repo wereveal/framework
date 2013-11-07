@@ -1,5 +1,10 @@
 git submodule init
 git submodule update
+composer.phar update
+cd vendor/bin
+./classmap_generator.php -l ../../app -w -o ../../app/config/autoload_classmap.php
 
 Any time you want the latest version of the submodule(s) do git submodule update
 Best practice, don't make modifications to the submodule, don't use git pull in the submodule
+
+classmap_generator needs to be run anytime a new class file is added to the app.
