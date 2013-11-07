@@ -1,0 +1,5 @@
+git submodule init
+git submodule update
+
+Any time you want the latest version of the submodule(s) do git submodule update
+Best practice, don't make modifications to the submodule, don't use git pull in the submodule
