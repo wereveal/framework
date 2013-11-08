@@ -11,5 +11,4 @@ return array(
     array('PAGE_TITLE', 'My Company'),
     array('THEME_NAME', 'default'),
     array('ADMIN_THEME_NAME', 'default')
-)
-?>
+);

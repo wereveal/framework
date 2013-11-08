@@ -8,13 +8,24 @@
  *      _NAME = Name of item without any path information
  *  @ingroup ritc_framework configs
 **/
-
-// Empty some global vars we don't use and don't want to have values in
 namespace Ritc;
-if (!defined('APP_PATH')) exit('This file cannot be called directly');
+
+if (!defined('SITE_PATH')) exit('This file cannot be called directly');
+
+if (!defined('BASE_PATH')) {
+    define('BASE_PATH', dirname(SITE_PATH));
+}
+if (!defined('APP_PATH')) {
+    define('APP_PATH', BASE_PATH . '/app');
+}
+if (!defined('VENDOR_PATH')) {
+    define('VENDOR_PATH', BASE_PATH . '/vendor');
+}
+
 if (!isset($allow_get) || $allow_get === false) {
     $_GET = array();
 }
+// Empty some global vars we don't use and don't want to have values in
 $_REQUEST = array();
 $HTTP_GET_VARS = array();
 
@@ -28,10 +39,13 @@ define('JS_DIR_NAME',        'js');
 define('LIBS_DIR_NAME',      'Library');
 define('TEMPLATES_DIR_NAME', 'templates');
 define('STD_CONTENT_TPL',    'content.tpl');
-
 define('PRIVATE_DIR_NAME',   'private');
 define('TMP_DIR_NAME',       'tmp');
-define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
+if (isset($_SERVER['HTTP_HOST'])) {
+    define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
+} else {
+    define('SITE_URL', 'localhost');
+}
 $private_w_path = BASE_PATH . '/' . PRIVATE_DIR_NAME;
 $tmp_w_path = BASE_PATH . '/' . TMP_DIR_NAME;
 if (file_exists($tmp_w_path)) {
