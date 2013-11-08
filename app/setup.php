@@ -42,15 +42,7 @@ use Ritc\Library\Core\Elog;
 if (!defined('SITE_PATH')) {
     define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
 }
-if (!defined('BASE_PATH')) {
-    define('BASE_PATH', dirname(SITE_PATH));
-}
-if (!defined('APP_PATH')) {
-    define('APP_PATH', BASE_PATH . '/app');
-}
-if (!defined('VENDOR_PATH')) {
-    define('VENDOR_PATH', BASE_PATH . '/vendor');
-}
+require_once SITE_PATH . '/../app/config/constants.php';
 
 $loader = require_once VENDOR_PATH . '/autoload.php';
 $my_classmap = require_once APP_PATH . '/config/autoload_classmap.php';
@@ -60,7 +52,6 @@ $o_elog = Elog::start();
 $o_default_dbf = DbFactory::start('db_config.php', 'rw');
 $o_default_pdo = $o_default_dbf->connect();
 
-require_once APP_PATH . '/config/constants.php';
 if ($o_default_pdo !== false) {
     $o_default_db = new Database($o_default_pdo);
     if (!Config::start($o_default_db)) {

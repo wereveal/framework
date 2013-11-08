@@ -5,3 +5,5 @@ composer.lock
 /vendor/
 /work/
 *.log
+tests
+test_db.php
