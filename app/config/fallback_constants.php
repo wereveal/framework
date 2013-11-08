@@ -20,3 +20,4 @@ define('PAGE_META_KEYWORDS', 'My Company');
 define('PAGE_TEMPLATE', 'index.tpl');
 define('PAGE_TITLE', 'My Company');
 define('THEME_NAME', 'default');
+define('ADMIN_THEME_NAME', 'default');
