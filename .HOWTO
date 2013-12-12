@@ -1,17 +1,35 @@
-1. Two Options for submodule
+There are a few options for using the framework after cloning
+1. remove .git dir and make a new project, new repository, etc - 
+   this looses the framework history - normally an OK thing
+2. after initial commit, clone --bare  
+   cp bare repo to the git server
+   update the config to point to the new remote repository, 
+   pull from the remote to get it connected properly
+
+Do not create a new branch of the framework repository and push it to the
+ritcframework remote repository. Always make a new project/new remote repo 
+
+1.  Two Options for submodule
 	1. After clone and remove the git dir to create a new project
 	   1. rm -Rf .git
-	   2. git init
-	   3. git add .
-	   4. git submodule add ssh://wer@www.wereveal.com/srv/git/ritclibrary
+       2. delete .gitmodule file
+	   3. git init
+	   4. git add .
+	   5. git submodule add ssh://wer@www.wereveal.com/srv/git/ritclibrary
 	2. After clone but use framework git history
 	   1. git submodule init
 	   2. git submodule update
-2. composer.phar update
-3. cd vendor/bin
-4. ./classmap_generator.php -l ../../app/src -w -o ../../app/config/autoload_classmap.php
-5. git add .
-6. git commit -m "Initial Commit" (or whatever message you want)
+2.  composer.phar update
+3.  cd vendor/bin
+4.  ./classmap_generator.php -l ../../app/src -w -o ../../app/config/autoload_classmap.php
+5.  cd ../../
+6.  git add .
+7.  git commit -m "Initial Commit" (or whatever message you want)
+8.  cd ../
+9.  git clone --bare dir_name repo_name.git
+10. cp bare repo to git server
+11. cd repo
+12. git pull (connects it)
 
 Any time you want the latest version of the submodule(s) do git submodule update
 Best practice, don't make modifications to the submodule, don't use git pull in the submodule
