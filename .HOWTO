@@ -1,8 +1,15 @@
-git submodule init
-git submodule update
-composer.phar update
-cd vendor/bin
-./classmap_generator.php -l ../../app -w -o ../../app/config/autoload_classmap.php
+1. Two Options for submodule
+	1. After clone and remove the git dir to create a new project
+	   1. rm -Rf .git
+	   2. git init
+	   3. git add .
+	   4. git submodule add ssh://wer@www.wereveal.com/srv/git/ritclibrary
+	2. After clone but use framework git history
+	   1. git submodule init
+	   2. git submodule update
+2. composer.phar update
+3. cd vendor/bin
+4. 4. ./classmap_generator.php -l ../../app/src -w -o ../../app/config/autoload_classmap.php
 
 Any time you want the latest version of the submodule(s) do git submodule update
 Best practice, don't make modifications to the submodule, don't use git pull in the submodule
