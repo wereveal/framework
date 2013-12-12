@@ -9,7 +9,9 @@
 	   2. git submodule update
 2. composer.phar update
 3. cd vendor/bin
-4. 4. ./classmap_generator.php -l ../../app/src -w -o ../../app/config/autoload_classmap.php
+4. ./classmap_generator.php -l ../../app/src -w -o ../../app/config/autoload_classmap.php
+5. git add .
+6. git commit -m "Initial Commit" (or whatever message you want)
 
 Any time you want the latest version of the submodule(s) do git submodule update
 Best practice, don't make modifications to the submodule, don't use git pull in the submodule
