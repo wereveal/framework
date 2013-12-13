@@ -1,5 +1,5 @@
 <?php
-$library_twig = APP_PATH . '/Library/resources/templates/twig';
+$library_twig = APP_PATH . '/Library/resources/templates';
 return array(
     'default_path'        => $library_twig,
     'additional_paths'    => array(
