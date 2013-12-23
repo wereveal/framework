@@ -13,19 +13,19 @@
  *      @defgroup core The core framework files
  *      @ingroup ritc_framework
  *  }
- *  @defgroup main_app_name
+ *  @defgroup example_app
  *  @{
  *      @version 1.0
  *      @defgroup controllers controller files
- *      @ingroup main_app_name
+ *      @ingroup example_app
  *      @defgroup views classes that create views
- *      @ingroup main_app_name
+ *      @ingroup example_app
  *      @defgroup forms files that define and create forms
  *      @ingroup views
  *      @defgroup model files that do database operations
- *      @ingroup main_app_name
+ *      @ingroup example_app
  *      @defgroup tests unitTesting
- *      @ingroup main_app_name
+ *      @ingroup example_app
  *  }
  *  @note <pre>
  *  NOTE: _path and _PATH indicates a full server path
@@ -49,7 +49,7 @@ $my_classmap = require_once APP_PATH . '/config/autoload_classmap.php';
 $loader->addClassMap($my_classmap);
 
 $o_elog = Elog::start();
-$o_default_dbf = DbFactory::start('db_config.php', 'rw');
+$o_default_dbf = DbFactory::start('db_example_config.php', 'rw');
 $o_default_pdo = $o_default_dbf->connect();
 
 if ($o_default_pdo !== false) {

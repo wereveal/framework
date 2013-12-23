@@ -1,5 +1,6 @@
 <?php
 
 return array(
-    'Ritc\\Framework\\Library'   => APP_PATH,
+    'Ritc\\Library'    => APP_PATH . '/src/Ritc/Library',
+    'Ritc\\ExampleApp' => APP_PATH . '/src/Ritc/ExampleApp',
 );

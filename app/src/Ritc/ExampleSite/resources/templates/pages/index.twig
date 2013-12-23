@@ -1,0 +1,74 @@
+{% extends '@default/base.twig' %}
+{% block body %}
+<h1>Welcome! This is a simplified front end to add/modify/delete ftpusers.</h1>
+{% include '@ritc_snippets/message.twig' %}
+<ul class="nice-list-form w1100 clearfix">
+{% set x = -1 %}
+{% for row in a_users %}
+	{% set class = x == 1 ? 'alt-row' : 'normal-row' %}
+	<li>
+	<form action="/change-user" method="post">
+		<div class="aright w75 bold {{ class }}">Username</div>
+		<div class="aleft w150 username {{ class }}">{{ row.id }}<input type="hidden" name="user[id]" value="{{ row.id }}" /></div>
+		<div class="aright w75 bold {{ class }}">Password</div>
+		<div class="aleft w150 {{ class }}">
+			<input type="text" name="user[password]" value="{{ row.password }}" size="20" maxlength="25" class="colorful" />
+		</div>
+		<div class="aright w75 bold {{ class }}">Dir Path</div>
+		<div class="aleft w350 {{ class }}">
+			<input type="text" name="user[dir]" value="{{ row.dir }}" size="60" class="colorful" />
+		</div>
+		<div class="acenter w200 {{ class }}">
+			<button type="submit" name="submit" value="update" class="btn medium white">Save</button>
+			<button type="submit" name="submit" value="verify" class="btn medium white">Delete</button>
+			{% for sess in a_session %}
+			<input type="hidden" name="{{ sess.name }}" value="{{ sess.value }}" />
+			{% endfor %}
+		</div>
+	</form>
+	</li>
+	{% set x = x * -1 %}
+{% endfor %}
+{% set class = x == 1 ? 'alt-row' : 'normal-row' %}
+	<li>
+	<form action="/save-user" method= "post">
+		<div class="aright w75 {{ class }}">Username</div>
+		<div class="aleft w150 {{ class }}">
+			<input type="text" name="user[id]" value="" size="20" class="colorful" />
+		</div>
+		<div class="aright w75 {{ class }}">Password</div>
+		<div class="aleft w150 {{ class }}">
+			<input type="text" name="user[password]" value="" size="20" class="colorful" />
+		</div>
+		<div class="aright w75 {{ class }}">Dir Path</div>
+		<div class="aleft w350 {{ class }}">
+			<input type="text" name="user[dir]" value="" size="60" class="colorful" />
+		</div>
+		<div class="acenter w200 {{ class }}">
+			<button type="submit" name="submit" value="save_new" class="btn btn-medium btn-white">Save New</button>
+			{% for sess in a_session %}
+			<input type="hidden" name="{{ sess.name }}" value="{{ sess.value }}" />
+			{% endfor %}
+		</div>
+	</form>
+	</li>
+</ul>
+<h3>Instructions</h3>
+<ul class="traditional">
+<li>Spaces in username and password will be replaced with an underscore.</li>
+<li>Usernames should be alphanumeric only plus underscore.</li>
+<li>Usernames have a max length of 16</li>
+<li>Usernames cannot be changed, you have to delete the user and add a new one to replace it</li>
+<li>Passwords should be alphanumeric plus the characters _*.+!-.</li>
+<li>Passwords have a max length of 25</li>
+<li>The Dir Path is the directory path the user is allowed to access within the websites directory (don't include it).
+	<ul class="traditional">
+		<li>Directory path should start and end with a slash (/) unless it is the root which is simply /</li>
+		<li>Directory must exist on the server (you have to create it first)</li>
+		<li>The user will be restricted to that path and cannot move outside of it.</li>
+		<li>Suggestion is to restrict user to as granular as possible.</li>
+		<li>Using '/' is a real bad idea and only really trusted users should have that access.</li>
+	</ul>
+</li>
+</ul>
+{% endblock %}
