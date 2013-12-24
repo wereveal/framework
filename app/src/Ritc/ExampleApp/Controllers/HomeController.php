@@ -32,9 +32,8 @@ class HomeController implements PageControllerInterface
     /**
      *  Main Router and Puker outer.
      *  In this case, a stub for the router required by the interface
-     *  @param array $a_actions optional, the actions passed from the MainController
-     *  @param array $a_values optional, values to act upon
-     *  @return str $html
+     *  @param none
+     *  @return string $html
     **/
     public function renderPage()
     {
@@ -44,7 +43,7 @@ class HomeController implements PageControllerInterface
      *  Routes the code to the appropriate methods and returns a string.
      *  @param array $a_actions optional, the actions derived from the URL/Form
      *  @param array $a_values optional, the values from a form
-     *  @return str html to be displayed.
+     *  @return string html to be displayed.
     **/
     public function router(array $a_actions = array(), array $a_values = array())
     {
@@ -78,6 +77,7 @@ class HomeController implements PageControllerInterface
         $this->a_actions = $a_actions;
         $this->a_values  = $a_values;
     }
+
     ### GETTERs ###
     public function getActions()
     {

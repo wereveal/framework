@@ -3,7 +3,7 @@ ob_start();
 $rodb      = false;
 $allow_get = true;
 require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/app/setup.php';
-$o_module   = new Ritc\Module\Controller\MainController;
+$o_module   = new Ritc\ExampleApp\Controllers\MainController;
 $html      = $o_module->renderPage();
 $any_junk  = ob_get_clean();
 ob_start();

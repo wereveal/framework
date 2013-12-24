@@ -56,4 +56,23 @@ class MainController extends PageControllerAbstract
                 return $o_home->renderPage();
         }
     }
+
+    ### GETTERs and SETTERs ###
+    /**
+     * @return \Ritc\Library\Core\Actions
+     */
+    public function getOActions()
+    {
+        return $this->o_actions;
+    }
+
+    /**
+     * This setter won't be allowed.
+     * @param none
+     * @return bool
+     */
+    public function setOActions()
+    {
+        return false;
+    }
 }
