@@ -15,7 +15,6 @@
 **/
 namespace Ritc\ExampleApp\Controllers;
 
-use Ritc\ExampleApp\Tests\UserTests;
 use Ritc\Library\Core\TwigFactory as Twig;
 
 class TestsController implements PageControllerInterface
@@ -34,10 +33,8 @@ class TestsController implements PageControllerInterface
     /**
      *  Main Router and Puker outer.
      *  In this case, a stub for the router required by the interface
-     *  @param array $a_actions optional, the actions passed from the MainController
-     *  @param array $a_values optional, values to act upon
-     *  @return str $html
-    **/
+     *  @return string $html
+     */
     public function renderPage()
     {
         return $this->router($this->a_actions, $this->a_values);
@@ -46,14 +43,12 @@ class TestsController implements PageControllerInterface
      *  Main Routing Method, used by renderPage method.
      *  @param array $a_actions optional, the actions derived from the URL/Form
      *  @param array $a_values optional, the values from a form
-     *  @return str html
+     *  @return string html
     **/
     public function router(array $a_actions = array(), array $a_values = array())
     {
         $main_action = isset($a_actions['action1']) ? $a_actions['action1'] : '';
         switch ($main_action) {
-            case 'users':
-                return $this->userTestPage();
             default:
                 return $this->defaultPage();
         }
@@ -61,21 +56,11 @@ class TestsController implements PageControllerInterface
     /**
      *  Returns the default page for testing.
      *  @param none
-     *  @return str
+     *  @return string
     **/
     public function defaultPage()
     {
         return $this->o_twig->render('@tests/home.twig', array());
-    }
-    /**
-     * @param array $a_actions
-     * @param array $a_values
-    **/
-    public function userTestPage(array $a_actions = array(), array $a_values = array())
-    {
-        $o_userTests = new UserTests($a_test_order);
-        $o_userTests->setTestValues($a_test_values);
-        $results = $o_userTests->runTests("Users", $a_test_order);
     }
 
     ### SETTERs ###
