@@ -37,6 +37,7 @@ namespace Ritc;
 
 use Ritc\Library\Core\Config;
 use Ritc\Library\Core\DbFactory;
+use Ritc\Library\Core\DbModel;
 use Ritc\Library\Core\Elog;
 
 if (!defined('SITE_PATH')) {
@@ -53,7 +54,7 @@ $o_default_dbf = DbFactory::start('db_example_config.php', 'rw');
 $o_default_pdo = $o_default_dbf->connect();
 
 if ($o_default_pdo !== false) {
-    $o_default_db = new Database($o_default_pdo);
+    $o_default_db = new DbModel($o_default_pdo);
     if (!Config::start($o_default_db)) {
         $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
         require_once APP_PATH . '/config/fallback_constants.php';

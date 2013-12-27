@@ -23,7 +23,7 @@ abstract class PageControllerAbstract implements PageControllerInterface
      *  Main Router and Puker outer (more descriptive method name).
      *  Turns over the hard work to the specific controllers through the router.
      *  @param none (have two in the function call to match the interface
-     *  @return str $html
+     *  @return string $html
     **/
     public function renderPage()
     {

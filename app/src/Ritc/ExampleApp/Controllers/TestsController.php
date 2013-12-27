@@ -1,23 +1,23 @@
 <?php
 /**
- *  @brief Controller for the Home page.
- *  @file HomeController.php
+ *  @brief Controller for Tests.
+ *  @file TestsController.php
  *  @ingroup example_app controllers
  *  @namespace Ritc/ExampleApp/Controllers
- *  @class HomeController
+ *  @class TestsController
  *  @author William Reveal  <bill@revealitconsulting.com>
  *  @version 0.1
- *  @date 2013-12-12 13:04:04
+ *  @date 2013-12-14 17:35:05
  *  @note A file in ExampleApp v1 app
  *  @note <pre><b>Change Log</b>
- *      v0.1 - Initial version 2013-12-12
+ *      v0.1 - Initial version 2013-12-14
  *  </pre>
 **/
 namespace Ritc\ExampleApp\Controllers;
 
 use Ritc\Library\Core\TwigFactory as Twig;
 
-class HomeController implements PageControllerInterface
+class TestsController implements PageControllerInterface
 {
     protected $a_actions;
     protected $a_values;
@@ -25,43 +25,42 @@ class HomeController implements PageControllerInterface
 
     public function __construct(array $a_actions = array(), array $a_values = array())
     {
-        $this->o_twig    = Twig::start('twig_config.php');
+        $this->o_twig = Twig::start('twig_config.php');
         $this->a_actions = $a_actions;
         $this->a_values  = $a_values;
     }
+
     /**
      *  Main Router and Puker outer.
      *  In this case, a stub for the router required by the interface
-     *  @param array $a_actions optional, the actions passed from the MainController
-     *  @param array $a_values optional, values to act upon
-     *  @return str $html
-    **/
+     *  @return string $html
+     */
     public function renderPage()
     {
         return $this->router($this->a_actions, $this->a_values);
     }
     /**
-     *  Routes the code to the appropriate methods and returns a string.
+     *  Main Routing Method, used by renderPage method.
      *  @param array $a_actions optional, the actions derived from the URL/Form
      *  @param array $a_values optional, the values from a form
-     *  @return str html to be displayed.
+     *  @return string html
     **/
     public function router(array $a_actions = array(), array $a_values = array())
     {
-        $main_action = isset($a_actions['action2']) ? $a_actions['action2'] : '';
-        if (isset($a_values['form_action'])) {
-            $main_action = $a_values['form_action'];
-        }
+        $main_action = isset($a_actions['action1']) ? $a_actions['action1'] : '';
         switch ($main_action) {
-            case 'home':
             default:
-                return $this->renderHome();
+                return $this->defaultPage();
         }
     }
-    protected function renderHome()
+    /**
+     *  Returns the default page for testing.
+     *  @param none
+     *  @return string
+    **/
+    public function defaultPage()
     {
-        $a_home_values = array();
-        return $this->o_twig->render('@pages/index.twig', $a_home_values);
+        return $this->o_twig->render('@tests/home.twig', array());
     }
 
     ### SETTERs ###
@@ -87,5 +86,4 @@ class HomeController implements PageControllerInterface
     {
         return $this->a_values;
     }
-
 }
