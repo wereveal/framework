@@ -59,7 +59,7 @@ class HomeController implements PageControllerInterface
     }
     protected function renderHome()
     {
-        $a_home_values = array();
+        $a_home_values = ['top_header_text' => 'This is an example app', 'body_text' => 'You can use this to start a new app.'];
         return $this->o_twig->render('@pages/index.twig', $a_home_values);
     }
 

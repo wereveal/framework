@@ -1,14 +1,21 @@
 <?php
-$library_twig = APP_PATH . '/Library/resources/templates';
+$library_twig = SRC_PATH . '/Ritc/Library/resources/templates';
+$example_twig = SRC_PATH . '/Ritc/ExampleApp/resources/templates';
 return array(
-    'default_path'        => $library_twig,
-    'additional_paths'    => array(
-        'ritc_default'  => $library_twig . '/default',
-        'ritc_elements' => $library_twig . '/elements',
-        'ritc_main'     => $library_twig . '/main',
-        'ritc_pages'    => $library_twig . '/pages',
-        'ritc_snippets' => $library_twig . '/snippets',
-        'ritc_tests'    => $library_twig . '/tests'
+    'default_path'      => $example_twig,
+    'additional_paths'  => array(
+        $library_twig . '/default'  => 'library_default',
+        $library_twig . '/elements' => 'library_elements',
+        $library_twig . '/main'     => 'library_main',
+        $library_twig . '/pages'    => 'library_pages',
+        $library_twig . '/snippets' => 'library_snippets',
+        $library_twig . '/tests'    => 'library_tests',
+        $example_twig . '/default'  => 'default',
+        $example_twig . '/elements' => 'elements',
+        $example_twig . '/main'     => 'main',
+        $example_twig . '/pages'    => 'pages',
+        $example_twig . '/snippets' => 'snippets',
+        $example_twig . '/tests'    => 'tests',
     ),
     'environment_options' => array(
         'cache' => APP_PATH . '/twig_cache',
