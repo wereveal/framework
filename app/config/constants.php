@@ -1,13 +1,13 @@
 <?php
 /**
- *  Define Constants that will be used throughout the website.
+ *  @brief Define Constants that will be used throughout the website.
  *  @file constants.php
  *  @note <pre>
  *      _PATH = Full server path
  *      _DIR  = Path in web site (URI)
  *      _NAME = Name of item without any path information
  *  @ingroup ritc_library configs
- **/
+**/
 namespace Ritc;
 
 if (!defined('SITE_PATH')) exit('This file cannot be called directly');
@@ -73,12 +73,13 @@ define('FILES_PATH',      SITE_PATH . FILES_DIR);
 define('IMAGES_PATH',     SITE_PATH . IMAGES_DIR);
 define('ADMIN_PATH',      SITE_PATH . ADMIN_DIR);
 
-/** Variables used by the classes Elog and Show_Global_Vars.
-For Production Sites, only USE_PHP_LOG could be true
-but it can slow things a bit. The class Elog has a
-method that allows temporary overrides of these global
-settings in the class (not the constants themselves of course).
- **/
+/**
+ *  Variables used by the classes Elog and Show_Global_Vars.
+ *  For Production Sites, only USE_PHP_LOG could be true
+ *  but it can slow things a bit. The class Elog has a
+ *  method that allows temporary overrides of these global
+ *  settings in the class (not the constants themselves of course).
+**/
 define('USE_PHP_LOG',  true);
 define('USE_TEXT_LOG', false);
 define('LOG_OFF', 0);
