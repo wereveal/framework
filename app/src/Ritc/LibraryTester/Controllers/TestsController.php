@@ -16,12 +16,13 @@
 namespace Ritc\LibraryTester\Controllers;
 
 use Ritc\Library\Core\TwigFactory as Twig;
+use Ritc\Library\Interfaces\ControllerInterface;
 
-class TestsController implements PageControllerInterface
+class TestsController implements ControllerInterface
 {
     protected $a_actions;
     protected $a_values;
-    protected $o_twig;
+    private $o_twig;
 
     public function __construct(array $a_actions = array(), array $a_values = array())
     {
@@ -32,20 +33,11 @@ class TestsController implements PageControllerInterface
 
     /**
      *  Main Router and Puker outer.
-     *  In this case, a stub for the router required by the interface
-     *  @return string $html
-     */
-    public function renderPage()
-    {
-        return $this->router($this->a_actions, $this->a_values);
-    }
-    /**
-     *  Main Routing Method, used by renderPage method.
      *  @param array $a_actions optional, the actions derived from the URL/Form
      *  @param array $a_values optional, the values from a form
      *  @return string html
     **/
-    public function router(array $a_actions = array(), array $a_values = array())
+    public function renderPage(array $a_actions = array(), array $a_values = array())
     {
         $main_action = isset($a_actions['action1']) ? $a_actions['action1'] : '';
         switch ($main_action) {
@@ -63,6 +55,15 @@ class TestsController implements PageControllerInterface
         return $this->o_twig->render('@tests/home.twig', array());
     }
 
+    ### GETTERs ###
+    public function getActions()
+    {
+        return $this->a_actions;
+    }
+    public function getValues()
+    {
+        return $this->a_values;
+    }
     ### SETTERs ###
     public function setActions(array $a_actions = array())
     {
@@ -76,14 +77,5 @@ class TestsController implements PageControllerInterface
     {
         $this->a_actions = $a_actions;
         $this->a_values  = $a_values;
-    }
-    ### GETTERs ###
-    public function getActions()
-    {
-        return $this->a_actions;
-    }
-    public function getValues()
-    {
-        return $this->a_values;
     }
 }

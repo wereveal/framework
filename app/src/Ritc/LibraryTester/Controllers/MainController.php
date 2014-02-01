@@ -18,12 +18,13 @@ namespace Ritc\LibraryTester\Controllers;
 use Ritc\Library\Core\Elog;
 use Ritc\Library\Core\Session;
 use Ritc\Library\Core\Actions;
+use Ritc\Library\Abstracts\PageControllerAbstract as PCA;
 
-class MainController extends PageControllerAbstract
+class MainController extends PCA
 {
-    protected $o_actions;
-    protected $o_elog;
-    protected $o_sess;
+    private $o_actions;
+    private $o_elog;
+    private $o_sess;
 
     public function __construct()
     {
@@ -46,33 +47,12 @@ class MainController extends PageControllerAbstract
     {
         $main_action = isset($a_actions['action1']) ? $a_actions['action1'] : '';
         switch ($main_action) {
-            case 'tests':
-                $o_tests = new TestsController($a_actions, $a_values);
-                return $o_tests->renderPage();
-            case 'verify':
             case 'home':
             default:
-                $o_home = new HomeController($a_actions, $a_values);
-                return $o_home->renderPage();
+                $o_tests = new TestsController($a_actions, $a_values);
+                return $o_tests->renderPage();
         }
     }
 
     ### GETTERs and SETTERs ###
-    /**
-     * @return \Ritc\Library\Core\Actions
-     */
-    public function getOActions()
-    {
-        return $this->o_actions;
-    }
-
-    /**
-     * This setter won't be allowed.
-     * @param none
-     * @return bool
-     */
-    public function setOActions()
-    {
-        return false;
-    }
 }

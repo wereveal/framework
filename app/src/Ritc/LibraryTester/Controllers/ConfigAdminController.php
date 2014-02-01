@@ -20,6 +20,7 @@ namespace Ritc\LibraryTester\Controllers;
 use Ritc\Library\Core\Elog;
 use Ritc\Library\Core\TwigFactory as Twig;
 use Ritc\Library\Helper\ViewHelper;
+use Ritc\Library\Interfaces\ControllerInterface;
 use Ritc\LibraryTester\Models\AppConfig;
 
 class ConfigAdminController implements ControllerInterface
@@ -162,5 +163,29 @@ class ConfigAdminController implements ControllerInterface
             $a_values['a_configs'] = $a_configs;
         }
         return $this->o_twig->render('@pages/app_config.twig', $a_values);
+    }
+
+    ### GETTERs ###
+    public function getActions()
+    {
+        return $this->a_actions;
+    }
+    public function getValues()
+    {
+        return $this->a_values;
+    }
+    ### SETTERs ###
+    public function setActions(array $a_actions = array())
+    {
+        $this->a_actions = $a_actions;
+    }
+    public function setValues(array $a_values = array())
+    {
+        $this->a_values = $a_values;
+    }
+    public function setActionsValues(array $a_actions = array(), array $a_values = array())
+    {
+        $this->a_actions = $a_actions;
+        $this->a_values  = $a_values;
     }
 }
