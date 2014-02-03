@@ -3,18 +3,18 @@
  *  @brief The CRUD for the application configuration.
  *  @file AppConfig.php
  *  @ingroup ftpadmin models
- *  @namespace Ritc/FtpAdmin/Models
+ *  @namespace Ritc/LibraryTester/Models
  *  @class AppConfig
  *  @author William Reveal  <bill@revealitconsulting.com>
  *  @version 0.1.0
  *  @date 2013-12-12 13:21:16
- *  @note A file in Ritc FtpAdmin version 1.0
+ *  @note A file in Ritc LibraryTester version 1.0
  *  @note <pre><b>Change Log</b>
  *      v0.1.0 - Initial version 12/12/2013
  *  </pre>
  *  @todo add this to the ritc_framework example app... maybe even to the Library
 **/
-namespace Ritc\FtpAdmin\Models;
+namespace Ritc\LibraryTester\Models;
 
 use Ritc\Library\Core\Arrays;
 use Ritc\Library\Core\DbFactory;

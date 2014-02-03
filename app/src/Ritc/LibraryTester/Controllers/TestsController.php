@@ -16,6 +16,7 @@
 namespace Ritc\LibraryTester\Controllers;
 
 use Ritc\Library\Core\TwigFactory as Twig;
+use Ritc\Library\Helper\ViewHelper;
 use Ritc\Library\Interfaces\ControllerInterface;
 
 class TestsController implements ControllerInterface
@@ -41,18 +42,47 @@ class TestsController implements ControllerInterface
     {
         $main_action = isset($a_actions['action1']) ? $a_actions['action1'] : '';
         switch ($main_action) {
+            case 'access':
+            case 'actions':
+            case 'arrays':
+            case 'datestimes':
+            case 'dbfactory':
+            case 'dbmodel':
+            case 'elog':
+            case 'files':
+            case 'html':
+            case 'session':
+            case 'strings':
+            case 'tail':
+            case 'twigfactory':
+                return $this->defaultPage('The test you have requested has not been written yet.');
+            case 'config':
+                return $this->configPage();
+            case 'home':
             default:
                 return $this->defaultPage();
         }
     }
     /**
      *  Returns the default page for testing.
-     *  @param none
+     *  @param string $message defaults to empty.
      *  @return string
     **/
-    public function defaultPage()
+    public function defaultPage($message = '')
     {
-        return $this->o_twig->render('@tests/home.twig', array());
+        $a_message = array('message' => '');
+        if ($message != '') {
+            $o_view_helper = new ViewHelper();
+            $a_message = $o_view_helper->messageProperties(array('message' => $message, 'type' => 'warning'));
+        }
+        return $this->o_twig->render('@tester_tests/list.twig', $a_message);
+    }
+    private function configPage()
+    {
+        $o_config_tester = new ConfigTests();
+        $results = $o_config_tester->runTests();
+        $a_results = $o_config_tester->returnTestResults();
+        return $this->o_twig->render('@tests/results.twig', $a_results);
     }
 
     ### GETTERs ###
@@ -64,6 +94,7 @@ class TestsController implements ControllerInterface
     {
         return $this->a_values;
     }
+
     ### SETTERs ###
     public function setActions(array $a_actions = array())
     {

@@ -3,24 +3,24 @@
  *  @brief Controller for the Configuration page.
  *  @file ConfigAdminController.php
  *  @ingroup ftpadmin controllers
- *  @namespace Ritc/FtpAdmin/Controllers
+ *  @namespace Ritc/LibraryTester/Controllers
  *  @class ConfigAdminController
  *  @author William Reveal  <bill@revealitconsulting.com>
  *  @version 0.1
  *  @date 2013-12-12 13:04:04
- *  @note A file in FtpAdmin v1 app
+ *  @note A file in LibraryTester v1 app
  *  @note <pre><b>Change Log</b>
  *      v0.1 - Initial version 2013-12-12
  *  </pre>
  *  @todo Add the session validation setup
  *  @todo add to ritc framework example app or maybe even to the Library as an abstract or interface.
 **/
-namespace Ritc\FtpAdmin\Controllers;
+namespace Ritc\LibraryTester\Controllers;
 
 use Ritc\Library\Core\Elog;
 use Ritc\Library\Core\TwigFactory as Twig;
 use Ritc\Library\Helper\ViewHelper;
-use Ritc\FtpAdmin\Models\AppConfig;
+use Ritc\LibraryTester\Models\AppConfig;
 
 class ConfigAdminController implements ControllerInterface
 {

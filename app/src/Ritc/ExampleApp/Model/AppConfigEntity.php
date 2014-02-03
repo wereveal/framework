@@ -3,12 +3,12 @@
  *  @brief Creates a entity object.
  *  @file AppConfigEntity.php
  *  @ingroup ftpadmin models
- *  @namespace Ritc/FtpAdmin/Models
+ *  @namespace Ritc/LibraryTester/Models
  *  @class AppConfigEntity
  *  @author William Reveal  <bill@revealitconsulting.com>
  *  @version 0.1.0
  *  @date 2013-12-12 13:21:16
- *  @note A file in the Ritc FtpAdmin version 1.0
+ *  @note A file in the Ritc LibraryTester version 1.0
  *  @note <b>SQL for table<b>
  *  <pre>
  *  CREATE TABLE `app_config` (
@@ -34,9 +34,11 @@
  *      v0.1.0 - Initial version 12/12/2013</pre>
  *  @todo add this to the ritc framework example app or maybe to the Library
 **/
-namespace Ritc\FtpAdmin\Models;
+namespace Ritc\LibraryTester\Models;
 
-class AppConfigEntity implements namespace\EntityInterface
+use Ritc\Library\Interfaces\EntityInterface;
+
+class AppConfigEntity implements EntityInterface
 {
     private $config_id;
     private $config_name;

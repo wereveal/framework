@@ -18,9 +18,9 @@ namespace Ritc\LibraryTester\Controllers;
 use Ritc\Library\Core\Elog;
 use Ritc\Library\Core\Session;
 use Ritc\Library\Core\Actions;
-use Ritc\Library\Abstracts\PageControllerAbstract as PCA;
+use Ritc\Library\Interfaces\PageControllerInterface as PCI;
 
-class MainController extends PCA
+class MainController implements PCI
 {
     private $o_actions;
     private $o_elog;
@@ -33,7 +33,23 @@ class MainController extends PCA
         $this->o_actions = new Actions;
     }
 
-    /* public function renderPage() defaults to PageControllerAbstract, no duplication needed */
+    /**
+     *  Main Router and Puker outer (more descriptive method name).
+     *  Turns over the hard work to the specific controllers through the router.
+     *  @param none
+     *  @return string $html
+     **/
+    public function renderPage()
+    {
+        $this->o_actions->setUriActions();
+        $a_actions   = $this->o_actions->getUriActions();
+        $form_action = $this->o_actions->getFormAction();
+        $a_post      = $this->o_actions->getCleanPost();
+        $a_get       = $this->o_actions->getCleanGet();
+        $a_values    = array('form_action'=>$form_action);
+        $a_values    = array_merge($a_values, $a_get, $a_post);
+        return $this->router($a_actions, $a_values);
+    }
     /**
      *  Routes the code to the appropriate sub controllers and returns a string.
      *  As much as I have been looking at putting the actual route pairs somewhere else
@@ -45,13 +61,8 @@ class MainController extends PCA
     **/
     public function router(array $a_actions = array(), array $a_values = array())
     {
-        $main_action = isset($a_actions['action1']) ? $a_actions['action1'] : '';
-        switch ($main_action) {
-            case 'home':
-            default:
-                $o_tests = new TestsController($a_actions, $a_values);
-                return $o_tests->renderPage();
-        }
+        $o_tests = new TestsController($a_actions, $a_values);
+        return $o_tests->renderPage();
     }
 
     ### GETTERs and SETTERs ###

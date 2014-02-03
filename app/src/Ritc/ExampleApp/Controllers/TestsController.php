@@ -2,53 +2,50 @@
 /**
  *  @brief Controller for Tests.
  *  @file TestsController.php
- *  @ingroup example_app controllers
- *  @namespace Ritc/ExampleApp/Controllers
+ *  @ingroup ftpadmin controllers
+ *  @namespace Ritc/LibraryTester/Controllers
  *  @class TestsController
  *  @author William Reveal  <bill@revealitconsulting.com>
  *  @version 0.1
  *  @date 2013-12-14 17:35:05
- *  @note A file in ExampleApp v1 app
+ *  @note A file in LibraryTester v1 app
  *  @note <pre><b>Change Log</b>
  *      v0.1 - Initial version 2013-12-14
  *  </pre>
 **/
-namespace Ritc\ExampleApp\Controllers;
+namespace Ritc\LibraryTester\Controllers;
 
+use Ritc\LibraryTester\Tests\AppConfigTests;
+use Ritc\LibraryTester\Tests\UserTests;
 use Ritc\Library\Core\TwigFactory as Twig;
+use Ritc\Library\Core\Elog;
 
-class TestsController implements PageControllerInterface
+class TestsController implements ControllerInterface
 {
-    protected $a_actions;
-    protected $a_values;
-    protected $o_twig;
+    private $o_elog;
+    private $o_twig;
 
-    public function __construct(array $a_actions = array(), array $a_values = array())
+    public function __construct()
     {
         $this->o_twig = Twig::start('twig_config.php');
-        $this->a_actions = $a_actions;
-        $this->a_values  = $a_values;
+        $this->o_elog = Elog::start();
     }
 
     /**
-     *  Main Router and Puker outer.
-     *  In this case, a stub for the router required by the interface
-     *  @return string $html
-     */
-    public function renderPage()
-    {
-        return $this->router($this->a_actions, $this->a_values);
-    }
-    /**
-     *  Main Routing Method, used by renderPage method.
+     *  Router for the controller.
      *  @param array $a_actions optional, the actions derived from the URL/Form
      *  @param array $a_values optional, the values from a form
      *  @return string html
     **/
-    public function router(array $a_actions = array(), array $a_values = array())
+    public function renderPage(array $a_actions = array(), array $a_values = array())
     {
-        $main_action = isset($a_actions['action1']) ? $a_actions['action1'] : '';
+        $main_action = isset($a_actions['action2']) ? $a_actions['action2'] : '';
+        $this->o_elog->write("The Actions:\n" . var_export($a_actions, TRUE), LOG_OFF, __METHOD__ . '.' . __LINE__);
         switch ($main_action) {
+            case 'users':
+                return $this->userTestPage();
+            case 'config':
+                return $this->appConfigTestPage();
             default:
                 return $this->defaultPage();
         }
@@ -62,28 +59,30 @@ class TestsController implements PageControllerInterface
     {
         return $this->o_twig->render('@tests/home.twig', array());
     }
+    public function appConfigTestPage()
+    {
+        $show_test_names = true;
+        $a_test_values = include dirname(__DIR__) . '/config/config_test_values.php';
+        $this->o_elog->write('' . var_export($a_test_values, TRUE), LOG_OFF, __METHOD__ . '.' . __LINE__);
+        $o_configTests = new AppConfigTests;
+        $o_configTests->setTestValues($a_test_values);
+        $o_configTests->setTestOrder($a_test_values['test_order']);
+        $o_configTests->runTests();
+        $a_twig_values = $o_configTests->returnTestResults($show_test_names);
+        $this->o_elog->write('Twig Values: ' . var_export($a_twig_values, TRUE), LOG_OFF, __METHOD__ . '.' . __LINE__);
+        return $this->o_twig->render('@tests/results.twig', $a_twig_values);
+    }
+    public function userTestPage()
+    {
+        $a_test_values = include dirname(__DIR__) . '/config/user_test_values.php';
+        $o_userTests = new UserTests();
+        $o_userTests->setTestOrder($a_test_values['test_order']);
+        $o_userTests->setTestValues($a_test_values);
+        $o_userTests->runTests();
+        $show_test_names = true;
+        $a_twig_values = $o_userTests->returnTestResults($show_test_names);
+        $this->o_elog->write('Twig Values: ' . var_export($a_twig_values, TRUE), LOG_OFF, __METHOD__ . '.' . __LINE__);
+        return $this->o_twig->render('@tests/results.twig', $a_twig_values);
+    }
 
-    ### SETTERs ###
-    public function setActions(array $a_actions = array())
-    {
-        $this->a_actions = $a_actions;
-    }
-    public function setValues(array $a_values = array())
-    {
-        $this->a_values = $a_values;
-    }
-    public function setActionsValues(array $a_actions = array(), array $a_values = array())
-    {
-        $this->a_actions = $a_actions;
-        $this->a_values  = $a_values;
-    }
-    ### GETTERs ###
-    public function getActions()
-    {
-        return $this->a_actions;
-    }
-    public function getValues()
-    {
-        return $this->a_values;
-    }
 }
