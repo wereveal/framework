@@ -18,6 +18,7 @@ namespace Ritc\LibraryTester\Controllers;
 use Ritc\Library\Core\TwigFactory as Twig;
 use Ritc\Library\Helper\ViewHelper;
 use Ritc\Library\Interfaces\ControllerInterface;
+use Ritc\LibraryTester\Tests\ConfigTests;
 
 class TestsController implements ControllerInterface
 {
@@ -80,7 +81,7 @@ class TestsController implements ControllerInterface
     private function configPage()
     {
         $o_config_tester = new ConfigTests();
-        $results = $o_config_tester->runTests();
+        $o_config_tester->runTests();
         $a_results = $o_config_tester->returnTestResults();
         return $this->o_twig->render('@tests/results.twig', $a_results);
     }
