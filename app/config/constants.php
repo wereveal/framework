@@ -31,6 +31,15 @@ if (!isset($allow_get) || $allow_get === false) {
 // Empty some global vars we don't use and don't want to have values in
 $_REQUEST = array();
 
+if (!defined('DB_ACCESS')) {
+    if (!isset($rodb) || $rodb === true) {
+        define('DB_ACCESS', 'ro');
+    }
+    else {
+        define('DB_ACCESS', 'rw');
+    }
+}
+
 define('ADMIN_DIR_NAME',     'admin');
 define('ASSETS_DIR_NAME',    'assets');
 define('CONFIG_DIR_NAME',    'config');

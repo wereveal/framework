@@ -50,7 +50,7 @@ $my_classmap = require_once APP_PATH . '/config/autoload_classmap.php';
 $loader->addClassMap($my_classmap);
 
 $o_elog = Elog::start();
-$o_default_dbf = DbFactory::start('db_example_config.php', 'rw');
+$o_default_dbf = DbFactory::start('db_example_config.php', DB_ACCESS);
 $o_default_pdo = $o_default_dbf->connect();
 
 if ($o_default_pdo !== false) {
