@@ -1,6 +1,7 @@
 codekit-config.json
 composer.lock
 /app/twig_cache*
+/app/src/Ritc/Library/
 /nbproject/
 /vendor/
 /work/
