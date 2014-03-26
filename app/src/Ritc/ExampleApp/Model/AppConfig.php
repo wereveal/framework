@@ -28,6 +28,8 @@ class AppConfig
     protected $o_db;
     protected $o_elog;
     protected $o_strings;
+    private $db_prefix;
+    private $db_type;
 
     public function __construct()
     {
@@ -35,13 +37,15 @@ class AppConfig
         $o_dbf = DbFactory::start('db_config.php', 'rw');
         $o_pdo = $o_dbf->connect();
         if ($o_pdo !== false) {
-            $this->o_db = new DbModel($o_pdo);
+            $this->o_db = new DbModel($o_pdo, 'db_config.php');
         }
         else {
             $this->o_elog->write('Could not connect to the database', LOG_ALWAYS, __METHOD__ . '.' . __LINE__);
         }
         $this->o_arrays = new Arrays;
         $this->o_strings = new Strings;
+        $this->db_prefix = $this->o_db->getDbPrefix();
+        $this->db_type = $this->o_db->getDbType();
     }
 
     ### CRUD ###
@@ -58,10 +62,10 @@ class AppConfig
         }
         $a_config['config_name'] = $this->makeValidName($a_config);
         $sql = "
-            INSERT INTO app_config (config_name, config_value)
+            INSERT INTO {$this->db_prefix}config (config_name, config_value)
             VALUES (:config_name, :config_value)
         ";
-        if ($this->o_db->insert($sql, $a_config, 'app_config')) {
+        if ($this->o_db->insert($sql, $a_config, "{$this->db_prefix}config")) {
             $a_ids = $this->o_db->getNewIds();
             return $a_ids[0];
         }
@@ -81,7 +85,7 @@ class AppConfig
             if (preg_match('/[0-9]/', $first_char) === 1) {
                 $sql = "
                     SELECT config_id, config_name, config_value
-                    FROM app_config
+                    FROM {$this->db_prefix}config
                     WHERE config_id = :config_id
                 ";
                 $search_array = array(':config_id' => $config_identifier);
@@ -89,7 +93,7 @@ class AppConfig
             else {
                 $sql = "
                     SELECT config_id, config_name, config_value
-                    FROM app_config
+                    FROM {$this->db_prefix}config
                     WHERE config_name = :config_name
                 ";
                 $search_array = array(':config_name' => $config_identifier);
@@ -105,7 +109,7 @@ class AppConfig
         else {
             $sql = "
                 SELECT config_id, config_name, config_value
-                FROM app_config
+                FROM {$this->db_prefix}config
                 ORDER BY config_id
             ";
             return $this->o_db->search($sql);
@@ -122,7 +126,7 @@ class AppConfig
         }
         $sql_set = $this->o_db->buildSqlSet($a_config, array('config_id'));
         $sql = "
-            UPDATE app_config
+            UPDATE {$this->db_prefix}config
             {$sql_set}
             WHERE config_id  = :config_id
         ";
@@ -141,7 +145,7 @@ class AppConfig
             return false; // config doesn't exist
         }
         $sql = "
-            DELETE FROM app_config
+            DELETE FROM {$this->db_prefix}config
             WHERE config_id = :config_id
         ";
         return $this->o_db->delete($sql, array('config_id' => $config_id), true);

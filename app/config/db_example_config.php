@@ -8,5 +8,6 @@ return array(
     'password' => 'letmein',
     'userro'   => 'example_app',
     'passro'   => 'letmein',
-    'persist'  => true
+    'persist'  => true,
+    'prefix'   => 'example_'
 );

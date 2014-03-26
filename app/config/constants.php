@@ -18,6 +18,12 @@ if (!defined('BASE_PATH')) {
 if (!defined('APP_PATH')) {
     define('APP_PATH', BASE_PATH . '/app');
 }
+if (!defined('SRC_PATH')) {
+    define('SRC_PATH', APP_PATH . '/src');
+}
+if (!defined('CONF_PATH')) {
+    define('CONFIG_PATH', APP_PATH . '/config')
+}
 if (!defined('VENDOR_PATH')) {
     define('VENDOR_PATH', BASE_PATH . '/vendor');
 }
@@ -28,8 +34,6 @@ if (!isset($allow_get) || $allow_get === false) {
 // Empty some global vars we don't use and don't want to have values in
 $_REQUEST = array();
 
-define('CONFIG_DIR_NAME', 'config');
-define('APP_CONFIG_PATH', APP_PATH . '/' . CONFIG_DIR_NAME);
 define('PRIVATE_DIR_NAME', 'private');
 define('TMP_DIR_NAME', 'tmp');
 if (isset($_SERVER['HTTP_HOST'])) {

@@ -38,6 +38,7 @@ namespace Ritc;
 use Ritc\Library\Core\Config;
 use Ritc\Library\Core\Database;
 use Ritc\Library\Core\DbFactory;
+use Ritc\Library\Core\DbModel;
 use Ritc\Library\Core\Elog;
 
 if (!defined('SITE_PATH')) {
@@ -46,21 +47,21 @@ if (!defined('SITE_PATH')) {
 require_once SITE_PATH . '/../app/config/constants.php';
 
 $loader = require_once VENDOR_PATH . '/autoload.php';
-$my_classmap = require_once APP_PATH . '/config/autoload_classmap.php';
+$my_classmap = require_once CONFIG_PATH . '/autoload_classmap.php';
 $loader->addClassMap($my_classmap);
 
 $o_elog = Elog::start();
 $o_default_dbf = DbFactory::start();
-$o_default_pdo = $o_default_dbf->connect();
+$o_default_pdo = $o_default_dbf->connect('db_example_config.php');
 
 if ($o_default_pdo !== false) {
-    $o_default_db = new Database($o_default_pdo);
+    $o_default_db = new DbModel($o_default_pdo, 'db_example_config.php');
     if (!Config::start($o_default_db)) {
         $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
-        require_once APP_PATH . '/config/fallback_constants.php';
+        require_once CONFIG_PATH . '/fallback_constants.php';
     }
 }
 else {
     $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
-    require_once APP_PATH . '/config/fallback_constants.php';
+    require_once CONFIG_PATH . '/fallback_constants.php';
 }

@@ -46,21 +46,21 @@ if (!defined('SITE_PATH')) {
 require_once SITE_PATH . '/../app/config/constants.php';
 
 $loader = require_once VENDOR_PATH . '/autoload.php';
-$my_classmap = require_once APP_PATH . '/config/autoload_classmap.php';
+$my_classmap = require_once CONFIG_PATH . '/autoload_classmap.php';
 $loader->addClassMap($my_classmap);
 
 $o_elog = Elog::start();
-$o_default_dbf = DbFactory::start('db_example_config.php', DB_ACCESS);
+$o_default_dbf = DbFactory::start('db_example_config.php', 'rw');
 $o_default_pdo = $o_default_dbf->connect();
 
 if ($o_default_pdo !== false) {
     $o_default_db = new DbModel($o_default_pdo);
     if (!Config::start($o_default_db)) {
         $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
-        require_once APP_PATH . '/config/fallback_constants.php';
+        require_once CONFIG_PATH . '/fallback_constants.php';
     }
 }
 else {
     $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
-    require_once APP_PATH . '/config/fallback_constants.php';
+    require_once CONFIG_PATH . '/fallback_constants.php';
 }
