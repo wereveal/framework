@@ -10,10 +10,17 @@
 **/
 namespace Ritc;
 
-if (!defined('SITE_PATH')) exit('This file cannot be called directly');
+if (!isset($allow_get) || $allow_get === false) {
+    $_GET = array();
+}
+// Empty some global vars we don't use and don't want to have values in
+$_REQUEST = array();
 
+if (!defined('SITE_PATH')) {
+    exit('This file cannot be called directly'); // should be defined in the setup.php file
+}
 if (!defined('BASE_PATH')) {
-    define('BASE_PATH', dirname(SITE_PATH));
+    exit('This file cannot be called directly'); // should be defined in the setup.php file
 }
 if (!defined('APP_PATH')) {
     define('APP_PATH', BASE_PATH . '/app');
@@ -21,32 +28,31 @@ if (!defined('APP_PATH')) {
 if (!defined('SRC_PATH')) {
     define('SRC_PATH', APP_PATH . '/src');
 }
-if (!defined('CONF_PATH')) {
-    define('CONFIG_PATH', APP_PATH . '/config')
+if (!defined('APP_CONFIG_PATH')) {
+    define('APP_CONFIG_PATH', APP_PATH . '/config');
 }
 if (!defined('VENDOR_PATH')) {
     define('VENDOR_PATH', BASE_PATH . '/vendor');
 }
-if (!defined('SRC_PATH')) {
-    define('SRC_PATH', APP_PATH . '/src');
+if (!defined('ADMIN_DIR_NAME')) {
+    define('ADMIN_DIR_NAME',     'admin');
 }
-if (!defined('APP_CONFIG_PATH')) {
-    define('APP_CONFIG_PATH', APP_PATH . 'config');
+if (!defined('ASSETS_DIR_NAME')) {
+    define('ASSETS_DIR_NAME',    'assets');
 }
-
-if (!isset($allow_get) || $allow_get === false) {
-    $_GET = array();
+if (!defined('PRIVATE_DIR_NAME')) {
+    define('PRIVATE_DIR_NAME', 'private');
 }
-// Empty some global vars we don't use and don't want to have values in
-$_REQUEST = array();
-
-define('PRIVATE_DIR_NAME', 'private');
-define('TMP_DIR_NAME', 'tmp');
-if (isset($_SERVER['HTTP_HOST'])) {
-    define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
+if (!defined('TMP_DIR_NAME')) {
+    define('TMP_DIR_NAME', 'tmp');
 }
-else {
-    define('SITE_URL', 'localhost');
+if (!defined('SITE_URL')) {
+    if (isset($_SERVER['HTTP_HOST'])) {
+        define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
+    }
+    else {
+        define('SITE_URL', 'localhost');
+    }
 }
 
 $private_w_path = BASE_PATH . '/' . PRIVATE_DIR_NAME;
