@@ -30,6 +30,27 @@
  *  ALTER TABLE ONLY app_config
  *      ADD CONSTRAINT app_config_pkey PRIMARY KEY (config_id);
  *  </pre>
+ *  <pre>Expected config key=>value pairs
+ *  INSERT INTO config VALUES
+ *  ('DISPLAY_DATE_FORMAT', 'm/d/Y'),
+ *  ('EMAIL_DOMAIN', 'revealitconsulting.com'),
+ *  ('EMAIL_FORM_TO', 'bill@revealitconsulting.com'),
+ *  ('ERROR_EMAIL_ADDRESS', 'webmaster@revealitconsulting.com'),
+ *  ('PAGE_META_DESCRIPTION', 'Reveal IT Consulting'),
+ *  ('PAGE_META_KEYWORDS', 'Reveal IT Consulting'),
+ *  ('PAGE_TEMPLATE', 'index.twig'),
+ *  ('PAGE_TITLE', 'Reveal IT Consulting'),
+ *  ('THEMES_DIR', ''),
+ *  ('THEME_NAME', ''),
+ *  ('ADMIN_THEME_NAME', ''),
+ *  ('CSS_DIR_NAME', 'css'),
+ *  ('HTML_DIR_NAME', 'html'),
+ *  ('JS_DIR_NAME', 'js'),
+ *  ('IMAGE_DIR_NAME', 'images'),
+ *  ('ADMIN_DIR_NAME', 'manager'),
+ *  ('ASSETS_DIR_NAME', 'assets'),
+ *  ('FILES_DIR_NAME', 'files'),
+ *  </pre>
  *  @note <pre><b>Change Log</b>
  *      v0.1.0 - Initial version 12/12/2013</pre>
  *  @todo add this to the ritc framework example app or maybe to the Library

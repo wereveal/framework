@@ -27,6 +27,12 @@ if (!defined('CONF_PATH')) {
 if (!defined('VENDOR_PATH')) {
     define('VENDOR_PATH', BASE_PATH . '/vendor');
 }
+if (!defined('SRC_PATH')) {
+    define('SRC_PATH', APP_PATH . '/src');
+}
+if (!defined('APP_CONFIG_PATH')) {
+    define('APP_CONFIG_PATH', APP_PATH . 'config');
+}
 
 if (!isset($allow_get) || $allow_get === false) {
     $_GET = array();
