@@ -10,12 +10,6 @@
 **/
 namespace Ritc;
 
-if (!isset($allow_get) || $allow_get === false) {
-    $_GET = array();
-}
-// Empty some global vars we don't use and don't want to have values in
-$_REQUEST = array();
-
 if (!defined('SITE_PATH')) {
     exit('This file cannot be called directly'); // should be defined in the setup.php file
 }
@@ -34,18 +28,6 @@ if (!defined('APP_CONFIG_PATH')) {
 if (!defined('VENDOR_PATH')) {
     define('VENDOR_PATH', BASE_PATH . '/vendor');
 }
-if (!defined('ADMIN_DIR_NAME')) {
-    define('ADMIN_DIR_NAME',     'admin');
-}
-if (!defined('ASSETS_DIR_NAME')) {
-    define('ASSETS_DIR_NAME',    'assets');
-}
-if (!defined('PRIVATE_DIR_NAME')) {
-    define('PRIVATE_DIR_NAME', 'private');
-}
-if (!defined('TMP_DIR_NAME')) {
-    define('TMP_DIR_NAME', 'tmp');
-}
 if (!defined('SITE_URL')) {
     if (isset($_SERVER['HTTP_HOST'])) {
         define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
@@ -54,6 +36,11 @@ if (!defined('SITE_URL')) {
         define('SITE_URL', 'localhost');
     }
 }
+if (!isset($allow_get) || $allow_get === false) {
+    $_GET = array();
+}
+// Empty some global vars we don't use and don't want to have values in
+$_REQUEST = array();
 
 $private_w_path = BASE_PATH . '/' . PRIVATE_DIR_NAME;
 $tmp_w_path = BASE_PATH . '/' . TMP_DIR_NAME;

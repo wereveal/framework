@@ -18,17 +18,17 @@
  *      @defgroup helper classes that do helper things
  *      @ingroup ritc_library
  *  }
- *  @defgroup ftpadmin
+ *  @defgroup example_app
  *  @{
  *      @version 1.0
  *      @defgroup controllers controller files
- *      @ingroup ftpadmin
+ *      @ingroup example_app
  *      @defgroup views classes that create views
- *      @ingroup ftpadmin
+ *      @ingroup example_app
  *      @defgroup models files that do database operations
- *      @ingroup ftpadmin
+ *      @ingroup example_app
  *      @defgroup tests unit Testing
- *      @ingroup ftpadmin
+ *      @ingroup example_app
  *  }
  *  @note <pre>
  *  NOTE: _path and _PATH indicates a full server path
@@ -39,8 +39,8 @@
 namespace Ritc;
 
 use Ritc\Library\Core\Config;
-use Ritc\Library\Core\DbModel;
 use Ritc\Library\Core\DbFactory;
+use Ritc\Library\Core\DbModel;
 use Ritc\Library\Core\Elog;
 
 if (!defined('SITE_PATH')) {
@@ -50,8 +50,8 @@ if (!defined('BASE_PATH')) {
     if (!isset($app_in)) {
         $app_in = 'site';
     }
-    if ($app_in == 'site' || $app_in == 'htdocs' || $app_in == 'html') {
-        define('BASE_PATH', dirname(SITE_PATH));
+    if ($app_in == 'htdocs' || $app_in == 'html') {
+        define('BASE_PATH', SITE_PATH);
     }
     else {
         define('BASE_PATH', dirname(dirname(__FILE__)));
@@ -59,22 +59,29 @@ if (!defined('BASE_PATH')) {
 }
 require_once BASE_PATH . '/app/config/constants.php';
 
-$loader = require_once VENDOR_PATH . '/autoload.php';
-$my_classmap = require_once APP_PATH . '/config/autoload_classmap.php';
-$loader->addClassMap($my_classmap);
+$o_loader = require_once VENDOR_PATH . '/autoload.php';
+$my_classmap = require_once APP_CONFIG_PATH . '/autoload_classmap.php';
+$o_loader->addClassMap($my_classmap);
 
 $o_elog = Elog::start();
-$o_default_dbf = DbFactory::start('db_config.php', 'rw');
+
+if ($_SERVER['SERVER_NAME'] == 'example.qca.net') {
+    $db_config_file = 'db_config.php';
+}
+else {
+    $db_config_file = 'db_config_example.php';
+}
+$o_default_dbf = DbFactory::start($db_config_file, 'rw');
 $o_default_pdo = $o_default_dbf->connect();
 
 if ($o_default_pdo !== false) {
-    $o_default_db = new DbModel($o_default_pdo, 'db_config.php');
+    $o_default_db = new DbModel($o_default_pdo, $db_config_file);
     if (!Config::start($o_default_db)) {
         $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
-        require_once APP_PATH . '/config/fallback_constants.php';
+        require_once APP_CONFIG_PATH . '/fallback_constants.php';
     }
 }
 else {
     $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
-    require_once APP_PATH . '/config/fallback_constants.php';
+    require_once APP_CONFIG_PATH . '/fallback_constants.php';
 }
