@@ -1,6 +1,6 @@
 <?php
+$example_twig = SRC_PATH . '/Example/App/resources/templates';
 $library_twig = SRC_PATH . '/Ritc/Library/resources/templates';
-$example_twig = SRC_PATH . '/Ritc/ExampleApp/resources/templates';
 $tester_twig  = SRC_PATH . '/Ritc/LibraryTester/resources/templates';
 return array(
     'default_path'      => $example_twig,
