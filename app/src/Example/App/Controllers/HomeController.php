@@ -3,7 +3,7 @@
  *  @brief Controller for the Home page.
  *  @file HomeController.php
  *  @ingroup example_app controllers
- *  @namespace Ritc/ExampleApp/Controllers
+ *  @namespace Example\App\Controllers
  *  @class HomeController
  *  @author William Reveal  <bill@revealitconsulting.com>
  *  @version 0.1
@@ -13,19 +13,21 @@
  *      v0.1 - Initial version 2013-12-12
  *  </pre>
 **/
-namespace Ritc\ExampleApp\Controllers;
+namespace Example\App\Controllers;
 
-use Ritc\Library\Core\TwigFactory as Twig;
+use Ritc\Library\Abstracts\Base;
+use Ritc\Library\Core\Elog;
+use Ritc\Library\Interfaces\ControllerInterface;
 
-class HomeController implements PageControllerInterface
+class HomeController extends Base implements ControllerInterface
 {
     protected $a_actions;
     protected $a_values;
-    protected $o_twig;
+    protected $o_elog;
+    protected $o_session;
 
     public function __construct(array $a_actions = array(), array $a_values = array())
     {
-        $this->o_twig    = Twig::start('twig_config.php');
         $this->a_actions = $a_actions;
         $this->a_values  = $a_values;
     }
@@ -68,6 +70,10 @@ class HomeController implements PageControllerInterface
     {
         $this->a_actions = $a_actions;
     }
+    public function setSession(Session $o_session)
+    {
+        $this->o_session = $o_session;
+    }
     public function setValues(array $a_values = array())
     {
         $this->a_values = $a_values;
@@ -86,6 +92,10 @@ class HomeController implements PageControllerInterface
     public function getValues()
     {
         return $this->a_values;
+    }
+    public function getSession()
+    {
+        return $this->o_session;
     }
 
 }
