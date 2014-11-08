@@ -42,6 +42,7 @@ use Ritc\Library\Core\Config;
 use Ritc\Library\Core\DbFactory;
 use Ritc\Library\Core\DbModel;
 use Ritc\Library\Core\Elog;
+use Ritc\Library\Core\Session;
 
 if (!defined('SITE_PATH')) {
     define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
@@ -64,6 +65,7 @@ $my_classmap = require_once APP_CONFIG_PATH . '/autoload_classmap.php';
 $o_loader->addClassMap($my_classmap);
 
 $o_elog = Elog::start();
+$o_session = Session::start();
 
 if ($_SERVER['SERVER_NAME'] == 'example.qca.net') {
     $db_config_file = 'db_config.php';
@@ -75,8 +77,8 @@ $o_default_dbf = DbFactory::start($db_config_file, 'rw');
 $o_default_pdo = $o_default_dbf->connect();
 
 if ($o_default_pdo !== false) {
-    $o_default_db = new DbModel($o_default_pdo, $db_config_file);
-    if (!Config::start($o_default_db)) {
+    $o_db = new DbModel($o_default_pdo, $db_config_file);
+    if (!Config::start($o_db)) {
         $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
         require_once APP_CONFIG_PATH . '/fallback_constants.php';
     }
@@ -85,3 +87,8 @@ else {
     $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
     require_once APP_CONFIG_PATH . '/fallback_constants.php';
 }
+
+/**
+ * Basically at this point there are three objects to be used throughout the app:
+ * $o_elog, $o_session, and $o_db.
+ */

@@ -39,7 +39,7 @@ class TestsController implements ControllerInterface
      *  @param array $a_values optional, the values from a form
      *  @return string html
     **/
-    public function renderPage(array $a_actions = array(), array $a_values = array())
+    public function render(array $a_actions = array(), array $a_values = array())
     {
         $main_action = isset($a_actions['action1']) ? $a_actions['action1'] : '';
         switch ($main_action) {

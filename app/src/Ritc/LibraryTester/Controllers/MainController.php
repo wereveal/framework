@@ -15,55 +15,72 @@
 **/
 namespace Ritc\LibraryTester\Controllers;
 
+use Ritc\Library\Abstracts\Base;
+use Ritc\Library\Core\DbModel;
 use Ritc\Library\Core\Elog;
+use Ritc\Library\Core\Router;
 use Ritc\Library\Core\Session;
-use Ritc\Library\Core\Actions;
-use Ritc\Library\Interfaces\PageControllerInterface as PCI;
+use Ritc\Library\Interfaces\ControllerInterface;
+use Ritc\LibraryTester\Views\MainView;
 
-class MainController implements PCI
+class MainController extends Base implements ControllerInterface
 {
-    private $o_actions;
-    private $o_elog;
-    private $o_sess;
+    protected $o_db;
+    protected $o_elog;
+    protected $o_session;
+    protected $private_properties;
 
-    public function __construct()
+    public function __construct(Session $o_session, DbModel $o_db)
     {
-        $this->o_elog    = Elog::start();
-        $this->o_sess    = Session::start();
-        $this->o_actions = new Actions;
+        $this->setPrivateProperties();
+        $this->o_session = $o_session;
+        $this->o_db      = $o_db;
     }
 
     /**
      *  Main Router and Puker outer (more descriptive method name).
-     *  Turns over the hard work to the specific controllers through the router.
+     *  Turns over the hard work to the specific controllers.
      *  @param none
      *  @return string $html
      **/
-    public function renderPage()
+    public function render()
     {
-        $this->o_actions->setUriActions();
-        $a_actions   = $this->o_actions->getUriActions();
-        $form_action = $this->o_actions->getFormAction();
-        $a_post      = $this->o_actions->getCleanPost();
-        $a_get       = $this->o_actions->getCleanGet();
-        $a_values    = array('form_action'=>$form_action);
-        $a_values    = array_merge($a_values, $a_get, $a_post);
-        return $this->router($a_actions, $a_values);
-    }
-    /**
-     *  Routes the code to the appropriate sub controllers and returns a string.
-     *  As much as I have been looking at putting the actual route pairs somewhere else
-     *  it feels like the routes are so specific to the controller, they might as well
-     *  be in the controller.
-     *  @param array $a_actions optional, the actions derived from the URL/Form
-     *  @param array $a_values optional, the values from a form
-     *  @return string normally html to be displayed.
-    **/
-    public function router(array $a_actions = array(), array $a_values = array())
-    {
-        $o_tests = new TestsController($a_actions, $a_values);
-        return $o_tests->renderPage();
+        $o_router = new Router($this->o_db);
+        $this->logIt("Does this work?", LOG_OFF, __METHOD__ . '.' . __LINE__);
+        $a_actions = $o_router->action();
+        if ($a_actions['controller'] == 'MainController') {
+            $o_view = new MainView($this->o_db);
+            switch ($a_actions['method']) {
+                case '':
+                default:
+                    return $o_view->renderMain();
+            }
+        }
+        else {
+            $o_controller = new $a_actions['controller']($this->o_session, $this->o_db, $a_actions);
+            return $o_controller->render();
+        }
     }
 
     ### GETTERs and SETTERs ###
+    /**
+     * @return Session
+     */
+    public function getSession()
+    {
+        return $this->o_session;
+    }
+    /**
+     * @param Session $o_session
+     */
+    public function setSession(Session $o_session)
+    {
+        $this->o_session = $o_session;
+    }
+
+    /* From Base Abstract
+    public function getElog()
+    public function setElog(Elog $o_elog)
+    public function logIt($message = '', $log_type = LOG_OFF, $location = '')
+    */
 }
