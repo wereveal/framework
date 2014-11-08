@@ -23,7 +23,7 @@
  *  )
  *  </pre>
  */
-namespace Ritc\LibraryTester\Models;
+namespace Example\App\Models;
 
 use Ritc\Library\Interfaces\EntityInterface;
 

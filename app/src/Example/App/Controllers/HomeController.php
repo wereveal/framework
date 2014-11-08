@@ -16,7 +16,6 @@
 namespace Example\App\Controllers;
 
 use Ritc\Library\Abstracts\Base;
-use Ritc\Library\Core\Elog;
 use Ritc\Library\Interfaces\ControllerInterface;
 
 class HomeController extends Base implements ControllerInterface

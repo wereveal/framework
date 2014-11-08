@@ -13,10 +13,8 @@
  *      v0.1 - Initial version 2013-12-14
  *  </pre>
 **/
-namespace Ritc\LibraryTester\Controllers;
+namespace Example\App\Controllers;
 
-use Ritc\LibraryTester\Tests\AppConfigTests;
-use Ritc\LibraryTester\Tests\UserTests;
 use Ritc\Library\Core\TwigFactory as Twig;
 use Ritc\Library\Core\Elog;
 

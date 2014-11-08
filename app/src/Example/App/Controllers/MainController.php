@@ -13,7 +13,7 @@
  *      v0.1 - Initial version 12/12/2013
  *  </pre>
 **/
-namespace Ritc\ExampleApp\Controllers;
+namespace Example\App\Controllers;
 
 use Ritc\Library\Core\Elog;
 use Ritc\Library\Core\Session;

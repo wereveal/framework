@@ -14,7 +14,7 @@
  *      v0.1.0 - Initial version 12/12/2013
  *  </pre>
 **/
-namespace Ritc\LibraryTester\Models;
+namespace Example\App\Models;
 
 use Ritc\Library\Core\Arrays;
 use Ritc\Library\Core\DbFactory;

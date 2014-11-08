@@ -1,9 +1,9 @@
 <?php
-namespace Ritc\LibraryTester\Tests;
+namespace Example\App\Tests;
 
 use Ritc\Library\Abstracts\Tester;
 use Ritc\Library\Core\Elog;
-use Ritc\LibraryTester\Models\Users;
+use Example\App\Models\Users;
 
 class UserTests extends Tester
 {
