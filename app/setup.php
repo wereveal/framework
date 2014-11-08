@@ -48,9 +48,9 @@ if (!defined('SITE_PATH')) {
 }
 if (!defined('BASE_PATH')) {
     if (!isset($app_in)) {
-        $app_in = 'site';
+        $app_in = 'external';
     }
-    if ($app_in == 'htdocs' || $app_in == 'html') {
+    if ($app_in == 'site' || $app_in == 'htdocs' || $app_in == 'html') {
         define('BASE_PATH', SITE_PATH);
     }
     else {
