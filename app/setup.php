@@ -71,13 +71,16 @@ if ($_SERVER['SERVER_NAME'] == 'example.qca.net') {
     $db_config_file = 'db_config.php';
 }
 else {
-    $db_config_file = 'db_config_example.php';
+    $db_config_file = 'db_example_config.php';
 }
-$o_default_dbf = DbFactory::start($db_config_file, 'rw');
-$o_default_pdo = $o_default_dbf->connect();
+$o_dbf = DbFactory::start($db_config_file, 'rw');
+$o_dbf->setElog($o_elog);
+$o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
 
-if ($o_default_pdo !== false) {
-    $o_db = new DbModel($o_default_pdo, $db_config_file);
+$o_pdo = $o_dbf->connect();
+
+if ($o_pdo !== false) {
+    $o_db = new DbModel($o_pdo, $db_config_file);
     if (!Config::start($o_db)) {
         $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
         require_once APP_CONFIG_PATH . '/fallback_constants.php';

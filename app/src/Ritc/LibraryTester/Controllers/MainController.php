@@ -46,18 +46,20 @@ class MainController extends Base implements ControllerInterface
     public function render()
     {
         $o_router = new Router($this->o_db);
+        $o_router->setElog($this->o_elog);
         $this->logIt("Does this work?", LOG_OFF, __METHOD__ . '.' . __LINE__);
         $a_actions = $o_router->action();
-        if ($a_actions['controller'] == 'MainController') {
+        $this->logIt(var_export($a_actions, true), LOG_OFF, __METHOD__ . '.' . __LINE__);
+        if ($a_actions['route_class'] == 'MainController') {
             $o_view = new MainView($this->o_db);
-            switch ($a_actions['method']) {
+            switch ($a_actions['route_method']) {
                 case '':
                 default:
                     return $o_view->renderMain();
             }
         }
         else {
-            $o_controller = new $a_actions['controller']($this->o_session, $this->o_db, $a_actions);
+            $o_controller = new $a_actions['route_class']($this->o_session, $this->o_db, $a_actions);
             return $o_controller->render();
         }
     }

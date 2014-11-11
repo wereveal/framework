@@ -1,5 +1,5 @@
 <?php
-return array(
+return [
     'driver'   => 'mysql',
     'host'     => 'localhost',
     'port'     => '3306',
@@ -9,5 +9,5 @@ return array(
     'userro'   => 'example_app',
     'passro'   => 'letmein',
     'persist'  => true,
-    'prefix'   => 'example_'
-);
+    'prefix'   => 'app_'
+];

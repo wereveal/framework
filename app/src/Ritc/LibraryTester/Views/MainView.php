@@ -32,6 +32,6 @@ class MainView extends Base
     }
     public function renderMain()
     {
-        return '';
+        return 'Hi!';
     }
 }
