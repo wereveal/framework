@@ -32,6 +32,14 @@ class MainView extends Base
     }
     public function renderMain()
     {
-        return 'Hi!';
+        $a_values = [
+            'description'   => 'This is the Tester Page',
+            'public_dir'    => '',
+            'title'         => 'This is the Main Tester Page',
+            'body_text'     => 'Hello',
+            'site_url'      => SITE_URL,
+            'rights_holder' => RIGHTS_HOLDER
+        ];
+        return $this->o_twig->render('@main/index.twig', $a_values);
     }
 }
