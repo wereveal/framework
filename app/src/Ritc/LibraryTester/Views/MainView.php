@@ -18,7 +18,6 @@ namespace Ritc\LibraryTester\Views;
 use Ritc\Library\Abstracts\Base;
 use Ritc\Library\Core\DbModel;
 use Ritc\Library\Core\Tpl;
-use Ritc\Library\Helper\ViewHelper;
 
 class MainView extends Base
 {

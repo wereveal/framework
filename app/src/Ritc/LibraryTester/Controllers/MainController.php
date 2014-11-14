@@ -57,7 +57,7 @@ class MainController extends Base implements ControllerInterface
         }
         else {
             $o_controller = new $a_actions['route_class']($this->o_session, $this->o_db);
-            return $o_controller->render($a_actions);
+            return $o_controller->$a_actions['route_method']($a_actions);
         }
     }
 

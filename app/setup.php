@@ -66,6 +66,7 @@ $o_loader->addClassMap($my_classmap);
 
 $o_elog = Elog::start();
 $o_session = Session::start();
+$o_session->setIdleTime(600);
 
 if ($_SERVER['SERVER_NAME'] == 'example.qca.net') {
     $db_config_file = 'db_config.php';
