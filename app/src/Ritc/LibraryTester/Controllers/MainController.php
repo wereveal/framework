@@ -17,7 +17,6 @@ namespace Ritc\LibraryTester\Controllers;
 
 use Ritc\Library\Abstracts\Base;
 use Ritc\Library\Core\DbModel;
-use Ritc\Library\Core\Elog;
 use Ritc\Library\Core\Router;
 use Ritc\Library\Core\Session;
 use Ritc\Library\Interfaces\ControllerInterface;
@@ -26,9 +25,7 @@ use Ritc\LibraryTester\Views\MainView;
 class MainController extends Base implements ControllerInterface
 {
     protected $o_db;
-    protected $o_elog;
     protected $o_session;
-    protected $private_properties;
 
     public function __construct(Session $o_session, DbModel $o_db)
     {
@@ -59,8 +56,8 @@ class MainController extends Base implements ControllerInterface
             }
         }
         else {
-            $o_controller = new $a_actions['route_class']($this->o_session, $this->o_db, $a_actions);
-            return $o_controller->render();
+            $o_controller = new $a_actions['route_class']($this->o_session, $this->o_db);
+            return $o_controller->render($a_actions);
         }
     }
 
