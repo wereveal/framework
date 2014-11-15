@@ -15,17 +15,17 @@
 **/
 namespace Example\App\Controllers;
 
-use Ritc\Library\Core\TwigFactory as Twig;
-use Ritc\Library\Core\Elog;
+use Ritc\Library\Services\TwigFactory as Twig;
+use Ritc\Library\Services\Elog;
 
 class TestsController implements ControllerInterface
 {
     private $o_elog;
-    private $o_twig;
+    private $o_tpl;
 
     public function __construct()
     {
-        $this->o_twig = Twig::start('twig_config.php');
+        $this->o_tpl  = Twig::start('twig_config.php');
         $this->o_elog = Elog::start();
     }
 
@@ -55,7 +55,7 @@ class TestsController implements ControllerInterface
     **/
     public function defaultPage()
     {
-        return $this->o_twig->render('@tests/home.twig', array());
+        return $this->o_tpl->render('@tests/home.twig', array());
     }
     public function appConfigTestPage()
     {
@@ -68,7 +68,7 @@ class TestsController implements ControllerInterface
         $o_configTests->runTests();
         $a_twig_values = $o_configTests->returnTestResults($show_test_names);
         $this->o_elog->write('Twig Values: ' . var_export($a_twig_values, TRUE), LOG_OFF, __METHOD__ . '.' . __LINE__);
-        return $this->o_twig->render('@tests/results.twig', $a_twig_values);
+        return $this->o_tpl->render('@tests/results.twig', $a_twig_values);
     }
     public function userTestPage()
     {
@@ -80,7 +80,7 @@ class TestsController implements ControllerInterface
         $show_test_names = true;
         $a_twig_values = $o_userTests->returnTestResults($show_test_names);
         $this->o_elog->write('Twig Values: ' . var_export($a_twig_values, TRUE), LOG_OFF, __METHOD__ . '.' . __LINE__);
-        return $this->o_twig->render('@tests/results.twig', $a_twig_values);
+        return $this->o_tpl->render('@tests/results.twig', $a_twig_values);
     }
 
 }

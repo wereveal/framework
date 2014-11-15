@@ -61,7 +61,7 @@ class HomeController extends Base implements ControllerInterface
     protected function renderHome()
     {
         $a_home_values = ['top_header_text' => 'This is an example app', 'body_text' => 'You can use this to start a new app.'];
-        return $this->o_twig->render('@pages/index.twig', $a_home_values);
+        return $this->o_tpl->render('@pages/index.twig', $a_home_values);
     }
 
     ### SETTERs ###

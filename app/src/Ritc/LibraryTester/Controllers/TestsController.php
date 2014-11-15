@@ -15,7 +15,7 @@
 **/
 namespace Ritc\LibraryTester\Controllers;
 
-use Ritc\Library\Core\TwigFactory as Twig;
+use Ritc\Library\Services\TwigFactory as Twig;
 use Ritc\Library\Helper\ViewHelper;
 use Ritc\Library\Interfaces\ControllerInterface;
 use Ritc\LibraryTester\Tests\ConfigTests;
@@ -24,11 +24,12 @@ class TestsController implements ControllerInterface
 {
     protected $a_actions;
     protected $a_values;
-    private $o_twig;
+    private $o_tpl;
 
     public function __construct(array $a_actions = array(), array $a_values = array())
     {
-        $this->o_twig = Twig::start('twig_config.php');
+        $o_twig          = Twig::start('twig_config.php');
+        $this->o_tpl     = $o_twig->getTwig();
         $this->a_actions = $a_actions;
         $this->a_values  = $a_values;
     }
@@ -76,14 +77,14 @@ class TestsController implements ControllerInterface
             $o_view_helper = new ViewHelper();
             $a_message = $o_view_helper->messageProperties(array('message' => $message, 'type' => 'warning'));
         }
-        return $this->o_twig->render('@tester_tests/list.twig', $a_message);
+        return $this->o_tpl->render('@tester_tests/list.twig', $a_message);
     }
     private function configPage()
     {
         $o_config_tester = new ConfigTests();
         $o_config_tester->runTests();
         $a_results = $o_config_tester->returnTestResults();
-        return $this->o_twig->render('@tests/results.twig', $a_results);
+        return $this->o_tpl->render('@tests/results.twig', $a_results);
     }
 
     ### GETTERs ###

@@ -16,31 +16,32 @@
 namespace Ritc\LibraryTester\Controllers;
 
 use Ritc\Library\Abstracts\Base;
-use Ritc\Library\Core\DbModel;
-use Ritc\Library\Core\Session;
 use Ritc\Library\Interfaces\ControllerInterface;
-use Ritc\LibraryTester\Views\ManagerView;
+use Ritc\Library\Views\ManagerView;
+use Zend\ServiceManager\ServiceManager;
 
 class ManagerController extends Base implements ControllerInterface
 {
-    private   $a_actions;
+    private   $a_action;
     protected $o_db;
     protected $o_session;
 
-    public function __construct(Session $o_session, DbModel $o_db, array $a_actions)
+    public function __construct(ServiceManager $o_di)
     {
         $this->setPrivateProperties();
-        $this->o_session = $o_session;
-        $this->o_db      = $o_db;
-        $this->a_actions = $a_actions;
+        $this->o_di      = $o_di;
+        $this->o_session = $o_di->get('session');
+        $this->o_db      = $o_di->get('db');
+        $o_router        = $o_di->get('router');
+        $this->a_action  = $o_router->action();
     }
 
     public function render()
     {
-        $o_view = new ManagerView($this->o_db);
-        $route_method = $this->a_actions['route_method'];
-        $route_action = $this->a_actions['route_action'];
-        $a_route_args = $this->a_actions['args'];
+        $o_view = new ManagerView($this->o_di);
+        $route_method = $this->a_action['route_method'];
+        $route_action = $this->a_action['route_action'];
+        $a_route_args = $this->a_action['args'];
         switch ($route_method)
         {
             case 'temp':
@@ -54,13 +55,5 @@ class ManagerController extends Base implements ControllerInterface
                 $html = $o_view->renderLandingPage();
         }
         return $html;
-    }
-    public function setSession(Session $o_session)
-    {
-        return null;
-    }
-    public function getSession()
-    {
-        return $this->o_session;
     }
 }
