@@ -17,8 +17,8 @@ namespace Ritc\LibraryTester\Controllers;
 
 use Ritc\Library\Abstracts\Base;
 use Ritc\Library\Interfaces\ControllerInterface;
+use Ritc\Library\Services\Di;
 use Ritc\Library\Views\ManagerView;
-use Zend\ServiceManager\ServiceManager;
 
 class ManagerController extends Base implements ControllerInterface
 {
@@ -26,7 +26,7 @@ class ManagerController extends Base implements ControllerInterface
     protected $o_db;
     protected $o_session;
 
-    public function __construct(ServiceManager $o_di)
+    public function __construct(Di $o_di)
     {
         $this->setPrivateProperties();
         $this->o_di      = $o_di;

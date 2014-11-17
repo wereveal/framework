@@ -18,14 +18,14 @@ namespace Ritc\LibraryTester\Controllers;
 
 use Ritc\Library\Abstracts\Base;
 use Ritc\Library\Interfaces\ControllerInterface;
+use Ritc\Library\Services\Di;
 use Ritc\LibraryTester\Views\MainView;
-use Zend\ServiceManager\ServiceManager;
 
 class MainController extends Base implements ControllerInterface
 {
     protected $o_di;
 
-    public function __construct(ServiceManager $o_di)
+    public function __construct(Di $o_di)
     {
         $this->setPrivateProperties();
         $this->o_di = $o_di;

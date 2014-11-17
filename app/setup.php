@@ -13,7 +13,7 @@
  *      @ingroup ritc_library
  *      @defgroup controllers
  *      @ingroup ritc_library
- *      @defgroup entities 
+ *      @defgroup entities
  *      @ingroup ritc_library
  *      @defgroup helper classes that do helper things
  *      @ingroup ritc_library
@@ -49,11 +49,11 @@ namespace Ritc;
 use Ritc\Library\Services\Config;
 use Ritc\Library\Services\DbFactory;
 use Ritc\Library\Services\DbModel;
+use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 use Ritc\Library\Services\Router;
 use Ritc\Library\Services\Session;
 use Ritc\Library\Services\TwigFactory;
-use Zend\ServiceManager\ServiceManager;
 
 if (!defined('SITE_PATH')) {
     define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
@@ -102,14 +102,14 @@ if ($o_pdo !== false) {
             require_once APP_CONFIG_PATH . '/fallback_constants.php';
         }
         $o_router = new Router($o_db);
-        $o_di     = new ServiceManager();
+        $o_di     = new Di();
         $o_tf     = TwigFactory::create('twig_config.php');
         $o_tpl   = $o_tf->getTwig();
-        $o_di->setService('elog',    $o_elog);
-        $o_di->setService('db',      $o_db);
-        $o_di->setService('session', $o_session);
-        $o_di->setService('route',   $o_router);
-        $o_di->setService('tpl',     $o_tpl);
+        $o_di->set('elog',    $o_elog);
+        $o_di->set('db',      $o_db);
+        $o_di->set('session', $o_session);
+        $o_di->set('route',   $o_router);
+        $o_di->set('tpl',     $o_tpl);
     }
 }
 else {

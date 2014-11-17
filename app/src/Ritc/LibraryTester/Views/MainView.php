@@ -6,31 +6,32 @@
  *  @namespace Ritc/LibraryTester/Views
  *  @class MainView
  *  @author William Reveal  <bill@revealitconsulting.com>
- *  @version 1.0.0ß
- *  @date 2014-11-08 12:32:46
+ *  @version 1.0.1ß
+ *  @date 2014-11-17 14:05:11
  *  @note A file in Ritc LibraryTester
  *  @note <pre><b>Change Log</b>
- *      v1.0.0ß - Initial version 11/08/2014 wer
+ *      v1.0.1ß - changed to use the new Di class - 11/17/2014 wer
+ *      v1.0.0ß - Initial version                 - 11/08/2014 wer
  *  </pre>
  **/
 namespace Ritc\LibraryTester\Views;
 
 use Ritc\Library\Abstracts\Base;
-use Zend\ServiceManager\ServiceManager;
+use Ritc\Library\Services\Di;
 
 class MainView extends Base
 {
-    private $a_route_parts = array();
+    private $o_route;
     private $o_tpl;
 
-    public function __construct(ServiceManager $o_di)
+    public function __construct(Di $o_di)
     {
-        $this->o_tpl = $o_di->get('tpl');
-        $o_route     = $o_di->get('route');
-        $this->a_route_parts = $o_route->getRouteParts();
+        $this->o_tpl   = $o_di->get('tpl');
+        $this->o_route = $o_di->get('route');
     }
     public function renderMain()
     {
+        $a_route_parts = $this->o_route->getRouteParts();
         $body_text  = "<pre>Hello: <br>";
         $body_text .= var_export($this->a_route_parts, true);
         $body_text .= "</pre>";
