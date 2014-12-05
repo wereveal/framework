@@ -6,20 +6,21 @@
  *  @namespace Ritc/LibraryTester/Models
  *  @class Users
  *  @author William Reveal  <bill@revealitconsulting.com>
- *  @version 0.2.0
- *  @date 2013-12-30 20:21:16
+ *  @version 0.3.0
+ *  @date 2014-12-05 11:04:34
  *  @note A file in Ritc LibraryTester version 1.0
  *  @note <pre><b>Change Log</b>
- *      v0.2.0 - After first round of testing
- *      v0.1.0 - Initial version 12/12/2013
+ *      v0.3.0 - Refactored namespaces        - 12/05/2014 wer
+ *      v0.2.0 - After first round of testing - 12/30/2013 wer
+ *      v0.1.0 - Initial version              - 12/12/2013 wer
  *  </pre>
 **/
 namespace Example\App\Models;
 
-use Ritc\Library\Core\Arrays;
-use Ritc\Library\Core\DbFactory;
-use Ritc\Library\Core\DbModel;
-use Ritc\Library\Core\Elog;
+use Ritc\Library\Helper\Arrays;
+use Ritc\Library\Services\DbFactory;
+use Ritc\Library\Services\DbModel;
+use Ritc\Library\Services\Elog;
 
 class Users
 {

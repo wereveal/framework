@@ -6,11 +6,12 @@
  *  @namespace Ritc/LibraryTester/Controllers
  *  @class TestsController
  *  @author William Reveal  <bill@revealitconsulting.com>
- *  @version 0.1
- *  @date 2013-12-14 17:35:05
- *  @note A file in LibraryTester v1 app
+ *  @version 1.1.0
+ *  @date 2014-12-05 14:47:28
+ *  @note A file in LibraryTester app
  *  @note <pre><b>Change Log</b>
- *      v0.1 - Initial version 2013-12-14
+ *      v1.1.0 - Change to match modifications to Library but needs work. - 12/05/2014 wer
+ *      v1.0.0 - Initial version                                          - 2013-12-14 wer
  *  </pre>
 **/
 namespace Ritc\LibraryTester\Controllers;
@@ -28,8 +29,7 @@ class TestsController implements ControllerInterface
 
     public function __construct(array $a_actions = array(), array $a_values = array())
     {
-        $o_twig          = Twig::start('twig_config.php');
-        $this->o_tpl     = $o_twig->getTwig();
+        $this->o_tpl     = Twig::getTwig('twig_config.php');
         $this->a_actions = $a_actions;
         $this->a_values  = $a_values;
     }

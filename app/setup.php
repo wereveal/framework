@@ -103,8 +103,7 @@ if ($o_pdo !== false) {
         }
         $o_router = new Router($o_db);
         $o_di     = new Di();
-        $o_tf     = TwigFactory::create('twig_config.php');
-        $o_tpl   = $o_tf->getTwig();
+        $o_tpl    = TwigFactory::getTwig('twig_config.php');
         $o_di->set('elog',    $o_elog);
         $o_di->set('db',      $o_db);
         $o_di->set('session', $o_session);

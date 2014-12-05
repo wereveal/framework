@@ -1,6 +1,7 @@
 <?php
 /**
  *  @brief The main Controller for the whole site.
+ *  @details This doesn't work right now.
  *  @file MainController.php
  *  @ingroup example_app controllers
  *  @namespace Ritc/ExampleApp/Controllers
@@ -15,11 +16,12 @@
 **/
 namespace Example\App\Controllers;
 
-use Ritc\Library\Core\Elog;
-use Ritc\Library\Core\Session;
-use Ritc\Library\Core\Actions;
+use Ritc\Library\Services\Elog;
+use Ritc\Library\Services\Session;
+use Ritc\Library\Helper\Actions;
+use Ritc\Library\Interfaces\ControllerInterface;
 
-class MainController extends PageControllerAbstract
+class MainController implements ControllerInterface
 {
     protected $o_actions;
     protected $o_elog;
@@ -32,7 +34,11 @@ class MainController extends PageControllerAbstract
         $this->o_actions = new Actions;
     }
 
-    /* public function renderPage() defaults to PageControllerAbstract, no duplication needed */
+    public function render()
+    {
+        return ''; //
+    }
+
     /**
      *  Routes the code to the appropriate sub controllers and returns a string.
      *  As much as I have been looking at putting the actual route pairs somewhere else
@@ -59,7 +65,7 @@ class MainController extends PageControllerAbstract
 
     ### GETTERs and SETTERs ###
     /**
-     * @return \Ritc\Library\Core\Actions
+     * @return \Ritc\Library\Helper\Actions
      */
     public function getOActions()
     {

@@ -1,11 +1,11 @@
 <?php
 namespace Ritc\LibraryTester\Tests;
 
-use Ritc\Library\Abstracts\Tester;
-use Ritc\Library\Core\Config;
-use Ritc\Library\Core\DbFactory;
-use Ritc\Library\Core\DbModel;
-use Ritc\Library\Core\Elog;
+use Ritc\Library\Basic\Tester;
+use Ritc\Library\Services\Config;
+use Ritc\Library\Services\DbFactory;
+use Ritc\Library\Services\DbModel;
+use Ritc\Library\Services\Elog;
 
 class ConfigTests extends Tester
 {

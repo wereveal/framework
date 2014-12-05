@@ -2,15 +2,16 @@
 namespace Example\App\Views;
 
 use Ritc\Library\Abstracts\Base;
-use Ritc\Library\Core\Tpl;
+use Ritc\Library\Services\Di;
 
 class HomeView extends Base
 {
+    private $o_db;
     private $o_tpl;
 
-    public function __construct(DbModel $o_db)
+    public function __construct(Di $o_di)
     {
-        $o_tpl        = new Tpl('twig_config.php');
-        $this->o_tpl = $o_tpl->getTwig();
+        $this->o_tpl = $o_di->get('tpl');
+        $this->o_db  = $o_di->get('db');
     }
 }
