@@ -1,12 +1,11 @@
 {
     "name": "ritc/framework",
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.5.0",
         "zendframework/zendframework": "dev-master",
         "zendframework/zftool": "dev-master",
         "zendframework/zend-developer-tools": "dev-master",
         "zendframework/zendservice-recaptcha": "dev-master",
-        "twig/twig": "dev-master",
-        "filp/whoops": "1.*"
+        "twig/twig": "dev-master"
     }
 }
