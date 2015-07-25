@@ -1,13 +1,16 @@
 <?php
 /**
- *  This file sets up the Ritc Framework.
- *  Required to get the entire framework to work.
+ *  @brief This file sets up the App.
+ *  @description Required to get the entire framework to work. The only thing
+ *  that changes primarily is the defgroup in this comment for Doxygen.
  *  @file setup.php
  *  @namespace Ritc
  *  @defgroup ritc_library
  *  @{
  *      @version 5.0
  *      @defgroup abstracts
+ *      @ingroup ritc_library
+ *      @defgroup basic
  *      @ingroup ritc_library
  *      @defgroup configs
  *      @ingroup ritc_library
@@ -23,27 +26,31 @@
  *      @ingroup ritc_library
  *      @defgroup services
  *      @ingroup ritc_library
+ *      @defgroup tests
+ *      @ingroup ritc_library
  *      @defgroup views
  *      @ingroup ritc_library
  *  }
- *  @defgroup example_app
+ *  @defgroup ftpadmin
  *  @{
  *      @version 1.0
- *      @defgroup controllers controller files
- *      @ingroup example_app
- *      @defgroup views classes that create views
- *      @ingroup example_app
- *      @defgroup models files that do database operations
- *      @ingroup example_app
- *      @defgroup tests unit Testing
- *      @ingroup example_app
+ *      @defgroup ftp_configs
+ *      @ingroup ftpadmin
+ *      @defgroup ftp_controllers controller files
+ *      @ingroup ftpadmin
+ *      @defgroup ftp_views classes that create views
+ *      @ingroup ftpadmin
+ *      @defgroup ftp_models files that do database operations
+ *      @ingroup ftpadmin
+ *      @defgroup ftp_tests unit Testing
+ *      @ingroup ftpadmin
  *  }
  *  @note <pre>
  *  NOTE: _path and _PATH indicates a full server path
  *        _dir and _DIR indicates the path in the site (URI)
  *        Both do not end with a slash
  *  </pre>
- */
+*/
 namespace Ritc;
 
 use Ritc\Library\Services\Config;
@@ -69,6 +76,13 @@ if (!defined('BASE_PATH')) {
         define('BASE_PATH', dirname(dirname(__FILE__)));
     }
 }
+if (!isset($rodb)) {
+    $rodb = false;
+}
+if (!isset($allow_get)) {
+    $allow_get = false;
+}
+
 require_once BASE_PATH . '/app/config/constants.php';
 
 $o_loader = require_once VENDOR_PATH . '/autoload.php';
@@ -77,12 +91,15 @@ $o_loader->addClassMap($my_classmap);
 
 $o_elog    = Elog::start();
 $o_session = Session::start();
-
-if ($_SERVER['SERVER_NAME'] == 'example.qca.net') {
+$o_di      = new Di();
+$o_di->set('elog',    $o_elog);
+$o_di->set('session', $o_session);
+error_log('SERVER_NAME: ' . $_SERVER['SERVER_NAME']);
+if ($_SERVER['SERVER_NAME'] == 'w3.qca.net') {
     $db_config_file = 'db_config.php';
 }
 else {
-    $db_config_file = 'db_example_config.php';
+    $db_config_file = 'db_local_config.php';
 }
 $o_dbf = DbFactory::start($db_config_file, 'rw');
 $o_dbf->setElog($o_elog);
@@ -97,17 +114,29 @@ if ($o_pdo !== false) {
         die("Could not get the database to work");
     }
     else {
-        if (!Config::start($o_db)) {
+        $o_di->set('db', $o_db);
+        if (!Config::start($o_di)) {
             $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
             require_once APP_CONFIG_PATH . '/fallback_constants.php';
         }
-        $o_router = new Router($o_db);
-        $o_di     = new Di();
+        $a_constants = get_defined_constants(true);
+        $o_elog->write(var_export($a_constants['user'], true), LOG_ON);
+        $o_router = new Router($o_di);
         $o_tpl    = TwigFactory::getTwig('twig_config.php');
-        $o_di->set('elog',    $o_elog);
-        $o_di->set('db',      $o_db);
-        $o_di->set('session', $o_session);
-        $o_di->set('route',   $o_router);
+        if ($rodb) {
+            $o_dbf_ro = DbFactory::start($db_config_file, 'ro');
+            $o_pdo_ro = $o_dbf_ro->connect();
+            if ($o_pdo_ro !== false) {
+                $o_db_ro = new DbModel($o_pdo_ro, $db_config_file);
+                if (!is_object($o_db_ro)) {
+                    $o_elog->write("Could not create a new DbModel for read only\n", LOG_ALWAYS);
+                    die("Could not get the database to work");
+                }
+                $o_di->set('db', $o_db_ro);
+                $o_di->set('db_rw', $o_db);
+            }
+        }
+        $o_di->set('router',  $o_router);
         $o_di->set('tpl',     $o_tpl);
     }
 }
@@ -115,4 +144,3 @@ else {
     $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
     die("Could not connect to the database");
 }
-

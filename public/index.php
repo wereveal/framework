@@ -1,13 +1,28 @@
 <?php
 ob_start();
-$rodb      = false;
-$allow_get = false;
-$app_in    = 'external';
-require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/app/setup.php';
-$o_control   = new Ritc\LibraryTester\Controllers\MainController($o_di);
-$o_control->setElog($o_elog);
-$html      = $o_control->render();
-$any_junk  = ob_get_clean();
+define('DEVELOPER_MODE', true);
+error_log("HTTP_HOST: " . $_SERVER['HTTP_HOST']);
+switch ($_SERVER['HTTP_HOST']) {
+    case 'framework':
+        define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
+        define('PUBLIC_DIR', '');
+        $app_in = dirname(SITE_PATH);
+        break;
+    case 'fw.qca.net':
+        define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
+        define('PUBLIC_DIR', '/');
+        $app_in = dirname(SITE_PATH);
+        break;
+    default:
+        define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
+        define('PUBLIC_DIR', '');
+        $app_in = SITE_PATH;
+}
+require_once $app_in . '/app/setup.php';
+
+$o_main_controller = new Example\App\Controllers\MainController($o_di);
+$html     = $o_main_controller->renderPage();
+$any_junk = ob_get_clean();
 ob_start();
     print $html;
 ob_end_flush();
