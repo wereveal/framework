@@ -50,17 +50,18 @@
  *        _dir and _DIR indicates the path in the site (URI)
  *        Both do not end with a slash
  *  </pre>
+ * @TODO Serious refactoring gone amiss. Bunch of the use statements point wrong.
 */
 namespace Ritc;
 
-use Ritc\Library\Services\Config;
-use Ritc\Library\Services\DbFactory;
+use Ritc\Library\Factories\DbFactory;
+use Ritc\Library\Factories\TwigFactory;
+use Ritc\Library\Helper\ConstantsHelper;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 use Ritc\Library\Services\Router;
 use Ritc\Library\Services\Session;
-use Ritc\Library\Services\TwigFactory;
 
 if (!defined('SITE_PATH')) {
     define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
@@ -97,8 +98,8 @@ $o_session = Session::start();
 $o_di      = new Di();
 $o_di->set('elog',    $o_elog);
 $o_di->set('session', $o_session);
-error_log('SERVER_NAME: ' . $_SERVER['SERVER_NAME']);
-if ($_SERVER['SERVER_NAME'] == 'w3.qca.net') {
+$use_local_db = false;
+if ($use_local_db) {
     $db_config_file = 'db_config.php';
 }
 else {
@@ -118,12 +119,12 @@ if ($o_pdo !== false) {
     }
     else {
         $o_di->set('db', $o_db);
-        if (!Config::start($o_di)) {
+        if (!ConstantsHelper::start($o_di)) {
             $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
             require_once APP_CONFIG_PATH . '/fallback_constants.php';
         }
         $a_constants = get_defined_constants(true);
-        $o_elog->write(var_export($a_constants['user'], true), LOG_ON);
+        $o_elog->write(var_export($a_constants['user'], true), LOG_OFF);
         $o_router = new Router($o_di);
         $o_tpl    = TwigFactory::getTwig('twig_config.php');
         if ($rodb) {
@@ -139,8 +140,9 @@ if ($o_pdo !== false) {
                 $o_di->set('db_rw', $o_db);
             }
         }
-        $o_di->set('router',  $o_router);
-        $o_di->set('tpl',     $o_tpl);
+        $o_di->set('router', $o_router);
+        $o_di->set('tpl',    $o_tpl);
+        $o_di->set('twig',   $o_tpl); // tpl or twig, never sure which one
     }
 }
 else {
