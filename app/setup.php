@@ -76,6 +76,9 @@ if (!defined('BASE_PATH')) {
         define('BASE_PATH', dirname(dirname(__FILE__)));
     }
 }
+if (!defined('DEVELOPER_MODE')) {
+    define('DEVELOPER_MODE', false);
+}
 if (!isset($rodb)) {
     $rodb = false;
 }
