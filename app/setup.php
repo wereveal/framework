@@ -66,15 +66,7 @@ if (!defined('SITE_PATH')) {
     define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
 }
 if (!defined('BASE_PATH')) {
-    if (!isset($app_in)) {
-        $app_in = 'external';
-    }
-    if ($app_in == 'site' || $app_in == 'htdocs' || $app_in == 'html') {
-        define('BASE_PATH', SITE_PATH);
-    }
-    else {
-        define('BASE_PATH', dirname(dirname(__FILE__)));
-    }
+    define('BASE_PATH', dirname(dirname(__FILE__)));
 }
 
 require_once BASE_PATH . '/app/config/constants.php';
