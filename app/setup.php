@@ -83,9 +83,6 @@ if (!defined('DEVELOPER_MODE')) {
 if (!isset($rodb)) {
     $rodb = false;
 }
-if (!isset($allow_get)) {
-    $allow_get = false;
-}
 
 require_once BASE_PATH . '/app/config/constants.php';
 
@@ -98,14 +95,7 @@ $o_session = Session::start();
 $o_di      = new Di();
 $o_di->set('elog',    $o_elog);
 $o_di->set('session', $o_session);
-$use_local_db = false;
-if ($use_local_db) {
-    $db_config_file = 'db_config.php';
-}
-else {
-    $db_config_file = 'db_local_config.php';
-}
-$o_dbf = DbFactory::start($db_config_file, 'rw');
+$o_dbf = DbFactory::start($db_config_file, 'rw'); // $db_config_file defined in pubic/config.php
 $o_dbf->setElog($o_elog);
 $o_elog->setIgnoreLogOff(false); // turns on logging globally ignoring LOG_OFF when set to true
 
