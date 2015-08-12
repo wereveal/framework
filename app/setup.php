@@ -50,7 +50,6 @@
  *        _dir and _DIR indicates the path in the site (URI)
  *        Both do not end with a slash
  *  </pre>
- * @TODO Serious refactoring gone amiss. Bunch of the use statements point wrong.
 */
 namespace Ritc;
 
@@ -77,14 +76,12 @@ if (!defined('BASE_PATH')) {
         define('BASE_PATH', dirname(dirname(__FILE__)));
     }
 }
-if (!defined('DEVELOPER_MODE')) {
-    define('DEVELOPER_MODE', false);
-}
-if (!isset($rodb)) {
-    $rodb = false;
-}
 
 require_once BASE_PATH . '/app/config/constants.php';
+
+if (!isset($db_config_file)) {
+    $db_config_file = 'db_config.php';
+}
 
 $o_loader = require_once VENDOR_PATH . '/autoload.php';
 $my_classmap = require_once APP_CONFIG_PATH . '/autoload_classmap.php';
@@ -117,7 +114,7 @@ if ($o_pdo !== false) {
         $o_elog->write(var_export($a_constants['user'], true), LOG_OFF);
         $o_router = new Router($o_di);
         $o_tpl    = TwigFactory::getTwig('twig_config.php');
-        if ($rodb) {
+        if (RODB) {
             $o_dbf_ro = DbFactory::start($db_config_file, 'ro');
             $o_pdo_ro = $o_dbf_ro->connect();
             if ($o_pdo_ro !== false) {
