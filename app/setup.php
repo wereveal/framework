@@ -7,43 +7,53 @@
  *  @namespace Ritc
  *  @defgroup ritc_library
  *  @{
- *      @version 5.0
- *      @defgroup abstracts
+ *      @version 5.5.0
+ *      @defgroup abstracts classes that are extended by other classes
  *      @ingroup ritc_library
- *      @defgroup basic
+ *      @defgroup basic stuff that doesn't have another place
  *      @ingroup ritc_library
- *      @defgroup configs
+ *      @defgroup configs place for configurations
  *      @ingroup ritc_library
- *      @defgroup controllers
+ *      @defgroup controllers controllers in the app
  *      @ingroup ritc_library
- *      @defgroup entities
+ *      @defgroup entities defines the tables in the database
+ *      @ingroup ritc_library
+ *      @defgroup factories classes that create objects
  *      @ingroup ritc_library
  *      @defgroup helper classes that do helper things
  *      @ingroup ritc_library
- *      @defgroup interfaces
+ *      @defgroup interfaces files that define what a class should have
  *      @ingroup ritc_library
- *      @defgroup models
+ *      @defgroup models classes that do database calls
  *      @ingroup ritc_library
- *      @defgroup services
+ *      @defgroup services classes that are normally injected into other classes
  *      @ingroup ritc_library
- *      @defgroup tests
+ *      @defgroup tests classes that test other classes
  *      @ingroup ritc_library
- *      @defgroup views
+ *      @defgroup traits functions that are common to multiple classes
+ *      @ingroup ritc_library
+ *      @defgroup views classes that provide the end user experience
  *      @ingroup ritc_library
  *  }
- *  @defgroup ftpadmin
+ *  @defgroup main_app_name
  *  @{
  *      @version 1.0
- *      @defgroup ftp_configs
- *      @ingroup ftpadmin
- *      @defgroup ftp_controllers controller files
- *      @ingroup ftpadmin
- *      @defgroup ftp_views classes that create views
- *      @ingroup ftpadmin
- *      @defgroup ftp_models files that do database operations
- *      @ingroup ftpadmin
- *      @defgroup ftp_tests unit Testing
- *      @ingroup ftpadmin
+ *      @defgroup app_abstracts abstract class files
+ *      @ingroup main_app_name
+ *      @defgroup app_controllers controller files
+ *      @ingroup main_app_name
+ *      @defgroup app_entities defines the tables in the database
+ *      @ingroup main_app_name
+ *      @defgroup app_interfaces files that define what a class should have
+ *      @ingroup main_app_name
+ *      @defgroup app_models classes that do database calls
+ *      @ingroup main_app_name
+ *      @defgroup app_tests classes that test other classes
+ *      @ingroup main_app_name
+ *      @defgroup app_traits functions that are common to multiple classes
+ *      @ingroup main_app_name
+ *      @defgroup app_views classes that provide the end user experience
+ *      @ingroup main_app_name
  *  }
  *  @note <pre>
  *  NOTE: _path and _PATH indicates a full server path
@@ -53,7 +63,7 @@
 */
 namespace Ritc;
 
-use Ritc\Library\Factories\DbFactory;
+use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Factories\TwigFactory;
 use Ritc\Library\Helper\ConstantsHelper;
 use Ritc\Library\Services\DbModel;
@@ -79,49 +89,50 @@ $o_loader = require_once VENDOR_PATH . '/autoload.php';
 $my_classmap = require_once APP_CONFIG_PATH . '/autoload_classmap.php';
 $o_loader->addClassMap($my_classmap);
 
-$o_elog    = Elog::start();
+$o_elog = Elog::start();
+$o_elog->setIgnoreLogOff(false); // turns on logging globally ignoring LOG_OFF when set to true
+// set_error_handler([$o_elog, 'errorHandler'], E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR);
+$o_elog->setErrorHandler(E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR);
+
 $o_session = Session::start();
-$o_di      = new Di();
+
+$o_di = new Di();
 $o_di->set('elog',    $o_elog);
 $o_di->set('session', $o_session);
-$o_dbf = DbFactory::start($db_config_file, 'rw'); // $db_config_file defined in pubic/config.php
-$o_dbf->setElog($o_elog);
-$o_elog->setIgnoreLogOff(false); // turns on logging globally ignoring LOG_OFF when set to true
 
-$o_pdo = $o_dbf->connect();
+$o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
 
 if ($o_pdo !== false) {
     $o_db = new DbModel($o_pdo, $db_config_file);
+    $o_db->setElog($o_elog);
+
     if (!is_object($o_db)) {
         $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
         die("Could not get the database to work");
     }
     else {
         $o_di->set('db', $o_db);
-        if (!ConstantsHelper::start($o_di)) {
-            $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
-            require_once APP_CONFIG_PATH . '/fallback_constants.php';
-        }
-        $a_constants = get_defined_constants(true);
-        $o_elog->write(var_export($a_constants['user'], true), LOG_OFF);
-        $o_router = new Router($o_di);
-        $o_tpl    = TwigFactory::getTwig('twig_config.php');
         if (RODB) {
-            $o_dbf_ro = DbFactory::start($db_config_file, 'ro');
-            $o_pdo_ro = $o_dbf_ro->connect();
+            $o_pdo_ro = PdoFactory::start($db_config_file, 'ro', $o_di);
             if ($o_pdo_ro !== false) {
                 $o_db_ro = new DbModel($o_pdo_ro, $db_config_file);
                 if (!is_object($o_db_ro)) {
                     $o_elog->write("Could not create a new DbModel for read only\n", LOG_ALWAYS);
                     die("Could not get the database to work");
                 }
-                $o_di->set('db', $o_db_ro);
-                $o_di->set('db_rw', $o_db);
+                $o_di->set('rodb', $o_db_ro);
             }
         }
-        $o_di->set('router', $o_router);
-        $o_di->set('tpl',    $o_tpl);
-        $o_di->set('twig',   $o_tpl); // tpl or twig, never sure which one
+
+        if (!ConstantsHelper::start($o_di)) {
+            $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
+            require_once APP_CONFIG_PATH . '/fallback_constants.php';
+        }
+        $o_session->setIdleTime(SESSION_IDLE_TIME);
+        $o_router = new Router($o_di);
+        $o_twig   = TwigFactory::getTwig('twig_config.php');
+        $o_di->set('router',  $o_router);
+        $o_di->set('twig',    $o_twig);
     }
 }
 else {
