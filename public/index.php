@@ -23,4 +23,7 @@ $html     = $o_main_controller->renderPage();
 $any_junk = ob_get_clean();
 ob_start();
     print $html;
+    if (DEVELOPER_MODE) {
+        print $any_junk;
+    }
 ob_end_flush();

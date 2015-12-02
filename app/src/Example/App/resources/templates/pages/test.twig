@@ -1,0 +1,10 @@
+{% extends '@example_main/index.twig' %}
+{% block body %}
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                {% for link in links %}
+                    {% include '@elements/anchor.twig' %}
+                {% endfor %}
+                </div>
+            </div>
+{% endblock %}

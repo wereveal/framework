@@ -1,84 +1,62 @@
 <?php
 /**
  *  @brief The main Controller for the whole site.
- *  @details This doesn't work right now.
  *  @file MainController.php
- *  @ingroup example_app controllers
- *  @namespace Ritc/ExampleApp/Controllers
+ *  @ingroup main_app_name controllers
+ *  @namespace Example/App/Controllers
  *  @class MainController
  *  @author William Reveal  <bill@revealitconsulting.com>
- *  @version 0.1
- *  @date 2013-12-12 13:21:16
- *  @note A file in ExampleApp v1 app
+ *  @version 1.0.0
+ *  @date 2015-12-01 18:14:54
  *  @note <pre><b>Change Log</b>
- *      v0.1 - Initial version 12/12/2013
+ *      v1.0.0 - Initial version                    - 12/01/2015 wer
  *  </pre>
 **/
 namespace Example\App\Controllers;
 
-use Ritc\Library\Services\Elog;
-use Ritc\Library\Services\Session;
-use Ritc\Library\Helper\Actions;
-use Ritc\Library\Interfaces\ControllerInterface;
+use Ritc\Library\Controllers\ManagerController;
+use Ritc\Library\Interfaces\PageControllerInterface;
+use Ritc\Library\Services\Di;
+use Ritc\Library\Traits\LogitTraits;
 
-class MainController implements ControllerInterface
+class MainController implements PageControllerInterface
 {
-    protected $o_actions;
-    protected $o_elog;
-    protected $o_sess;
+    use LogitTraits;
 
-    public function __construct()
-    {
-        $this->o_elog    = Elog::start();
-        $this->o_sess    = Session::start();
-        $this->o_actions = new Actions;
-    }
+    private $o_di;
 
-    public function render()
+    public function __construct(Di $o_di)
     {
-        return ''; //
-    }
-
-    /**
-     *  Routes the code to the appropriate sub controllers and returns a string.
-     *  As much as I have been looking at putting the actual route pairs somewhere else
-     *  it feels like the routes are so specific to the controller, they might as well
-     *  be in the controller.
-     *  @param array $a_actions optional, the actions derived from the URL/Form
-     *  @param array $a_values optional, the values from a form
-     *  @return string normally html to be displayed.
-    **/
-    public function router(array $a_actions = array(), array $a_values = array())
-    {
-        $main_action = isset($a_actions['action1']) ? $a_actions['action1'] : '';
-        switch ($main_action) {
-            case 'tests':
-                $o_tests = new TestsController($a_actions, $a_values);
-                return $o_tests->renderPage();
-            case 'verify':
-            case 'home':
-            default:
-                $o_home = new HomeController($a_actions, $a_values);
-                return $o_home->renderPage();
+        $this->o_di = $o_di;
+        if (defined('DEVELOPER_MODE') && DEVELOPER_MODE) {
+            $this->o_elog = $o_di->get('elog');
         }
     }
-
-    ### GETTERs and SETTERs ###
     /**
-     * @return \Ritc\Library\Helper\Actions
-     */
-    public function getOActions()
+     *  Main Router and Puker outer (more descriptive method name).
+     *  Turns over the hard work to the specific controllers specified by the router.
+     *  @return string
+    **/
+    public function renderPage()
     {
-        return $this->o_actions;
-    }
+        $o_router = $this->o_di->get('router');
+        $a_route_parts = $o_router->getRouterParts();
+        $this->logIt("Route Parts: " . var_export($a_route_parts, true), LOG_OFF, __METHOD__);
+        $route_class  = $a_route_parts['route_class'];
+        $route_method = $a_route_parts['route_method'];
 
-    /**
-     * This setter won't be allowed.
-     * @param none
-     * @return bool
-     */
-    public function setOActions()
-    {
-        return false;
+        switch ($route_class) {
+            case 'ThatController':
+                $o_that = new ThatController($this->o_di);
+                return $o_that->$route_method();
+            case 'HomeController':
+            default:
+                $o_controller = new HomeController($this->o_di);
+                return $o_controller->render();
+        }
+        /* Optional method instead of switch
+            $o_that = new $new_class($this->o_di);
+            return $o_that->$route_method();
+        */
     }
 }

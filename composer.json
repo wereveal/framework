@@ -2,6 +2,6 @@
     "name": "ritc/framework",
     "require": {
         "php": ">=5.5.0",
-        "twig/twig": "dev-master"
+        "twig/twig": ">1.2-stable"
     }
 }

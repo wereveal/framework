@@ -31,34 +31,39 @@ if (!defined('SRC_PATH')) {
 if (!defined('APP_CONFIG_PATH')) {
     define('APP_CONFIG_PATH', APP_PATH . '/config');
 }
+if (!defined('SITE_PROTOCOL')) {
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+        define('SITE_PROTOCOL', 'https');
+    }
+    else {
+        define('SITE_PROTOCOL', 'http');
+    }
+}
 if (!defined('SITE_URL')) {
     if (isset($_SERVER['HTTP_HOST'])) {
-        define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
+        define('SITE_URL', SITE_PROTOCOL . '://' . $_SERVER['HTTP_HOST']);
     }
     else {
         define('SITE_URL', 'localhost');
     }
 }
 if (!defined('DEVELOPER_MODE')) {
-    define('DEVELOPER_MODE', false);
+    define('DEVELOPER_MODE', true);
 }
 if (!defined('RODB')) {
     define('RODB', false);
 }
-
-/**
- * Variables used by the classes Elog.
- * Needs to be set early.
- * USE_PHP_LOG should be false normally in Production sites
- * but it can slow things a bit. The class Elog has a
- * method that allows temporary overrides of these global
- * settings in the class (not the constants themselves of course).
-**/
-define('USE_PHP_LOG',  true);
-define('USE_TEXT_LOG', false);
-define('LOG_OFF', 0);
-define('LOG_ON', 1);
-define('LOG_PHP', 1);
-define('LOG_BOTH', 2);
-define('LOG_EMAIL', 3);
-define('LOG_ALWAYS', 4);
+if (!defined('LIBRARY_PATH')) {
+    if(file_exists(SRC_PATH . '/Ritc/Library')) {
+        define('LIBRARY_PATH', SRC_PATH . '/Ritc/Library');
+        if (file_exists(LIBRARY_PATH . '/resources/config')) {
+            define('LIBRARY_CONFIG_PATH', LIBRARY_PATH . '/resources/config');
+        }
+        else {
+            define('LIBRARY_CONFIG_PATH', APP_CONFIG_PATH);
+        }
+    }
+    else {
+        define('LIBRARY_PATH', '');
+    }
+}
