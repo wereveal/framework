@@ -1,14 +1,18 @@
 1.  rm -Rf .git
     Do not create a new branch of the framework repository and push it to the
     ritcframework remote repository. Always make a new project/new remote repo 
+    Best practice is to create a new project in the app/src/Namespace area
 2.  clone Library from git
     1. cd app/src/Ritc
     2. git clone ssh://wer@wereveal.com/srv/git/ritclibrary Library
-    3. cd ../../../
+    3. clone any other Ritc app needed
+    4. cd ../../../
 3.  composer.phar install
 4.  cd app/config
-5.  php create_classmap.php
-6.  cd ../../
-7.  Get to work (including creating a new git project).
+    1. php create_classmap.php
+    2. create database and assign user to it 
+    2. php install.php -a AppName -n Namespace -h db_host -t db_type -d db_name -u db_user -p db_pass -f db_prefix
+7.  cd ../../
+8.  Get to work (including creating a new git project).
 
 Remember: create_classmap.php needs to be run anytime a new class file is added to the app.
