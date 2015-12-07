@@ -1,8 +1,9 @@
 <?php
 /**
- *  This file sets up the app when doing things at the command line
- *  Required to get the entire app to work.
- *  @file cli_setup.php
+ *  @brief     This file sets up the App.
+ *  @details   Required to get the entire framework to work. The only thing
+ *             that changes primarily is the defgroup in this comment for Doxygen.
+ *  @file      setup.php
  *  @namespace Ritc
  *  @defgroup ritc_library
  *  @{
