@@ -192,22 +192,31 @@ $o_db->commitTransaction();
 
 $app_path = SRC_PATH . '/' . $namespace. '/' . $app_name;
 $a_new_dirs = ['Abstracts', 'Controllers', 'Entities', 'Interfaces', 'Models',
-'Tests', 'Traits', 'Views', 'resources/config', 'resources/sql',
+'Tests', 'Traits', 'Views', 'resources', 'resources/config', 'resources/sql',
 'resources/templates', 'resources/themes', 'resources/templates/default',
 'resources/templates/elements', 'resources/templates/main',
 'resources/templates/pages', 'resources/templates/snippets',
 'resources/templates/tests'];
+
 $index_file_text = '<?php
 header("Location: http://$_SERVER["SERVER_NAME"]/");
 ?>';
+
+$tpl_text = "<h3>An Error Has Occurred</h3>";
 
 if (!file_exists($app_path)) {
     mkdir($app_path, 0755, true);
     foreach($a_new_dirs as $dir) {
         $new_dir = $app_path . '/' . $dir;
         $new_file = $new_dir . '/' . 'index.php';
+        $new_tpl = $new_dir . '/' . 'no_file.twig';
         mkdir($app_path . '/' . $dir, 0755, true);
-        file_put_contents($new_file, $index_file_text);
+        if (strpos($dir, 'resources') === false) {
+            file_put_contents($new_file, $index_file_text);
+        }
+        else {
+            file_put_contents($new_tpl, $tpl_text);
+        }
     }
 }
 ?>
