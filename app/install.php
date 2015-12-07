@@ -12,6 +12,7 @@ namespace Ritc;
 
 use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Factories\TwigFactory;
+use Ritc\Library\Helper\ClassMapper;
 use Ritc\Library\Helper\ConstantsHelper;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
@@ -34,7 +35,7 @@ $long_opts  = [
 $a_options = getopt($short_opts, $long_opts);
 
 if (count($a_options) < 5) {
-   die("The options are \nappname (a), namespace (n), dbhost (h), \ndbtype (t), dbname (d), dbuser (u), \ndbpass (p), dbprefix (f)\n"); 
+   die("The options are \nnamespace (n), appname (a), dbhost (h), \ndbtype (t), dbname (d), dbuser (u), \ndbpass (p), dbprefix (f)\n"); 
 }
 
 $app_name  = '';
@@ -103,11 +104,22 @@ if ($db_pass == '') {
 if ($missing_params != '') {
     die("Missing argument(s): {$missing_params}\n");
 }
+
 define('DEVELOPER_MODE', true);
 define('SITE_PATH', __DIR__);
 define('BASE_PATH', dirname(SITE_PATH));
 
 require_once BASE_PATH . '/app/config/constants.php';
+
+if (!file_exists(SRC_PATH . '/Ritc/Library')) {
+    die("You must clone the Ritc/Library in the src dir first and any other desired apps.\n");
+}
+
+### generate classmap so autoloader will work ###
+require_once SRC_PATH . '/Ritc/Library/Helper/ClassMapper.php'; 
+$a_dirs = ['app_path' => APP_PATH, 'config_path' => APP_CONFIG_PATH, 'src_path' => SRC_PATH];
+$o_cm = new ClassMapper($a_dirs);
+$o_cm->generateClassMap();
 
 $db_config_file = "db_config_setup.php";
 $db_config_file_text =<<<EOT
