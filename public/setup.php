@@ -8,7 +8,7 @@ switch ($_SERVER['HTTP_HOST']) { // allows for differing development environment
         define('DEVELOPER_MODE', true);
         define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(SITE_PATH));
-        $db_config_file = 'db_local_config.php';
+        $db_config_file = 'db_config_local.php';
         break;
     case 'base.in.public.directory.not.secure.option': // base code is inside the public directory
         define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
@@ -20,6 +20,13 @@ switch ($_SERVER['HTTP_HOST']) { // allows for differing development environment
         define('PUBLIC_DIR', '/the_subdirectory');
         $db_config_file = 'db_silly_config.php';
         break;
+    case 'ritc.qca.net': // test server
+        define('DEVELOPER_MODE', true);
+        define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
+        define('BASE_PATH', dirname(SITE_PATH));
+        $db_config_file = 'db_config_ritc.php';
+        break;
+        
     default: // simple setup and this could be the only two lines needed in this file. Technically, not needed at all.
         define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(SITE_PATH));

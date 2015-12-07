@@ -33,6 +33,10 @@ $long_opts  = [
 
 $a_options = getopt($short_opts, $long_opts);
 
+if (count($a_options) < 5) {
+   die("The options are \nappname (a), namespace (n), dbhost (h), \ndbtype (t), dbname (d), dbuser (u), \ndbpass (p), dbprefix (f)\n"); 
+}
+
 $app_name  = '';
 $namespace = '';
 $db_host   = 'localhost';
@@ -105,7 +109,7 @@ define('BASE_PATH', dirname(SITE_PATH));
 
 require_once BASE_PATH . '/app/config/constants.php';
 
-$db_config_file = "db_setup_config.php";
+$db_config_file = "db_config_setup.php";
 $db_config_file_text =<<<EOT
 <?php
 return array(
