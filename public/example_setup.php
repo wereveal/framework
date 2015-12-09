@@ -4,7 +4,7 @@
  * BASE_PATH is the directory where everything else is
  */
 switch ($_SERVER['HTTP_HOST']) { // allows for differing development environment and production environment
-    case 'localhost': // uses a non-standard db config file and in Developer mode
+    case 'localhost': // uses a special db config file and in Developer mode
         define('DEVELOPER_MODE', true);
         define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(SITE_PATH));
@@ -18,16 +18,15 @@ switch ($_SERVER['HTTP_HOST']) { // allows for differing development environment
         define('SITE_PATH', $_SERVER['DOCUMENT_ROOT'] . '/the_subdirectory');
         define('BASE_PATH', dirname(dirname(SITE_PATH)) . '/where.the.base.is'); // in this example, outside the public directory
         define('PUBLIC_DIR', '/the_subdirectory');
-        $db_config_file = 'db_silly_config.php';
+        $db_config_file = 'db_config_silly.php'; // has a special db_config file
         break;
-    case 'ritc.qca.net': // test server
+    case 'test.mysite.com': // test server
         define('DEVELOPER_MODE', true);
         define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(SITE_PATH));
-        $db_config_file = 'db_config_ritc.php';
+        $db_config_file = 'db_config_test.php';
         break;
-        
-    default: // simple setup and this could be the only two lines needed in this file. Technically, not needed at all.
+    default: // simple setup and this could be the only two lines needed in this file. 
         define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(SITE_PATH));
 }

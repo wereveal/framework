@@ -3,6 +3,8 @@ composer.lock
 /app/twig_cache/*/
 /app/src/Ritc/*
 /nbproject/
+/public/index.php
+/public/setup.php
 /vendor/
 /work/
 *.log
