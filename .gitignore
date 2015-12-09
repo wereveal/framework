@@ -9,3 +9,4 @@ composer.lock
 test_db.php
 db_config_setup.php
 db_config_ritc.php
+db_config_local.php
