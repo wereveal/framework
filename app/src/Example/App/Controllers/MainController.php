@@ -2,8 +2,8 @@
 /**
  *  @brief The main Controller for the whole site.
  *  @file MainController.php
- *  @ingroup main_app_name controllers
- *  @namespace Example/App/Controllers
+ *  @ingroup main_app_name app_controllers
+ *  @namespace Example\App\Controllers
  *  @class MainController
  *  @author William Reveal  <bill@revealitconsulting.com>
  *  @version 1.0.0
