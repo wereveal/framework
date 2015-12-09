@@ -194,9 +194,8 @@ $app_path = SRC_PATH . '/' . $namespace. '/' . $app_name;
 $a_new_dirs = ['Abstracts', 'Controllers', 'Entities', 'Interfaces', 'Models',
 'Tests', 'Traits', 'Views', 'resources', 'resources/config', 'resources/sql',
 'resources/templates', 'resources/themes', 'resources/templates/default',
-'resources/templates/elements', 'resources/templates/main',
-'resources/templates/pages', 'resources/templates/snippets',
-'resources/templates/tests'];
+'resources/templates/elements', 'resources/templates/pages', 
+'resources/templates/snippets', 'resources/templates/tests'];
 
 $index_file_text = '<?php
 header("Location: http://$_SERVER["SERVER_NAME"]/");
