@@ -1,22 +1,24 @@
 <?php
-$example_path = SRC_PATH . '/Example/App/resources/templates';
+$app_path     = SRC_PATH . '/Example/App/resources/templates';
 $library_path = SRC_PATH . '/Ritc/Library/resources/templates';
+if (!defined('TWIG_PREFIX')) {
+    define('TWIG_PREFIX', 'app_');
+}
 return array(
-    'default_path'      => $example_twig,
+    'default_path'      => $app_path,
     'additional_paths'  => array(
         $library_path . '/default'  => 'default',
         $library_path . '/elements' => 'elements',
         $library_path . '/forms'    => 'forms',
-        $library_path . '/main'     => 'main',
         $library_path . '/pages'    => 'pages',
         $library_path . '/snippets' => 'snippets',
         $library_path . '/tests'    => 'tests',
-        $example_path . '/default'  => 'example_default',
-        $example_path . '/elements' => 'example_elements',
-        $example_path . '/main'     => 'example_main',
-        $example_path . '/pages'    => 'example_pages',
-        $example_path . '/snippets' => 'example_snippets',
-        $example_path . '/tests'    => 'example_tests'
+        $app_path . '/default'      => TWIG_PREFIX . 'default',
+        $app_path . '/elements'     => TWIG_PREFIX . 'elements',
+        $app_path . '/forms'        => TWIG_PREFIX . 'forms',
+        $app_path . '/pages'        => TWIG_PREFIX . 'pages',
+        $app_path . '/snippets'     => TWIG_PREFIX . 'snippets',
+        $app_path . '/tests'        => TWIG_PREFIX . 'tests'
     ),
     'environment_options' => [
         'cache'       => APP_PATH . '/twig_cache', // APP_PATH . '/twig_cache', or false are most common
