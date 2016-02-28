@@ -1,5 +1,6 @@
 {
     "name": "ritc/framework",
+    "version": "3.0.0",
     "require": {
         "php": ">=5.5.0",
         "twig/twig": ">1.2-stable"
