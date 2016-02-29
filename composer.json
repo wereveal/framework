@@ -3,6 +3,7 @@
     "version": "3.0.0",
     "require": {
         "php": ">=5.5.0",
+        "twbs/bootstrap": ">=4.0.0-alpha",
         "twig/twig": ">1.2-stable"
     }
 }

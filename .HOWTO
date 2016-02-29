@@ -7,12 +7,13 @@
     2. git clone ssh://wer@wereveal.com/srv/git/ritclibrary Library
     3. clone any other Ritc app needed
     4. cd ../../../
+    TODO: Configure it all so the Ritc namespace and Library will be installed in the next step.
 3.  composer.phar install
-4.  cd app/config
-    1. php create_classmap.php
-    2. create database and assign user to it 
+4.  cp vendor/twbs/bootstrap/dist files to public/assets/css and public/assets/js
+    alternative
+    add CDN links to template to include bootstrap
+5.  cd app/config
+    1. create database and assign user to it 
     2. php install.php -a AppName -n Namespace -h db_host -t db_type -d db_name -u db_user -p db_pass -f db_prefix
-7.  cd ../../
-8.  Get to work (including creating a new git project).
-
-Remember: create_classmap.php needs to be run anytime a new class file is added to the app.
+6.  cd ../src
+7.  Get to work (including creating a new git project).
