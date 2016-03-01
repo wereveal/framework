@@ -8,28 +8,28 @@
   font-weight: 900; }
 
 .container {
-  border: 1px solid #d3d3d3;
+  border: 1px solid #333333;
   border-radius: 0 2rem 2rem 0;
-  box-shadow: 0.6rem 0.6rem 1rem rgba(0, 0, 0, 0.65);
+  box-shadow: 0.6rem 0.6rem 1rem rgba(128, 128, 128, 0.65);
   padding: 1rem 2rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  background-color: #f0f0f0; }
+  background-color: #F2F2F2; }
   .container .row {
-    background-color: #FFF;
+    background-color: #F2F2F2;
     padding-right: 2rem;
     padding-left: 1rem;
     margin: 0; }
     .container .row [class*="col"] {
-      background-color: #FFF;
+      background-color: #F2F2F2;
       border: 0;
       padding: 0 .25rem;
       border-radius: 0;
       margin-top: .25rem;
       margin-bottom: .25rem; }
     .container .row.boxed [class*="col"] {
-      background-color: #FFF;
-      border: 1px solid #d3d3d3;
+      background-color: #F2F2F2;
+      border: 1px solid #333333;
       border-radius: 10px;
       margin-bottom: 1rem;
       padding: 1rem 2rem; }
@@ -40,14 +40,14 @@
       margin-top: .25rem;
       margin-bottom: .25rem; }
     .container .row.alt-row {
-      background-color: #e7e7e7; }
+      background-color: #808080; }
       .container .row.alt-row [class*="col"] {
         border: 0;
         padding: 0;
         margin-top: .25rem;
         margin-bottom: .25rem;
         border-radius: 0;
-        background-color: #e7e7e7; }
+        background-color: #808080; }
     .container .row.upper {
       border-radius: 0 2rem 0 0;
       padding-top: 1rem; }
@@ -57,10 +57,13 @@
       padding-left: 0; }
 
 .red {
-  color: darkred; }
+  color: #AA0000; }
 
 .green {
-  color: #4d7f7b; }
+  color: #006400; }
+
+.blue {
+  color: #000066; }
 
 #login-form .row {
   margin-right: 0;
@@ -91,6 +94,14 @@
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px; }
 
+.border-radius-top {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px; }
+
+.border-radius-bottom {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px; }
+
 .pad-right-12 {
   padding-right: 12px !important; }
 
@@ -98,10 +109,10 @@
   display: none; }
 
 .list-header {
-  background-color: #5c5c5c !important;
+  background-color: #333333 !important;
   color: white; }
   .list-header div {
-    background-color: #5c5c5c !important;
+    background-color: #333333 !important;
     color: white; }
 
 #people-form fieldset {
@@ -161,11 +172,20 @@ input.colorful:focus {
 .w450 {
   width: 450px; }
 
-/* Idea is to have media queries break where it looks good, not on device size */
-/* Idea is to have media queries break where it looks good, not on device size */
-@media screen and (max-width: 540px) {
+/* Idea is to have media queries break where it looks good, not on device size = based on Bootstrap 4 */
+@media screen and (min-width: 544px) {
+  .container {
+    border: 0;
+    padding-left: 0;
+    padding-right: 0;
+    box-shadow: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 0; } }
+/* Idea is to have media queries break where it looks good, not on device size - based on Bootstrap 4 */
+@media screen and (min-width: 544px) {
   .w450 {
     width: 200px; } }
-@media screen and (max-width: 380px) {
+@media screen and (min-width: 0px) {
   .w450 {
     width: 200px; } }
