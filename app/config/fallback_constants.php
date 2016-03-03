@@ -15,6 +15,7 @@ define('DISPLAY_PHONE_FORMAT', 'XXX-XXX-XXXX');
 define('EMAIL_DOMAIN', 'replaceme.com');
 define('EMAIL_FORM_TO', 'me@replaceme.com');
 define('ERROR_EMAIL_ADDRESS', 'webmaster@revealitconsulting.com');
+define('RIGHTS_HOLDER', 'Reveal IT Consulting');
 define('PAGE_TEMPLATE', 'index.twig');
 define('TWIG_PREFIX', 'app_');
 define('THEME_NAME', '');
