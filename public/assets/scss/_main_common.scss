@@ -9,9 +9,8 @@
 }
 .container {
     border: 1px solid $color_border;
-    border-radius: 0 2rem 2rem 0;
-    box-shadow: 0.6rem 0.6rem 1rem $color_shadow;
-    padding: 1rem 2rem;
+    border-radius: 0.25rem;
+    box-shadow: 0.25rem 0.25rem 0.25rem $color_shadow;
     margin-top: 1rem;
     margin-bottom: 2rem;
     background-color: $color_container;

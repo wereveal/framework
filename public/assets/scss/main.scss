@@ -2,13 +2,6 @@
 @import "color";
 @import "main_common";
 .container {
-    border: 1px solid $color_border;
-    border-radius: 0 2rem 2rem 0;
-    box-shadow: 0.6rem 0.6rem 1rem $color_shadow;
-    padding: 2rem;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    background-color: $color_container;
     .row-fluid {
         [class*="span"] {
             background-color: $color_span;

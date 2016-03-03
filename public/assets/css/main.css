@@ -9,9 +9,8 @@
 
 .container {
   border: 1px solid #333333;
-  border-radius: 0 2rem 2rem 0;
-  box-shadow: 0.6rem 0.6rem 1rem rgba(128, 128, 128, 0.65);
-  padding: 1rem 2rem;
+  border-radius: 0.25rem;
+  box-shadow: 0.25rem 0.25rem 0.25rem rgba(128, 128, 128, 0.65);
   margin-top: 1rem;
   margin-bottom: 2rem;
   background-color: #F2F2F2; }
@@ -108,30 +107,22 @@
 .hobbit {
   display: none; }
 
-.container {
+.container .row-fluid [class*="span"] {
+  background-color: #F2F2F2;
   border: 1px solid #333333;
-  border-radius: 0 2rem 2rem 0;
-  box-shadow: 0.6rem 0.6rem 1rem rgba(128, 128, 128, 0.65);
-  padding: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  background-color: #F2F2F2; }
-  .container .row-fluid [class*="span"] {
-    background-color: #F2F2F2;
-    border: 1px solid #333333;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    padding: 1rem 2rem; }
-  .container .row-fluid .no-box {
-    background-color: inherit;
-    border: 0;
-    padding: 0;
-    margin: 0 0 1rem 0; }
-    .container .row-fluid .no-box div.no-box {
-      margin-right: 1rem; }
-  .container .row-fluid div.item-card a.item-link {
-    font-size: 1.2rem;
-    font-weight: 900; }
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  padding: 1rem 2rem; }
+.container .row-fluid .no-box {
+  background-color: inherit;
+  border: 0;
+  padding: 0;
+  margin: 0 0 1rem 0; }
+  .container .row-fluid .no-box div.no-box {
+    margin-right: 1rem; }
+.container .row-fluid div.item-card a.item-link {
+  font-size: 1.2rem;
+  font-weight: 900; }
 
 hr.item-card {
   margin: .5rem 0;
@@ -209,12 +200,3 @@ hr.item-card {
       font-weight: 900; }
 
 /* Idea is to have media queries break where it looks good, not on device size = based on Bootstrap 4 */
-@media screen and (min-width: 544px) {
-  .container {
-    border: 0;
-    padding-left: 0;
-    padding-right: 0;
-    box-shadow: none;
-    margin-top: 0;
-    margin-bottom: 0;
-    border-radius: 0; } }
