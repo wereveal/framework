@@ -46,12 +46,22 @@
             - They are constants - see PSR-1 4.1
         * 5. Control Structures
             - I prefer to have elseif, else, while, and catch on their own line
-            - e.g. if ($this) {
-                   }
-                   elseif ($that) {
-                   }
-                   else {
-                   }
+            - e.g. 
+                   
+```
+#!php
+
+             if ($this) {
+                 // do something
+             }
+             elseif ($that) {
+                 // do that something
+             }
+             else {
+                 // do the default thing
+             }
+```
+
 
 ### Who do I talk to? ###
 
