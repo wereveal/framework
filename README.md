@@ -6,20 +6,20 @@
 ### How do I get set up? ###
 
 * Once cloned, immediately create a fresh app. The framework is intended to give a fresh start, so new git repo, not a fork.
-    #. rm -Rf .git
-    #. git init 
-    #. composer.phar install
+    1. rm -Rf .git
+    2. git init 
+    3. composer.phar install
 *  clone Library from git if not installed via composer
-    #. cd app/src/Ritc
-    #. git clone ritclibrary Library
-    #. clone any other Ritc app needed
+    1. cd app/src/Ritc
+    2. git clone ritclibrary Library
+    3. clone any other Ritc app needed
 * Bootstrap optional install either
-    #. cp vendor/twbs/bootstrap/dist files to public/assets
-    #. add CDN links to template to include bootstrap
+    1. cp vendor/twbs/bootstrap/dist files to public/assets
+    2. add CDN links to template to include bootstrap
 * Database configuration
-    #. create database and assign user to it. Tables will be made with install.php.
-    #. cd app/config
-    #. php install.php -a AppName -n Namespace -h db_host -t db_type -d db_name -u db_user -p db_pass -f db_prefix
+    1. create database and assign user to it. Tables will be made with install.php.
+    2. cd app/config
+    3. php install.php -a AppName -n Namespace -h db_host -t db_type -d db_name -u db_user -p db_pass -f db_prefix
 
 ### Contribution guidelines ###
 
