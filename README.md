@@ -6,20 +6,20 @@
 ### How do I get set up? ###
 
 * Once cloned, immediately create a fresh app. The framework is intended to give a fresh start, so new git repo, not a fork.
-    1 rm -Rf .git
-    2 git init 
-    3 composer.phar install
+    1. rm -Rf .git
+    2. git init 
+    3. composer.phar install
 *  clone Library from git if not installed via composer
-    1 cd app/src/Ritc
-    2 git clone ritclibrary Library
-    3 clone any other Ritc app needed
+    1. cd app/src/Ritc
+    2. git clone ritclibrary Library
+    3. clone any other Ritc app needed
 * Bootstrap optional install either
-    1 cp vendor/twbs/bootstrap/dist files to public/assets
-    2 add CDN links to template to include bootstrap
+    1. cp vendor/twbs/bootstrap/dist files to public/assets
+    2. add CDN links to template to include bootstrap
 * Database configuration
-    1 create database and assign user to it. Tables will be made with install.php.
-    2 cd app/config
-    3 php install.php -a AppName -n Namespace -h db_host -t db_type -d db_name -u db_user -p db_pass -f db_prefix
+    1. create database and assign user to it. Tables will be made with install.php.
+    2. cd app/config
+    3. php install.php -a AppName -n Namespace -h db_host -t db_type -d db_name -u db_user -p db_pass -f db_prefix
 
 ### Contribution guidelines ###
 
@@ -46,12 +46,22 @@
             - They are constants - see PSR-1 4.1
         * 5. Control Structures
             - I prefer to have elseif, else, while, and catch on their own line
-            - e.g. if ($this) {
-                   }
-                   elseif ($that) {
-                   }
-                   else {
-                   }
+            - e.g. 
+                   
+```
+#!php
+
+             if ($this) {
+                 // do something
+             }
+             elseif ($that) {
+                 // do that something
+             }
+             else {
+                 // do the default thing
+             }
+```
+
 
 ### Who do I talk to? ###
 
