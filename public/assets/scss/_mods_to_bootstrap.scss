@@ -1,27 +1,59 @@
 /* Changes from Bootstrap */
-html { font-size: 13px; }
+html { font-size: $default-body-font-size; }
+
 body {
-    font-family: 'Lato', Helvetica, sans-serif;
+    font-family: $default-sans;
     font-weight: 400;
-    background-color: $color_body;
+    background-color: $color-body;
     @media only screen and (max-width: 480px) {
         padding: 0;
     }
 }
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Merriweather', serif;
     margin-top: 0;
     padding-top: 0;
 }
+
 h1, h2, h3 { font-weight: 900; }
+
 h4, h5, h6 { font-weight: 700; }
-h1 { font-size: 2rem; }
-h2 { font-size: 1.75rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
+
+h1 {
+    font-size: $default-h1;
+    &.smaller {
+        font-size: $default-h1 * .875;
+    }
+}
+
+h2 {
+    font-size: $default-h1 * .875;
+    &.smaller {
+        font-size: $default-h1 * .75;
+    }
+}
+
+h3 {
+    font-size: $default-h1 * .75;
+    &.smaller {
+        font-size: $default-h1 * .625;
+    }
+}
+
+h4 {
+    font-size: $default-h1 * .625;
+    &.smaller {
+        font-size: $default-h1 * .5;
+    }
+}
+
 h5, h6 { font-size: 1rem; }
-h1, h3, h5 { color: $color_dark; }
-h2, h4, h6 { color: $color_complement; }
+
+h1, h3, h5 { color: $color-dark; }
+
+h2, h4, h6 { color: $color-complement; }
+
 p {
     font-weight: 400;
     font-size: 1rem;

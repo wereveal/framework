@@ -5,7 +5,7 @@ ul.niceform {
   margin: 1px;
   margin-bottom: 12px;
   padding: 0;
-  border: 1px solid #1C7EAD;
+  border: 1px solid $blue-medium;
   &:after {
     content: ".";
     display: block;
@@ -47,14 +47,14 @@ ul.niceform {
         padding-right: 6px;
       }
       &.bright {
-        border-right: 1px solid #1C7EAD;
+        border-right: 1px solid $blue-medium;
       }
     }
     &.alt-row div {
-      background-color: #F3F7FB;
+      background-color: $gray-xlight;
     }
     &.default-row div {
-      background-color: white;
+      background-color: $color-white;
     }
     &.skinny {
       min-height: 1em;

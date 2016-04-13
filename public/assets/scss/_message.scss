@@ -1,0 +1,21 @@
+.message {
+    &.success {
+        @include message_type($success-bg, $success-border, $success-text);
+    }
+    &.info {
+        @include message_type($info-bg, $info-border, $info-text);
+    }
+    &.warning {
+        @include message_type($warning-bg, $warning-border, $warning-text);
+    }
+    &.error {
+        @include message_type($danger-bg, $danger-border, $danger-text);
+    }
+    &.failure {
+        @include message_type($danger-bg, $danger-border, $danger-text);
+    }
+    &.code {
+        font-family: $default-mono;
+        @include message_type($color-container, $color-border, $color-dark);
+    }
+}

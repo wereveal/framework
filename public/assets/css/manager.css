@@ -1,0 +1,385 @@
+/* Matches Bootstrap Alert Colors Mostly */
+/* Changes from Bootstrap */
+html {
+  font-size: 14px; }
+
+body {
+  font-family: "Lato", Verdana, Helvetica, sans-serif;
+  font-weight: 400;
+  background-color: #fff; }
+  @media only screen and (max-width: 480px) {
+    body {
+      padding: 0; } }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+  margin-top: 0;
+  padding-top: 0; }
+
+h1, h2, h3 {
+  font-weight: 900; }
+
+h4, h5, h6 {
+  font-weight: 700; }
+
+h1 {
+  font-size: 1.75rem; }
+  h1.smaller {
+    font-size: 1.53125rem; }
+
+h2 {
+  font-size: 1.53125rem; }
+  h2.smaller {
+    font-size: 1.3125rem; }
+
+h3 {
+  font-size: 1.3125rem; }
+  h3.smaller {
+    font-size: 1.09375rem; }
+
+h4 {
+  font-size: 1.09375rem; }
+  h4.smaller {
+    font-size: 0.875rem; }
+
+h5, h6 {
+  font-size: 1rem; }
+
+h1, h3, h5 {
+  color: #333; }
+
+h2, h4, h6 {
+  color: #276998; }
+
+p {
+  font-weight: 400;
+  font-size: 1rem; }
+
+@font-face {
+  font-family: 'VeraMono';
+  src: url("/assets/fonts/Bitstream-Vera-Sans-Mono-fontfacekit/VeraMono-webfont.eot");
+  src: url("/assets/fonts/Bitstream-Vera-Sans-Mono-fontfacekit/VeraMono-webfont.eot?#iefix") format("eot"), url("/assets/fonts/Bitstream-Vera-Sans-Mono-fontfacekit/VeraMono-webfont.woff") format("woff"), url("/assets/fonts/Bitstream-Vera-Sans-Mono-fontfacekit/VeraMono-webfont.ttf") format("truetype"), url("/assets/fonts/Bitstream-Vera-Sans-Mono-fontfacekit/VeraMono-webfont.svg#webfontlcl7DSJU") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+.aright {
+  text-align: right; }
+
+.aleft {
+  text-align: left; }
+
+.fleft {
+  float: left; }
+
+.fright {
+  float: right; }
+
+.bold {
+  font-weight: 900; }
+
+.btn-xs {
+  padding: .15rem .75rem;
+  font-size: .85rem;
+  line-height: 1.1rem;
+  border-radius: .2rem; }
+
+.container {
+  background-color: #f5f5f5;
+  margin-bottom: 2rem;
+  margin-top: 1rem; }
+  .container.container-main {
+    border: 1px solid #333;
+    border-radius: .5rem;
+    box-shadow: 0.25rem 0.25rem 0.25rem rgba(128, 128, 128, 0.65); }
+  .container .row {
+    background-color: #f5f5f5;
+    margin: 0;
+    padding-left: 1rem;
+    padding-right: 2rem; }
+    .container .row [class*="col"] {
+      background-color: #f5f5f5;
+      border: 0;
+      border-radius: 0;
+      padding: 0 .25rem;
+      margin-top: .25rem;
+      margin-bottom: .25rem; }
+    .container .row.boxed [class*="col"] {
+      background-color: #f5f5f5;
+      border: 1px solid #333;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      padding: 1rem 2rem; }
+    .container .row.normal-row {
+      background-color: #fff; }
+      .container .row.normal-row [class*="col"] {
+        border: 0;
+        padding: 0;
+        border-radius: 0;
+        margin-top: .25rem;
+        margin-bottom: .25rem;
+        background-color: #fff; }
+    .container .row.alt-row {
+      background-color: #e6e6e6; }
+      .container .row.alt-row [class*="col"] {
+        border: 0;
+        padding: 0;
+        margin-top: .25rem;
+        margin-bottom: .25rem;
+        border-radius: 0;
+        background-color: #e6e6e6; }
+    .container .row.upper {
+      border-radius: 0 2rem 0 0;
+      padding-top: 1rem; }
+    .container .row.lower {
+      border-radius: 0 0 2rem 0; }
+    .container .row.row-inside {
+      padding-left: 0; }
+
+.red {
+  color: #a00; }
+
+.green {
+  color: #006400; }
+
+.blue {
+  color: #006; }
+
+.border-radius-top-right {
+  border-top-right-radius: 0.25rem; }
+
+.border-radius-bottom-right {
+  border-bottom-right-radius: 0.25rem; }
+
+.border-radius-top-left {
+  border-top-left-radius: 0.25rem; }
+
+.border-radius-bottom-left {
+  border-bottom-left-radius: 0.25rem; }
+
+.border-radius-left {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem; }
+
+.border-radius-right {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem; }
+
+.border-radius-top {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem; }
+
+.border-radius-bottom {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem; }
+
+.pad-right {
+  padding-right: 1rem; }
+
+.pad-bottom {
+  padding-bottom: 1rem; }
+
+.pad-left {
+  padding-left: 1rem; }
+
+.pad-top {
+  padding-top: 1rem; }
+
+.pad-right-12 {
+  padding-right: 12px; }
+
+.pad-top-12 {
+  padding-top: 12px; }
+
+.pad-left-12 {
+  padding-left: 12px; }
+
+.pad-top-12 {
+  padding-top: 12px; }
+
+/* menu bar */
+.navbar {
+  margin-top: 1rem; }
+  .navbar.bg-gray {
+    background-color: #ccc;
+    background-image: linear-gradient(top, #ccc, #e6e6e6);
+    color: #000; }
+    .navbar.bg-gray a.nav-link {
+      font-weight: 700;
+      font-style: normal;
+      font-variant: small-caps;
+      font-size: 1.25rem;
+      color: #666; }
+      .navbar.bg-gray a.nav-link.active {
+        color: #1c7ead; }
+    .navbar.bg-gray a:hover {
+      color: #000; }
+
+.manager-links {
+  list-style-type: none; }
+  .manager-links a {
+    font-weight: 900;
+    font-style: normal;
+    font-variant: small-caps; }
+  .manager-links ul {
+    list-style-type: none;
+    padding-left: 2rem; }
+
+.list-header {
+  background-color: #333 !important;
+  color: #fff; }
+  .list-header div {
+    background-color: #333 !important;
+    color: #fff; }
+
+#people-form fieldset {
+  border: 1px #000 dotted;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 12px; }
+#people-form input {
+  width: 200px; }
+  #people-form input#description {
+    width: 600px; }
+
+#login-form label {
+  vertical-align: baseline;
+  padding-top: .25rem;
+  font-weight: 900; }
+
+.constants-form input {
+  width: 200px; }
+
+.message.success {
+  border: 3px solid #c1e2b3;
+  border-radius: 0.25rem;
+  background-color: #dff0d8;
+  color: #28481c;
+  padding: .5rem 1rem; }
+  .message.success hr {
+    border-top-color: #b2dba1; }
+  .message.success .message-link {
+    color: #14230d; }
+  .message.success .icon {
+    margin-right: 1rem; }
+.message.info {
+  border: 3px solid #afd9ee;
+  border-radius: 0.25rem;
+  background-color: #d9edf7;
+  color: #134158;
+  padding: .5rem 1rem; }
+  .message.info hr {
+    border-top-color: #9acfea; }
+  .message.info .message-link {
+    color: #0a222e; }
+  .message.info .icon {
+    margin-right: 1rem; }
+.message.warning {
+  border: 3px solid #f7ecb5;
+  border-radius: 0.25rem;
+  background-color: #fcf8e3;
+  color: #852d0e;
+  padding: .5rem 1rem; }
+  .message.warning hr {
+    border-top-color: #f5e79e; }
+  .message.warning .message-link {
+    color: #571d09; }
+  .message.warning .icon {
+    margin-right: 1rem; }
+.message.error {
+  border: 3px solid #e4b9b9;
+  border-radius: 0.25rem;
+  background-color: #f2dede;
+  color: #5f2525;
+  padding: .5rem 1rem; }
+  .message.error hr {
+    border-top-color: #dca7a7; }
+  .message.error .message-link {
+    color: #3a1717; }
+  .message.error .icon {
+    margin-right: 1rem; }
+.message.failure {
+  border: 3px solid #e4b9b9;
+  border-radius: 0.25rem;
+  background-color: #f2dede;
+  color: #5f2525;
+  padding: .5rem 1rem; }
+  .message.failure hr {
+    border-top-color: #dca7a7; }
+  .message.failure .message-link {
+    color: #3a1717; }
+  .message.failure .icon {
+    margin-right: 1rem; }
+.message.code {
+  font-family: "VeraMono", Monoco, monospace;
+  border: 3px solid #333;
+  border-radius: 0.25rem;
+  background-color: #f5f5f5;
+  color: #333;
+  padding: .5rem 1rem; }
+  .message.code hr {
+    border-top-color: #262626; }
+  .message.code .message-link {
+    color: #1a1a1a; }
+  .message.code .icon {
+    margin-right: 1rem; }
+
+input.colorful {
+  background: #fff !important;
+  border-bottom: 1px solid #000 !important;
+  border-left: 1px solid #999 !important;
+  border-right: 1px solid #000 !important;
+  border-top: 1px solid #999 !important;
+  padding-left: .5rem !important; }
+input.colorful:focus {
+  background: #e9ffe9 !important;
+  border-bottom: 1px solid #00b100 !important;
+  border-left: 1px solid #006400 !important;
+  border-right: 1px solid #00b100 !important;
+  border-top: 1px solid #006400 !important;
+  padding-left: .5rem !important; }
+
+label.error {
+  color: #a00;
+  font-weight: 700;
+  font-style: italic; }
+
+.hobbit {
+  display: none; }
+
+.w50 {
+  width: 50px; }
+
+.w100 {
+  width: 100px; }
+
+.w150 {
+  width: 150px; }
+
+.w200 {
+  width: 200px; }
+
+.w250 {
+  width: 250px; }
+
+.w300 {
+  width: 300px; }
+
+.w350 {
+  width: 350px; }
+
+.w400 {
+  width: 400px; }
+
+.w450 {
+  width: 450px; }
+
+.w500 {
+  width: 500px; }
+
+.w550 {
+  width: 550px; }
+
+.w600 {
+  width: 600px; }
+
+/* Idea is to have media queries break where it looks good, not on device size = based on Bootstrap 4 */
+/* Idea is to have media queries break where it looks good, not on device size - based on Bootstrap 4 */
