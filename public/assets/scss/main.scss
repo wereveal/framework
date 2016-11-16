@@ -4,8 +4,8 @@
 .container {
     .row-fluid {
         [class*="span"] {
-            background-color: $color_span;
-            border: 1px solid $color_border;
+            background-color: $color-span;
+            border: 1px solid $color-border;
             border-radius: 10px;
             margin-bottom: 1rem;
             padding: 1rem 2rem;

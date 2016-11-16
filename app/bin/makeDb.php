@@ -33,7 +33,7 @@ if (!file_exists(SRC_PATH . '/Ritc/Library')) {
 if (file_exists(APP_CONFIG_PATH . "/db_config_setup.php")) {
     $db_config_file = "db_config_setup.php";
     $a_db_config = include APP_CONFIG_PATH . "/db_config_setup.php";
-} 
+}
 elseif (file_exists(APP_CONFIG_PATH . "/db_config.php")) {
     $db_config_file = "db_config.php";
     $a_db_config = include APP_CONFIG_PATH . "/db_config.php";
@@ -89,7 +89,7 @@ switch ($db_type) {
 $o_db->startTransaction();
 foreach ($a_sql as $sql) {
     $sql = str_replace('{dbPrefix}', $db_prefix, $sql);
-    if ($o_db->rawQuery($sql) === false) {
+    if ($o_db->rawExec($sql) === false) {
         $error_message = $o_db->getSqlErrorMessage();
         $o_db->rollbackTransaction();
         die("Database failure\n" . var_export($o_pdo->errorInfo(), true) . "\n");
@@ -97,7 +97,7 @@ foreach ($a_sql as $sql) {
 }
 if($o_db->commitTransaction()) {
     print "Success!";
-} 
+}
 else {
     print "Failure!";
 }

@@ -1,52 +1,69 @@
+/* Matches Bootstrap Alert Colors Mostly */
 .aright {
   text-align: right; }
 
 .aleft {
   text-align: left; }
 
+.fleft {
+  float: left; }
+
+.fright {
+  float: right; }
+
 .bold {
   font-weight: 900; }
 
+.btn-xs {
+  padding: .15rem .75rem;
+  font-size: .85rem;
+  line-height: 1.1rem;
+  border-radius: .2rem; }
+
 .container {
-  border: 1px solid #333333;
-  border-radius: .5rem;
-  box-shadow: 0.25rem 0.25rem 0.25rem rgba(128, 128, 128, 0.65);
-  margin-top: 1rem;
+  background-color: #f5f5f5;
   margin-bottom: 2rem;
-  background-color: #F2F2F2; }
+  margin-top: 1rem; }
+  .container.container-main {
+    border: 1px solid #333;
+    border-radius: .5rem;
+    box-shadow: 0.25rem 0.25rem 0.25rem rgba(128, 128, 128, 0.65); }
   .container .row {
-    background-color: #F2F2F2;
-    padding-right: 2rem;
+    background-color: #f5f5f5;
+    margin: 0;
     padding-left: 1rem;
-    margin: 0; }
+    padding-right: 2rem; }
     .container .row [class*="col"] {
-      background-color: #F2F2F2;
+      background-color: #f5f5f5;
       border: 0;
-      padding: 0 .25rem;
       border-radius: 0;
+      padding: 0 .25rem;
       margin-top: .25rem;
       margin-bottom: .25rem; }
     .container .row.boxed [class*="col"] {
-      background-color: #F2F2F2;
-      border: 1px solid #333333;
+      background-color: #f5f5f5;
+      border: 1px solid #333;
       border-radius: 10px;
       margin-bottom: 1rem;
       padding: 1rem 2rem; }
-    .container .row.normal-row [class*="col"] {
-      border: 0;
-      padding: 0;
-      border-radius: 0;
-      margin-top: .25rem;
-      margin-bottom: .25rem; }
+    .container .row.normal-row {
+      background-color: #fff; }
+      .container .row.normal-row [class*="col"] {
+        border: 0;
+        padding: 0;
+        border-radius: 0;
+        margin-top: .25rem;
+        margin-bottom: .25rem;
+        background-color: #fff; }
     .container .row.alt-row {
-      background-color: #808080; }
+      background-color: #e6e6e6; }
       .container .row.alt-row [class*="col"] {
         border: 0;
         padding: 0;
         margin-top: .25rem;
         margin-bottom: .25rem;
         border-radius: 0;
-        background-color: #808080; }
+        background-color: #e6e6e6; }
     .container .row.upper {
       border-radius: 0 2rem 0 0;
       padding-top: 1rem; }
@@ -56,22 +73,13 @@
       padding-left: 0; }
 
 .red {
-  color: #AA0000; }
+  color: #a00; }
 
 .green {
   color: #006400; }
 
 .blue {
-  color: #000066; }
-
-#login-form .row {
-  margin-right: 0;
-  margin-left: 0;
-  padding-right: .25rem;
-  padding-left: .25rem; }
-#login-form label {
-  vertical-align: baseline;
-  padding-top: .25rem; }
+  color: #006; }
 
 .border-radius-top-right {
   border-top-right-radius: 0.25rem; }
@@ -101,15 +109,33 @@
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem; }
 
-.pad-right-12 {
-  padding-right: 12px !important; }
+.pad-right {
+  padding-right: 1rem; }
 
-.hobbit {
-  display: none; }
+.pad-bottom {
+  padding-bottom: 1rem; }
+
+.pad-left {
+  padding-left: 1rem; }
+
+.pad-top {
+  padding-top: 1rem; }
+
+.pad-right-12 {
+  padding-right: 12px; }
+
+.pad-top-12 {
+  padding-top: 12px; }
+
+.pad-left-12 {
+  padding-left: 12px; }
+
+.pad-top-12 {
+  padding-top: 12px; }
 
 .container .row-fluid [class*="span"] {
-  background-color: #F2F2F2;
-  border: 1px solid #333333;
+  background-color: #f5f5f5;
+  border: 1px solid #333;
   border-radius: 10px;
   margin-bottom: 1rem;
   padding: 1rem 2rem; }

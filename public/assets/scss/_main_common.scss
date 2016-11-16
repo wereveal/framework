@@ -1,60 +1,82 @@
 .aright {
     text-align: right;
 }
+
 .aleft {
     text-align: left;
 }
+
+.fleft {
+    float: left;
+}
+
+.fright {
+    float: right;
+}
+
 .bold {
     font-weight: 900;
 }
+
+.btn-xs {
+    padding: .15rem .75rem;
+    font-size: .85rem;
+    line-height: 1.1rem;
+    border-radius: .2rem;
+}
+
 .container {
-    border: 1px solid $color_border;
-    border-radius: .5rem;
-    box-shadow: 0.25rem 0.25rem 0.25rem $color_shadow;
-    margin-top: 1rem;
+    background-color: $color-container;
     margin-bottom: 2rem;
-    background-color: $color_container;
+    margin-top: 1rem;
+    &.container-main {
+        border: 1px solid $color-border;
+        border-radius: .5rem;
+        box-shadow: 0.25rem 0.25rem 0.25rem $color-shadow;
+    }
     .row {
-        background-color: $color_span;
-        padding-right: 2rem;
-        padding-left: 1rem;
+        background-color: $color-span;
         margin: 0;
+        padding-left: 1rem;
+        padding-right: 2rem;
         [class*="col"] {
-            background-color: $color_span;
+            background-color: $color-span;
             border: 0;
-            padding: 0 .25rem;
             border-radius: 0;
+            padding: 0 .25rem;
             margin-top: .25rem;
             margin-bottom: .25rem;
         }
         &.boxed {
             [class*="col"] {
-                background-color: $color_span;
-                border: 1px solid $color_border;
+                background-color: $color-span;
+                border: 1px solid $color-border;
                 border-radius: 10px;
                 margin-bottom: 1rem;
                 padding: 1rem 2rem;
             }
         }
         &.normal-row {
+            background-color: $color-white;
             [class*="col"] {
                 border: 0;
                 padding: 0;
                 border-radius: 0;
                 margin-top: .25rem;
                 margin-bottom: .25rem;
+                background-color: $color-white;
             }
         }
         &.alt-row {
+            background-color: $gray90;
             [class*="col"] {
                 border: 0;
                 padding: 0;
                 margin-top: .25rem;
                 margin-bottom: .25rem;
                 border-radius: 0;
-                background-color: $color_medium;
+                background-color: $gray90;
             }
-            background-color: $color_medium;
         }
         &.upper {
             border-radius: 0 2rem 0 0;
@@ -68,59 +90,80 @@
         }
     }
 }
+
 .red {
-    color: $red_color;
-}
-.green {
-    color: $green_color;
-}
-.blue {
-    color: $blue_color;
+    color: $red;
 }
 
-#login-form {
-    .row {
-        margin-right: 0;
-        margin-left: 0;
-        padding-right: .25rem;
-        padding-left: .25rem;
-    }
-    label {
-        vertical-align: baseline;
-        padding-top: .25rem;
-    }
+.green {
+    color: $green;
 }
+
+.blue {
+    color: $blue;
+}
+
 .border-radius-top-right {
-    border-top-right-radius: $default_radius;
+    border-top-right-radius: $default-radius;
 }
+
 .border-radius-bottom-right {
-    border-bottom-right-radius: $default_radius;
+    border-bottom-right-radius: $default-radius;
 }
+
 .border-radius-top-left {
-    border-top-left-radius: $default_radius;
+    border-top-left-radius: $default-radius;
 }
+
 .border-radius-bottom-left {
-    border-bottom-left-radius: $default_radius;
+    border-bottom-left-radius: $default-radius;
 }
+
 .border-radius-left {
-    border-top-left-radius: $default_radius;
-    border-bottom-left-radius: $default_radius;
+    border-top-left-radius: $default-radius;
+    border-bottom-left-radius: $default-radius;
 }
+
 .border-radius-right {
-    border-top-right-radius: $default_radius;
-    border-bottom-right-radius: $default_radius;
+    border-top-right-radius: $default-radius;
+    border-bottom-right-radius: $default-radius;
 }
+
 .border-radius-top {
-    border-top-left-radius: $default_radius;
-    border-top-right-radius: $default_radius;
+    border-top-left-radius: $default-radius;
+    border-top-right-radius: $default-radius;
 }
+
 .border-radius-bottom {
-    border-bottom-left-radius: $default_radius;
-    border-bottom-right-radius: $default_radius;
+    border-bottom-left-radius: $default-radius;
+    border-bottom-right-radius: $default-radius;
 }
+
+.pad-right {
+    padding-right: 1rem;
+}
+.pad-bottom {
+    padding-bottom: 1rem;
+}
+.pad-left {
+    padding-left: 1rem;
+}
+.pad-top {
+    padding-top: 1rem;
+}
+
 .pad-right-12 {
-    padding-right: 12px !important;
+    padding-right: 12px;
 }
-.hobbit {
-    display: none;
+
+.pad-top-12 {
+    padding-top: 12px;
+}
+
+.pad-left-12 {
+    padding-left: 12px;
+}
+
+.pad-top-12 {
+    padding-top: 12px;
 }

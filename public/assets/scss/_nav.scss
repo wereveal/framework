@@ -1,85 +1,33 @@
 /* menu bar */
-.menu {
-  float: left;
-  padding: 0;
-  margin: 0;
-  ul {
-    padding: 0;
-    margin: 0 10px 10px 10px;
-    list-style: none;
-    background-color: #000;
-  }
-  li {
-    /* all list items */
-    float: left;
-    margin: 0;
-    padding: 0;
-    line-height: 1.4rem;
-    font-weight: 900;
-    text-align: center;
-    width: 9rem;
-    height: 1.4rem;
-  }
-  a {
-    display: block;
-    margin: 0;
-    color: #F3F7FB;
-    text-decoration: none;
-    font-size: 1rem;
-    font-family: sans-serif;
-	background-color: $color_dark;
-  }
-  li#current {
-    float: left;
-    margin: 0;
-    padding: 0;
-    font-weight: 900;
-    font-size: 100%;
-    text-align: center;
-  }
-  #current a {
-    display: block;
-    margin: 0;
-    color: #3399FF;
-    text-decoration: none;
-  }
-  a:hover, div:hover {
-    color: #3399ff;
-  }
-  li {
-    ul {
-      /* second-level lists */
-      position: absolute;
-      background: #B2B2B2;
-      width: 9.25rem;
-      left: -999rem;
-      /* using left instead of display to hide menus because display: none isn't read by screen readers */
-    }
-    &:hover ul {
-      ul {
-        left: -999rem;
-        ul {
-          left: -999rem;
+.navbar {
+    margin-top: 1rem;
+    &.bg-gray {
+        background-color: $gray80;
+        background-image: linear-gradient(top, $gray80, $gray90);
+        color: $color-black;
+        a {
+            &.nav-link {
+                @include font_sc_bold;
+                font-size: 1.25rem;
+                color: $gray40;
+                &.active {
+                    color: $blue_medium;
+                }
+            }
         }
-      }
-      /* lists nested under hovered list items */
-      left: auto;
+        a:hover {
+            color: $color-black;
+        }
     }
-    li {
-      &:hover ul, li:hover ul {
-        /* lists nested under hovered list items */
-        left: auto;
-      }
+}
+
+.manager-links {
+    @include clean_ul;
+    a {
+        @include font_sc_extra_bold;
     }
-    ul li {
-      width: 100%;
-      text-align: left;
-      font-size: .85rem;
-      height: 2rem;
-      line-height: 2rem;
-      a {
-        padding-left: 1rem;
-      }
+    ul {
+        @include clean_ul;
+        padding-left: 2rem;
     }
-  }
 }

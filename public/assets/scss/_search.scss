@@ -59,19 +59,19 @@
 		        padding-right: 3px;
 		        font-weight: 900;
 		        &.firstLetter {
-		            border-left: 1px solid $color_medium;
-		            border-right: 1px solid $color_medium;
+		            border-left: 1px solid $color-medium;
+		            border-right: 1px solid $color-medium;
 		        }
 		        &.otherLetter {
-		            border-right: 1px solid $color_medium;
+		            border-right: 1px solid $color-medium;
 		        }
 		        &.lastLetter {
-		            border-right: 1px solid $color_medium;
+		            border-right: 1px solid $color-medium;
 		        }
 		        &.noLink {
-		            color: $color_medium;
+		            color: $color-medium;
 		            font-weight: 400;
-		            border-right: 1px solid $color_medium;
+		            border-right: 1px solid $color-medium;
 		        }
 		    }
 		}

@@ -1,0 +1,107 @@
+@mixin rounded($radius) {
+    border-radius: $radius;
+}
+
+@mixin wide($width) {
+    width: $width;
+}
+
+@mixin wideRem($width) {
+    width: 1rem * $width;
+}
+
+@mixin font_medium {
+    font-weight: 500;
+    font-style: normal;
+}
+
+@mixin font_bold {
+    font-weight: 700;
+    font-style: normal;
+}
+
+@mixin font_extra_bold {
+    font-weight: 900;
+    font-style: normal;
+}
+
+@mixin font_italic {
+    font-weight: 400;
+    font-style: italic;
+}
+
+@mixin font_medium_italic {
+    font-weight: 500;
+    font-style: italic;
+
+}
+
+@mixin font_bold_italic {
+    font-weight: 700;
+    font-style: italic;
+
+}
+
+@mixin font_extra_bold_italic {
+    font-weight: 900;
+    font-style: italic;
+
+}
+
+@mixin font_sc {
+    font-weight: 500;
+    font-style: normal;
+    font-variant: small-caps;
+}
+
+@mixin font_sc_bold {
+    font-weight: 700;
+    font-style: normal;
+    font-variant: small-caps;
+}
+
+@mixin font_sc_extra_bold {
+    font-weight: 900;
+    font-style: normal;
+    font-variant: small-caps;
+}
+
+@mixin font_sc_italic {
+    font-weight: 400;
+    font-style: italic;
+    font-variant: small-caps;
+}
+
+@mixin font_sc_bold_italic {
+    font-weight: 700;
+    font-style: italic;
+    font-variant: small-caps;
+}
+
+@mixin font_sc_extra_bold_italic {
+    font-weight: 900;
+    font-style: italic;
+    font-variant: small-caps;
+}
+
+@mixin clean_ul {
+    list-style-type: none;
+}
+
+@mixin message_type($bkgd-color, $border-color, $body-color) {
+    border: 3px solid $border-color;
+    border-radius: $default-radius;
+    background-color: $bkgd-color;
+    color: $body-color;
+    padding: .5rem 1rem;
+
+    hr {
+        border-top-color: darken($border-color, 5%);
+    }
+    .message-link {
+        color: darken($body-color, 10%);
+    }
+    .icon {
+        margin-right: 1rem;
+    }
+}

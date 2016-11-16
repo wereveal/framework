@@ -1,0 +1,51 @@
+@import "variables";
+@import "color";
+@import "mods_to_bootstrap";
+@import "mixins";
+@import "fonts";
+@import "main_common";
+@import "nav";
+
+.list-header {
+    background-color: $gray-dark !important;
+    color: $color-white;
+    div {
+        background-color: $gray-dark !important;
+        color: $color-white;
+    }
+}
+
+#people-form {
+    fieldset {
+        border: 1px $color-black dotted;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+    }
+    input {
+        width: 200px;
+        &#description {
+            width: 600px;
+        }
+    }
+}
+
+#login-form {
+    label {
+        vertical-align: baseline;
+        padding-top: .25rem;
+        font-weight: 900;
+    }
+}
+
+.constants-form {
+    input {
+        width: 200px;
+    }
+}
+
+@import "message";
+@import "form";
+@import "widths";
+@import "media_queries";
+@import "media_queries_admin";
