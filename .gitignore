@@ -1,10 +1,10 @@
 codekit-config.json
 composer.lock
 /app/twig_cache/*/
-/app/src/Ritc/Blog/*
-/app/src/Ritc/FtpAdmin/*
-/app/src/Ritc/Guide/*
-/app/src/Ritc/Library/*
+/app/src/Ritc/Blog
+/app/src/Ritc/FtpAdmin
+/app/src/Ritc/Guide
+/app/src/Ritc/Library
 /nbproject/
 /public/index.php
 /public/setup.php
