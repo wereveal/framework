@@ -1,5 +1,5 @@
 <?php
-/* Generated on 2017-01-10T12:25:22-06:00 by AutoloadMapper */
+/* Generated on 2017-01-13T12:26:39-06:00 by AutoloadMapper */
 return array(
     'Ritc\Blog\Controllers\AppConfigController'           => __DIR__ . '/../src/Ritc/Blog/Controllers/AppConfigController.php',
     'Ritc\Blog\Controllers\ArticleController'             => __DIR__ . '/../src/Ritc/Blog/Controllers/ArticleController.php',
@@ -41,11 +41,16 @@ return array(
     'Ritc\Guide\Controllers\ItemController'               => __DIR__ . '/../src/Ritc/Guide/Controllers/ItemController.php',
     'Ritc\Guide\Controllers\MainController'               => __DIR__ . '/../src/Ritc/Guide/Controllers/MainController.php',
     'Ritc\Guide\Controllers\SearchController'             => __DIR__ . '/../src/Ritc/Guide/Controllers/SearchController.php',
+    'Ritc\Guide\Models\CatCatMapModel'                    => __DIR__ . '/../src/Ritc/Guide/Models/CatCatMapModel.php',
     'Ritc\Guide\Models\CategoryModel'                     => __DIR__ . '/../src/Ritc/Guide/Models/CategoryModel.php',
+    'Ritc\Guide\Models\CatItemMapModel'                   => __DIR__ . '/../src/Ritc/Guide/Models/CatItemMapModel.php',
     'Ritc\Guide\Models\FieldComplexModel'                 => __DIR__ . '/../src/Ritc/Guide/Models/FieldComplexModel.php',
     'Ritc\Guide\Models\FieldModel'                        => __DIR__ . '/../src/Ritc/Guide/Models/FieldModel.php',
+    'Ritc\Guide\Models\FieldOptionModel'                  => __DIR__ . '/../src/Ritc/Guide/Models/FieldOptionModel.php',
     'Ritc\Guide\Models\FieldSecMapModel'                  => __DIR__ . '/../src/Ritc/Guide/Models/FieldSecMapModel.php',
     'Ritc\Guide\Models\FieldTypeModel'                    => __DIR__ . '/../src/Ritc/Guide/Models/FieldTypeModel.php',
+    'Ritc\Guide\Models\ItemComplexModel'                  => __DIR__ . '/../src/Ritc/Guide/Models/ItemComplexModel.php',
+    'Ritc\Guide\Models\ItemDataModel'                     => __DIR__ . '/../src/Ritc/Guide/Models/ItemDataModel.php',
     'Ritc\Guide\Models\ItemModel'                         => __DIR__ . '/../src/Ritc/Guide/Models/ItemModel.php',
     'Ritc\Guide\Models\ObjectMapModel'                    => __DIR__ . '/../src/Ritc/Guide/Models/ObjectMapModel.php',
     'Ritc\Guide\Models\SecCatModel'                       => __DIR__ . '/../src/Ritc/Guide/Models/SecCatModel.php',
