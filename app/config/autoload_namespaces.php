@@ -1,5 +1,5 @@
 <?php
-/* Generated on 2017-01-13T12:26:39-06:00 by AutoloadMapper */
+/* Generated on 2017-01-14T09:27:38-06:00 by AutoloadMapper */
 return array(
     'Ritc\\' => __DIR__ . '/../src/Ritc',
 
