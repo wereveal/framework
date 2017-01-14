@@ -1,13 +1,14 @@
 <?php
 return array(
-    'driver'   => 'pgsql',
-    'host'     => 'localhost',
-    'port'     => '5432',
-    'name'     => 'REPLACE_ME',
-    'user'     => 'REPLACE_ME',
-    'password' => 'REPLACE_ME',
-    'userro'   => 'REPLACE_ME',
-    'passro'   => 'REPLACE_ME',
-    'persist'  => true,
-    'prefix'   => 'REPLACE_ME'
+    'driver'     => 'mysql',
+    'host'       => 'localhost',
+    'port'       => '',
+    'name'       => 'ritc',
+    'user'       => 'wer',
+    'password'   => 'bn2fak.DB',
+    'userro'     => 'wer',
+    'passro'     => 'bn2fak.DB',
+    'persist'    => false,
+    'prefix'     => 'ftp_',
+    'lib_prefix' => 'ritc_'
 );
