@@ -217,6 +217,24 @@ switch ($db_type) {
         $a_sql = include LIBRARY_PATH . '/resources/sql/default_mysql_create.php';
 }
 
+function createStuff($a_org_values = []) {
+    $a_values = [];
+    foreach ($a_org_values as $a_value) {
+        $a_values[] = $a_value;
+    }
+    $field_string = '';
+    $value_string = '';
+    foreach ($a_values[0] as $key => $a_value) {
+        $field_string .= $field_string == '' ? $key : ', ' . $key;
+        $value_string .= $value_string == '' ? ':' . $key : ', :' . $key;
+    }
+    return [
+        'a_values'      => $a_values,
+        'field_string'  => $field_string,
+        'values_string' => $value_string
+    ];
+}
+
 $a_data = include LIBRARY_PATH . '/resources/sql/default_data.php';
 
 $o_db->startTransaction();
@@ -243,29 +261,12 @@ $a_table_names = [
     'page',
 ];
 */
-function createStuff($a_org_values = []) {
-    $a_values = [];
-    foreach ($a_org_values as $a_value) {
-        $a_values[] = $a_value;
-    }
-    $field_string = '';
-    $value_string = '';
-    foreach ($a_values[0] as $key => $a_value) {
-        $field_string .= $field_string == '' ? $key : ', ' . $key;
-        $value_string .= $value_string == '' ? ':' . $key : ', :' . $key;
-    }
-    return [
-        'a_values'      => $a_values,
-        'field_string'  => $field_string,
-        'values_string' => $value_string
-    ];
-}
 ### Enter Constants
 $a_stuff = createStuff($a_data['constants']);
 $sql =<<<SQL
-INSERT INTO {$lib_prefix}constants 
-  ({$a_stuff['field_string']}) 
-VALUES 
+INSERT INTO {$lib_prefix}constants
+  ({$a_stuff['field_string']})
+VALUES
   ({$a_stuff['values_string']})
 SQL;
 $a_table_info = [
@@ -280,53 +281,71 @@ if ($results === false) {
     die("Could not insert constants data\n");
 }
 else {
-    print "Constants Entered.\n";
+    print "Constants Entered.\n\n";
 }
+
 ### Enter Groups
+print "Create Groups: ";
 $a_stuff = createStuff($a_data['groups']);
 
 $sql =<<<SQL
-INSERT INTO {$lib_prefix}groups 
-  ({$a_stuff['field_string']}) 
-VALUES 
+INSERT INTO {$lib_prefix}groups
+  ({$a_stuff['field_string']})
+VALUES
   ({$a_stuff['values_string']})
 SQL;
 $a_table_info = [
     'table_name'  => $lib_prefix . 'groups',
     'column_name' => 'group_id'
 ];
-$results = $o_db->insert($sql, $a_stuff['a_values'], $a_table_info);
-if ($results === false) {
-    print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
-    $o_db->rollbackTransaction();
-    die("Could not insert groups data\n");
+$a_groups = $a_data['groups'];
+foreach ($a_groups as $key => $a_values) {
+    $results = $o_db->insert($sql, $a_values, $a_table_info);
+    if (empty($results)) {
+        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("Could not insert groups data\n");
+    }
+    else {
+        $ids = $o_db->getNewIds();
+        $a_groups[$key]['group_id'] = $ids[0];
+        print "g";
+    }
 }
-else {
-    print "Groups Entered.\n";
-}
+print "\n\n";
+
 ### Enter 'urls'
+print "Create URLs: ";
 $a_stuff = createStuff($a_data['urls']);
 $sql =<<<SQL
 INSERT INTO {$lib_prefix}urls
   ({$a_stuff['field_string']})
-VALUES 
+VALUES
   ({$a_stuff['values_string']})
 SQL;
 $a_table_info = [
     'table_name'  => $lib_prefix . 'urls',
     'column_name' => 'url_id'
 ];
-$results = $o_db->insert($sql, $a_stuff['a_values'], $a_table_info);
-if ($results === false) {
-    print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
-    $o_db->rollbackTransaction();
-    die("Could not insert url data\n");
+
+$a_urls = $a_data['urls'];
+foreach ($a_urls as $key => $a_values) {
+    $results = $o_db->insert($sql, $a_stuff['a_values'], $a_table_info);
+    if (empty($results)) {
+        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("Could not insert url data\n");
+    }
+    else {
+        $ids = $o_db->getNewIds();
+        $a_urls[$key]['url_id'] = $ids[0];
+        print "u";
+    }
 }
-else {
-    print "URLs Entered.\n";
-}
+print "\n\n";
 
 ### Enter 'people'
+print "Creating People: ";
 $a_stuff = createStuff($a_data['people']);
 
 $sql =<<<SQL
@@ -340,17 +359,25 @@ $a_table_info = [
     'table_name'  => $lib_prefix . 'people',
     'column_name' => 'people_id'
 ];
-$results = $o_db->insert($sql, $a_stuff['a_values'], $a_table_info);
-if ($results === false) {
-    print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
-    $o_db->rollbackTransaction();
-    die("Could not insert people data\n");
+
+$a_people = $a_data['people'];
+foreach ($a_people as $key => $a_person) {
+    $results = $o_db->insert($sql, $a_person, $a_table_info);
+    if (empty($results)) {
+        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("Could not insert people data\n");
+    }
+    else {
+        $ids = $o_db->getNewIds();
+        $a_people[$key]['people_id'] = $ids[0];
+        print "p";
+    }
 }
-else {
-    print "People Entered.\n";
-}
+print "\n\n";
 
 ### Enter 'navgroups',
+print "Creating NavGroups: ";
 $a_stuff = createStuff($a_data['navgroups']);
 
 $sql =<<<SQL
@@ -364,46 +391,64 @@ $a_table_info = [
     'table_name'  => $lib_prefix . 'navgroups',
     'column_name' => 'ng_id'
 ];
-$results = $o_db->insert($sql, $a_stuff['a_values'], $a_table_info);
-if ($results === false) {
-    print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
-    $o_db->rollbackTransaction();
-    die("Could not insert navgroups data\n");
+$a_navgroups = $a_data['navgroups'];
+foreach ($a_navgroups as $key => $a_nav_group) {
+    $results = $o_db->insert($sql, $a_nav_group, $a_table_info);
+    if (empty($results)) {
+        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("Could not insert navgroups data\n");
+    }
+    else {
+        $ids = $o_db->getNewIds();
+        $a_navgroups[$key]['ng_id'] = $ids[0];
+        print "n";
+    }
 }
-else {
-    print "navgroups Entered.\n";
-}
+print "\n\n";
 
 ### Enter 'people_group_map',
 $a_stuff = createStuff($a_data['people_group_map']);
 
-$sql =<<<SQL
+$pgm_sql =<<<SQL
 INSERT INTO {$lib_prefix}people_group_map
   ({$a_stuff['field_string']})
 VALUES
   ({$a_stuff['values_string']})
 SQL;
 
-$a_table_info = [
-    'table_name'  => $lib_prefix . 'people_group_map',
-    'column_name' => 'pgm_id'
-];
+$a_pgm = $a_data['people_group_map'];
 
-die("need to fix the values in the pgm");
-$results = $o_db->insert($sql, $a_stuff['a_values'], $a_table_info);
-if ($results === false) {
-    print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
-    $o_db->rollbackTransaction();
-    die("Could not insert people_group_map data\n");
+foreach ($a_pgm as $key => $a_raw_data) {
+    $people_id = $a_people[$a_raw_data['people_id']]['people_id'];
+    $group_id = $a_groups[$a_raw_data['group_id']]['group_id'];
+    $a_values = [':people_id' => $people_id, ':group_id' => $group_id];
+    $results = $o_db->insert($pgm_sql, $a_values);
+    if (empty($results)) {
+        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("Could not insert people_group_map data\n");
+    }
+    else {
+        $ids = $o_db->getNewIds();
+        $a_pgm[$key]['pgm_id'] = $ids[0];
+        print '+';
+    }
 }
-else {
-    print "people_group_map Entered.\n";
-}
+print "\n\n";
 
 ### Enter 'routes'
 $a_stuff = createStuff($a_data['routes']);
 
-$sql =<<<SQL
+$a_route_values = $a_data['routes'];
+
+#### TODO Continue on from here ####
+foreach ($a_route_values as $key => $a_record) {
+    $a_record['url_id'] = $a_urls[$a_record['url_id']]['url_id'];
+    $a_route_values[$key] = $a_record;
+}
+
+$routes_sql =<<<SQL
 INSERT INTO {$lib_prefix}routes
   ({$a_stuff['field_string']})
 VALUES
@@ -415,9 +460,7 @@ $a_table_info = [
     'column_name' => 'route_id'
 ];
 
-die("Need to fix the values in the routes");
-
-$results = $o_db->insert($sql, $a_stuff['a_values'], $a_table_info);
+$results = $o_db->insert($routes_sql, $a_route_values, $a_table_info);
 if ($results === false) {
     print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
     $o_db->rollbackTransaction();
@@ -469,16 +512,31 @@ $a_table_info = [
     'column_name' => 'route_id'
 ];
 
-die("Need to fix the values in the navigation");
-
-$results = $o_db->insert($sql, $a_stuff['a_values'], $a_table_info);
-if ($results === false) {
-    print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
-    $o_db->rollbackTransaction();
-    die("Could not insert navigation data\n");
+$a_nav_records = [];
+foreach ($a_data['navigation'] as $key => $a_record) {
+    $a_search_value = [':url_text' => $a_record['url_id']];
+    $results = $o_db->search($url_sql, $a_search_value);
+    if (empty($results)) {
+        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("Could not retrieve url data\n");
+    }
+    $a_record['url_id'] = $results[0]['url_id'];
+    $a_nav_records[$key] = $a_record;
 }
-else {
-    print "navigation Entered.\n";
+
+die("Need to fix the values in the navigation");
+foreach ($a_nav_records as $key => $a_nav_record) {
+    $results = $o_db->insert($sql, $a_stuff['a_values'], $a_table_info);
+    if ($results === false) {
+        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("Could not insert navigation data\n");
+    }
+    else {
+        $a_nav_records[$key]['nav_id'] = $results[0];
+        print "n";
+    }
 }
 
 ### Enter 'nav_ng_map',
