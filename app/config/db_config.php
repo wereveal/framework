@@ -9,6 +9,7 @@ return array(
     'userro'     => 'wer',
     'passro'     => 'bn2fak.DB',
     'persist'    => false,
-    'prefix'     => 'ftp_',
-    'lib_prefix' => 'ritc_'
+    'prefix'     => 'ritc_',
+    'lib_prefix' => 'ritc_',
+    'ftp_prefix' => 'ftp_'
 );
