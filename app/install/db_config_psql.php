@@ -8,6 +8,6 @@ return array(
     'password' => 'REPLACE_ME',
     'userro'   => 'REPLACE_ME',
     'passro'   => 'REPLACE_ME',
-    'persist'  => true,
+    'persist'  => false,
     'prefix'   => 'REPLACE_ME'
 );

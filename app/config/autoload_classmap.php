@@ -1,5 +1,5 @@
 <?php
-/* Generated on 2017-01-14T09:27:38-06:00 by AutoloadMapper */
+/* Generated on 2017-01-16T18:04:09-06:00 by AutoloadMapper */
 return array(
     'Ritc\Blog\Controllers\AppConfigController'           => __DIR__ . '/../src/Ritc/Blog/Controllers/AppConfigController.php',
     'Ritc\Blog\Controllers\ArticleController'             => __DIR__ . '/../src/Ritc/Blog/Controllers/ArticleController.php',

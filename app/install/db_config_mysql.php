@@ -8,6 +8,6 @@ return [
     'password' => 'letmein',
     'userro'   => 'example_app',
     'passro'   => 'letmein',
-    'persist'  => true,
+    'persist'  => false,
     'prefix'   => 'app_'
 ];

@@ -11,6 +11,8 @@
  * @note   <b>Change Log</b><pre>
  *  v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
  *  v1.0.0 - initial version                                      - 2015-11-27 wer
+ * @todo /app/bin/install.php - need to add the password creation in before the users are entered into the database.
+ * @todo /app/bin/install.php - need to add the twig_config.php file creation.
  * </pre>
  */
 namespace Ritc;
@@ -21,104 +23,10 @@ use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 
-$short_opts = "a:n:h:t:d:u:p:f:l:r:";
-$long_opts  = [
-    "appname:",
-    "namespace:",
-    "dbhost:",
-    "dbtype:",
-    "dbname:",
-    "dbuser:",
-    "dbpass:",
-    "dbprefix:",
-    "loader:",
-    "libprefix:"
-];
-
-$a_options = getopt($short_opts, $long_opts);
-
-$app_name   = '';
-$namespace  = '';
-$db_host    = 'localhost';
-$db_type    = 'mysql';
-$db_name    = '';
-$db_user    = '';
-$db_pass    = '';
-$db_prefix  = '';
-$lib_prefix = 'ritc_';
-$loader     = 'psr4';
-
-foreach ($a_options as $option => $value) {
-    switch ($option) {
-        case "a":
-        case "appname":
-            $app_name = $value;
-            break;
-        case "n":
-        case "namespace":
-            $namespace = $value;
-            break;
-        case "h":
-        case "dbhost":
-            $db_host = $value;
-            break;
-        case "t":
-        case "dbtype":
-            $db_type = $value;
-            break;
-        case "d":
-        case "dbname":
-            $db_name = $value;
-            break;
-        case "u":
-        case "dbuser":
-            $db_user = $value;
-            break;
-        case "p":
-        case "dbpass":
-            $db_pass = $value;
-            break;
-        case "f":
-        case "dbprefix":
-            $db_prefix = $value;
-            break;
-        case "l":
-        case "loader":
-            $loader = $value == 'psr0' ? 'psr0' : 'psr4';
-            break;
-        case 'r':
-        case 'libprefix':
-            $lib_prefix = $value;
-
-    }
-}
-
-$missing_params = '';
-
-if ($app_name == '') {
-    $missing_params .= $missing_params == '' ? "App Name (-a or --appname=)" : ", App Name (-a or --appname=)";
-}
-if ($namespace == '') {
-    $missing_params .= $missing_params == '' ? "Namespace (-n or --namespace=)" : ", Namespace (-n or --namespace=)";
-}
-if ($db_name == '') {
-    $missing_params .= $missing_params == '' ? "DB Name (-d or --dbname=)" : ", DB Name  (-d or --dbname=)";
-}
-if ($db_user == '') {
-    $missing_params .= $missing_params == '' ? "DB User (-u or --dbuser=)" : ", DB User (-u or --dbuser=)";
-}
-if ($db_pass == '') {
-    $missing_params .= $missing_params == '' ? "DB Password (-p or --dbpass=)" : ", DB Password (-p or --dbpass=)";
-}
-
-if ($missing_params != '') {
-    $missing_params .= "\nOther arguments available: -h/--dbhost, -t/--dbtype, -l/--loader, -f/--dbprefix, -r/--libprefix";
-    die("Missing argument(s): {$missing_params}\n");
-}
-
 if (strpos(__DIR__, 'Library') !== false) {
     die("Please Run this script from the app/bin directory");
 }
+
 $base_path = str_replace('/app/bin', '', __DIR__);
 define('DEVELOPER_MODE', true);
 define('BASE_PATH', $base_path);
@@ -131,6 +39,54 @@ require_once BASE_PATH . '/app/config/constants.php';
 
 if (!file_exists(SRC_PATH . '/Ritc/Library')) {
     die("You must clone the Ritc/Library in the src dir first and any other desired apps.\n");
+}
+$install_files_path = APP_CONFIG_PATH . '/install';
+
+$a_install = require_once $install_files_path . '/install_config.php';
+$app_name      = '';
+$namespace     = '';
+$db_host       = 'localhost';
+$db_type       = 'mysql';
+$db_name       = '';
+$db_user       = '';
+$db_pass       = '';
+$db_prefix     = '';
+$lib_db_prefix = 'ritc_';
+$loader        = 'psr4';
+
+foreach ($a_install as $option => $value) {
+    switch ($option) {
+        case "app_name":
+            $app_name = $value;
+            break;
+        case "namespace":
+            $namespace = $value;
+            break;
+        case "db_host":
+            $db_host = $value;
+            break;
+        case "db_type":
+            $db_type = $value;
+            break;
+        case "db_name":
+            $db_name = $value;
+            break;
+        case "db_user":
+            $db_user = $value;
+            break;
+        case "db_pass":
+            $db_pass = $value;
+            break;
+        case "db_prefix":
+            $db_prefix = $value;
+            break;
+        case "loader":
+            $loader = $value == 'psr0' ? 'psr0' : 'psr4';
+            break;
+        case 'lib_db_prefix':
+            $lib_db_prefix = $value;
+
+    }
 }
 
 ### generate files for autoloader ###
@@ -149,7 +105,7 @@ $o_cm->generateMapFiles();
 $db_config_file = "db_config_setup.php";
 $db_config_file_text =<<<EOT
 <?php
-return array(
+return [
     'driver'     => '{$db_type}',
     'host'       => '{$db_host}',
     'port'       => '',
@@ -160,8 +116,8 @@ return array(
     'passro'     => '{$db_pass}',
     'persist'    => false,
     'prefix'     => '{$db_prefix}',
-    'lib_prefix' => '{$lib_prefix}'
-);
+    'lib_prefix' => '{$lib_db_prefix}'
+];
 EOT;
 
 file_put_contents(APP_CONFIG_PATH . '/' . $db_config_file, $db_config_file_text);
@@ -204,14 +160,14 @@ else {
 
 switch ($db_type) {
     case 'pgsql':
-        $a_sql = include LIBRARY_PATH . '/resources/sql/default_setup_postgresql.php';
+        $a_sql = include $install_files_path .  '/default_psql_create.php';
         break;
     case 'sqlite':
         $a_sql = array();
         break;
     case 'mysql':
     default:
-        $a_sql = include LIBRARY_PATH . '/resources/sql/default_mysql_create.php';
+        $a_sql = include $install_files_path .  '/default_mysql_create.php';
 }
 
 function createStrings($a_records = []) {
@@ -236,11 +192,11 @@ function reorgArray($a_org_values = []) {
     return $a_values;
 }
 
-$a_data = include LIBRARY_PATH . '/resources/sql/default_data.php';
+$a_data = include $install_files_path .  '/default_data.php';
 
 $o_db->startTransaction();
 foreach ($a_sql as $sql) {
-    $sql = str_replace('{dbPrefix}', $lib_prefix, $sql);
+    $sql = str_replace('{dbPrefix}', $lib_db_prefix, $sql);
     if ($o_db->rawExec($sql) === false) {
         $error_message = $o_db->getSqlErrorMessage();
         $o_db->rollbackTransaction();
@@ -249,18 +205,16 @@ foreach ($a_sql as $sql) {
 }
 
 ### Enter Constants
-$a_values    = $a_data['constants'];
-$a_constants = reorgArray($a_values);
-$a_strings   = createStrings($a_values);
-
+$a_constants = $a_data['constants'];
+$a_strings   = createStrings($a_constants);
 $sql =<<<SQL
-INSERT INTO {$lib_prefix}constants
+INSERT INTO {$lib_db_prefix}constants
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 $a_table_info = [
-    'table_name'  => $lib_prefix . 'constants',
+    'table_name'  => $lib_db_prefix . 'constants',
     'column_name' => 'const_name'
 ];
 
@@ -280,13 +234,13 @@ $a_groups  = $a_data['groups'];
 $a_strings = createStrings($a_groups);
 
 $sql =<<<SQL
-INSERT INTO {$lib_prefix}groups
+INSERT INTO {$lib_db_prefix}groups
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 $a_table_info = [
-    'table_name'  => $lib_prefix . 'groups',
+    'table_name'  => $lib_db_prefix . 'groups',
     'column_name' => 'group_id'
 ];
 foreach ($a_groups as $key => $a_values) {
@@ -310,13 +264,13 @@ $a_urls    = $a_data['urls'];
 $a_strings = createStrings($a_urls);
 
 $sql =<<<SQL
-INSERT INTO {$lib_prefix}urls
+INSERT INTO {$lib_db_prefix}urls
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 $a_table_info = [
-    'table_name'  => $lib_prefix . 'urls',
+    'table_name'  => $lib_db_prefix . 'urls',
     'column_name' => 'url_id'
 ];
 
@@ -341,14 +295,14 @@ $a_people  = $a_data['people'];
 $a_strings = createStrings($a_people);
 
 $sql =<<<SQL
-INSERT INTO {$lib_prefix}people
+INSERT INTO {$lib_db_prefix}people
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_prefix . 'people',
+    'table_name'  => $lib_db_prefix . 'people',
     'column_name' => 'people_id'
 ];
 
@@ -373,14 +327,14 @@ $a_navgroups = $a_data['navgroups'];
 $a_strings   = createStrings($a_navgroups);
 
 $sql =<<<SQL
-INSERT INTO {$lib_prefix}navgroups
+INSERT INTO {$lib_db_prefix}navgroups
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_prefix . 'navgroups',
+    'table_name'  => $lib_db_prefix . 'navgroups',
     'column_name' => 'ng_id'
 ];
 foreach ($a_navgroups as $key => $a_nav_group) {
@@ -406,7 +360,7 @@ $a_pgm = $a_data['people_group_map'];
 $a_strings = createStrings($a_pgm);
 
 $pgm_sql =<<<SQL
-INSERT INTO {$lib_prefix}people_group_map
+INSERT INTO {$lib_db_prefix}people_group_map
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
@@ -436,14 +390,14 @@ $a_routes  = $a_data['routes'];
 $a_strings = createStrings($a_routes);
 
 $routes_sql =<<<SQL
-INSERT INTO {$lib_prefix}routes
+INSERT INTO {$lib_db_prefix}routes
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_prefix . 'routes',
+    'table_name'  => $lib_db_prefix . 'routes',
     'column_name' => 'route_id'
 ];
 
@@ -469,14 +423,14 @@ $a_rgm     = $a_data['routes_group_map'];
 $a_strings = createStrings($a_rgm);
 
 $rgm_sql =<<<SQL
-INSERT INTO {$lib_prefix}routes_group_map
+INSERT INTO {$lib_db_prefix}routes_group_map
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_prefix . 'routes_group_map',
+    'table_name'  => $lib_db_prefix . 'routes_group_map',
     'column_name' => 'route_id'
 ];
 
@@ -503,14 +457,14 @@ $a_navigation = $a_data['navigation'];
 $a_strings    = createStrings($a_navigation);
 
 $nav_sql =<<<SQL
-INSERT INTO {$lib_prefix}navigation
+INSERT INTO {$lib_db_prefix}navigation
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_prefix . 'navigation',
+    'table_name'  => $lib_db_prefix . 'navigation',
     'column_name' => 'route_id'
 ];
 
@@ -536,14 +490,14 @@ $a_nnm     = $a_data['nav_ng_map'];
 $a_strings = createStrings($a_nnm);
 
 $nnm_sql =<<<SQL
-INSERT INTO {$lib_prefix}nav_ng_map
+INSERT INTO {$lib_db_prefix}nav_ng_map
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_prefix . 'nav_ng_map',
+    'table_name'  => $lib_db_prefix . 'nav_ng_map',
     'column_name' => 'route_id'
 ];
 
@@ -570,14 +524,14 @@ $a_page    = $a_data['page'];
 $a_strings = createStrings($a_page);
 
 $page_sql =<<<SQL
-INSERT INTO {$lib_prefix}page
+INSERT INTO {$lib_db_prefix}page
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_prefix . 'page',
+    'table_name'  => $lib_db_prefix . 'page',
     'column_name' => 'route_id'
 ];
 

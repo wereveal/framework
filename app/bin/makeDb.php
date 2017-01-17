@@ -3,7 +3,7 @@
  * @brief     This file sets up standard stuff for the Framework.
  * @details   This creates the database config and some standard directories.
  *            This should be run from the /app/bin directory of the site.
- * @file      install.php
+ * @file      makeDb.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
  * @date      2017-01-13 09:48:15
@@ -12,6 +12,7 @@
  *  v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
  *  v1.0.0 - initial version                                      - 2015-11-27 wer
  * </pre>
+ * @todo /app/bin/makeDb.php - need to rewrite to use the files in the /app/install directory instead of cli args.
  */
 namespace Ritc;
 
