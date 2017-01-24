@@ -45,8 +45,7 @@ return [
   `route_action` varchar(255) NOT NULL,
   `route_immutable` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`route_id`),
-  UNIQUE KEY `url_id` (`url_id`),
-  CONSTRAINT `{dbPrefix}routes_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  UNIQUE KEY `url_id` (`url_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
 "CREATE TABLE `{dbPrefix}page` (
   `page_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -59,8 +58,7 @@ return [
   `page_charset` varchar(100) NOT NULL DEFAULT 'utf-8',
   `page_immutable` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`page_id`),
-  KEY (`url_id`),
-  CONSTRAINT `{dbPrefix}page_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY (`url_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
 "CREATE TABLE `{dbPrefix}people` (
   `people_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -99,8 +97,7 @@ return [
   `nav_order` int(11) NOT NULL DEFAULT '0',
   `nav_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`nav_id`),
-  KEY `url_id` (`url_id`),
-  CONSTRAINT `{dbPrefix}navigation_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `url_id` (`url_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
 "CREATE TABLE `{dbPrefix}nav_ng_map` (
   `nnm_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -109,9 +106,7 @@ return [
   PRIMARY KEY (`nnm_id`),
   UNIQUE KEY `ng_id_2` (`ng_id`,`nav_id`),
   KEY `ng_id` (`ng_id`),
-  KEY `nav_id` (`nav_id`),
-  CONSTRAINT `ritc_nav_ng_map_ibfk_1` FOREIGN KEY (`ng_id`) REFERENCES `ritc_navgroups` (`ng_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `ritc_nav_ng_map_ibfk_2` FOREIGN KEY (`nav_id`) REFERENCES `ritc_navigation` (`nav_id`)
+  KEY `nav_id` (`nav_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
 "CREATE TABLE `{dbPrefix}people_group_map` (
   `pgm_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -120,9 +115,7 @@ return [
   PRIMARY KEY (`pgm_id`),
   UNIQUE KEY `people_id_2` (`people_id`,`group_id`),
   KEY `people_id` (`people_id`),
-  KEY `group_id` (`group_id`),
-  CONSTRAINT `{dbPrefix}pgm_ibfk_1` FOREIGN KEY (`people_id`) REFERENCES `{dbPrefix}people` (`people_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `{dbPrefix}pgm_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `{dbPrefix}groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `group_id` (`group_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
 "CREATE TABLE `{dbPrefix}routes_group_map` (
   `rgm_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -131,8 +124,15 @@ return [
   PRIMARY KEY (`rgm_id`),
   UNIQUE KEY `rgm_key` (`route_id`,`group_id`),
   KEY `route_id` (`route_id`),
-  KEY `group_id` (`group_id`),
-  CONSTRAINT `{dbPrefix}routes_group_map_ibfk_1` FOREIGN KEY (`route_id`) REFERENCES `{dbPrefix}routes` (`route_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `{dbPrefix}routes_group_map_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `{dbPrefix}groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8"
+  KEY `group_id` (`group_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
+"ALTER TABLE {dbPrefix}routes ADD CONSTRAINT `{dbPrefix}routes_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}page ADD CONSTRAINT `{dbPrefix}page_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}navigation ADD CONSTRAINT `{dbPrefix}navigation_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}nav_ng_map ADD CONSTRAINT `{dbPrefix}nnm_ibfk_1` FOREIGN KEY (`ng_id`) REFERENCES `{dbPrefix}navgroups` (`ng_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}nav_ng_map ADD CONSTRAINT `{dbPrefix}nnm_ibfk_2` FOREIGN KEY (`nav_id`) REFERENCES `{dbPrefix}navigation` (`nav_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}people_group_map ADD CONSTRAINT `{dbPrefix}pgm_ibfk_1` FOREIGN KEY (`people_id`) REFERENCES `{dbPrefix}people` (`people_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}people_group_map ADD CONSTRAINT `{dbPrefix}pgm_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `{dbPrefix}groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}routes_group_map ADD CONSTRAINT `{dbPrefix}rgm_ibfk_1` FOREIGN KEY (`route_id`) REFERENCES `{dbPrefix}routes` (`route_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}routes_group_map ADD CONSTRAINT `{dbPrefix}rgm_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `{dbPrefix}groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE"
 ];
