@@ -1,6 +1,9 @@
 <?php
-$app_path     = SRC_PATH . '/Example/App/resources/templates';
+$app_path     = SRC_PATH . '/REPLACE_ME';
 $library_path = SRC_PATH . '/Ritc/Library/resources/templates';
+### Extra Paths ###
+### End Extra Paths ###
+
 if (!defined('LIB_TWIG_PREFIX')) {
     define('LIB_TWIG_PREFIX', 'lib_');
 }

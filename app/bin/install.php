@@ -11,7 +11,6 @@
  * @note   <b>Change Log</b><pre>
  *  v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
  *  v1.0.0 - initial version                                      - 2015-11-27 wer
- * @todo /app/bin/install.php - need to add the password creation in before the users are entered into the database.
  * @todo /app/bin/install.php - need to add the twig_config.php file creation.
  * </pre>
  */
@@ -42,52 +41,14 @@ if (!file_exists(SRC_PATH . '/Ritc/Library')) {
 }
 $install_files_path = APP_CONFIG_PATH . '/install';
 
-$a_install = require_once $install_files_path . '/install_config.php';
-$app_name      = '';
-$namespace     = '';
-$db_host       = 'localhost';
-$db_type       = 'mysql';
-$db_name       = '';
-$db_user       = '';
-$db_pass       = '';
-$db_prefix     = '';
-$lib_db_prefix = 'ritc_';
-$loader        = 'psr4';
-
-foreach ($a_install as $option => $value) {
-    switch ($option) {
-        case "app_name":
-            $app_name = $value;
-            break;
-        case "namespace":
-            $namespace = $value;
-            break;
-        case "db_host":
-            $db_host = $value;
-            break;
-        case "db_type":
-            $db_type = $value;
-            break;
-        case "db_name":
-            $db_name = $value;
-            break;
-        case "db_user":
-            $db_user = $value;
-            break;
-        case "db_pass":
-            $db_pass = $value;
-            break;
-        case "db_prefix":
-            $db_prefix = $value;
-            break;
-        case "loader":
-            $loader = $value == 'psr0' ? 'psr0' : 'psr4';
-            break;
-        case 'lib_db_prefix':
-            $lib_db_prefix = $value;
-
-    }
+/* allows a custom file to be created. Still must be in app/config/install dir */
+if (isset($argv[1])) {
+    $require_this = $install_files_path . '/' . $argv[1];
 }
+else {
+    $require_this = $install_files_path . '/install_config.php';
+}
+$a_install = require_once $require_this;
 
 ### generate files for autoloader ###
 require SRC_PATH . '/Ritc/Library/Helper/AutoloadMapper.php';
@@ -102,21 +63,22 @@ if (!is_object($o_cm)) {
 $o_cm->generateMapFiles();
 
 ### Setup the database ###
-$db_config_file = "db_config_setup.php";
+$db_config_file = $a_install['db_file'];
 $db_config_file_text =<<<EOT
 <?php
 return [
-    'driver'     => '{$db_type}',
-    'host'       => '{$db_host}',
-    'port'       => '',
-    'name'       => '{$db_name}',
-    'user'       => '{$db_user}',
-    'password'   => '{$db_pass}',
-    'userro'     => '{$db_user}',
-    'passro'     => '{$db_pass}',
-    'persist'    => false,
-    'prefix'     => '{$db_prefix}',
-    'lib_prefix' => '{$lib_db_prefix}'
+    'driver'     => '{$a_install['db_type']}',
+    'host'       => '{$a_install['db_host']}',
+    'port'       => '{$a_install['db_port']}',
+    'name'       => '{$a_install['db_name']}',
+    'user'       => '{$a_install['db_user']}',
+    'password'   => '{$a_install['db_pass']}',
+    'userro'     => '{$a_install['db_user']}',
+    'passro'     => '{$a_install['db_pass']}',
+    'persist'    => {$a_install['db_persist']},
+    'prefix'     => '{$a_install['db_prefix']}',
+    'db_prefix'  => '{$a_install['db_prefix']}',
+    'lib_prefix' => '{$a_install['lib_db_prefix']}'
 ];
 EOT;
 
@@ -124,7 +86,7 @@ file_put_contents(APP_CONFIG_PATH . '/' . $db_config_file, $db_config_file_text)
 
 $o_loader = require_once VENDOR_PATH . '/autoload.php';
 
-if ($loader == 'psr0') {
+if ($a_install['loader'] == 'psr0') {
     $my_classmap = require_once APP_CONFIG_PATH . '/autoload_classmap.php';
     $o_loader->addClassMap($my_classmap);
 }
@@ -158,16 +120,16 @@ else {
     die("Could not connect to the database\n");
 }
 
-switch ($db_type) {
+switch ($a_install['db_type']) {
     case 'pgsql':
-        $a_sql = include $install_files_path .  '/default_psql_create.php';
+        $a_sql = require $install_files_path .  '/default_psql_create.php';
         break;
     case 'sqlite':
         $a_sql = array();
         break;
     case 'mysql':
     default:
-        $a_sql = include $install_files_path .  '/default_mysql_create.php';
+        $a_sql = require $install_files_path .  '/default_mysql_create.php';
 }
 
 function createStrings($a_records = []) {
@@ -192,11 +154,11 @@ function reorgArray($a_org_values = []) {
     return $a_values;
 }
 
-$a_data = include $install_files_path .  '/default_data.php';
+$a_data = require $install_files_path .  '/default_data.php';
 
 $o_db->startTransaction();
 foreach ($a_sql as $sql) {
-    $sql = str_replace('{dbPrefix}', $lib_db_prefix, $sql);
+    $sql = str_replace('{dbPrefix}', $a_install['lib_db_prefix'], $sql);
     if ($o_db->rawExec($sql) === false) {
         $error_message = $o_db->getSqlErrorMessage();
         $o_db->rollbackTransaction();
@@ -205,28 +167,35 @@ foreach ($a_sql as $sql) {
 }
 
 ### Enter Constants
+print "Entering Constants Data: ";
 $a_constants = $a_data['constants'];
 $a_strings   = createStrings($a_constants);
 $sql =<<<SQL
-INSERT INTO {$lib_db_prefix}constants
+INSERT INTO {$a_install['lib_db_prefix']}constants
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 $a_table_info = [
-    'table_name'  => $lib_db_prefix . 'constants',
+    'table_name'  => $a_install['lib_db_prefix'] . 'constants',
     'column_name' => 'const_name'
 ];
 
-$results = $o_db->insert($sql, $a_constants, $a_table_info);
-if ($results === false) {
-    print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
-    $o_db->rollbackTransaction();
-    die("Could not insert constants data\n");
+if (isset($a_install['twig_prefix']) && isset($a_constants['twig_prefix']['const_value'])) {
+    $a_constants['twig_prefix']['const_value'] = $a_install['twig_prefix'];
 }
-else {
-    print "Constants Entered.\n\n";
+foreach ($a_constants as $key => $a_values) {
+    $results = $o_db->insert($sql, $a_values, $a_table_info);
+    if (empty($results)) {
+        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("Could not insert contants data\n");
+    }
+    else {
+        print "c";
+    }
 }
+print "\n\n";
 
 ### Enter Groups
 print "Create Groups: ";
@@ -234,13 +203,13 @@ $a_groups  = $a_data['groups'];
 $a_strings = createStrings($a_groups);
 
 $sql =<<<SQL
-INSERT INTO {$lib_db_prefix}groups
+INSERT INTO {$a_install['lib_db_prefix']}groups
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 $a_table_info = [
-    'table_name'  => $lib_db_prefix . 'groups',
+    'table_name'  => $a_install['lib_db_prefix'] . 'groups',
     'column_name' => 'group_id'
 ];
 foreach ($a_groups as $key => $a_values) {
@@ -264,13 +233,13 @@ $a_urls    = $a_data['urls'];
 $a_strings = createStrings($a_urls);
 
 $sql =<<<SQL
-INSERT INTO {$lib_db_prefix}urls
+INSERT INTO {$a_install['lib_db_prefix']}urls
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 $a_table_info = [
-    'table_name'  => $lib_db_prefix . 'urls',
+    'table_name'  => $a_install['lib_db_prefix'] . 'urls',
     'column_name' => 'url_id'
 ];
 
@@ -295,18 +264,22 @@ $a_people  = $a_data['people'];
 $a_strings = createStrings($a_people);
 
 $sql =<<<SQL
-INSERT INTO {$lib_db_prefix}people
+INSERT INTO {$a_install['lib_db_prefix']}people
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_db_prefix . 'people',
+    'table_name'  => $a_install['lib_db_prefix'] . 'people',
     'column_name' => 'people_id'
 ];
 
 foreach ($a_people as $key => $a_person) {
+    if (isset($a_install[$key])) {
+        $a_person['password'] = $a_install[$key];
+    }
+    $a_person['password'] = password_hash($a_person['password'], PASSWORD_DEFAULT);
     $results = $o_db->insert($sql, $a_person, $a_table_info);
     if (empty($results)) {
         print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
@@ -327,14 +300,14 @@ $a_navgroups = $a_data['navgroups'];
 $a_strings   = createStrings($a_navgroups);
 
 $sql =<<<SQL
-INSERT INTO {$lib_db_prefix}navgroups
+INSERT INTO {$a_install['lib_db_prefix']}navgroups
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_db_prefix . 'navgroups',
+    'table_name'  => $a_install['lib_db_prefix'] . 'navgroups',
     'column_name' => 'ng_id'
 ];
 foreach ($a_navgroups as $key => $a_nav_group) {
@@ -360,7 +333,7 @@ $a_pgm = $a_data['people_group_map'];
 $a_strings = createStrings($a_pgm);
 
 $pgm_sql =<<<SQL
-INSERT INTO {$lib_db_prefix}people_group_map
+INSERT INTO {$a_install['lib_db_prefix']}people_group_map
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
@@ -390,14 +363,14 @@ $a_routes  = $a_data['routes'];
 $a_strings = createStrings($a_routes);
 
 $routes_sql =<<<SQL
-INSERT INTO {$lib_db_prefix}routes
+INSERT INTO {$a_install['lib_db_prefix']}routes
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_db_prefix . 'routes',
+    'table_name'  => $a_install['lib_db_prefix'] . 'routes',
     'column_name' => 'route_id'
 ];
 
@@ -423,14 +396,14 @@ $a_rgm     = $a_data['routes_group_map'];
 $a_strings = createStrings($a_rgm);
 
 $rgm_sql =<<<SQL
-INSERT INTO {$lib_db_prefix}routes_group_map
+INSERT INTO {$a_install['lib_db_prefix']}routes_group_map
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_db_prefix . 'routes_group_map',
+    'table_name'  => $a_install['lib_db_prefix'] . 'routes_group_map',
     'column_name' => 'route_id'
 ];
 
@@ -457,14 +430,14 @@ $a_navigation = $a_data['navigation'];
 $a_strings    = createStrings($a_navigation);
 
 $nav_sql =<<<SQL
-INSERT INTO {$lib_db_prefix}navigation
+INSERT INTO {$a_install['lib_db_prefix']}navigation
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_db_prefix . 'navigation',
+    'table_name'  => $a_install['lib_db_prefix'] . 'navigation',
     'column_name' => 'route_id'
 ];
 
@@ -490,14 +463,14 @@ $a_nnm     = $a_data['nav_ng_map'];
 $a_strings = createStrings($a_nnm);
 
 $nnm_sql =<<<SQL
-INSERT INTO {$lib_db_prefix}nav_ng_map
+INSERT INTO {$a_install['lib_db_prefix']}nav_ng_map
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_db_prefix . 'nav_ng_map',
+    'table_name'  => $a_install['lib_db_prefix'] . 'nav_ng_map',
     'column_name' => 'route_id'
 ];
 
@@ -524,14 +497,14 @@ $a_page    = $a_data['page'];
 $a_strings = createStrings($a_page);
 
 $page_sql =<<<SQL
-INSERT INTO {$lib_db_prefix}page
+INSERT INTO {$a_install['lib_db_prefix']}page
   ({$a_strings['fields']})
 VALUES
   ({$a_strings['values']})
 SQL;
 
 $a_table_info = [
-    'table_name'  => $lib_db_prefix . 'page',
+    'table_name'  => $a_install['lib_db_prefix'] . 'page',
     'column_name' => 'route_id'
 ];
 
@@ -559,7 +532,7 @@ else {
 }
 
 ### Create the directories for the new app ###
-$app_path = SRC_PATH . '/' . $namespace. '/' . $app_name;
+$app_path = SRC_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
 $a_new_dirs = ['Abstracts', 'Controllers', 'Entities', 'Interfaces', 'Models',
 'Tests', 'Traits', 'Views', 'resources', 'resources/config', 'resources/sql',
 'resources/templates', 'resources/themes', 'resources/templates/default',
@@ -599,7 +572,7 @@ if (!file_exists($app_path)) {
     }
 }
 
-$twig_file = file_get_contents(APP_CONFIG_PATH . '/twig_config_example.php');
-$new_twig_file = str_replace('/Example/App/resources/templates',  "/{$namespace}/{$app_name}/resources/templates", $twig_file);
+$twig_file = file_get_contents(APP_CONFIG_PATH . '/install/twig_config.php');
+$new_twig_file = str_replace('REPLACE_ME',  "{$a_install['namespace']}/{$a_install['app_name']}/resources/templates", $twig_file);
 file_put_contents(APP_CONFIG_PATH . '/twig_config.php', $new_twig_file);
 ?>
