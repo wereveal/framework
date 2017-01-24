@@ -1,0 +1,48 @@
+<?php
+/**
+ * @brief     Main Controller for {APPNAME}.
+ * @ingroup   {GROUPNAME}
+ * @file      {NAMESPACE}/{APPNAME}/Controllers/MainController.php
+ * @namespace {NAMESPACE}\{APPNAME}\Controllers
+ * @author    William E Reveal <bill@revealitconsulting.com>
+ * @version   1.0.0-alpha.0
+ * @date      2017-01-24 13:23:23
+ * @note Change Log
+ * - v1.0.0-alpha.0 - Initial version        - 2017-01-24 wer
+ * @todo {NAMESPACE}/{APPNAME}/Controllers/MainController.php - Everything
+ */
+namespace {NAMESPACE}\{APPNAME}\Controllers;
+
+use Ritc\Library\Interfaces\ControllerInterface;
+use Ritc\Library\Services\Di;
+use Ritc\Library\Traits\ControllerTraits;
+
+/**
+ * Class MainController.
+ * @class   MainController
+ * @package {NAMESPACE}\{APPNAME}
+ */
+class MainController implements ControllerInterface
+{
+    use ControllerTraits;
+
+    /**
+     * MainController constructor.
+     * @param \Ritc\Library\Services\Di $o_di
+     */
+    public function __construct(Di $o_di)
+    {
+        $this->setupController($o_di);
+    }
+
+    /**
+     * Main Router and Puker outer (more descriptive method name).
+     * Turns over the hard work to the specific controllers specified by the router.
+     * @return string
+     */
+    public function route()
+    {
+        // TODO: Implement route() method.
+        return '';
+    }
+}

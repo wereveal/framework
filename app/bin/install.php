@@ -1,17 +1,22 @@
 <?php
 /**
  * @brief     This file sets up standard stuff for the Framework.
- * @details   This creates the database config and some standard directories.
- *            This should be run from the /app/bin directory of the site.
- * @file      install.php
+ * @details   This creates the database config, some standard directories,
+ *            and some standard files needed, e.g. index.php and MainController.
+ *            This should be run from the cli in the /app/bin directory of the site.
+ *            Files in the /app/config/install dir should be modified as needed.
+ *            The /app/config/install/install_config.php file is primary but can
+ *            copied and change the copy. Call the copied file by name on the cli,
+ *            e.g. php install.php my_config.php
+ * @file      /app/bin/install.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2017-01-13 09:48:15
- * @version   2.0.0
+ * @date      2017-01-24 14:19:43
+ * @version   2.1.0
  * @note   <b>Change Log</b><pre>
+ *  v2.1.0 - lots of bug fixes and additions                      - 2017-01-24 wer
  *  v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
  *  v1.0.0 - initial version                                      - 2015-11-27 wer
- * @todo /app/bin/install.php - need to add the twig_config.php file creation.
  * </pre>
  */
 namespace Ritc;
@@ -532,6 +537,7 @@ else {
 }
 
 ### Create the directories for the new app ###
+print "\nCreateing the directories for the new app\n";
 $app_path = SRC_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
 $a_new_dirs = ['Abstracts', 'Controllers', 'Entities', 'Interfaces', 'Models',
 'Tests', 'Traits', 'Views', 'resources', 'resources/config', 'resources/sql',
@@ -572,7 +578,37 @@ if (!file_exists($app_path)) {
     }
 }
 
+### Create the main controller for the app ###
+print "Creating the main controller for the app\n";
+$controller_text = file_get_contents(APP_CONFIG_PATH . '/install/main_controller.txt');
+$controller_text = str_replace('{NAMESPACE}', $a_install['namespace'], $controller_text);
+$controller_text = str_replace('{APPNAME}', $a_install['app_name'], $controller_text);
+$group_name = strtolower($a_install['app_name']) . '_controllers';
+$controller_text = str_replace('{GROUPNAME}', $group_name, $controller_text);
+file_put_contents($app_path . '/Controllers/MainController.php', $controller_text);
+
+### Create the doxygen config for the app ###
+print "Creating the doxy config for the app\n";
+$doxy_text = file_get_contents(APP_CONFIG_PATH . '/install/doxygen_config.txt');
+$namespace = strtolower($a_install['namespace']);
+$app_name  = strtolower($a_install['app_name']);
+$doxy_text = str_replace('{NAMESPACE}', $namespace, $doxy_text);
+$doxy_text = str_replace('{APPNAME}', $app_name, $doxy_text);
+file_put_contents($app_path . '/resources/config/doxygen_config.php', $doxy_text);
+
+### Create the twig_config file ###
+print "Creating the twig config file for app\n";
 $twig_file = file_get_contents(APP_CONFIG_PATH . '/install/twig_config.php');
 $new_twig_file = str_replace('REPLACE_ME',  "{$a_install['namespace']}/{$a_install['app_name']}/resources/templates", $twig_file);
 file_put_contents(APP_CONFIG_PATH . '/twig_config.php', $new_twig_file);
+
+### Create the index.php file ###
+print "Creating the index.php file for app\n";
+$index_text = file_get_contents(APP_CONFIG_PATH . '/install/index.php.txt');
+$index_text = str_replace('{NAMESPACE}', $a_install['namespace'], $index_text);
+$index_text = str_replace('{APPNAME}', $a_install['app_name'], $index_text);
+file_put_contents(SITE_PATH . '/index.php', $index_text);
+
+### Regenerate Autoload Map files
+$o_cm->generateMapFiles();
 ?>

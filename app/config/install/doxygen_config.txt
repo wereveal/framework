@@ -1,0 +1,23 @@
+<?php
+/*
+ *  @defgroup {NAMESPACE}_{APPNAME}
+ *  @{
+ *      @version 1.0
+ *      @defgroup {APPNAME}_abstracts Abstract class files
+ *      @ingroup {NAMESPACE}_{APPNAME}
+ *      @defgroup {APPNAME}_controllers Controller files
+ *      @ingroup {NAMESPACE}_{APPNAME}
+ *      @defgroup {APPNAME}_entities Defines the tables in the database
+ *      @ingroup {NAMESPACE}_{APPNAME}
+ *      @defgroup {APPNAME}_interfaces Files that define what a class should have
+ *      @ingroup {NAMESPACE}_{APPNAME}
+ *      @defgroup {APPNAME}_models Classes that do database calls
+ *      @ingroup {NAMESPACE}_{APPNAME}
+ *      @defgroup {APPNAME}_tests Classes that test other classes
+ *      @ingroup {NAMESPACE}_{APPNAME}
+ *      @defgroup {APPNAME}_traits Functions that are common to multiple classes
+ *      @ingroup {NAMESPACE}_{APPNAME}
+ *      @defgroup {APPNAME}_views Classes that provide the end user experience
+ *      @ingroup {NAMESPACE}_{APPNAME}
+ *  }
+ */
