@@ -441,6 +441,18 @@ VALUES
   ({$a_strings['values']})
 SQL;
 
+$parent_sql =<<<SQL
+SELECT nav_id
+FROM {$a_install['lib_db_prefix']}navigation
+WHERE nav_name = :nav_name
+SQL;
+
+$update_sql =<<<SQL
+UPDATE {$a_install['lib_db_prefix']}navigation
+SET nav_parent_id = :nav_parent_id
+WHERE nav_id = :nav_id
+SQL;
+
 $a_table_info = [
     'table_name'  => $a_install['lib_db_prefix'] . 'navigation',
     'column_name' => 'route_id'
@@ -448,6 +460,7 @@ $a_table_info = [
 
 foreach ($a_navigation as $key => $a_record) {
     $a_record['url_id'] = $a_urls[$a_record['url_id']]['url_id'];
+    $a_record['nav_parent_id'] = 0;
     $results = $o_db->insert($nav_sql, $a_record, $a_table_info);
     if ($results === false) {
         print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
@@ -457,9 +470,32 @@ foreach ($a_navigation as $key => $a_record) {
     else {
         $ids = $o_db->getNewIds();
         $a_navigation[$key]['nav_id'] = $ids[0];
+        $a_navigation[$key]['nav_parent_name'] = $a_navigation[$key]['nav_parent_id'];
         print "+";
     }
 }
+print "\n";
+print "Updating nav records with parent ids: ";
+foreach ($a_navigation as $key => $a_record) {
+    $search_values = [':nav_name' => $a_record['nav_parent_name']];
+    $results = $o_db->search($parent_sql, $search_values);
+    if (empty($results)) {
+        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("\nCould not retrieve parent navigation data\n");
+    }
+    else {
+        $update_values = [':nav_id' => $a_record['nav_id'], ':nav_parent_id' => $results[0]['nav_id']];
+        $results = $o_db->update($update_sql, $update_values);
+        if (empty($results)) {
+            die("\nCould not update navigation with parent id\n");
+        }
+        else {
+            print ".";
+        }
+    }
+}
+
 print "\n\n";
 
 ### Enter 'nav_ng_map'

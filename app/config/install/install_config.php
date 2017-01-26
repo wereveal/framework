@@ -13,7 +13,7 @@ return [
     'db_name'         => 'app',
     'db_user'         => 'dbuser',
     'db_pass'         => 'dbpass',
-    'db_persist'      => false,
+    'db_persist'      => 'false',
     'db_prefix'       => 'ritc_',
     'lib_db_prefix'   => 'ritc_',
     'twig_prefix'     => 'app_',
