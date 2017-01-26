@@ -1,15 +1,15 @@
 <?php
 /**
  * @brief     Main Controller for {APPNAME}.
- * @ingroup   {GROUPNAME}
- * @file      {NAMESPACE}/{APPNAME}/Controllers/MainController.php
+ * @ingroup   {app_name}_controllers
+ * @file      {NAMESPACE}/{APPNAME}/Controllers/FtpController.php
  * @namespace {NAMESPACE}\{APPNAME}\Controllers
- * @author    William E Reveal <bill@revealitconsulting.com>
+ * @author    {author} {email}
  * @version   1.0.0-alpha.0
- * @date      2017-01-24 13:23:23
+ * @date      {idate}
  * @note Change Log
- * - v1.0.0-alpha.0 - Initial version        - 2017-01-24 wer
- * @todo {NAMESPACE}/{APPNAME}/Controllers/MainController.php - Everything
+ * - v1.0.0-alpha.0 - Initial version        - {sdate} {sauthor}
+ * @todo {NAMESPACE}/{APPNAME}/Controllers/FtpController.php - Everything
  */
 namespace {NAMESPACE}\{APPNAME}\Controllers;
 

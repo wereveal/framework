@@ -20,3 +20,4 @@ composer.lock
 /public/setup.php
 /vendor
 .idea
+*.log

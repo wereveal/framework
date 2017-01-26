@@ -1,0 +1,38 @@
+<?php
+/**
+ * @brief     Main View for {APPNAME}.
+ * @ingroup   {app_name}_views
+ * @file      {NAMESPACE}/{APPNAME}/Views/HomeView.php
+ * @namespace {NAMESPACE}\{APPNAME}\Views
+ * @author    {author} {email}
+ * @version   1.0.0-alpha.0
+ * @date      {idate}
+ * @note Change Log
+ * - v1.0.0-alpha.0 - Initial version        - {sdate} {sauthor}
+ * @todo {NAMESPACE}/{APPNAME}/Views/HomeView .php - Everything
+ */
+namespace {NAMESPACE}\{APPNAME}\Views;
+
+use Ritc\Library\Interfaces\ViewInterface;
+use Ritc\Library\Services\Di;
+use Ritc\Library\Traits\ViewTraits;
+
+/**
+ * Class HomeView
+ * @class   HomeView
+ * @package {NAMESPACE}\{APPNAME}\Views
+ */
+class HomeView implements ViewInterface
+{
+    use ViewTraits;
+
+    public function __construct(Di $o_di)
+    {
+        $this->setupView($o_di);
+    }
+
+    public function render()
+    {
+        return '';
+    }
+}
