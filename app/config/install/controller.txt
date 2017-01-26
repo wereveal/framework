@@ -1,15 +1,15 @@
 <?php
 /**
- * @brief     Main Controller for {APPNAME}.
+ * @brief     {controller_name} Controller for {APPNAME}.
  * @ingroup   {app_name}_controllers
- * @file      {NAMESPACE}/{APPNAME}/Controllers/FtpController.php
+ * @file      {NAMESPACE}/{APPNAME}/Controllers/{controller_name}Controller.php
  * @namespace {NAMESPACE}\{APPNAME}\Controllers
  * @author    {author} {email}
  * @version   1.0.0-alpha.0
  * @date      {idate}
  * @note Change Log
  * - v1.0.0-alpha.0 - Initial version        - {sdate} {sauthor}
- * @todo {NAMESPACE}/{APPNAME}/Controllers/FtpController.php - Everything
+ * @todo {NAMESPACE}/{APPNAME}/Controllers/{controller_name}Controller.php - Everything
  */
 namespace {NAMESPACE}\{APPNAME}\Controllers;
 
@@ -18,16 +18,16 @@ use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;
 
 /**
- * Class MainController.
- * @class   MainController
+ * Class {controller_name}Controller.
+ * @class   {controller_name}Controller
  * @package {NAMESPACE}\{APPNAME}
  */
-class MainController implements ControllerInterface
+class {controller_name}Controller implements ControllerInterface
 {
     use ControllerTraits;
 
     /**
-     * MainController constructor.
+     * {controller_name}Controller constructor.
      * @param \Ritc\Library\Services\Di $o_di
      */
     public function __construct(Di $o_di)
