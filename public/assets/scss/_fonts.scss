@@ -1,10 +1,2 @@
-@font-face {
-    font-family: 'VeraMono';
-    src: url('/assets/fonts/Bitstream-Vera-Sans-Mono-fontfacekit/VeraMono-webfont.eot');
-    src: url('/assets/fonts/Bitstream-Vera-Sans-Mono-fontfacekit/VeraMono-webfont.eot?#iefix') format('eot'),
-    url('/assets/fonts/Bitstream-Vera-Sans-Mono-fontfacekit/VeraMono-webfont.woff') format('woff'),
-    url('/assets/fonts/Bitstream-Vera-Sans-Mono-fontfacekit/VeraMono-webfont.ttf') format('truetype'),
-    url('/assets/fonts/Bitstream-Vera-Sans-Mono-fontfacekit/VeraMono-webfont.svg#webfontlcl7DSJU') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+@include font-face('VeraMono', '/assets/fonts/Bitstream-Vera-Sans-Mono-fontfacekit/VeraMono-webfont', normal, normal);
+@include font-face('VeraSansBold', '/assets/fonts/Bitstream-Vera-Sans-fontfacekit/Vera-Bold-webfont', normal, normal);

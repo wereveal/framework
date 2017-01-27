@@ -6,15 +6,6 @@
 @import "main_common";
 @import "nav";
 
-.list-header {
-    background-color: $gray-dark !important;
-    color: $color-white;
-    div {
-        background-color: $gray-dark !important;
-        color: $color-white;
-    }
-}
-
 #people-form {
     fieldset {
         border: 1px $color-black dotted;
@@ -42,6 +33,11 @@
     input {
         width: 200px;
     }
+}
+
+.datepicker {
+    display: inline-block;
+    width: 50%;
 }
 
 @import "message";

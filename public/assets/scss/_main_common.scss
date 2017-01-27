@@ -25,14 +25,27 @@
     border-radius: .2rem;
 }
 
+.header-small-caps {
+    @include font_sc_extra_bold;
+}
+
+.header-sans {
+    font-family: VeraSansBold, sans-serif;
+}
+
 .container {
     background-color: $color-container;
     margin-bottom: 2rem;
     margin-top: 1rem;
     &.container-main {
         border: 1px solid $color-border;
-        border-radius: .5rem;
-        box-shadow: 0.25rem 0.25rem 0.25rem $color-shadow;
+        border-radius: .25rem;
+        box-shadow: 0.15rem 0.15rem 0.15rem $color-shadow;
+    }
+    &.container-bordered {
+        border: 1px solid $color-border;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
     }
     .row {
         background-color: $color-span;
@@ -60,22 +73,32 @@
             background-color: $color-white;
             [class*="col"] {
                 border: 0;
-                padding: 0;
+                padding: 0 .25rem;
                 border-radius: 0;
                 margin-top: .25rem;
                 margin-bottom: .25rem;
                 background-color: $color-white;
+                &.form-label {
+                    text-align: right;
+                    padding-right: 1rem;
+                    font-weight: 700;
+                }
             }
         }
         &.alt-row {
             background-color: $gray90;
             [class*="col"] {
                 border: 0;
-                padding: 0;
+                padding: 0 .25rem;
                 margin-top: .25rem;
                 margin-bottom: .25rem;
                 border-radius: 0;
                 background-color: $gray90;
+                &.form-label {
+                    text-align: right;
+                    padding-right: 1rem;
+                    font-weight: 700;
+                }
             }
         }
         &.upper {
@@ -87,20 +110,25 @@
         }
         &.row-inside {
             padding-left: 0;
+            padding-right: 0;
         }
     }
 }
 
 .red {
-    color: $red;
+    color: $red-color;
 }
 
 .green {
-    color: $green;
+    color: $green-color;
 }
 
 .blue {
-    color: $blue;
+    color: $blue-color;
+}
+
+.dark-grey {
+    color: $gunmetal-dark;
 }
 
 .border-radius-top-right {
@@ -139,6 +167,120 @@
     border-bottom-right-radius: $default-radius;
 }
 
+.clean-ul {
+    @include clean_ul;
+}
+.margin-top-1 {
+    @include marginSize(1, 'top');
+}
+
+.margin-top-2 {
+    @include marginSize(2, 'top');
+}
+.margin-top-half {
+    @include marginSize(.5, 'top');
+}
+
+.margin-top-quarter {
+    @include marginSize(.25, 'top');
+}
+
+.margin-bottom-1 {
+    @include marginSize(1, 'bottom');
+}
+
+.margin-bottom-2 {
+    @include marginSize(2, 'bottom');
+}
+
+.margin-bottom-half {
+    @include marginSize(.5, 'bottom');
+}
+
+.margin-bottom-quarter {
+    @include marginSize(.25, 'bottom');
+}
+
+.margin-left-1 {
+    @include marginSize(1, 'left');
+}
+
+.margin-left-2 {
+    @include marginSize(2, 'left');
+}
+
+.margin-left-half {
+    @include marginSize(.5, 'left');
+}
+
+.margin-left-quarter {
+    @include marginSize(.25, 'left');
+}
+
+.margin-right-1 {
+    @include marginSize(1, 'right');
+}
+
+.margin-right-2 {
+    @include marginSize(2, 'right');
+}
+
+.margin-right-half {
+    @include marginSize(.5, 'right');
+}
+
+.margin-right-quarter {
+    @include marginSize(.25, 'right');
+}
+
+.margin-lr-1 {
+    @include marginSize(1, 'lr');
+}
+
+.margin-lr-2 {
+    @include marginSize(2, 'lr');
+}
+
+.margin-lr-half {
+    @include marginSize(.5, 'lr');
+}
+
+.margin-lr-quarter {
+    @include marginSize(.25, 'lr');
+}
+
+.margin-tb-1 {
+    @include marginSize(1, 'tb');
+}
+
+.margin-tb-2 {
+    @include marginSize(2, 'tb');
+}
+
+.margin-tb-half {
+    @include marginSize(.5, 'tb');
+}
+
+.margin-tb-quarter {
+    @include marginSize(.25, 'tb');
+}
+
+.margin-all-1 {
+    @include marginSize(1, 'all');
+}
+
+.margin-all-2 {
+    @include marginSize(1, 'all');
+}
+
+.margin-all-half {
+    @include marginSize(.5, 'all');
+}
+
+.margin-all-quarter {
+    @include marginSize(.25, 'all');
+}
+
 .pad-right {
     padding-right: 1rem;
 }
@@ -166,4 +308,37 @@
 
 .pad-top-12 {
     padding-top: 12px;
+}
+
+.list-header {
+    background-color: $gray-medium-dark !important;
+    color: $color-white;
+    div {
+        background-color: $gray-medium-dark !important;
+        color: $color-white;
+    }
+}
+
+.list-stripped {
+    color: $gunmetal-dark;
+    &.odd {
+        background-color: $gunmetal-xlight;
+    }
+    &.even {
+        background-color: $white-color;
+    }
+    a {
+        color: $gunmetal-dark;
+        display: inline-block;
+        width: 100%;
+        padding: .25rem;
+        padding-left: .5rem;
+        &.odd {
+            background-color: $gray-xlight;
+        }
+        &.even {
+            background-color: $white-color;
+
+        }
+    }
 }
