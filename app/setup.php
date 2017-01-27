@@ -33,27 +33,31 @@ require_once BASE_PATH . '/app/config/constants.php';
 if (!isset($db_config_file)) {
     $db_config_file = 'db_config.php';
 }
+if (!isset($psr_loader)) {
+    $psr_loader = 'psr4';
+}
 
 $o_loader = require_once VENDOR_PATH . '/autoload.php';
 
-### PSR-4 autoload method
-$my_namespaces = require_once APP_CONFIG_PATH . '/autoload_namespaces.php';
-foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
-    $o_loader->addPsr4($psr4_prefix, $psr0_paths);
+if ($psr_loader == 'psr0') {
+    ### PSR-0 autoload method
+    $my_classmap = require_once APP_CONFIG_PATH . '/autoload_classmap.php';
+    $o_loader->addClassMap($my_classmap);
 }
-###
-
-### classmap method of autoload ###
-# $my_classmap = require_once APP_CONFIG_PATH . '/autoload_classmap.php';
-# $o_loader->addClassMap($my_classmap);
-###
+else {
+    ### PSR-4 autoload method
+    $my_namespaces = require_once APP_CONFIG_PATH . '/autoload_namespaces.php';
+    foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
+        $o_loader->addPsr4($psr4_prefix, $psr0_paths);
+    }
+}
 
 $o_elog = Elog::start();
 $o_elog->setIgnoreLogOff(false); // turns on logging globally ignoring LOG_OFF when set to true
 // set_error_handler([$o_elog, 'errorHandler'], E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR);
 $o_elog->setErrorHandler(E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR);
 
-$o_elog->write("Testing the elog\n", LOG_OFF);
+$o_elog->write("Testing the elog\n", LOG_ON);
 
 $o_session = Session::start();
 
