@@ -21,3 +21,4 @@ composer.lock
 /vendor
 .idea
 *.log
+db_config_ftp.php
