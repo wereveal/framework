@@ -1,3 +1,8 @@
+hr.item-card {
+    margin: .5rem 0;
+    width: 50%;
+}
+
 .aright {
     text-align: right;
 }
@@ -46,6 +51,32 @@
         border: 1px solid $color-border;
         padding-top: .5rem;
         padding-bottom: .5rem;
+    }
+    .row-fluid {
+        [class*="span"] {
+            background-color: $color-span;
+            border: 1px solid $color-border;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            padding: 1rem 2rem;
+        }
+        .no-box {
+            background-color: inherit;
+            border: 0;
+            padding: 0;
+            margin: 0 0 1rem 0;
+            div.no-box {
+                margin-right: 1rem;
+            }
+        }
+        div {
+            &.item-card {
+                a.item-link {
+                    font-size: 1.2rem;
+                    font-weight: 900;
+                }
+            }
+        }
     }
     .row {
         background-color: $color-span;
