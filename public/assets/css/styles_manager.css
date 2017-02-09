@@ -67,6 +67,10 @@ p {
   font-weight: normal;
   src: url("/assets/fonts/Bitstream-Vera-Sans-fontfacekit/Vera-Bold-webfont.eot?") format("eot"), url("/assets/fonts/Bitstream-Vera-Sans-fontfacekit/Vera-Bold-webfont.woff2") format("woff2"), url("/assets/fonts/Bitstream-Vera-Sans-fontfacekit/Vera-Bold-webfont.woff") format("woff"), url("/assets/fonts/Bitstream-Vera-Sans-fontfacekit/Vera-Bold-webfont.ttf") format("truetype"), url("/assets/fonts/Bitstream-Vera-Sans-fontfacekit/Vera-Bold-webfont.svg#VeraSansBold") format("svg"); }
 
+hr.item-card {
+  margin: .5rem 0;
+  width: 50%; }
+
 .aright {
   text-align: right; }
 
@@ -108,6 +112,22 @@ p {
     border: 1px solid #333;
     padding-top: .5rem;
     padding-bottom: .5rem; }
+  .container .row-fluid [class*="span"] {
+    background-color: #f5f5f5;
+    border: 1px solid #333;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding: 1rem 2rem; }
+  .container .row-fluid .no-box {
+    background-color: inherit;
+    border: 0;
+    padding: 0;
+    margin: 0 0 1rem 0; }
+    .container .row-fluid .no-box div.no-box {
+      margin-right: 1rem; }
+  .container .row-fluid div.item-card a.item-link {
+    font-size: 1.2rem;
+    font-weight: 900; }
   .container .row {
     background-color: #f5f5f5;
     margin: 0;
@@ -372,108 +392,6 @@ p {
     list-style-type: none;
     padding-left: 2rem; }
 
-#people-form fieldset {
-  border: 1px #000 dotted;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  margin-bottom: 12px; }
-
-#people-form input {
-  width: 200px; }
-  #people-form input#description {
-    width: 600px; }
-
-#login-form label {
-  vertical-align: baseline;
-  padding-top: .25rem;
-  font-weight: 900; }
-
-.constants-form input {
-  width: 200px; }
-
-.datepicker {
-  display: inline-block;
-  width: 50%; }
-
-.message.success {
-  border: 3px solid #d0e9c6;
-  border-radius: 0.25rem;
-  background-color: #dff0d8;
-  color: #3c763d;
-  padding: .5rem 1rem; }
-  .message.success hr {
-    border-top-color: #c1e2b3; }
-  .message.success .message-link {
-    color: #2b542c; }
-  .message.success .icon {
-    margin-right: 1rem; }
-
-.message.info {
-  border: 3px solid #bcdff1;
-  border-radius: 0.25rem;
-  background-color: #d9edf7;
-  color: #31708f;
-  padding: .5rem 1rem; }
-  .message.info hr {
-    border-top-color: #a6d5ec; }
-  .message.info .message-link {
-    color: #245269; }
-  .message.info .icon {
-    margin-right: 1rem; }
-
-.message.warning {
-  border: 3px solid #faf2cc;
-  border-radius: 0.25rem;
-  background-color: #fcf8e3;
-  color: #8a6d3b;
-  padding: .5rem 1rem; }
-  .message.warning hr {
-    border-top-color: #f7ecb5; }
-  .message.warning .message-link {
-    color: #66512c; }
-  .message.warning .icon {
-    margin-right: 1rem; }
-
-.message.error {
-  border: 3px solid #ebcccc;
-  border-radius: 0.25rem;
-  background-color: #f2dede;
-  color: #a94442;
-  padding: .5rem 1rem; }
-  .message.error hr {
-    border-top-color: #e4b9b9; }
-  .message.error .message-link {
-    color: #843534; }
-  .message.error .icon {
-    margin-right: 1rem; }
-
-.message.failure {
-  border: 3px solid #ebcccc;
-  border-radius: 0.25rem;
-  background-color: #f2dede;
-  color: #a94442;
-  padding: .5rem 1rem; }
-  .message.failure hr {
-    border-top-color: #e4b9b9; }
-  .message.failure .message-link {
-    color: #843534; }
-  .message.failure .icon {
-    margin-right: 1rem; }
-
-.message.code {
-  font-family: "VeraMono", Monoco, monospace;
-  border: 3px solid #333;
-  border-radius: 0.25rem;
-  background-color: #f5f5f5;
-  color: #333;
-  padding: .5rem 1rem; }
-  .message.code hr {
-    border-top-color: #262626; }
-  .message.code .message-link {
-    color: #1a1919; }
-  .message.code .icon {
-    margin-right: 1rem; }
-
 input.colorful, textarea.colorful {
   background: #fff !important;
   border-bottom: 1px solid #000 !important;
@@ -589,6 +507,108 @@ label.nice-label {
 .btn.push-left-2 {
   margin-right: 2rem; }
 
+#people-form fieldset {
+  border: 1px #000 dotted;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 12px; }
+
+#people-form input {
+  width: 200px; }
+  #people-form input#description {
+    width: 600px; }
+
+#login-form label {
+  vertical-align: baseline;
+  padding-top: .25rem;
+  font-weight: 900; }
+
+.constants-form input {
+  width: 200px; }
+
+.datepicker {
+  display: inline-block;
+  width: 50%; }
+
+.message.success {
+  border: 3px solid #d0e9c6;
+  border-radius: 0.25rem;
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: .5rem 1rem; }
+  .message.success hr {
+    border-top-color: #c1e2b3; }
+  .message.success .message-link {
+    color: #2b542c; }
+  .message.success .icon {
+    margin-right: 1rem; }
+
+.message.info {
+  border: 3px solid #bcdff1;
+  border-radius: 0.25rem;
+  background-color: #d9edf7;
+  color: #31708f;
+  padding: .5rem 1rem; }
+  .message.info hr {
+    border-top-color: #a6d5ec; }
+  .message.info .message-link {
+    color: #245269; }
+  .message.info .icon {
+    margin-right: 1rem; }
+
+.message.warning {
+  border: 3px solid #faf2cc;
+  border-radius: 0.25rem;
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+  padding: .5rem 1rem; }
+  .message.warning hr {
+    border-top-color: #f7ecb5; }
+  .message.warning .message-link {
+    color: #66512c; }
+  .message.warning .icon {
+    margin-right: 1rem; }
+
+.message.error {
+  border: 3px solid #ebcccc;
+  border-radius: 0.25rem;
+  background-color: #f2dede;
+  color: #a94442;
+  padding: .5rem 1rem; }
+  .message.error hr {
+    border-top-color: #e4b9b9; }
+  .message.error .message-link {
+    color: #843534; }
+  .message.error .icon {
+    margin-right: 1rem; }
+
+.message.failure {
+  border: 3px solid #ebcccc;
+  border-radius: 0.25rem;
+  background-color: #f2dede;
+  color: #a94442;
+  padding: .5rem 1rem; }
+  .message.failure hr {
+    border-top-color: #e4b9b9; }
+  .message.failure .message-link {
+    color: #843534; }
+  .message.failure .icon {
+    margin-right: 1rem; }
+
+.message.code {
+  font-family: "VeraMono", Monoco, monospace;
+  border: 3px solid #333;
+  border-radius: 0.25rem;
+  background-color: #f5f5f5;
+  color: #333;
+  padding: .5rem 1rem; }
+  .message.code hr {
+    border-top-color: #262626; }
+  .message.code .message-link {
+    color: #1a1919; }
+  .message.code .icon {
+    margin-right: 1rem; }
+
 .mw50 {
   max-width: 50px; }
 
@@ -660,6 +680,80 @@ label.nice-label {
 
 .w600 {
   width: 600px; }
+
+/* The Alpha List Menu */
+.container div.selections {
+  border: 0 !important;
+  padding: 0 !important; }
+  .container div.selections label.selectLabel, .container div.selections label.selectLabel {
+    font-weight: 900;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    margin-right: .75rem; }
+  .container div.selections select {
+    height: 2rem;
+    line-height: 2rem;
+    width: 200px;
+    vertical-align: top; }
+
+.container div.quick-form {
+  border: 0 !important;
+  padding: 0 !important;
+  padding-left: 1rem !important; }
+  .container div.quick-form #quick-search {
+    margin: 0; }
+    .container div.quick-form #quick-search legend {
+      font-size: 1rem;
+      font-weight: bold;
+      border: 0;
+      line-height: 1.5rem; }
+    .container div.quick-form #quick-search input {
+      width: 15rem;
+      margin-top: .5rem;
+      margin-right: 1rem;
+      vertical-align: middle; }
+    .container div.quick-form #quick-search button {
+      vertical-align: middle; }
+    .container div.quick-form #quick-search .help {
+      display: none; }
+
+.container div.alpha {
+  margin-left: 0px !important;
+  margin-bottom: 0px !important;
+  border: 0px !important;
+  padding: 0px !important; }
+  .container div.alpha #alphaListMenu {
+    list-style-type: none;
+    margin-left: 0px;
+    margin-bottom: 1rem; }
+    .container div.alpha #alphaListMenu li {
+      float: left;
+      padding-left: 3px;
+      padding-right: 3px;
+      font-weight: 900; }
+      .container div.alpha #alphaListMenu li.firstLetter {
+        border-left: 1px solid #808080;
+        border-right: 1px solid #808080; }
+      .container div.alpha #alphaListMenu li.otherLetter {
+        border-right: 1px solid #808080; }
+      .container div.alpha #alphaListMenu li.lastLetter {
+        border-right: 1px solid #808080; }
+      .container div.alpha #alphaListMenu li.noLink {
+        color: #808080;
+        font-weight: 400;
+        border-right: 1px solid #808080; }
+
+.container div.prevnext {
+  border: 0 !important;
+  padding: 0 !important; }
+  .container div.prevnext ul {
+    list-style-type: none; }
+    .container div.prevnext ul li {
+      float: left;
+      padding-left: 3px;
+      padding-right: 3px;
+      font-weight: 900; }
 
 /* Idea is to have media queries break where it looks good, not on device size = based on Bootstrap 4 */
 /* Idea is to have media queries break where it looks good, not on device size - based on Bootstrap 4 */

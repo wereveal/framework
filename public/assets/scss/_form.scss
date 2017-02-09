@@ -133,3 +133,37 @@ label {
         margin-right: 2rem;
     }
 }
+
+#people-form {
+    fieldset {
+        border: 1px $color-black dotted;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+    }
+    input {
+        width: 200px;
+        &#description {
+            width: 600px;
+        }
+    }
+}
+
+#login-form {
+    label {
+        vertical-align: baseline;
+        padding-top: .25rem;
+        font-weight: 900;
+    }
+}
+
+.constants-form {
+    input {
+        width: 200px;
+    }
+}
+
+.datepicker {
+    display: inline-block;
+    width: 50%;
+}

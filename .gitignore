@@ -17,6 +17,7 @@ composer.lock
 /app/src/Ritc/Main
 /private/mysql.php
 /private/pgsql.php
+/assets
 /public/doxy
 /public/index.php
 /public/tools/ping.php
@@ -24,3 +25,4 @@ composer.lock
 /vendor
 .idea
 *.log
+db_config_ftp.php

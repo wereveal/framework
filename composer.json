@@ -6,7 +6,6 @@
 		"psr/cache": "^1.0",
 		"psr/http-message": "^1.0",
 		"psr/log": "^1.0",
-        "twbs/bootstrap": ">=4.0.0-alpha",
         "twig/twig": ">1.2-stable"
     }
 }
