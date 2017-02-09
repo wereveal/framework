@@ -16,9 +16,12 @@ composer.lock
 /app/src/Ritc/Guide
 /app/src/Ritc/Library
 /app/src/Ritc/Main
+/private/mysql.php
+/private/pgsql.php
 /assets
 /public/doxy
 /public/index.php
+/public/tools/ping.php
 /public/setup.php
 /vendor
 .idea
