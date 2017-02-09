@@ -8,6 +8,7 @@ composer.lock
 /app/config/db_config_setup.php
 /app/config/db_config_wer.php
 /app/config/twig_config.php
+/app/config/twig_config_local.php
 /app/config/install/my_config.php
 /app/twig_cache/*
 /app/src/Ritc/Blog

@@ -33,6 +33,9 @@ require_once BASE_PATH . '/app/config/constants.php';
 if (!isset($db_config_file)) {
     $db_config_file = 'db_config.php';
 }
+if (!isset($twig_config_file)) {
+    $twig_config_file = 'twig_config.php';
+}
 if (!isset($psr_loader)) {
     $psr_loader = 'psr4';
 }
@@ -64,9 +67,10 @@ $o_session = Session::start();
 $o_di = new Di();
 $o_di->set('elog',    $o_elog);
 $o_di->set('session', $o_session);
+$o_di->setVar('dbConfig', $db_config_file);
+$o_di->setVar('twigConfig', $twig_config_file);
 
 $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
-
 if ($o_pdo !== false) {
     $o_db = new DbModel($o_pdo, $db_config_file);
     $o_db->setElog($o_elog);
@@ -98,7 +102,7 @@ if ($o_pdo !== false) {
         if (!is_object($o_router)) {
             die("Could not create a new Router");
         }
-        $o_twig   = TwigFactory::getTwig('twig_config.php');
+        $o_twig   = TwigFactory::getTwig($twig_config_file);
         if (!is_object($o_twig)) {
             die("Could not create a new TwigEnviornment");
         }

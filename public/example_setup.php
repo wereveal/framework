@@ -9,6 +9,7 @@ switch ($_SERVER['HTTP_HOST']) { // allows for differing development environment
         define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(SITE_PATH));
         $db_config_file = 'db_config_local.php';
+        $twig_config_file = 'twig_config_local.php';
         break;
     case 'base.in.public.directory.not.secure.option': // base code is inside the public directory
         define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
@@ -26,7 +27,7 @@ switch ($_SERVER['HTTP_HOST']) { // allows for differing development environment
         define('BASE_PATH', dirname(SITE_PATH));
         $db_config_file = 'db_config_test.php';
         break;
-    default: // simple setup and this could be the only two lines needed in this file. 
+    default: // simple setup and this could be the only two lines needed in this file.
         define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(SITE_PATH));
 }
