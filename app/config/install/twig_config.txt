@@ -1,4 +1,5 @@
 <?php
+$common_path  = APP_PATH . '/templates';
 $app_path     = SRC_PATH . '/{NAMESPACE}/{APPNAME}/resources/templates';
 $library_path = SRC_PATH . '/Ritc/Library/resources/templates';
 
@@ -9,8 +10,14 @@ if (!defined('TWIG_PREFIX')) {
     define('TWIG_PREFIX', '{twig_prefix}');
 }
 return array(
-    'default_path'      => $app_path,
+    'default_path'      => $common_path,
     'additional_paths'  => array(
+        $common_path . '/default'  => 'default',
+        $common_path . '/elements' => 'elements',
+        $common_path . '/forms'    => 'forms',
+        $common_path . '/pages'    => 'pages',
+        $common_path . '/snippets' => 'snippets',
+        $common_path . '/tests'    => 'tests',
         $library_path . '/default'  => LIB_TWIG_PREFIX . 'default',
         $library_path . '/elements' => LIB_TWIG_PREFIX . 'elements',
         $library_path . '/forms'    => LIB_TWIG_PREFIX . 'forms',
@@ -25,7 +32,9 @@ return array(
         $app_path . '/tests'        => TWIG_PREFIX . 'tests'
     ),
     'environment_options' => [
-        'cache'       => APP_PATH . '/twig_cache', // APP_PATH . '/twig_cache', or false are most common
+        // APP_PATH . '/twig_cache', or false are most common - cache uses a file cache for speed!
+        // 'cache'       => APP_PATH . '/twig_cache',
+        'cache'       => false,
         'auto_reload' => true,
         'debug'       => true
     ]

@@ -60,7 +60,7 @@ $o_elog->setIgnoreLogOff(false); // turns on logging globally ignoring LOG_OFF w
 // set_error_handler([$o_elog, 'errorHandler'], E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR);
 $o_elog->setErrorHandler(E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR);
 
-$o_elog->write("Testing the elog\n", LOG_ON);
+$o_elog->write("Testing the elog\n", LOG_OFF);
 
 $o_session = Session::start();
 

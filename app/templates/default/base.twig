@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="{{ lang }}"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="{{ lang }}"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="{{ lang }}"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="{{ lang }}"> <!--<![endif]-->
+    <head>
+        <meta charset="{{ charset }}" />
+        {% block title %}<title>{{ title }}</title>{% endblock %}
+        {% block description %}<meta name="description" content="{{ description }}">{% endblock %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block meta %}{% endblock %}
+        <base href="{{ base_url }}">
+
+        {% block vendor_stylesheets %}
+        <link rel="stylesheet" href="{{ public_dir }}/assets/vendor/bootstrap/dist/css/bootstrap.min.css">
+        <script src="https://use.fontawesome.com/1465136e8a.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,400italic|Merriweather:400,400italic' rel='stylesheet' type='text/css'>
+        {% endblock %}
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ public_dir }}/assets/css/styles.css" media="screen">
+        {% endblock %}
+
+        <!--[if lt IE 9]>
+        <script src="{{ public_dir }}/assets/vendor/html5shiv/dist/html5shiv.min.js"></script>
+        <![endif]-->
+
+        {% block icons %}
+        <link rel="shortcut icon" type="image/x-icon" href="{{ public_dir }}/assets/images/favicon.ico" />
+        <link rel="icon" href="{{ public_dir }}/assets/images/icon.png" type="image/png" >
+        <link rel="apple-touch-icon" href="{{ public_dir }}/assets/images/touch/icon.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ public_dir }}/assets/images/icon_60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ public_dir }}/assets/images/icon_72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ public_dir }}/assets/images/icon_76x76.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ public_dir }}/assets/images/icon_60x60@2x.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ public_dir }}/assets/images/icon_72x72@2x.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ public_dir }}/assets/images/icon_76x76@2x.png">
+        {% endblock %}
+
+        {% block vendor_js %}
+        <script src="{{ public_dir }}/assets/vendor/jquery/dist/jquery.min.js"></script>
+        {% endblock %}
+        {% block head_js %}{% endblock %}
+    </head>
+    <body>
+        <div class="container container-main">
+        {% block header %}{% include '@' ~ twig_prefix ~ 'snippets/menu.twig' %}{% endblock %}
+        {% block search %}{% endblock %}
+        {% block body %}{% endblock %}
+        {% block footer %}{% endblock %}
+        </div>
+
+        {% block bottom_vendor_js %}
+        <script src="{{ public_dir }}/assets/vendor/tether/dist/js/tether.min.js"></script>
+        <script src="{{ public_dir }}/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+        {% endblock %}
+        {% block bottom_js %}{% endblock %}
+    </body>
+</html>
+{# expected array [
+    'lang',
+    'charset',
+    'title',
+    'description',
+    'public_dir'
+    ]
+#}
