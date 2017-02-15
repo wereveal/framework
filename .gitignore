@@ -19,6 +19,7 @@ composer.lock
 /private/mysql.php
 /private/pgsql.php
 /assets
+/public/assets/css/styles_ftpadmin.css
 /public/doxy
 /public/index.php
 /public/tools/ping.php

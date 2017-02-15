@@ -51,23 +51,17 @@ else {
     $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
     die("Could not connect to the database\n");
 }
-$o_twig   = TwigFactory::getTwig('twig_config.php');
-$o_loader = TwigFactory::getLoader('twig_config.php');
-$a_test_paths = [
-    SRC_PATH . '/Ritc/FtpAdmin/resources/templates/default' => 'ftp_default',
-    SRC_PATH . '/Ritc/FtpAdmin/resources/templates/elements' => 'ftp_elements',
-    SRC_PATH . '/Ritc/FtpAdmin/resources/templates/snippets' => 'ftp_snippets',
-    SRC_PATH . '/Ritc/FtpAdmin/resources/templates/pages' => 'ftp_pages'
-];
-try {
-   foreach ($a_test_paths as $path => $namespace ) {
-       $o_loader->prependPath($path, $namespace);
-   }
-}
-catch (\Twig_Error_Loader $e) {
-    print $e->getRawMessage();
-}
 
-print_r($o_loader->getPaths());
-print_r($o_loader->getNamespaces());
+$file_contents = file_get_contents(APP_CONFIG_PATH . '/twig_config.php');
+print $file_contents . "\n";
+$my_string =<<<EOT
+    'FtpAdmin' => [
+        'path'   => SRC_PATH . '/Ritc/FtpAdmin/resources/templates',
+        'prefix' => 'ftp_'
+    ],
+    ### PlaceHolder ###
+EOT;
+$file_contents = str_replace('    ### PlaceHolder ###', $my_string, $file_contents);
+print $file_contents . "\n";
+file_put_contents(APP_CONFIG_PATH . '/twig_config.php', $file_contents);
 ?>

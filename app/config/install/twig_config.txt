@@ -1,41 +1,55 @@
 <?php
-$common_path  = APP_PATH . '/templates';
-$app_path     = SRC_PATH . '/{NAMESPACE}/{APPNAME}/resources/templates';
-$library_path = SRC_PATH . '/Ritc/Library/resources/templates';
+$a_default_dirs = [
+    'default',
+    'elements',
+    'forms',
+    'pages',
+    'snippets',
+    'tests'
+];
 
+$site_twig_prefix = 'site_';
 if (!defined('LIB_TWIG_PREFIX')) {
     define('LIB_TWIG_PREFIX', 'lib_');
 }
 if (!defined('TWIG_PREFIX')) {
-    define('TWIG_PREFIX', '{twig_prefix}');
+    define('TWIG_PREFIX', 'site_');
 }
-return array(
-    'default_path'      => $common_path,
-    'additional_paths'  => array(
-        $common_path . '/default'  => 'default',
-        $common_path . '/elements' => 'elements',
-        $common_path . '/forms'    => 'forms',
-        $common_path . '/pages'    => 'pages',
-        $common_path . '/snippets' => 'snippets',
-        $common_path . '/tests'    => 'tests',
-        $library_path . '/default'  => LIB_TWIG_PREFIX . 'default',
-        $library_path . '/elements' => LIB_TWIG_PREFIX . 'elements',
-        $library_path . '/forms'    => LIB_TWIG_PREFIX . 'forms',
-        $library_path . '/pages'    => LIB_TWIG_PREFIX . 'pages',
-        $library_path . '/snippets' => LIB_TWIG_PREFIX . 'snippets',
-        $library_path . '/tests'    => LIB_TWIG_PREFIX . 'tests',
-        $app_path . '/default'      => TWIG_PREFIX . 'default',
-        $app_path . '/elements'     => TWIG_PREFIX . 'elements',
-        $app_path . '/forms'        => TWIG_PREFIX . 'forms',
-        $app_path . '/pages'        => TWIG_PREFIX . 'pages',
-        $app_path . '/snippets'     => TWIG_PREFIX . 'snippets',
-        $app_path . '/tests'        => TWIG_PREFIX . 'tests'
-    ),
+
+$a_places = [
+    'Site' => [
+        'path'   => APP_PATH . '/templates',
+        'prefix' => 'site_'
+    ],
+    'Library' => [
+        'path'   => SRC_PATH . '/Ritc/Library/resources/templates',
+        'prefix' => LIB_TWIG_PREFIX
+    ],
+    ### PlaceHolder ###
+];
+
+if (TWIG_PREFIX != 'site_') {
+    $a_places['{APPNAME}'] = [
+        'path'   => SRC_PATH . '/{NAMESPACE}/{APPNAME}/resources/templates',
+        'prefix' => TWIG_PREFIX
+    ];
+}
+
+$a_additional_paths = [];
+foreach ($a_places as $name => $a_place) {
+    foreach ($a_default_dirs as $dir) {
+        $a_additional_paths[$a_place['path'] . '/' . $dir] = $a_place['prefix'] . $dir;
+    }
+}
+
+return [
+    'default_path'      => $a_places['Site']['path'],
+    'additional_paths'  => $a_additional_paths,
     'environment_options' => [
-        // APP_PATH . '/twig_cache', or false are most common - cache uses a file cache for speed!
-        // 'cache'       => APP_PATH . '/twig_cache',
+        // for 'cache' APP_PATH . '/twig_cache' and false are most common values
+        # 'cache'       => APP_PATH . '/twig_cache',
         'cache'       => false,
         'auto_reload' => true,
         'debug'       => true
     ]
-);
+];

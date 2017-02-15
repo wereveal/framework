@@ -43,7 +43,7 @@ $a_constants = [
     ],
     'twig_prefix' => [
         'const_name'      => 'TWIG_PREFIX',
-        'const_value'     => 'ritc_',
+        'const_value'     => 'site_',
         'const_immutable' => 1
     ],
     'lib_twig_prefix' => [
@@ -109,6 +109,11 @@ $a_constants = [
     'rights_holder' => [
         'const_name'      => 'RIGHTS_HOLDER',
         'const_value'     => 'Reveal IT Consulting',
+        'const_immutable' => 1
+    ],
+    'copyright_date' => [
+        'const_name'      => 'COPYRIGHT_DATE',
+        'const_value'     => '2001-2017',
         'const_immutable' => 1
     ],
     'private_dir_name' => [

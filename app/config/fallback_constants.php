@@ -10,27 +10,29 @@
 **/
 namespace Ritc;
 
+define('ADMIN_DIR_NAME', 'manager');
+define('ADMIN_THEME_NAME', '');
+define('ASSETS_DIR_NAME', 'assets');
+define('COPYRIGHT_DATE', '2001-2017');
+define('CSS_DIR_NAME', 'css');
 define('DISPLAY_DATE_FORMAT', 'm/d/Y');
 define('DISPLAY_PHONE_FORMAT', 'XXX-XXX-XXXX');
 define('EMAIL_DOMAIN', 'replaceme.com');
 define('EMAIL_FORM_TO', 'me@replaceme.com');
 define('ERROR_EMAIL_ADDRESS', 'webmaster@revealitconsulting.com');
-define('RIGHTS_HOLDER', 'Reveal IT Consulting');
-define('PAGE_TEMPLATE', 'index.twig');
-define('TWIG_PREFIX', 'app_');
-define('THEME_NAME', '');
-define('ADMIN_THEME_NAME', '');
-define('THEMES_DIR', '');
-define('CSS_DIR_NAME', 'css');
-define('HTML_DIR_NAME', 'html');
-define('JS_DIR_NAME', 'js');
-define('IMAGE_DIR_NAME', 'images');
-define('ADMIN_DIR_NAME', 'manager');
-define('ASSETS_DIR_NAME', 'assets');
 define('FILES_DIR_NAME', 'files');
+define('HTML_DIR_NAME', 'html');
+define('IMAGE_DIR_NAME', 'images');
+define('JS_DIR_NAME', 'js');
+define('LIB_TWIG_PREFIX', 'lib_');
+define('PAGE_TEMPLATE', 'index.twig');
 define('PRIVATE_DIR_NAME', 'private');
-define('TMP_DIR_NAME', 'tmp');
+define('RIGHTS_HOLDER', 'Reveal IT Consulting');
 define('SESSION_IDLE_TIME', 1800);
+define('THEMES_DIR', '');
+define('THEME_NAME', '');
+define('TMP_DIR_NAME', 'tmp');
+define('TWIG_PREFIX', 'site_');
 if (!defined('DEVELOPER_MODE')) {
     define('DEVELOPER_MODE', true);
 }
