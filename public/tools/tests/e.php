@@ -10,17 +10,17 @@ use Ritc\Library\Services\Elog;
 use Ritc\Library\Services\Router;
 use Ritc\Library\Services\Session;
 
-if (!defined('SITE_PATH')) {
-    define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
+if (!defined('PUBLIC_PATH')) {
+    define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
 }
 if (!defined('BASE_PATH')) {
-    define('BASE_PATH', dirname(SITE_PATH));
+    define('BASE_PATH', dirname(PUBLIC_PATH));
 }
-echo SITE_PATH . "\n";
+echo PUBLIC_PATH . "\n";
 echo BASE_PATH . "\n";
-require_once BASE_PATH . '/app/config/constants.php';
+require_once BASE_PATH . '/src/config/constants.php';
 $o_loader = require_once VENDOR_PATH . '/autoload.php';
-$my_classmap = require_once APP_CONFIG_PATH . '/autoload_classmap.php';
+$my_classmap = require_once SRC_CONFIG_PATH . '/autoload_classmap.php';
 $o_loader->addClassMap($my_classmap);
 
 $o_elog = Elog::start();

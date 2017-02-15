@@ -21,14 +21,14 @@ use Ritc\Library\Services\Elog;
 use Ritc\Library\Services\Router;
 use Ritc\Library\Services\Session;
 
-if (!defined('SITE_PATH')) {
-    define('SITE_PATH', $_SERVER['DOCUMENT_ROOT']);
+if (!defined('PUBLIC_PATH')) {
+    define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
 }
 if (!defined('BASE_PATH')) {
     define('BASE_PATH', dirname(dirname(__FILE__)));
 }
 
-require_once BASE_PATH . '/app/config/constants.php';
+require_once BASE_PATH . '/src/config/constants.php';
 
 if (!isset($db_config_file)) {
     $db_config_file = 'db_config.php';
@@ -44,12 +44,12 @@ $o_loader = require_once VENDOR_PATH . '/autoload.php';
 
 if ($psr_loader == 'psr0') {
     ### PSR-0 autoload method
-    $my_classmap = require_once APP_CONFIG_PATH . '/autoload_classmap.php';
+    $my_classmap = require_once SRC_CONFIG_PATH . '/autoload_classmap.php';
     $o_loader->addClassMap($my_classmap);
 }
 else {
     ### PSR-4 autoload method
-    $my_namespaces = require_once APP_CONFIG_PATH . '/autoload_namespaces.php';
+    $my_namespaces = require_once SRC_CONFIG_PATH . '/autoload_namespaces.php';
     foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
         $o_loader->addPsr4($psr4_prefix, $psr0_paths);
     }
@@ -95,7 +95,7 @@ if ($o_pdo !== false) {
 
         if (!ConstantsHelper::start($o_di)) {
             $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
-            require_once APP_CONFIG_PATH . '/fallback_constants.php';
+            require_once SRC_CONFIG_PATH . '/fallback_constants.php';
         }
         $o_session->setIdleTime(SESSION_IDLE_TIME);
         $o_router = new Router($o_di);

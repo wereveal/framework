@@ -3,7 +3,7 @@ namespace Ritc\Library\Services;
 
 ob_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/setup.php';
-require_once BASE_PATH . '/app/setup.php';
+require_once BASE_PATH . '/src/setup.php';
 
 $file_name = BASE_PATH . '/tmp/elog.log';
 $o_main_controller = new Tail($file_name);

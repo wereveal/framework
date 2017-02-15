@@ -18,11 +18,11 @@ if (!defined('TWIG_PREFIX')) {
 
 $a_places = [
     'Site' => [
-        'path'   => APP_PATH . '/templates',
+        'path'   => SITE_PATH . '/templates',
         'prefix' => 'site_'
     ],
     'Library' => [
-        'path'   => SRC_PATH . '/Ritc/Library/resources/templates',
+        'path'   => APPS_PATH . '/Ritc/Library/resources/templates',
         'prefix' => LIB_TWIG_PREFIX
     ],
     ### PlaceHolder ###
@@ -30,7 +30,7 @@ $a_places = [
 
 if (TWIG_PREFIX != 'site_') {
     $a_places['{APPNAME}'] = [
-        'path'   => SRC_PATH . '/{NAMESPACE}/{APPNAME}/resources/templates',
+        'path'   => APPS_PATH . '/{NAMESPACE}/{APPNAME}/resources/templates',
         'prefix' => TWIG_PREFIX
     ];
 }
@@ -46,8 +46,8 @@ return [
     'default_path'      => $a_places['Site']['path'],
     'additional_paths'  => $a_additional_paths,
     'environment_options' => [
-        // for 'cache' APP_PATH . '/twig_cache' and false are most common values
-        # 'cache'       => APP_PATH . '/twig_cache',
+        // for 'cache' SITE_PATH . '/twig_cache' and false are most common values
+        # 'cache'       => SITE_PATH . '/twig_cache',
         'cache'       => false,
         'auto_reload' => true,
         'debug'       => true

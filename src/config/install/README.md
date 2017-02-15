@@ -1,6 +1,6 @@
 # Notes regarding the install files
 
-- These are used when the /app/bin/install.php script is run.
+- These are used when the /site/bin/install.php script is run.
 - See the README.md file in the bin directory for more instructions.
 - Modify these as needed **before** running the install.php script.
   - install_config.php has most of the primary variable used in the install.

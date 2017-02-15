@@ -3,12 +3,12 @@
  * @brief     This file sets up standard stuff for the Framework.
  * @details   This creates the database config, some standard directories,
  *            and some standard files needed, e.g. index.php and MainController.
- *            This should be run from the cli in the /app/bin directory of the site.
- *            Files in the /app/config/install dir should be modified as needed.
- *            The /app/config/install/install_config.php file is primary but can
+ *            This should be run from the cli in the /src/bin directory of the site.
+ *            Files in the /src/config/install dir should be modified as needed.
+ *            The /src/config/install/install_config.php file is primary but can
  *            copied and change the copy. Call the copied file by name on the cli,
  *            e.g. php install.php my_config.php
- * @file      /app/bin/install.php
+ * @file      /src/bin/install.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
  * @date      2017-01-24 14:19:43
@@ -28,25 +28,25 @@ use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 
 if (strpos(__DIR__, 'Library') !== false) {
-    die("Please Run this script from the app/bin directory");
+    die("Please Run this script from the src/bin directory");
 }
 
-$base_path = str_replace('/app/bin', '', __DIR__);
+$base_path = str_replace('/src/bin', '', __DIR__);
 define('DEVELOPER_MODE', true);
 define('BASE_PATH', $base_path);
-define('SITE_PATH', $base_path . '/public');
+define('PUBLIC_PATH', $base_path . '/public');
 
 echo 'Base Path: ' . BASE_PATH . "\n";
-echo 'Site Path: ' . SITE_PATH . "\n";
+echo 'Site Path: ' . PUBLIC_PATH . "\n";
 
-require_once BASE_PATH . '/app/config/constants.php';
+require_once BASE_PATH . '/src/config/constants.php';
 
-if (!file_exists(SRC_PATH . '/Ritc/Library')) {
-    die("You must clone the Ritc/Library in the src dir first and any other desired apps.\n");
+if (!file_exists(APPS_PATH . '/Ritc/Library')) {
+    die("You must clone the Ritc/Library in the apps dir first and any other desired apps.\n");
 }
-$install_files_path = APP_CONFIG_PATH . '/install';
+$install_files_path = SRC_CONFIG_PATH . '/install';
 
-/* allows a custom file to be created. Still must be in app/config/install dir */
+/* allows a custom file to be created. Still must be in src/config/install dir */
 if (isset($argv[1])) {
     $require_this = $install_files_path . '/' . $argv[1];
 }
@@ -56,11 +56,11 @@ else {
 $a_install = require_once $require_this;
 
 ### generate files for autoloader ###
-require SRC_PATH . '/Ritc/Library/Helper/AutoloadMapper.php';
+require APPS_PATH . '/Ritc/Library/Helper/AutoloadMapper.php';
 $a_dirs = [
-    'app_path'    => APP_PATH,
-    'config_path' => APP_CONFIG_PATH,
-    'src_path'    => SRC_PATH];
+    'src_path'   => SRC_PATH,
+    'config_path' => SRC_CONFIG_PATH,
+    'apps_path'   => APPS_PATH];
 $o_cm = new AutoloadMapper($a_dirs);
 if (!is_object($o_cm)) {
     die("Could not instance AutoloadMapper");
@@ -87,16 +87,16 @@ return [
 ];
 EOT;
 
-file_put_contents(APP_CONFIG_PATH . '/' . $db_config_file, $db_config_file_text);
+file_put_contents(SRC_CONFIG_PATH . '/' . $db_config_file, $db_config_file_text);
 
 $o_loader = require_once VENDOR_PATH . '/autoload.php';
 
 if ($a_install['loader'] == 'psr0') {
-    $my_classmap = require_once APP_CONFIG_PATH . '/autoload_classmap.php';
+    $my_classmap = require_once SRC_CONFIG_PATH . '/autoload_classmap.php';
     $o_loader->addClassMap($my_classmap);
 }
 else {
-    $my_namespaces = require_once APP_CONFIG_PATH . '/autoload_namespaces.php';
+    $my_namespaces = require_once SRC_CONFIG_PATH . '/autoload_namespaces.php';
     foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
         $o_loader->addPsr4($psr4_prefix, $psr0_paths);
     }
@@ -574,7 +574,7 @@ else {
 
 ### Create the directories for the new app ###
 print "\nCreateing the directories for the new app\n";
-$app_path = SRC_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
+$app_path = APPS_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
 $a_new_dirs = ['Abstracts', 'Controllers', 'Entities', 'Interfaces', 'Models',
 'Tests', 'Traits', 'Views', 'resources', 'resources/config', 'resources/sql',
 'resources/templates', 'resources/themes', 'resources/templates/default',
@@ -643,34 +643,34 @@ $a_replace = [
 
 ### Create the main controller for the app ###
 print "Creating the main controller for the app\n";
-$controller_text = file_get_contents(APP_CONFIG_PATH . '/install/controller.txt');
+$controller_text = file_get_contents(SRC_CONFIG_PATH . '/install/controller.txt');
 $controller_text = str_replace($a_find, $a_replace, $controller_text);
 file_put_contents($app_path . "/Controllers/{$a_install['app_name']}Controller.php", $controller_text);
 
 ### Create the home controller for the app ###
 print "Creating the home controller for the app\n";
 $a_replace[4] = 'Home';
-$controller_text = file_get_contents(APP_CONFIG_PATH . '/install/controller.txt');
+$controller_text = file_get_contents(SRC_CONFIG_PATH . '/install/controller.txt');
 $controller_text = str_replace($a_find, $a_replace, $controller_text);
 file_put_contents($app_path . "/Controllers/HomeController.php", $controller_text);
 
 ### Create the main view for the app ###
 print "Creating the main view for the app\n";
-$view_text = file_get_contents(APP_CONFIG_PATH . '/install/home_view.txt');
+$view_text = file_get_contents(SRC_CONFIG_PATH . '/install/home_view.txt');
 $view_text = str_replace($a_find, $a_replace, $view_text);
 file_put_contents($app_path . "/Views/{$a_install['app_name']}View.php", $view_text);
 
 ### Create the doxygen config for the app ###
 print "Creating the doxy config for the app\n";
-$doxy_text = file_get_contents(APP_CONFIG_PATH . '/install/doxygen_config.txt');
+$doxy_text = file_get_contents(SRC_CONFIG_PATH . '/install/doxygen_config.txt');
 $doxy_text = str_replace($a_find, $a_replace, $doxy_text);
 file_put_contents($app_path . '/resources/config/doxygen_config.php', $doxy_text);
 
 ### Create the twig_config file ###
 print "Creating the twig config file for app\n";
-$twig_file = file_get_contents(APP_CONFIG_PATH . '/install/twig_config.txt');
+$twig_file = file_get_contents(SRC_CONFIG_PATH . '/install/twig_config.txt');
 $new_twig_file = str_replace($a_find, $a_replace, $twig_file);
-file_put_contents(APP_CONFIG_PATH . '/twig_config.php', $new_twig_file);
+file_put_contents(SRC_CONFIG_PATH . '/twig_config.php', $new_twig_file);
 
 ### Copy two main twig files ###
 print "Copying twig files\n";
@@ -683,9 +683,9 @@ file_put_contents($app_path . $second_file, $twig_text);
 
 ### Create the index.php file ###
 print "Creating the index.php file for app\n";
-$index_text = file_get_contents(APP_CONFIG_PATH . '/install/index.php.txt');
+$index_text = file_get_contents(SRC_CONFIG_PATH . '/install/index.php.txt');
 $index_text = str_replace($a_find, $a_replace, $index_text);
-file_put_contents(SITE_PATH . '/index.php', $index_text);
+file_put_contents(PUBLIC_PATH . '/index.php', $index_text);
 
 ### Regenerate Autoload Map files
 $o_cm->generateMapFiles();

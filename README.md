@@ -1,7 +1,7 @@
 # README #
 
 * The Framework upon which I build my apps.
-* Version 2
+* Version 4
 
 ### How do I get set up? ###
 
@@ -11,12 +11,12 @@
     3. composer.phar install
     4. bower install
 *  clone Library from git if not installed via composer
-    1. cd app/src/Ritc
+    1. cd /src/apps/Ritc
     2. git clone ritclibrary Library
     3. clone any other Ritc app needed
 * New App configuration
     1. create database and assign user to it. Tables will be made with install.php.
-    2. Move to app/config/install and modify/copy install_config.php. If you copy install_config.php be sure to specify it on the command line when you run install.php
+    2. Move to /src/config/install and modify/copy install_config.php. If you copy install_config.php be sure to specify it on the command line when you run install.php
     3. php install.php (alternative config file name)
 
 ### Contribution guidelines ###
