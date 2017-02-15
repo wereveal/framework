@@ -1,3 +1,4 @@
+@import "functions";
 @mixin rounded($radius) {
     border-radius: $radius;
 }
@@ -10,29 +11,96 @@
     width: 1rem * $width;
 }
 
-@mixin marginSize($size, $where) {
+@mixin borderSize($size, $where, $what, $when) {
+    $size: 1rem * $size;
+    @if $when != '' {
+        $size: $size !important;
+    }
     @if $where == 'top' {
-        margin-top: 1rem * $size;
+        border-top: $size;
     }
     @else if $where == 'bottom' {
-        margin-bottom: 1rem * $size;
+        border-bottom: $size;
     }
     @else if $where == 'left' {
-        margin-left: 1rem * $size;
+        border-left: $size;
     }
     @else if $where == 'right' {
-        margin-right: 1rem * $size;
+        border-right: $size;
     }
     @else if $where == 'tb' {
-        margin-top: 1rem * $size;
-        margin-bottom: 1rem * $size;
+        border-top: $size;
+        border-bottom: $size;
     }
     @else if $where == 'lr' {
-        margin-left: 1rem * $size;
-        margin-right: 1rem * $size;
+        border-left: $size;
+        border-right: $size;
     }
     @else {
-        margin: 1rem * $size;
+        border: $size;
+    }
+    @if $what != '' {
+        border-style: $what;
+    }
+}
+
+@mixin marginSize($size, $where, $when) {
+    $size: 1rem * $size;
+    @if $when != '' {
+        $size: $size !important;
+    }
+    @if $where == 'top' {
+        margin-top: $size;
+    }
+    @else if $where == 'bottom' {
+        margin-bottom: $size;
+    }
+    @else if $where == 'left' {
+        margin-left: $size;
+    }
+    @else if $where == 'right' {
+        margin-right: $size;
+    }
+    @else if $where == 'tb' {
+        margin-top: $size;
+        margin-bottom: $size;
+    }
+    @else if $where == 'lr' {
+        margin-left: $size;
+        margin-right: $size;
+    }
+    @else {
+        margin: $size;
+    }
+}
+
+@mixin paddingSize($size, $where, $when) {
+    $size: 1rem * $size;
+    @if $when != '' {
+        $size: $size !important;
+    }
+    @if $where == 'top' {
+        padding-top: $size;
+    }
+    @else if $where == 'bottom' {
+        padding-bottom: $size;
+    }
+    @else if $where == 'left' {
+        padding-left: $size;
+    }
+    @else if $where == 'right' {
+        padding-right: $size;
+    }
+    @else if $where == 'tb' {
+        padding-top: $size;
+        padding-bottom: $size;
+    }
+    @else if $where == 'lr' {
+        padding-left: $size;
+        padding-right: $size;
+    }
+    @else {
+        padding: $size;
     }
 }
 
@@ -139,16 +207,6 @@
     margin-bottom: .5rem;
 }
 
-@function str-replace($string, $search, $replace: "") {
-    $index: str-index($string, $search);
-
-    @if $index {
-        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
-    }
-
-    @return $string;
-}
-
 @mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
     $src: null;
 
@@ -175,3 +233,13 @@
         src: $src;
     }
 }
+
+@mixin linear-gradient($direction, $colors...) {
+    @if is-direction($direction) == false {
+        $colors: $direction, $colors;
+        $direction: 180deg;
+    }
+    background: nth(nth($colors, 1), 1);
+    background: linear-gradient($direction, $colors) no-repeat;
+}
+

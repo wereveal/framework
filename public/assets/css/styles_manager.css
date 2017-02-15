@@ -67,6 +67,18 @@ p {
   font-weight: normal;
   src: url("/assets/fonts/Bitstream-Vera-Sans-fontfacekit/Vera-Bold-webfont.eot?") format("eot"), url("/assets/fonts/Bitstream-Vera-Sans-fontfacekit/Vera-Bold-webfont.woff2") format("woff2"), url("/assets/fonts/Bitstream-Vera-Sans-fontfacekit/Vera-Bold-webfont.woff") format("woff"), url("/assets/fonts/Bitstream-Vera-Sans-fontfacekit/Vera-Bold-webfont.ttf") format("truetype"), url("/assets/fonts/Bitstream-Vera-Sans-fontfacekit/Vera-Bold-webfont.svg#VeraSansBold") format("svg"); }
 
+html {
+  height: 100%; }
+
+body {
+  background: #ccc;
+  background: linear-gradient(180deg, #ccc, #e6e6e6) no-repeat;
+  height: 100%; }
+
+code.pre {
+  font-family: VeraMono, monospace;
+  white-space: pre-wrap; }
+
 hr.item-card {
   margin: .5rem 0;
   width: 50%; }
@@ -105,7 +117,7 @@ hr.item-card {
   margin-bottom: 2rem;
   margin-top: 1rem; }
   .container.container-main {
-    border: 1px solid #333;
+    /* border: 1px solid $color-border; */
     border-radius: .25rem;
     box-shadow: 0.15rem 0.15rem 0.15rem rgba(128, 128, 128, 0.65); }
   .container.container-bordered {
@@ -143,9 +155,17 @@ hr.item-card {
     .container .row.boxed [class*="col"] {
       background-color: #f5f5f5;
       border: 1px solid #333;
-      border-radius: 10px;
+      border-radius: .25rem;
       margin-bottom: 1rem;
-      padding: 1rem 2rem; }
+      padding: .25rem; }
+    .container .row.no-box [class*="col"] {
+      background-color: #f5f5f5;
+      border: 0;
+      margin-bottom: 1rem;
+      padding: .25rem; }
+      .container .row.no-box [class*="col"].no-space {
+        margin: 0;
+        padding: 0; }
     .container .row.normal-row {
       background-color: #fff; }
       .container .row.normal-row [class*="col"] {
@@ -304,6 +324,9 @@ hr.item-card {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem; }
 
+.margin-all-0 {
+  margin: 0rem !important; }
+
 .margin-all-1 {
   margin: 1rem; }
 
@@ -327,6 +350,34 @@ hr.item-card {
 
 .pad-top {
   padding-top: 1rem; }
+
+.pad-tb {
+  padding-top: 1rem;
+  padding-bottom: 1rem; }
+
+.pad-lr {
+  padding-left: 1rem;
+  padding-right: 1rem; }
+
+.pad-right-1-important {
+  padding-right: 1rem !important; }
+
+.pad-bottom-1-important {
+  padding-bottom: 1rem !important; }
+
+.pad-left-1-important {
+  padding-left: 1rem !important; }
+
+.pad-top-1-important {
+  padding-top: 1rem !important; }
+
+.pad-tb-1-important {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important; }
+
+.pad-lr-1-important {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important; }
 
 .pad-right-12 {
   padding-right: 12px; }

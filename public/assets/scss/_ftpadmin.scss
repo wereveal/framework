@@ -1,0 +1,10 @@
+.user-form {
+    @include paddingSize(.25, 'all', '');
+    div {
+        .col-reset {
+            @include marginSize(0, 'all', 'important');
+            @include paddingSize(.25, 'lr', 'important');
+            @include borderSize(0, 'all', 'solid', 'important');
+        }
+    }
+}

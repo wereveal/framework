@@ -1,3 +1,16 @@
+html {
+    height: 100%;
+}
+body {
+    @include linear-gradient(180deg, $gray-light, $gray-xlight);
+    height: 100%;
+}
+code {
+    &.pre {
+        font-family: VeraMono, monospace;
+        white-space: pre-wrap;
+    }
+}
 hr.item-card {
     margin: .5rem 0;
     width: 50%;
@@ -43,7 +56,7 @@ hr.item-card {
     margin-bottom: 2rem;
     margin-top: 1rem;
     &.container-main {
-        border: 1px solid $color-border;
+        /* border: 1px solid $color-border; */
         border-radius: .25rem;
         box-shadow: 0.15rem 0.15rem 0.15rem $color-shadow;
     }
@@ -95,9 +108,21 @@ hr.item-card {
             [class*="col"] {
                 background-color: $color-span;
                 border: 1px solid $color-border;
-                border-radius: 10px;
+                border-radius: .25rem;
                 margin-bottom: 1rem;
-                padding: 1rem 2rem;
+                padding: .25rem;
+            }
+        }
+        &.no-box {
+            [class*="col"] {
+                background-color: $color-span;
+                border: 0;
+                margin-bottom: 1rem;
+                padding: .25rem;
+                &.no-space {
+                    margin: 0;
+                    padding: 0;
+                }
             }
         }
         &.normal-row {
@@ -202,141 +227,165 @@ hr.item-card {
     @include clean_ul;
 }
 .margin-top-1 {
-    @include marginSize(1, 'top');
+    @include marginSize(1, 'top', '');
 }
 
 .margin-top-2 {
-    @include marginSize(2, 'top');
+    @include marginSize(2, 'top', '');
 }
 .margin-top-half {
-    @include marginSize(.5, 'top');
+    @include marginSize(.5, 'top', '');
 }
 
 .margin-top-quarter {
-    @include marginSize(.25, 'top');
+    @include marginSize(.25, 'top', '');
 }
 
 .margin-bottom-1 {
-    @include marginSize(1, 'bottom');
+    @include marginSize(1, 'bottom', '');
 }
 
 .margin-bottom-2 {
-    @include marginSize(2, 'bottom');
+    @include marginSize(2, 'bottom', '');
 }
 
 .margin-bottom-half {
-    @include marginSize(.5, 'bottom');
+    @include marginSize(.5, 'bottom', '');
 }
 
 .margin-bottom-quarter {
-    @include marginSize(.25, 'bottom');
+    @include marginSize(.25, 'bottom', '');
 }
 
 .margin-left-1 {
-    @include marginSize(1, 'left');
+    @include marginSize(1, 'left', '');
 }
 
 .margin-left-2 {
-    @include marginSize(2, 'left');
+    @include marginSize(2, 'left', '');
 }
 
 .margin-left-half {
-    @include marginSize(.5, 'left');
+    @include marginSize(.5, 'left', '');
 }
 
 .margin-left-quarter {
-    @include marginSize(.25, 'left');
+    @include marginSize(.25, 'left', '');
 }
 
 .margin-right-1 {
-    @include marginSize(1, 'right');
+    @include marginSize(1, 'right', '');
 }
 
 .margin-right-2 {
-    @include marginSize(2, 'right');
+    @include marginSize(2, 'right', '');
 }
 
 .margin-right-half {
-    @include marginSize(.5, 'right');
+    @include marginSize(.5, 'right', '');
 }
 
 .margin-right-quarter {
-    @include marginSize(.25, 'right');
+    @include marginSize(.25, 'right', '');
 }
 
 .margin-lr-1 {
-    @include marginSize(1, 'lr');
+    @include marginSize(1, 'lr', '');
 }
 
 .margin-lr-2 {
-    @include marginSize(2, 'lr');
+    @include marginSize(2, 'lr', '');
 }
 
 .margin-lr-half {
-    @include marginSize(.5, 'lr');
+    @include marginSize(.5, 'lr', '');
 }
 
 .margin-lr-quarter {
-    @include marginSize(.25, 'lr');
+    @include marginSize(.25, 'lr', '');
 }
 
 .margin-tb-1 {
-    @include marginSize(1, 'tb');
+    @include marginSize(1, 'tb', '');
 }
 
 .margin-tb-2 {
-    @include marginSize(2, 'tb');
+    @include marginSize(2, 'tb', '');
 }
 
 .margin-tb-half {
-    @include marginSize(.5, 'tb');
+    @include marginSize(.5, 'tb', '');
 }
 
 .margin-tb-quarter {
-    @include marginSize(.25, 'tb');
+    @include marginSize(.25, 'tb', '');
+}
+
+.margin-all-0 {
+    @include marginSize(0, 'all', 'important');
 }
 
 .margin-all-1 {
-    @include marginSize(1, 'all');
+    @include marginSize(1, 'all', '');
 }
 
 .margin-all-2 {
-    @include marginSize(1, 'all');
+    @include marginSize(1, 'all', '');
 }
 
 .margin-all-half {
-    @include marginSize(.5, 'all');
+    @include marginSize(.5, 'all', '');
 }
 
 .margin-all-quarter {
-    @include marginSize(.25, 'all');
+    @include marginSize(.25, 'all', '');
 }
 
 .pad-right {
-    padding-right: 1rem;
+    @include paddingSize(1, 'right', '');
 }
 .pad-bottom {
-    padding-bottom: 1rem;
+    @include paddingSize(1, 'bottom', '');
 }
 .pad-left {
-    padding-left: 1rem;
+    @include paddingSize(1, 'left', '');
 }
 .pad-top {
-    padding-top: 1rem;
+    @include paddingSize(1, 'top', '');
 }
-
+.pad-tb {
+    @include paddingSize(1, 'tb', '');
+}
+.pad-lr {
+    @include paddingSize(1, 'lr', '');
+}
+.pad-right-1-important {
+    @include paddingSize(1, 'right', 'important');
+}
+.pad-bottom-1-important {
+    @include paddingSize(1, 'bottom', 'important');
+}
+.pad-left-1-important {
+    @include paddingSize(1, 'left', 'important');
+}
+.pad-top-1-important {
+    @include paddingSize(1, 'top', 'important');
+}
+.pad-tb-1-important {
+    @include paddingSize(1, 'tb', 'important');
+}
+.pad-lr-1-important {
+    @include paddingSize(1, 'lr', 'important');
+}
 .pad-right-12 {
     padding-right: 12px;
 }
-
 .pad-top-12 {
     padding-top: 12px;
 }
-
 .pad-left-12 {
     padding-left: 12px;
 }
-
 .pad-top-12 {
     padding-top: 12px;
 }
