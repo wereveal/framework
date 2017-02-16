@@ -71,8 +71,7 @@ html {
   height: 100%; }
 
 body {
-  background: #ccc;
-  background: linear-gradient(180deg, #ccc, #e6e6e6) no-repeat;
+  background-color: #ccc;
   height: 100%; }
 
 code.pre {
@@ -212,6 +211,9 @@ hr.item-card {
 
 .dark-grey {
   color: #2c3539; }
+
+.slate {
+  color: #708090; }
 
 .border-radius-top-right {
   border-top-right-radius: 0.25rem; }
@@ -417,10 +419,11 @@ hr.item-card {
 
 /* menu bar */
 .navbar {
-  margin-top: 1rem; }
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem; }
   .navbar.bg-gray {
-    background-color: #ccc;
-    background-image: linear-gradient(top, #ccc, #e6e6e6);
+    background: #e6e6e6;
+    background: linear-gradient(180deg, #e6e6e6, #f2f2f2) no-repeat;
     color: #000; }
     .navbar.bg-gray a.nav-link {
       font-weight: 700;

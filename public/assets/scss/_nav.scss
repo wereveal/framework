@@ -1,9 +1,8 @@
 /* menu bar */
 .navbar {
-    margin-top: 1rem;
+    @include paddingSize(.25, 'tb', '');
     &.bg-gray {
-        background-color: $gray80;
-        background-image: linear-gradient(top, $gray80, $gray90);
+        @include linear-gradient(180deg, $gray90, $gray95);
         color: $color-black;
         a {
             &.nav-link {

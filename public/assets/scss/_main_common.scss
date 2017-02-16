@@ -2,7 +2,7 @@ html {
     height: 100%;
 }
 body {
-    @include linear-gradient(180deg, $gray-light, $gray-xlight);
+    background-color: $gray-light;
     height: 100%;
 }
 code {
@@ -185,6 +185,10 @@ hr.item-card {
 
 .dark-grey {
     color: $gunmetal-dark;
+}
+
+.slate {
+    color: $color-slate;
 }
 
 .border-radius-top-right {
