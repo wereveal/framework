@@ -1,5 +1,12 @@
-.user-form {
+.user-form-list {
     @include paddingSize(.25, 'all', '');
+    label {
+        font-weight: 900;
+        text-align: right;
+        display: inline-block;
+        @include paddingSize(.25, 'right', '');
+        @include wideRem(3);
+    }
     div {
         .col-reset {
             @include marginSize(0, 'all', 'important');

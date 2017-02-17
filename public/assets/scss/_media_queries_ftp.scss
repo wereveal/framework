@@ -1,0 +1,42 @@
+/* Idea is to have media queries break where it looks good, not on device size = based on Bootstrap 4 */
+@media screen and (min-width: 0) {
+    .user-form-list {
+        div {
+            &.col-reset {
+                @include paddingSize(0, 'all', 'important');
+            }
+
+        }
+        input {
+            @include wideRem(15);
+        }
+    }
+}
+@media screen and (min-width: 544px) {
+    .user-form-list {
+        input {
+            @include wideRem(20);
+        }
+    }
+}
+@media screen and (min-width: 768px) {
+    .user-form-list {
+        input {
+            @include wideRem(10);
+        }
+    }
+}
+@media screen and (min-width: 992px) {
+    .user-form-list {
+        input {
+            @include wideRem(12);
+        }
+    }
+}
+@media screen and (min-width: 1200px) {
+    .user-form-list {
+        input {
+            @include wideRem(17);
+        }
+    }
+}
