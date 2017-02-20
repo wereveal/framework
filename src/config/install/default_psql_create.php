@@ -19,7 +19,9 @@ return [
 
 "CREATE TABLE {$dbPrefix}page (
   page_id serial NOT NULL,
-  page_url character varying(255) NOT NULL DEFAULT '/'::character varying,
+  url_id integer NOT NULL,
+  ng_id integer NOT NULL,
+  page_twig character varying(20) NOT NULL DEFAULT 'Site'::character varying,
   page_type character varying(20) NOT NULL DEFAULT 'text/html'::character varying,
   page_title character varying(100) NOT NULL DEFAULT 'The Title'::character varying,
   page_description character varying(150) NOT NULL DEFAULT 'The Description'::character varying,
@@ -27,8 +29,7 @@ return [
   page_lang character varying(50) NOT NULL DEFAULT 'en'::character varying,
   page_charset character varying(100) NOT NULL DEFAULT 'utf-8'::character varying,
   page_immutable smallint NOT NULL DEFAULT 0,
-  PRIMARY KEY (page_id),
-  UNIQUE (page_url)
+  PRIMARY KEY (page_id)
 )",
 
 "CREATE TABLE {$dbPrefix}people (

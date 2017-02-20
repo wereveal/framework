@@ -571,6 +571,8 @@ $a_nav_ng_map = [
 $a_page = [
     'home' => [
         'url_id'           => 'home',
+        'ng_id'            => '1',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Home Page',
         'page_description' => 'Home Page',
@@ -581,6 +583,8 @@ $a_page = [
     ],
     'manager' => [
         'url_id'           => 'manager',
+        'ng_id'            => '2',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager',
         'page_description' => 'Manage Web Site',
@@ -591,6 +595,8 @@ $a_page = [
     ],
     'login' => [
         'url_id'           => 'login',
+        'ng_id'            => '1',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager: Please Login',
         'page_description' => 'Login page for the manager.',
@@ -601,6 +607,8 @@ $a_page = [
     ],
     'logout' => [
         'url_id'           => 'logout',
+        'ng_id'            => '1',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager: Logout',
         'page_description' => 'Logout page for the manager.',
@@ -611,6 +619,8 @@ $a_page = [
     ],
     'library' => [
         'url_id'           => 'library',
+        'ng_id'            => '2',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Advanced Config',
         'page_description' => 'Manages People, Places and Things',
@@ -621,6 +631,8 @@ $a_page = [
     ],
     'constants' => [
         'url_id'           => 'constants',
+        'ng_id'            => '2',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for Constants',
         'page_description' => 'Manages the Constants used in app',
@@ -631,6 +643,8 @@ $a_page = [
     ],
     'groups' => [
         'url_id'           => 'groups',
+        'ng_id'            => '2',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for Groups',
         'page_description' => 'Manages the Groups',
@@ -641,6 +655,8 @@ $a_page = [
     ],
     'people' => [
         'url_id'           => 'people',
+        'ng_id'            => '2',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for People',
         'page_description' => 'Manages people',
@@ -651,6 +667,8 @@ $a_page = [
     ],
     'urls' => [
         'url_id'           => 'urls',
+        'ng_id'            => '2',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for Urls',
         'page_description' => 'Manages the Urls',
@@ -661,6 +679,8 @@ $a_page = [
     ],
     'routes' => [
         'url_id'           => 'routes',
+        'ng_id'            => '2',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for Routes',
         'page_description' => 'Manages the routes',
@@ -671,6 +691,8 @@ $a_page = [
     ],
     'navigation' => [
         'url_id'           => 'navigation',
+        'ng_id'            => '2',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for the Navigation tools',
         'page_description' => 'Manager for Navigation tools',
@@ -681,6 +703,8 @@ $a_page = [
     ],
     'pages' => [
         'url_id'           => 'pages',
+        'ng_id'            => '2',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for Pages',
         'page_description' => 'Manages pages head information primarily',
@@ -691,6 +715,8 @@ $a_page = [
     ],
     'tests' => [
         'url_id'           => 'tests',
+        'ng_id'            => '2',
+        'page_twig'        => 'Site',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager Tests',
         'page_description' => 'Runs tests for the code.',

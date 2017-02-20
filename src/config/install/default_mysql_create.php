@@ -50,6 +50,8 @@ return [
 "CREATE TABLE `{dbPrefix}page` (
   `page_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `url_id` int(11) unsigned NOT NULL,
+  `ng_id` int(11) unsigned NOT NULL,
+  `page_twig` varchar(20) NOT NULL DEFAULT 'Site',
   `page_type` varchar(20) NOT NULL DEFAULT 'text/html',
   `page_title` varchar(100) NOT NULL DEFAULT 'Needs a title',
   `page_description` varchar(150) NOT NULL DEFAULT 'Needs a description',
