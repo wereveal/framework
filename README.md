@@ -18,6 +18,7 @@
     1. create database and assign user to it. Tables will be made with install.php.
     2. Move to /src/config/install and modify/copy install_config.php. If you copy install_config.php be sure to specify it on the command line when you run install.php
     3. php install.php (alternative config file name)
+* Run compass compile in the public/assets directory to generate initial css files. Modify the scss files as needed and then recompile.
 
 ### Contribution guidelines ###
 
