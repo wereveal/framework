@@ -16,9 +16,9 @@
     3. clone any other Ritc app needed
 * New App configuration
     1. create database and assign user to it. Tables will be made with install.php.
-    2. Move to /src/config/install and modify/copy install_config.php. If you copy install_config.php be sure to specify it on the command line when you run install.php
+    2. Move to /src/config/install and copy install_config.txt to a file with a name that ends with config.php, the default is install_config.php. Specify the file name on the command line when you run install.php if it isn't named install_config.php.
     3. php install.php (alternative config file name)
-* Run compass compile in the public/assets directory to generate initial css files. Modify the scss files as needed and then recompile.
+* Run compass compile in the public/assets directory to generate initial css files. After modifying the scss files as needed, recompile.
 
 ### Contribution guidelines ###
 
