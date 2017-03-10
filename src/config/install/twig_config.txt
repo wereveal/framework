@@ -18,7 +18,7 @@ if (!defined('TWIG_PREFIX')) {
 
 $a_places = [
     'Site' => [
-        'path'   => SITE_PATH . '/templates',
+        'path'   => SRC_PATH . '/templates',
         'prefix' => 'site_'
     ],
     'Library' => [

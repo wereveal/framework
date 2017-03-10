@@ -37,7 +37,7 @@ define('BASE_PATH', $base_path);
 define('PUBLIC_PATH', $base_path . '/public');
 
 echo 'Base Path: ' . BASE_PATH . "\n";
-echo 'Site Path: ' . PUBLIC_PATH . "\n";
+echo 'Public Path: ' . PUBLIC_PATH . "\n";
 
 require_once BASE_PATH . '/src/config/constants.php';
 

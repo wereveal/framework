@@ -14,8 +14,8 @@ if (!defined('BASE_PATH')) {
     $base_path = str_replace($i_am_here, '', $current_path);
     define('BASE_PATH', $base_path);
 }
-if (!defined('SITE_PATH')) {
-    define('SITE_PATH', BASE_PATH . '/public');
+if (!defined('PUBLIC_PATH')) {
+    define('PUBLIC_PATH', BASE_PATH . '/public');
 }
 
 if (!defined('DEVELOPER_MODE')) {
@@ -40,7 +40,7 @@ else {
     $db_config_file  = 'db_config.php';
 }
 
-require_once BASE_PATH . '/app/config/constants.php';
+require_once BASE_PATH . '/src/config/constants.php';
 
 $o_loader = require_once VENDOR_PATH . '/autoload.php';
 
