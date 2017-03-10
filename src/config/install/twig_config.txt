@@ -46,8 +46,8 @@ return [
     'default_path'      => $a_places['Site']['path'],
     'additional_paths'  => $a_additional_paths,
     'environment_options' => [
-        // for 'cache' SITE_PATH . '/twig_cache' and false are most common values
-        # 'cache'       => SITE_PATH . '/twig_cache',
+        // for 'cache' SRC_PATH . '/twig_cache' and false are most common values
+        # 'cache'       => SRC_PATH . '/twig_cache',
         'cache'       => false,
         'auto_reload' => true,
         'debug'       => true
