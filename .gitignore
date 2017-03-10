@@ -9,7 +9,6 @@ composer.lock
 /src/apps/Ritc/FtpAdmin
 /src/apps/Ritc/Guide
 /src/apps/Ritc/Library
-/src/apps/Ritc/Main
 /public/assets/css/*.css
 /public/doxy
 /public/index.php
