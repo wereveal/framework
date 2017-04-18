@@ -7,7 +7,7 @@
  *            Files in the /src/config/install dir should be modified as needed.
  *            The /src/config/install/install_config.php file is primary but can
  *            copied and change the copy. Call the copied file by name on the cli,
- *            e.g. php install.php my_config.php
+ *            e.g. php install.php install_config.php
  * @file      /src/bin/install.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>

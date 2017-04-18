@@ -3,8 +3,7 @@ composer.lock
 /src/config/autoload_namespaces.php
 /src/config/db_config*.php
 /src/config/twig_config_*.php
-/src/config/install/*config.php
-/src/config/install/*config_*.php
+/src/config/install/install_config*.php
 /src/twig_cache/*
 /src/apps/Ritc/Blog
 /src/apps/Ritc/FtpAdmin
