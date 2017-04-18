@@ -11,9 +11,10 @@
  * @file      /src/bin/install.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2017-01-24 14:19:43
- * @version   2.1.0
+ * @date      2017-04-18 17:20:24 
+ * @version   2.2.0
  * @note   <b>Change Log</b><pre>
+ *  v2.2.0 - bug fixes to get postgresql working                  - 2017-04-18 wer
  *  v2.1.0 - lots of bug fixes and additions                      - 2017-01-24 wer
  *  v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
  *  v1.0.0 - initial version                                      - 2015-11-27 wer
@@ -183,7 +184,7 @@ VALUES
 SQL;
 $a_table_info = [
     'table_name'  => $a_install['lib_db_prefix'] . 'constants',
-    'column_name' => 'const_name'
+    'column_name' => 'const_id'
 ];
 
 if (isset($a_install['twig_prefix']) && isset($a_constants['twig_prefix']['const_value'])) {
@@ -345,12 +346,16 @@ INSERT INTO {$a_install['lib_db_prefix']}people_group_map
 VALUES
   ({$a_strings['values']})
 SQL;
+$a_table_info = [
+    'table_name'  => $a_install['lib_db_prefix'] . 'people_group_map',
+    'column_name' => 'pgm_id'
+];
 
 foreach ($a_pgm as $key => $a_raw_data) {
     $people_id = $a_people[$a_raw_data['people_id']]['people_id'];
     $group_id = $a_groups[$a_raw_data['group_id']]['group_id'];
     $a_values = [':people_id' => $people_id, ':group_id' => $group_id];
-    $results = $o_db->insert($pgm_sql, $a_values);
+    $results = $o_db->insert($pgm_sql, $a_values, $a_table_info);
     if (empty($results)) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
@@ -411,7 +416,7 @@ SQL;
 
 $a_table_info = [
     'table_name'  => $a_install['lib_db_prefix'] . 'routes_group_map',
-    'column_name' => 'route_id'
+    'column_name' => 'rgm_id'
 ];
 
 foreach ($a_rgm as $key => $a_record) {
@@ -457,7 +462,7 @@ SQL;
 
 $a_table_info = [
     'table_name'  => $a_install['lib_db_prefix'] . 'navigation',
-    'column_name' => 'route_id'
+    'column_name' => 'nav_id'
 ];
 
 foreach ($a_navigation as $key => $a_record) {
@@ -514,7 +519,7 @@ SQL;
 
 $a_table_info = [
     'table_name'  => $a_install['lib_db_prefix'] . 'nav_ng_map',
-    'column_name' => 'route_id'
+    'column_name' => 'nnm_id'
 ];
 
 foreach ($a_nnm as $key => $a_record) {
@@ -548,7 +553,7 @@ SQL;
 
 $a_table_info = [
     'table_name'  => $a_install['lib_db_prefix'] . 'page',
-    'column_name' => 'route_id'
+    'column_name' => 'page_id'
 ];
 
 foreach ($a_page as $key => $a_record) {

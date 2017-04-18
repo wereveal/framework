@@ -13,6 +13,7 @@
  */
 namespace {NAMESPACE}\{APPNAME}\Controllers;
 
+use Ritc\Library\Controllers\LibraryController;
 use Ritc\Library\Interfaces\ControllerInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;
@@ -62,10 +63,11 @@ class {controller_name}Controller implements ControllerInterface
                 $o_controller = new ManagerController($this->o_di);
                 break;
             case 'HomeController':
-            default:
                 $o_controller = new HomeController($this->o_di);
+                break;
+            default:
+                $o_controller = new $route_class($this->o_di);
         }
         return $o_controller->$route_method();
-;
     }
 }

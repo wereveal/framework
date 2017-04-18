@@ -1,8 +1,7 @@
 <?php
 /**
- * @brief     This file sets up standard stuff for the Framework.
- * @details   This creates the database config, some standard directories,
- *            and some standard files needed, e.g. index.php and MainController.
+ * @brief     This file sets up database.
+ * @details   This creates the database config.
  *            This should be run from the cli in the /src/bin directory of the site.
  *            Files in the /src/config/install dir should be modified as needed.
  *            The /src/config/install/install_config.php file is primary but can
@@ -11,13 +10,10 @@
  * @file      /src/bin/install.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2017-01-24 14:19:43
- * @version   2.1.0
- * @note   <b>Change Log</b><pre>
- *  v2.1.0 - lots of bug fixes and additions                      - 2017-01-24 wer
- *  v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
- *  v1.0.0 - initial version                                      - 2015-11-27 wer
- * </pre>
+ * @date      2017-04-18 16:56:19 
+ * @version   1.0.0
+ * @note   <b>Change Log</b>
+ * - v1.0.0 - initial version                                      - 2017-04-18 wer
  */
 namespace Ritc;
 
@@ -164,6 +160,7 @@ $a_data = require $install_files_path .  '/default_data.php';
 $o_db->startTransaction();
 foreach ($a_sql as $sql) {
     $sql = str_replace('{dbPrefix}', $a_install['lib_db_prefix'], $sql);
+    print $sql . "\n";
     if ($o_db->rawExec($sql) === false) {
         $error_message = $o_db->getSqlErrorMessage();
         $o_db->rollbackTransaction();
@@ -183,7 +180,7 @@ VALUES
 SQL;
 $a_table_info = [
     'table_name'  => $a_install['lib_db_prefix'] . 'constants',
-    'column_name' => 'const_name'
+    'column_name' => 'const_id'
 ];
 
 if (isset($a_install['twig_prefix']) && isset($a_constants['twig_prefix']['const_value'])) {
@@ -193,8 +190,6 @@ foreach ($a_constants as $key => $a_values) {
     $results = $o_db->insert($sql, $a_values, $a_table_info);
     if (empty($results)) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
-        print_r($a_values);
-        print "\n";
         $o_db->rollbackTransaction();
         die("\nCould not insert contants data\n");
     }
@@ -331,8 +326,8 @@ foreach ($a_navgroups as $key => $a_nav_group) {
     }
 }
 print "\n\n";
-print_r($a_navgroups);
-print "\n\n";
+// print_r($a_navgroups);
+// print "\n\n";
 
 ### Enter 'people_group_map',
 print "Creating people_group_map: ";
@@ -345,12 +340,16 @@ INSERT INTO {$a_install['lib_db_prefix']}people_group_map
 VALUES
   ({$a_strings['values']})
 SQL;
+$a_table_info = [
+    'table_name'  => $a_install['lib_db_prefix'] . 'people_group_map',
+    'column_name' => 'pgm_id'
+];
 
 foreach ($a_pgm as $key => $a_raw_data) {
     $people_id = $a_people[$a_raw_data['people_id']]['people_id'];
     $group_id = $a_groups[$a_raw_data['group_id']]['group_id'];
     $a_values = [':people_id' => $people_id, ':group_id' => $group_id];
-    $results = $o_db->insert($pgm_sql, $a_values);
+    $results = $o_db->insert($pgm_sql, $a_values, $a_table_info);
     if (empty($results)) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
@@ -396,7 +395,6 @@ foreach ($a_routes as $key => $a_record) {
     }
 }
 print "\n\n";
-
 ### Enter 'routes_group_map'
 print "Creating routes_group_map: ";
 $a_rgm     = $a_data['routes_group_map'];
@@ -411,12 +409,14 @@ SQL;
 
 $a_table_info = [
     'table_name'  => $a_install['lib_db_prefix'] . 'routes_group_map',
-    'column_name' => 'route_id'
+    'column_name' => 'rgm__id'
 ];
 
 foreach ($a_rgm as $key => $a_record) {
     $a_record['route_id'] = $a_routes[$a_record['route_id']]['route_id'];
     $a_record['group_id'] = $a_groups[$a_record['group_id']]['group_id'];
+    // print_r($a_record);
+    print "\n";
     $results = $o_db->insert($rgm_sql, $a_record, $a_table_info);
     if ($results === false) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
@@ -457,7 +457,7 @@ SQL;
 
 $a_table_info = [
     'table_name'  => $a_install['lib_db_prefix'] . 'navigation',
-    'column_name' => 'route_id'
+    'column_name' => 'nav_id'
 ];
 
 foreach ($a_navigation as $key => $a_record) {
@@ -514,8 +514,13 @@ SQL;
 
 $a_table_info = [
     'table_name'  => $a_install['lib_db_prefix'] . 'nav_ng_map',
-    'column_name' => 'route_id'
+    'column_name' => 'nnm_id'
 ];
+
+// print_r($a_navgroups);
+// print "\n";
+// print_r($a_navigation);
+// print "\n";
 
 foreach ($a_nnm as $key => $a_record) {
     $a_record['ng_id']  = $a_navgroups[$a_record['ng_id']]['ng_id'];
@@ -548,7 +553,7 @@ SQL;
 
 $a_table_info = [
     'table_name'  => $a_install['lib_db_prefix'] . 'page',
-    'column_name' => 'route_id'
+    'column_name' => 'page_id'
 ];
 
 foreach ($a_page as $key => $a_record) {

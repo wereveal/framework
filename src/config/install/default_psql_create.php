@@ -11,6 +11,8 @@ return [
 "DROP TABLE IF EXISTS {dbPrefix}navgroups",
 "DROP TABLE IF EXISTS {dbPrefix}navigation",
 "DROP TABLE IF EXISTS {dbPrefix}urls",
+"DROP TYPE IF EXISTS url_protocol CASCADE",
+
 "CREATE TYPE url_protocol as ENUM ('http', 'https', 'ftp', 'gopher', 'mailto')",
 "CREATE TABLE {dbPrefix}constants (
   const_id serial NOT NULL,
