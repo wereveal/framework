@@ -16,6 +16,7 @@ namespace {NAMESPACE}\{APPNAME}\Controllers;
 use Ritc\Library\Interfaces\ControllerInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;
+use Ritc\Library\Traits\LogitTraits;
 
 /**
  * Class {controller_name}Controller.
@@ -24,7 +25,7 @@ use Ritc\Library\Traits\ControllerTraits;
  */
 class {controller_name}Controller implements ControllerInterface
 {
-    use ControllerTraits;
+    use ControllerTraits, LogitTraits;
 
     /**
      * {controller_name}Controller constructor.
@@ -33,6 +34,7 @@ class {controller_name}Controller implements ControllerInterface
     public function __construct(Di $o_di)
     {
         $this->setupController($o_di);
+        $this->setupElog($o_di);
     }
 
     /**
@@ -43,6 +45,27 @@ class {controller_name}Controller implements ControllerInterface
     public function route()
     {
         // TODO: Implement route() method.
-        return '';
+        $a_router_parts = $this->o_router->getRouteParts();
+
+        $route_class = $a_router_parts['route_class'] != ''
+            ? $a_router_parts['route_class']
+            : 'HomeController';
+        $route_method = $a_router_parts['route_method'] != ''
+            ? $a_router_parts['route_method']
+            : 'route';
+
+        switch ($route_class) {
+            case 'LibraryController':
+                $o_controller = new LibraryController($this->o_di);
+                break;
+            case 'ManagerController':
+                $o_controller = new ManagerController($this->o_di);
+                break;
+            case 'HomeController':
+            default:
+                $o_controller = new HomeController($this->o_di);
+        }
+        return $o_controller->$route_method();
+;
     }
 }

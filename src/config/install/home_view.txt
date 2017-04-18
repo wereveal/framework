@@ -15,6 +15,7 @@ namespace {NAMESPACE}\{APPNAME}\Views;
 
 use Ritc\Library\Interfaces\ViewInterface;
 use Ritc\Library\Services\Di;
+use Ritc\Library\Traits\LogitTraits;
 use Ritc\Library\Traits\ViewTraits;
 
 /**
@@ -24,15 +25,18 @@ use Ritc\Library\Traits\ViewTraits;
  */
 class HomeView implements ViewInterface
 {
-    use ViewTraits;
+    use ViewTraits, LogitTraits;
 
     public function __construct(Di $o_di)
     {
         $this->setupView($o_di);
+        $this->setupElog($o_di);
     }
 
     public function render()
     {
-        return '';
+        $a_twig_values = $this->createDefaultTwigValues($a_message);
+        $tpl = '@' . $a_twig_values['twig_prefix'] . 'pages/index.twig';
+        return $this->o_twig->render($tpl, $a_twig_values);
     }
 }

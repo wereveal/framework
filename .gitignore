@@ -2,7 +2,7 @@ composer.lock
 /src/config/autoload_classmap.php
 /src/config/autoload_namespaces.php
 /src/config/db_config*.php
-/src/config/twig_config*.php
+/src/config/twig_config_*.php
 /src/config/install/*config.php
 /src/twig_cache/*
 /src/apps/Ritc/Blog

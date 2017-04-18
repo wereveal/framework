@@ -575,11 +575,26 @@ else {
 ### Create the directories for the new app ###
 print "\nCreateing the directories for the new app\n";
 $app_path = APPS_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
-$a_new_dirs = ['Abstracts', 'Controllers', 'Entities', 'Interfaces', 'Models',
-'Tests', 'Traits', 'Views', 'resources', 'resources/config', 'resources/sql',
-'resources/templates', 'resources/themes', 'resources/templates/default',
-'resources/templates/elements', 'resources/templates/pages', 'resources/templates/forms',
-'resources/templates/snippets', 'resources/templates/tests'];
+$a_new_dirs = [
+    'Abstracts',
+    'Controllers',
+    'Entities',
+    'Interfaces',
+    'Models',
+    'Tests',
+    'Traits',
+    'Views',
+    'resources',
+    'resources/config',
+    'resources/sql',
+    'resources/templates',
+    'resources/templates/default',
+    'resources/templates/elements',
+    'resources/templates/pages',
+    'resources/templates/forms',
+    'resources/templates/snippets',
+    'resources/templates/tests'
+];
 
 $htaccess_text =<<<EOF
 <IfModule mod_authz_core.c>
@@ -670,7 +685,7 @@ file_put_contents($app_path . '/resources/config/doxygen_config.php', $doxy_text
 print "Creating the twig config file for app\n";
 $twig_file = file_get_contents(SRC_CONFIG_PATH . '/install/twig_config.txt');
 $new_twig_file = str_replace($a_find, $a_replace, $twig_file);
-file_put_contents(SRC_CONFIG_PATH . '/twig_config.php', $new_twig_file);
+file_put_contents($app_path . '/resources/config/twig_config.php', $new_twig_file);
 
 ### Copy two main twig files ###
 print "Copying twig files\n";
