@@ -167,7 +167,7 @@ foreach ($a_sql as $sql) {
     if ($o_db->rawExec($sql) === false) {
         $error_message = $o_db->getSqlErrorMessage();
         $o_db->rollbackTransaction();
-        die("Database failure\n" . var_export($o_pdo->errorInfo(), true) . " other: " . $error_message . "\n");
+        die("Database failure\n" . var_export($o_pdo->errorInfo(), true) . " \nother: " . $error_message . "\n" . $sql . "\n");
     }
 }
 
@@ -192,9 +192,11 @@ if (isset($a_install['twig_prefix']) && isset($a_constants['twig_prefix']['const
 foreach ($a_constants as $key => $a_values) {
     $results = $o_db->insert($sql, $a_values, $a_table_info);
     if (empty($results)) {
-        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print_r($a_values);
+        print "\n";
         $o_db->rollbackTransaction();
-        die("Could not insert contants data\n");
+        die("\nCould not insert contants data\n");
     }
     else {
         print "c";
@@ -220,9 +222,9 @@ $a_table_info = [
 foreach ($a_groups as $key => $a_values) {
     $results = $o_db->insert($sql, $a_values, $a_table_info);
     if (empty($results)) {
-        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
-        die("Could not insert groups data\n");
+        die("\nCould not insert groups data\n");
     }
     else {
         $ids = $o_db->getNewIds();
@@ -251,9 +253,9 @@ $a_table_info = [
 foreach ($a_urls as $key => $a_record) {
     $results = $o_db->insert($sql, $a_record, $a_table_info);
     if (empty($results)) {
-        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
-        die("Could not insert url data\n");
+        die("\nCould not insert url data\n");
     }
     else {
         $ids = $o_db->getNewIds();
@@ -287,9 +289,9 @@ foreach ($a_people as $key => $a_person) {
     $a_person['password'] = password_hash($a_person['password'], PASSWORD_DEFAULT);
     $results = $o_db->insert($sql, $a_person, $a_table_info);
     if (empty($results)) {
-        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
-        die("Could not insert people data\n");
+        die("\nCould not insert people data\n");
     }
     else {
         $ids = $o_db->getNewIds();
@@ -318,9 +320,9 @@ $a_table_info = [
 foreach ($a_navgroups as $key => $a_nav_group) {
     $results = $o_db->insert($sql, $a_nav_group, $a_table_info);
     if (empty($results)) {
-        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
-        die("Could not insert navgroups data\n");
+        die("\nCould not insert navgroups data\n");
     }
     else {
         $ids = $o_db->getNewIds();
@@ -350,9 +352,9 @@ foreach ($a_pgm as $key => $a_raw_data) {
     $a_values = [':people_id' => $people_id, ':group_id' => $group_id];
     $results = $o_db->insert($pgm_sql, $a_values);
     if (empty($results)) {
-        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
-        die("Could not insert people_group_map data\n");
+        die("\nCould not insert people_group_map data\n");
     }
     else {
         $ids = $o_db->getNewIds();
@@ -383,9 +385,9 @@ foreach ($a_routes as $key => $a_record) {
     $a_record['url_id'] = $a_urls[$a_record['url_id']]['url_id'];
     $results = $o_db->insert($routes_sql, $a_record, $a_table_info);
     if ($results === false) {
-        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
-        die("Could not insert routes data\n");
+        die("\nCould not insert routes data\n");
     }
     else {
         $ids = $o_db->getNewIds();
@@ -417,7 +419,7 @@ foreach ($a_rgm as $key => $a_record) {
     $a_record['group_id'] = $a_groups[$a_record['group_id']]['group_id'];
     $results = $o_db->insert($rgm_sql, $a_record, $a_table_info);
     if ($results === false) {
-        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
         die("\nCould not insert route_group_map data\n");
     }
@@ -463,7 +465,7 @@ foreach ($a_navigation as $key => $a_record) {
     $a_record['nav_parent_id'] = 0;
     $results = $o_db->insert($nav_sql, $a_record, $a_table_info);
     if ($results === false) {
-        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
         die("\nCould not insert navigation data\n");
     }
@@ -480,7 +482,7 @@ foreach ($a_navigation as $key => $a_record) {
     $search_values = [':nav_name' => $a_record['nav_parent_name']];
     $results = $o_db->search($parent_sql, $search_values);
     if (empty($results)) {
-        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
         die("\nCould not retrieve parent navigation data\n");
     }
@@ -520,7 +522,7 @@ foreach ($a_nnm as $key => $a_record) {
     $a_record['nav_id'] = $a_navigation[$a_record['nav_id']]['nav_id'];
     $results = $o_db->insert($nnm_sql, $a_record, $a_table_info);
     if ($results === false) {
-        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
         die("\nCould not insert nav_ng_map data\n");
     }
@@ -553,7 +555,7 @@ foreach ($a_page as $key => $a_record) {
     $a_record['url_id']  = $a_urls[$a_record['url_id']]['url_id'];
     $results = $o_db->insert($page_sql, $a_record, $a_table_info);
     if ($results === false) {
-        print $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
         die("\nCould not insert page data\n");
     }

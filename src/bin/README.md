@@ -9,5 +9,5 @@
     - default_x_create.php files have sql used to create the tables needed.
     - twig_config_values.php has the values needed to create the twig_config.php file used by Twig templates.
 - makePasswords script allows one to regenerate the default passwords. Change the actual password before doing it, copy the password generated and enter it into the database record.
-- makeDirs creates the default directories for an app
+- makeDirs creates the default directories for an app with appropriate files
 - makeDb recreates the default database tables for the app.

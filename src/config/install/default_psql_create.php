@@ -33,7 +33,7 @@ return [
   url_id serial NOT NULL,
   url_host character varying(255) NOT NULL DEFAULT 'self'::character varying,
   url_text character varying(255) NOT NULL DEFAULT ''::character varying,
-  url_scheme url_protocol NOT NULL DEFAULT 'https'::url_protocol
+  url_scheme url_protocol NOT NULL DEFAULT 'https'::url_protocol,
   url_immutable integer NOT NULL DEFAULT 0,
   PRIMARY KEY (url_id)
 )",
@@ -102,15 +102,15 @@ return [
   nav_level integer NOT NULL DEFAULT 1,
   nav_order integer NOT NULL DEFAULT 0,
   nav_active integer NOT NULL DEFAULT 1,
-  PRIMARY KEY (nav_id),
+  PRIMARY KEY (nav_id)
 )",
 "CREATE INDEX nav_url_id_idx on {dbPrefix}navigation (url_id)",
 
 "CREATE TABLE {dbPrefix}nav_ng_map (
-  nnm_id integer unsigned NOT NULL AUTO_INCREMENT,
-  ng_id integer unsigned NOT NULL,
-  nav_id integer unsigned NOT NULL,
-PRIMARY KEY (nnm_id),
+  nnm_id serial NOT NULL,
+  ng_id integer NOT NULL,
+  nav_id integer NOT NULL,
+  PRIMARY KEY (nnm_id)
 )",
 "CREATE UNIQUE INDEX ng_nav_idx on {dbPrefix}nav_ng_map (ng_id, nav_id)",
 
@@ -185,6 +185,4 @@ PRIMARY KEY (nnm_id),
   ON DELETE CASCADE 
   ON UPDATE CASCADE",
 ];
-
-
 
