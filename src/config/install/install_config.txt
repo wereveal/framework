@@ -1,5 +1,4 @@
 <?php
-
 return [
     'app_name'        => 'App',
     'namespace'       => 'Ritc',
@@ -14,12 +13,18 @@ return [
     'db_user'         => 'dbuser',
     'db_pass'         => 'dbpass',
     'db_persist'      => 'false',
-    'db_prefix'       => 'ritc_',
-    'lib_db_prefix'   => 'ritc_',
+    'db_prefix'       => 'app_',
+    'lib_db_prefix'   => 'lib_',
     'twig_prefix'     => 'app_',
     'lib_twig_prefix' => 'lib_',
     'loader'          => 'psr4',
     'superadmin'      => 'letGSAin',
     'admin'           => 'letADMin',
-    'manager'         => 'letMANin'
+    'manager'         => 'letMANin',
+    'developer_mode'  => 'false', // or 'true'
+    'public_path'     => '', // leave blank for default setting
+    'base_path'       => '', // leave blank for default setting
+    'http_host'       => '', // leave blank for default setting
+	'domain'          => 'revealitconsulting'  // domain name
+	'tld'             => 'com' // top level domain, e.g., com, net, org
 ];

@@ -709,6 +709,56 @@ $index_text = file_get_contents(SRC_CONFIG_PATH . '/install/index.php.txt');
 $index_text = str_replace($a_find, $a_replace, $index_text);
 file_put_contents(PUBLIC_PATH . '/index.php', $index_text);
 
+print "Creating the setup.php file included with index.php file\n";
+$public_path = empty($a_install['public_path'])
+	? '$_SERVER["DOCUMENT_ROOT"]'
+	: $a_install['public_path'];
+$base_path = empty($a_install['base_path'])
+	? 'dirname(PUBLIC_PATH)'
+	: $a_install['base_path'];
+$developer_mode = $a_install['developer_mode'] == 'true'
+	? 'true'
+	: 'false';
+$http_host = $a_install['http_host'];
+$domain = empty($a_install['domain'])
+	? ''
+	: $a_install['domain'];
+$tld = empty($a_install['tld'])
+    ? 'com'
+    : $a_install['tld'];
+
+$a_find = [
+    '{db_config_file}',
+	'{public_path}',
+	'{base_path}',
+	'{developer_mode}',
+    '{http_host}',
+	'{domain}',
+    '{tld}',
+    '{specific_host}'
+];
+$a_replace = [
+    $db_config_file,
+	$public_path,
+	$base_path,
+	$developer_mode,
+    $http_host,
+	$domain,
+    $tld
+];
+if (!empty($http_host)) {
+    $host_text = file_get_contents(SRC_CONFIG_PATH . '/install/specific_host.txt');
+    $host_text = str_replace($a_find, $a_replace, $host_text);
+    print $host_text . "\n\n";
+    $a_replace[] = $host_text;
+}
+else {
+    $a_replace[] = '';
+}
+$setup_text = file_get_contents(SRC_CONFIG_PATH . '/install/setup.php.txt');
+$setup_text = str_replace($a_find, $a_replace, $setup_text);
+file_put_contents(PUBLIC_PATH . '/setup.php', $setup_text);
+
 ### Regenerate Autoload Map files
 $o_cm->generateMapFiles();
 ?>
