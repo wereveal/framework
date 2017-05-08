@@ -11,7 +11,7 @@
  * @file      /src/bin/install.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2017-04-18 17:20:24 
+ * @date      2017-04-18 17:20:24
  * @version   2.2.0
  * @note   <b>Change Log</b><pre>
  *  v2.2.0 - bug fixes to get postgresql working                  - 2017-04-18 wer
@@ -31,20 +31,17 @@ use Ritc\Library\Services\Elog;
 if (strpos(__DIR__, 'Library') !== false) {
     die("Please Run this script from the src/bin directory");
 }
-
 $base_path = str_replace('/src/bin', '', __DIR__);
 define('DEVELOPER_MODE', true);
 define('BASE_PATH', $base_path);
 define('PUBLIC_PATH', $base_path . '/public');
-
-echo 'Base Path: ' . BASE_PATH . "\n";
-echo 'Public Path: ' . PUBLIC_PATH . "\n";
 
 require_once BASE_PATH . '/src/config/constants.php';
 
 if (!file_exists(APPS_PATH . '/Ritc/Library')) {
     die("You must clone the Ritc/Library in the apps dir first and any other desired apps.\n");
 }
+
 $install_files_path = SRC_CONFIG_PATH . '/install';
 
 /* allows a custom file to be created. Still must be in src/config/install dir */
@@ -52,6 +49,9 @@ if (isset($argv[1])) {
     $require_this = $install_files_path . '/' . $argv[1];
 }
 else {
+    if (!file_exists($install_files_path . '/install_config.php')) {
+        die("You must create the install configuration file in {$install_files_path}. The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
+    }
     $require_this = $install_files_path . '/install_config.php';
 }
 $a_install = require_once $require_this;
