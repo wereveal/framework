@@ -11,6 +11,9 @@ composer.lock
 /src/apps/Ritc/Library
 /src/apps/Ritc/Main
 /public/assets/css/*.css
+/public/assets/css/*.map
+/public/assets/build
+/public/assets/vendor
 /public/doxy
 /public/index.php
 /public/setup.php
