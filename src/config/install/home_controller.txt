@@ -1,0 +1,10 @@
+    /**
+     * Main Router and Puker outer (more descriptive method name).
+     * Turns over the hard work to the specific methods and views.
+     * @return string
+     */
+    public function route()
+    {
+        // TODO: Implement route() method.
+        return $this->o_view->render($a_message);
+    }

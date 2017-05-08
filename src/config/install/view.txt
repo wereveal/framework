@@ -1,15 +1,15 @@
 <?php
 /**
- * @brief     Main View for {APPNAME}.
+ * @brief     {view_name} View.
  * @ingroup   {app_name}_views
- * @file      {NAMESPACE}/{APPNAME}/Views/HomeView.php
+ * @file      {NAMESPACE}/{APPNAME}/Views/{view_name}View.php
  * @namespace {NAMESPACE}\{APPNAME}\Views
  * @author    {author} {email}
  * @version   1.0.0-alpha.0
  * @date      {idate}
  * @note Change Log
  * - v1.0.0-alpha.0 - Initial version        - {sdate} {sauthor}
- * @todo {NAMESPACE}/{APPNAME}/Views/HomeView .php - Everything
+ * @todo {NAMESPACE}/{APPNAME}/Views/{view_name}View .php - Everything
  */
 namespace {NAMESPACE}\{APPNAME}\Views;
 
@@ -19,11 +19,11 @@ use Ritc\Library\Traits\LogitTraits;
 use Ritc\Library\Traits\ViewTraits;
 
 /**
- * Class HomeView
- * @class   HomeView
+ * Class {view_name}View
+ * @class   {view_name}View
  * @package {NAMESPACE}\{APPNAME}\Views
  */
-class HomeView implements ViewInterface
+class {view_name}View implements ViewInterface
 {
     use ViewTraits, LogitTraits;
 

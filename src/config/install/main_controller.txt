@@ -1,0 +1,20 @@
+    /**
+     * Main Router and Puker outer (more descriptive method name).
+     * Turns over the hard work to the specific controllers specified by the router.
+     * @return string
+     */
+    public function route()
+    {
+        // TODO: Implement route() method.
+        $a_router_parts = $this->o_router->getRouteParts();
+
+        $route_class = $a_router_parts['route_class'] != ''
+            ? $a_router_parts['route_class']
+            : 'HomeController';
+        $route_method = $a_router_parts['route_method'] != ''
+            ? $a_router_parts['route_method']
+            : 'route';
+
+        $o_controller = new $route_class($this->o_di);
+        return $o_controller->$route_method();
+    }

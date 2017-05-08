@@ -11,9 +11,10 @@
  * @file      /src/bin/install.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2017-04-18 17:20:24
- * @version   2.2.0
+ * @date      2017-05-08 15:45:52
+ * @version   2.3.0
  * @note   <b>Change Log</b><pre>
+ *  v2.3.0 - fix to install setup.php in public dir               - 2017-05-08 wer
  *  v2.2.0 - bug fixes to get postgresql working                  - 2017-04-18 wer
  *  v2.1.0 - lots of bug fixes and additions                      - 2017-01-24 wer
  *  v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
@@ -642,6 +643,8 @@ $a_find = [
     '{namespace}',
     '{app_name}',
     '{controller_name}',
+    '{controller_method}',
+    '{view_name}',
     '{author}',
     '{sauthor}',
     '{email}',
@@ -655,6 +658,8 @@ $a_replace = [
     strtolower($a_install['namespace']),
     strtolower($a_install['app_name']),
     $a_install['app_name'],
+    '',
+    $a_install['app_name'],
     $a_install['author'],
     $a_install['short_author'],
     $a_install['email'],
@@ -665,6 +670,7 @@ $a_replace = [
 
 ### Create the main controller for the app ###
 print "Creating the main controller for the app\n";
+$a_replace[5] = file_get_contents(SRC_CONFIG_PATH . '/install/main_controller.txt');
 $controller_text = file_get_contents(SRC_CONFIG_PATH . '/install/controller.txt');
 $controller_text = str_replace($a_find, $a_replace, $controller_text);
 file_put_contents($app_path . "/Controllers/{$a_install['app_name']}Controller.php", $controller_text);
@@ -672,15 +678,23 @@ file_put_contents($app_path . "/Controllers/{$a_install['app_name']}Controller.p
 ### Create the home controller for the app ###
 print "Creating the home controller for the app\n";
 $a_replace[4] = 'Home';
+$a_replace[5] = file_get_contents(SRC_CONFIG_PATH . '/install/home_controller.txt');
 $controller_text = file_get_contents(SRC_CONFIG_PATH . '/install/controller.txt');
 $controller_text = str_replace($a_find, $a_replace, $controller_text);
 file_put_contents($app_path . "/Controllers/HomeController.php", $controller_text);
 
 ### Create the main view for the app ###
 print "Creating the main view for the app\n";
-$view_text = file_get_contents(SRC_CONFIG_PATH . '/install/home_view.txt');
+$view_text = file_get_contents(SRC_CONFIG_PATH . '/install/view.txt');
 $view_text = str_replace($a_find, $a_replace, $view_text);
 file_put_contents($app_path . "/Views/{$a_install['app_name']}View.php", $view_text);
+
+### Create the home view for the app ###
+print "Creating the home view for the app\n";
+$a_replace[6] = 'Home';
+$view_text = file_get_contents(SRC_CONFIG_PATH . '/install/view.txt');
+$view_text = str_replace($a_find, $a_replace, $view_text);
+file_put_contents($app_path . "/Views/HomeView.php", $view_text);
 
 ### Create the doxygen config for the app ###
 print "Creating the doxy config for the app\n";
@@ -749,7 +763,6 @@ $a_replace = [
 if (!empty($http_host)) {
     $host_text = file_get_contents(SRC_CONFIG_PATH . '/install/specific_host.txt');
     $host_text = str_replace($a_find, $a_replace, $host_text);
-    print $host_text . "\n\n";
     $a_replace[] = $host_text;
 }
 else {
