@@ -4,7 +4,7 @@
  * @ingroup   {app_name}_controllers
  * @file      {NAMESPACE}/{APPNAME}/Controllers/{controller_name}Controller.php
  * @namespace {NAMESPACE}\{APPNAME}\Controllers
- * @author    {author} {email}
+ * @author    {author} <{email}>
  * @version   1.0.0-alpha.0
  * @date      {idate}
  * @note Change Log
@@ -13,7 +13,6 @@
  */
 namespace {NAMESPACE}\{APPNAME}\Controllers;
 
-use Ritc\Library\Controllers\LibraryController;
 use Ritc\Library\Interfaces\ControllerInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;

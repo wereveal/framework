@@ -1,15 +1,15 @@
 <?php
 /**
- * @brief     {view_name} View.
+ * @brief     Home View.
  * @ingroup   {app_name}_views
- * @file      {NAMESPACE}/{APPNAME}/Views/{view_name}View.php
+ * @file      {NAMESPACE}/{APPNAME}/Views/HomeView.php
  * @namespace {NAMESPACE}\{APPNAME}\Views
  * @author    {author} {email}
  * @version   1.0.0-alpha.0
  * @date      {idate}
  * @note Change Log
  * - v1.0.0-alpha.0 - Initial version        - {sdate} {sauthor}
- * @todo {NAMESPACE}/{APPNAME}/Views/{view_name}View .php - Everything
+ * @todo {NAMESPACE}/{APPNAME}/Views/HomeView .php - Everything
  */
 namespace {NAMESPACE}\{APPNAME}\Views;
 
@@ -19,11 +19,11 @@ use Ritc\Library\Traits\LogitTraits;
 use Ritc\Library\Traits\ViewTraits;
 
 /**
- * Class {view_name}View
- * @class   {view_name}View
+ * Class HomeView
+ * @class   HomeView
  * @package {NAMESPACE}\{APPNAME}\Views
  */
-class {view_name}View implements ViewInterface
+class HomeView implements ViewInterface
 {
     use ViewTraits, LogitTraits;
 
@@ -33,10 +33,15 @@ class {view_name}View implements ViewInterface
         $this->setupElog($o_di);
     }
 
-    public function render()
+    /**
+     * Main method required by interface.
+     * @param array $a_message
+     * @return string
+     */
+    public function render(array $a_message = [])
     {
         $a_twig_values = $this->createDefaultTwigValues($a_message);
-        $tpl = '@' . $a_twig_values['twig_prefix'] . 'pages/index.twig';
+        $tpl = '@' . $a_twig_values['twig_prefix'] . 'pages/' . $a_twig_values['tpl'] . '.twig';
         return $this->o_twig->render($tpl, $a_twig_values);
     }
 }

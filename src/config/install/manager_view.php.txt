@@ -1,0 +1,91 @@
+<?php
+/**
+ * @brief     View for the Manager page.
+ * @details   This is specific for managing the entries in the guide.
+ * @ingroup   {app_name}_views
+ * @file      {NAMESPACE}/{APPNAME}/Views/ManagerView.php
+ * @namespace {NAMESPACE}\{APPNAME}\Views
+ * @author    {author} <{email}>
+ * @version   1.0.0-alpha.0
+ * @date      {idate}
+ * @note <b>Change Log</b>
+ * - v1.0.0-alpha.0 - Initial version                             - {sdate} {sauthor}
+ */
+namespace {NAMESPACE}\{APPNAME}\Views;
+
+use Ritc\Library\Interfaces\ViewInterface;
+use Ritc\Library\Traits\ViewTraits;
+
+/**
+ * Class ManagerView
+ * @class   ManagerView
+ * @package {NAMESPACE}\{APPNAME}\Views
+ */
+class ManagerView implements ViewInterface
+{
+    use ViewTraits;
+
+    /**
+     * ManagerView constructor.
+     * @param \Ritc\Library\Services\Di $o_di
+     */
+    public function __construct(Di $o_di)
+    {
+        $this->setupView($o_di);
+    }
+
+   /**
+     * Creates the home page of the Manager.
+     * @param array $a_message A message, optional.
+     * @return string
+     */
+    public function render($a_message = array())
+    {
+        $meth = __METHOD__ . '.';
+        $this->setAdmLevel($_SESSION['login_id']);
+        $this->setNav();
+        $a_values = $this->getPageValues();
+        $a_twig_values = $this->createDefaultTwigValues('manager', $a_message);
+        $a_twig_values = array_merge($a_values, $a_twig_values);
+        $log_message = 'Final Values for twig: ' . var_export($a_twig_values, true);
+        $this->logIt($log_message, LOG_OFF, $meth . __LINE__);
+        $tpl = '@' . $a_twig_values['twig_prefix'] . 'pages/home_page.twig';
+        return $this->o_twig->render($tpl, $a_twig_values);
+    }
+
+    /**
+     * Creates the html that displays the login form to access the app.
+     * Sometimes this will have been handled already elsewhere.
+     * @param string $previous_login_id optional, allows the user_login_id to be used over.
+     * @param array $a_message array with message and type of message.
+     * @return string
+     */
+    public function renderLoginForm($previous_login_id = '', array $a_message = array())
+    {
+        $meth = __METHOD__ . '.';
+        /** @var Session $o_sess */
+        $o_sess  = $this->o_di->get('session');
+        $o_sess->resetSession();
+
+        if ($a_message != array()) {
+            $a_message = ViewHelper::messageProperties($a_message);
+        }
+        else {
+            $a_message = array();
+        }
+
+        $a_page_values = $this->getPageValues();
+        $log_message = 'Page Values ' . var_export($a_page_values, TRUE);
+        $this->logIt($log_message, LOG_OFF, $meth . __LINE__);
+
+        $a_twig_values = $this->createDefaultTwigValues('manager', $a_message);
+        $a_twig_values['login_id'] = $previous_login_id;
+        $a_twig_values['a_menus'] = [];
+
+        $a_values = array_merge($a_page_values, $a_twig_values);
+        $o_sess->unsetVar('login_id');
+        $tpl = '@' . $a_twig_values['twig_prefix'] . 'pages/' . $a_twig_values['tpl'] . '.twig';
+        return $this->o_twig->render($tpl, $a_values);
+    }
+
+}
