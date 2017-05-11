@@ -570,7 +570,7 @@ $a_nav_ng_map = [
 
 $a_page = [
     'home' => [
-        'url_id'           => 'index',
+        'url_id'           => 'home',
         'ng_id'            => '1',
         'page_twig_prefix' => 'site',
         'page_tpl'         => 'index',
