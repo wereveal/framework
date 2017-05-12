@@ -22,9 +22,6 @@ define('DEVELOPER_MODE', true);
 define('BASE_PATH', $base_path);
 define('PUBLIC_PATH', $base_path . '/public');
 
-echo 'Base Path: ' . BASE_PATH . "\n";
-echo 'Site Path: ' . PUBLIC_PATH . "\n";
-
 require_once BASE_PATH . '/src/config/constants.php';
 
 if (!file_exists(APPS_PATH . '/Ritc/Library')) {
@@ -39,8 +36,9 @@ foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
 }
 
 $o_elog = Elog::start();
-$o_elog->write("Test\n", LOG_OFF);
+$o_elog->setErrorHandler(E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR);
 $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
+$o_elog->write("Test\n", LOG_OFF);
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
 

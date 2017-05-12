@@ -102,7 +102,7 @@ if ($o_pdo !== false) {
         if (!is_object($o_router)) {
             die("Could not create a new Router");
         }
-        $o_twig = TwigFactory::getTwig($twig_config_file);
+        $o_twig = TwigFactory::getTwig($twig_config_file, 'main', true);
         if (!$o_twig instanceof \Twig_Environment) {
             die("Could not create a new TwigEnviornment");
         }
