@@ -12,7 +12,8 @@ $a_u = [
     'routes'     => '/manager/library/routes/',
     'navigation' => '/manager/library/navigation/',
     'pages'      => '/manager/library/pages/',
-    'tests'      => '/manager/library/tests/'
+    'tests'      => '/manager/library/tests/',
+    'error'      => '/error/'
 ];
 
 $a_constants = [
@@ -190,7 +191,8 @@ $a_urls = [
 	'routes'     => ['url_host' => 'self', 'url_text' => $a_u['routes'],     'url_scheme' => 'https', 'url_immutable' => 1],
 	'navigation' => ['url_host' => 'self', 'url_text' => $a_u['navigation'], 'url_scheme' => 'https', 'url_immutable' => 1],
 	'pages'      => ['url_host' => 'self', 'url_text' => $a_u['pages'],      'url_scheme' => 'https', 'url_immutable' => 1],
-	'tests'      => ['url_host' => 'self', 'url_text' => $a_u['tests'],      'url_scheme' => 'https', 'url_immutable' => 1]
+	'tests'      => ['url_host' => 'self', 'url_text' => $a_u['tests'],      'url_scheme' => 'https', 'url_immutable' => 1],
+	'error'      => ['url_host' => 'self', 'url_text' => $a_u['error'],      'url_scheme' => 'https', 'url_immutable' => 1]
 ];
 
 $a_people = [
@@ -287,6 +289,13 @@ $a_routes = [
         'route_action'    => '',
         'route_immutable' => 1
     ],
+    'error' => [
+        'url_id'          => 'error',
+        'route_class'     => 'HomeController',
+        'route_method'    => 'routeError',
+        'route_action'    => '',
+        'route_immutable' => 1
+    ],
 	'manager' => [
 	    'url_id'          => 'manager',
         'route_class'     => 'ManagerController',
@@ -375,6 +384,7 @@ $a_routes = [
 
 $a_route_group_map = [
     ['route_id' => 'home',       'group_id' => 'anonymous'],
+    ['route_id' => 'error',      'group_id' => 'anonymous'],
 	['route_id' => 'manager',    'group_id' => 'anonymous'],
 	['route_id' => 'login',      'group_id' => 'anonymous'],
 	['route_id' => 'logout',     'group_id' => 'manager'],
@@ -416,7 +426,7 @@ $a_navigation = [
         'url_id'          => 'login',
         'nav_parent_id'   => 'manager',
         'nav_name'        => 'manager_login',
-        'nav_text'        => 'Manager_Login',
+        'nav_text'        => 'Manager Login',
         'nav_description' => 'Manager Login',
         'nav_css'         => '',
         'nav_level'       => 1,
@@ -572,8 +582,7 @@ $a_page = [
     'home' => [
         'url_id'           => 'home',
         'ng_id'            => '1',
-        'page_twig_prefix' => 'site',
-        'page_tpl'         => 'index',
+        'tpl_id'           => 'index',
         'page_type'        => 'text/html',
         'page_title'       => 'Home Page',
         'page_description' => 'Home Page',
@@ -582,11 +591,22 @@ $a_page = [
         'page_charset'     => 'utf-8',
         'page_immutable'   => 1
     ],
+    'error' => [
+        'url_id'           => 'error',
+        'ng_id'            => '1',
+        'tpl_id'           => 'error',
+        'page_type'        => 'text/html',
+        'page_title'       => 'Error Page',
+        'page_description' => 'Error Page',
+        'page_base_url'    => '/',
+        'page_lang'        => 'en',
+        'page_charset'     => 'utf-8',
+        'page_immutable'   => 1
+    ],
     'manager' => [
         'url_id'           => 'manager',
         'ng_id'            => '2',
-        'page_twig_prefix' => 'site',
-        'page_tpl'         => 'manager',
+        'tpl_id'           => 'manager',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager',
         'page_description' => 'Manage Web Site',
@@ -597,12 +617,11 @@ $a_page = [
     ],
     'login' => [
         'url_id'           => 'login',
-        'ng_id'            => '1',
-        'page_twig_prefix' => 'site',
-        'page_tpl'         => 'login',
+        'ng_id'            => '2',
+        'tpl_id'           => 'login',
         'page_type'        => 'text/html',
-        'page_title'       => 'Manager: Please Login',
-        'page_description' => 'Login page for the manager.',
+        'page_title'       => 'Please Login',
+        'page_description' => 'Login page.',
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
@@ -610,12 +629,23 @@ $a_page = [
     ],
     'logout' => [
         'url_id'           => 'logout',
-        'ng_id'            => '1',
-        'page_twig_prefix' => 'site',
-        'page_tpl'         => 'login',
+        'ng_id'            => '2',
+        'tpl_id'           => 'login',
         'page_type'        => 'text/html',
-        'page_title'       => 'Manager: Logout',
-        'page_description' => 'Logout page for the manager.',
+        'page_title'       => 'Logout',
+        'page_description' => 'Logout page.',
+        'page_base_url'    => '/',
+        'page_lang'        => 'en',
+        'page_charset'     => 'utf-8',
+        'page_immutable'   => 1
+    ],
+    'verify_delete' => [
+        'url_id'           => 'manager',
+        'ng_id'            => '2',
+        'tpl_id'           => 'verify_delete',
+        'page_type'        => 'text/html',
+        'page_title'       => 'Logout',
+        'page_description' => 'Logout page.',
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
@@ -624,8 +654,7 @@ $a_page = [
     'library' => [
         'url_id'           => 'library',
         'ng_id'            => '2',
-        'page_twig_prefix' => 'lib',
-        'page_tpl'         => 'index',
+        'tpl_id'           => 'library',
         'page_type'        => 'text/html',
         'page_title'       => 'Advanced Config',
         'page_description' => 'Manages People, Places and Things',
@@ -637,8 +666,7 @@ $a_page = [
     'constants' => [
         'url_id'           => 'constants',
         'ng_id'            => '2',
-        'page_twig_prefix' => 'lib',
-        'page_tpl'         => 'constants',
+        'tpl_id'           => 'lib_constants',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for Constants',
         'page_description' => 'Manages the Constants used in app',
@@ -650,8 +678,7 @@ $a_page = [
     'groups' => [
         'url_id'           => 'groups',
         'ng_id'            => '2',
-        'page_twig_prefix' => 'lib',
-        'page_tpl'         => 'groups',
+        'tpl_id'           => 'lib_groups',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for Groups',
         'page_description' => 'Manages the Groups',
@@ -663,8 +690,7 @@ $a_page = [
     'people' => [
         'url_id'           => 'people',
         'ng_id'            => '2',
-        'page_twig_prefix' => 'lib',
-        'page_tpl'         => 'people',
+        'tpl_id'           => 'lib_people',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for People',
         'page_description' => 'Manages people',
@@ -676,8 +702,7 @@ $a_page = [
     'urls' => [
         'url_id'           => 'urls',
         'ng_id'            => '2',
-        'page_twig_prefix' => 'lib',
-        'page_tpl'         => 'urls',
+        'tpl_id'           => 'lib_urls',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for Urls',
         'page_description' => 'Manages the Urls',
@@ -689,8 +714,7 @@ $a_page = [
     'routes' => [
         'url_id'           => 'routes',
         'ng_id'            => '2',
-        'page_twig_prefix' => 'lib',
-        'page_tpl'         => 'routes',
+        'tpl_id'           => 'lib_routes',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for Routes',
         'page_description' => 'Manages the routes',
@@ -702,8 +726,7 @@ $a_page = [
     'navigation' => [
         'url_id'           => 'navigation',
         'ng_id'            => '2',
-        'page_twig_prefix' => 'lib',
-        'page_tpl'         => 'nav',
+        'tpl_id'           => 'lib_nav',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for the Navigation tools',
         'page_description' => 'Manager for Navigation tools',
@@ -715,8 +738,7 @@ $a_page = [
     'pages' => [
         'url_id'           => 'pages',
         'ng_id'            => '2',
-        'page_twig_prefix' => 'lib',
-        'page_tpl'         => 'page',
+        'tpl_id'           => 'lib_pages',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager for Pages',
         'page_description' => 'Manages pages head information primarily',
@@ -728,8 +750,7 @@ $a_page = [
     'tests' => [
         'url_id'           => 'tests',
         'ng_id'            => '2',
-        'page_twig_prefix' => 'lib',
-        'page_tpl'         => 'test',
+        'tpl_id'           => 'lib_test',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager Tests',
         'page_description' => 'Runs tests for the code.',
@@ -738,6 +759,180 @@ $a_page = [
         'page_charset'     => 'utf-8',
         'page_immutable'   => 1
     ],
+];
+
+$a_twig_prefix = [
+    'site' => [
+        'tp_prefix'  => 'site_',
+        'tp_path'    => '/src/templates',
+        'tp_active'  => 1,
+        'tp_default' => 1
+    ],
+    'lib' => [
+        'tp_prefix'  => 'lib_',
+        'tp_path'    => '/src/apps/Ritc/Library/resources/templates',
+        'tp_active'  => 1,
+        'tp_default' => 0
+    ]
+];
+
+$a_twig_dirs = [
+    'site_default' => [
+        'tp_id'   => 'site',
+        'td_name' => 'default',
+    ],
+    'site_elements' => [
+        'tp_id'   => 'site',
+        'td_name' => 'elements',
+    ],
+    'site_forms' => [
+        'tp_id'   => 'site',
+        'td_name' => 'forms',
+    ],
+    'site_pages' => [
+        'tp_id'   => 'site',
+        'td_name' => 'pages',
+    ],
+    'site_snippets' => [
+        'tp_id'     => 'site',
+        'td_name'   => 'snippets',
+    ],
+    'site_tests' => [
+        'tp_id'   => 'site',
+        'td_name' => 'tests',
+    ],
+    'lib_default' => [
+        'tp_id'   => 'lib',
+        'td_name' => 'default',
+    ],
+    'lib_elements' => [
+        'tp_id'    => 'lib',
+        'td_name'  => 'elements',
+    ],
+    'lib_forms' => [
+        'tp_id'   => 'lib',
+        'td_name' => 'forms',
+    ],
+    'lib_pages' => [
+        'tp_id'   => 'lib',
+        'td_name' => 'pages',
+    ],
+    'lib_snippets' => [
+        'tp_id'   => 'lib',
+        'td_name' => 'snippets',
+    ],
+    'lib_tests' => [
+        'tp_id'   => 'lib',
+        'td_name' => 'tests',
+    ]
+];
+
+$a_twig_tpls = [
+    'index' => [
+        'td_id'         => 'site_pages',
+        'tpl_name'      => 'index',
+        'tpl_immutable' => 1
+    ],
+    'login' =>  [
+        'td_id'         => 'site_pages',
+        'tpl_name'      => 'login',
+        'tpl_immutable' => 1
+    ],
+    'manager' => [
+        'td_id'         => 'site_pages',
+        'tpl_name'      => 'manager',
+        'tpl_immutable' => 1
+    ],
+    'verify_delete' => [
+        'td_id'         => 'site_pages',
+        'tpl_name'      => 'verify_delete',
+        'tpl_immutable' => 1
+    ],
+    'error' => [
+        'td_id'         => 'site_pages',
+        'tpl_name'      => 'error',
+        'tpl_immutable' => 1
+    ],
+    'test' => [
+        'td_id'         => 'site_pages',
+        'tpl_name'      => 'test',
+        'tpl_immutable' => 1
+    ],
+    'library' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'index',
+        'tpl_immutable' => 1
+    ],
+    'lib_vd' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'verify_delete',
+        'tpl_immutable' => 1
+    ],
+    'lib_constants' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'constants',
+        'tpl_immutable' => 1
+    ],
+    'lib_groups' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'groups',
+        'tpl_immutable' => 1
+    ],
+    'lib_nav' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'navigation',
+        'tpl_immutable' => 1
+    ],
+    'lib_nav_form' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'navigation_form',
+        'tpl_immutable' => 1
+    ],
+    'lib_pages' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'pages',
+        'tpl_immutable' => 1
+    ],
+    'lib_page_form' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'page_form',
+        'tpl_immutable' => 1
+    ],
+    'lib_people' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'people',
+        'tpl_immutable' => 1
+    ],
+    'lib_person_form' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'person_form',
+        'tpl_immutable' => 1
+    ],
+    'lib_routes' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'routes',
+        'tpl_immutable' => 1
+    ],
+    'lib_urls' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'groups',
+        'tpl_immutable' => 1
+    ],
+    'lib_error' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'error',
+        'tpl_immutable' => 1
+    ],
+    'lib_tail' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'tail',
+        'tpl_immutable' => 1
+    ],
+    'lib_test' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'test',
+        'tpl_immutable' => 1
+    ]
 ];
 
 return [
@@ -751,5 +946,8 @@ return [
     'routes_group_map' => $a_route_group_map,
     'navigation'       => $a_navigation,
     'nav_ng_map'       => $a_nav_ng_map,
-    'page'             => $a_page
+    'page'             => $a_page,
+    'tp_prefix'        => $a_twig_prefix,
+    'tp_dirs'          => $a_twig_dirs,
+    'tp_templates'     => $a_twig_tpls
 ];

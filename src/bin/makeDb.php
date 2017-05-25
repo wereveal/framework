@@ -3,14 +3,14 @@
  * @brief     This file sets up database.
  * @details   This creates the database config.
  *            This should be run from the cli in the /src/bin directory of the site.
- *            Files in the /src/config/install dir should be modified as needed.
- *            The /src/config/install/install_config.php file is primary but can
+ *            Files in the /src/config/install_files dir should be modified as needed.
+ *            The /src/config/install_files/install_config.php file is primary but can
  *            copied and change the copy. Call the copied file by name on the cli,
- *            e.g. php install.php install_config.php
- * @file      /src/bin/install.php
+ *            e.g. php install_files.php install_config.php
+ * @file      /src/bin/install_files.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2017-04-18 16:56:19 
+ * @date      2017-04-18 16:56:19
  * @version   1.0.0
  * @note   <b>Change Log</b>
  * - v1.0.0 - initial version                                      - 2017-04-18 wer
@@ -40,16 +40,17 @@ require_once BASE_PATH . '/src/config/constants.php';
 if (!file_exists(APPS_PATH . '/Ritc/Library')) {
     die("You must clone the Ritc/Library in the apps dir first and any other desired apps.\n");
 }
-$install_files_path = SRC_CONFIG_PATH . '/install';
+$install_files_path = SRC_CONFIG_PATH . '/install_files';
 
-/* allows a custom file to be created. Still must be in src/config/install dir */
+/* allows a custom file to be created. Still must be in src/config/install_files dir */
+$install_file = SRC_CONFIG_PATH . '/install_config.php';
 if (isset($argv[1])) {
-    $require_this = $install_files_path . '/' . $argv[1];
+    $install_file = SRC_CONFIG_PATH . '/' . $argv[1];
 }
-else {
-    $require_this = $install_files_path . '/install_config.php';
+if (!file_exists($install_file)) {
+    die("You must create the install_files configuration file in " . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
 }
-$a_install = require_once $require_this;
+$a_install = require_once $install_file;
 
 ### generate files for autoloader ###
 require APPS_PATH . '/Ritc/Library/Helper/AutoloadMapper.php';

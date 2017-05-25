@@ -12,8 +12,11 @@ return [
 "DROP TABLE IF EXISTS {dbPrefix}navigation",
 "DROP TABLE IF EXISTS {dbPrefix}urls",
 "DROP TYPE IF EXISTS url_protocol CASCADE",
+"DROP TYPE IF EXISTS content_format",
 
 "CREATE TYPE url_protocol as ENUM ('http', 'https', 'ftp', 'gopher', 'mailto')",
+"CREATE TYPE content_format as ENUM ('html', 'markdown', 'text')",
+
 "CREATE TABLE {dbPrefix}constants (
   const_id serial NOT NULL,
   const_name character varying(64) NOT NULL UNIQUE,
@@ -137,6 +140,30 @@ return [
 "CREATE INDEX group_id_idx on {dbPrefix}routes_group_map (group_id)",
 "CREATE UNIQUE INDEX route_group_idx on {dbPrefix}routes_group_map (route_id,group_id)",
 
+"CREATE TABLE {dbPrefix}twig_prefix (
+  tp_id serial NOT NULL,
+  tp_prefix character varying(32) NOT NULL,
+  tp_path character varying(150) NOT NULL,
+  tp_active integer DEFAULT 1 NOT NULL,
+  tp_default integer DEFAULT 0 NOT NULL 
+)",
+"CREATE UNIQUE INDEX tp_prefix_idx on {dbPrefix}twig_prefix (tp_prefix)",
+
+"CREATE TABLE {dbPrefix}twig_dirs (
+    td_id serial NOT NULL,
+    tp_id integer NOT NULL,
+    td_name character varying(64) NOT NULL
+)",
+"CREATE UNIQUE INDEX tp_td_idx on {dbPrefix}twig_dirs (tp_id,td_name)",
+
+"CREATE TABLE {dbPrefix}twig_templates (
+    tpl_id serial NOT NULL,
+    td_id integer NOT NULL,
+    tpl_name character varying(128) NOT NULL,
+    tpl_immutable integer DEFAULT 0 NOT NULL
+)",
+"CREATE UNIQUE INDEX td_tpl_idx on {dbPrefix}twig_templates (td_id, tpl_name)",
+
 "ALTER TABLE ONLY {dbPrefix}routes 
     ADD CONSTRAINT {dbPrefix}routes_ibfk_1 
     FOREIGN KEY (url_id) REFERENCES {dbPrefix}urls (url_id) 
@@ -187,5 +214,17 @@ return [
   FOREIGN KEY (nav_id) REFERENCES {dbPrefix}navigation (nav_id) 
   ON DELETE CASCADE 
   ON UPDATE CASCADE",
+
+"ALTER TABLE {dbPrefix}twig_dir
+  ADD CONSTRAINT {dbPrefix}twig_dir_ibfk_1 
+  FOREIGN KEY (tp_id) REFERENCES {dbPrefix}twig_prefix (tp_id) 
+  ON DELETE CASCADE 
+  ON UPDATE CASCADE",
+
+"ALTER TABLE {dbPrefix}twig_templates
+  ADD CONSTRAINT {dbPrefix}twig_templates_ibfk_1 
+  FOREIGN KEY (td_id) REFERENCES {dbPrefix}twig_dirs (td_id) 
+  ON DELETE CASCADE 
+  ON UPDATE CASCADE"
 ];
 

@@ -1,29 +1,33 @@
 <?php
 ob_start();
 /**
- * Two possible ways of doing this:
+ * Three possible ways of doing this:
  *
- * Complex Configuration.
- * The setup file creates needed vars based on $_SERVER['HTTP_HOST'] value.
- * See setup file for examples.
+ * ## Multi-site configuration as shown below ##
+ * - See /public/example_setup.php file for examples for the $_SERVER['DOCUMENT_ROOT'] . '/setup.php' file.
+ * - Most frequent use of this is with development, test and production sites.
  *
- * require_once $_SERVER['DOCUMENT_ROOT'] . '/setup.php';
+ * ## Single Site using a non-default layout ##
+ * - replace the two require_once lines with the following
+ * define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT'] . '/subdirectory/public);
+ * define('PUBLIC_DIR', '/subdirectory/public');
+ * define('BASE_PATH', '/subdirectory');
  * require_once BASE_PATH . '/src/setup.php';
  *
- * Simple Configuration.
- * Assumes a standard layout of files and locations.
- *
- * require_once $_SERVER['DOCUMENT_ROOT'] . '/../src/setup.php';
+ * ## Single site using default layout ##
+ * - replace the two require_once lines with the following
+ * require_once $_SERVER['DOCUMENT_ROOT'] . '/../site/setup.php';
  */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/setup.php';
 require_once BASE_PATH . '/src/setup.php';
 
 $o_main_controller = new Example\App\Controllers\MainController($o_di);
 $html     = $o_main_controller->renderPage();
-$any_junk = ob_get_clean();
+$flotsam = ob_get_clean();
 ob_start();
     print $html;
     if (DEVELOPER_MODE) {
-        print $any_junk;
+        print $flotsam;
     }
 ob_end_flush();

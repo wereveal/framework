@@ -12,7 +12,7 @@
  *  v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
  *  v1.0.0 - initial version                                      - 2015-11-27 wer
  * </pre>
- * @todo /src/bin/makeDb.php - need to rewrite to use the files in the /src/install directory instead of cli args.
+ * @todo /src/bin/makeDb.php - need to rewrite to use the files in the /src/install_files directory instead of cli args.
  */
 namespace Ritc;
 

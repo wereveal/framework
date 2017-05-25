@@ -2,22 +2,22 @@
 /**
  * PUBLIC_PATH is where all the public web site files are
  * BASE_PATH is the directory where everything else is
+ * see PUBLIC_PATH . '/example_setup.php for more'
  */
-switch ($_SERVER['HTTP_HOST']) { // allows for differing development environment and production environment
-    case 'localhost': // uses a special db config file and in Developer mode
+switch ($_SERVER['HTTP_HOST']) {
+    case 'localhost':
         define('DEVELOPER_MODE', true);
         define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(PUBLIC_PATH));
-        $db_config_file   = 'db_config_local.php';
+        $db_config_file = 'db_config_local.php';
         break;{specific_host}
     case 'test.{domain}.{tld}': // test server
         define('DEVELOPER_MODE', true);
         define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(PUBLIC_PATH));
-        $db_config_file   = 'db_config_test.php';
+        $db_config_file = 'db_config_test.php';
         break;
     default: // simple setup and this could be the only two lines needed in this file.
         define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(PUBLIC_PATH));
-        $db_config_file   = 'db_config.php';
 }

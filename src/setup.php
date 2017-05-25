@@ -1,10 +1,12 @@
 <?php
 /**
- * @brief     This file sets up the App.
- * @details   Required to get the entire framework to work. The only thing
- *            that changes primarily is the defgroup in this comment for Doxygen.
+ * @brief     This file sets up the site.
+ * @details   Required to get the entire site to work.
  * @file      setup.php
  * @namespace Ritc
+ * @author    William E Reveal <bill@revealitconsulting.com>
+ * @date      2017-05-13 16:01:41
+ * @version   2.0.0
  * @note NOTE:
  * - _path and _PATH indicates a full server path
  * - _dir and _DIR indicates the path in the site (URI)
@@ -33,8 +35,8 @@ require_once BASE_PATH . '/src/config/constants.php';
 if (!isset($db_config_file)) {
     $db_config_file = 'db_config.php';
 }
-if (!isset($twig_config_file)) {
-    $twig_config_file = 'twig_config.php';
+if (!isset($twig_config)) {
+    $twig_config = 'db';
 }
 if (!isset($psr_loader)) {
     $psr_loader = 'psr4';
@@ -57,7 +59,6 @@ else {
 
 $o_elog = Elog::start();
 $o_elog->setIgnoreLogOff(false); // turns on logging globally ignoring LOG_OFF when set to true
-// set_error_handler([$o_elog, 'errorHandler'], E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR);
 $o_elog->setErrorHandler(E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR);
 
 $o_elog->write("Testing the elog at the very start.\n", LOG_OFF);
@@ -65,21 +66,20 @@ $o_elog->write("Testing the elog at the very start.\n", LOG_OFF);
 $o_session = Session::start();
 
 $o_di = new Di();
-$o_di->set('elog',    $o_elog);
+$o_di->set('elog', $o_elog);
 $o_di->set('session', $o_session);
 $o_di->setVar('dbConfig', $db_config_file);
-$o_di->setVar('twigConfig', $twig_config_file);
 
 $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
 if ($o_pdo !== false) {
     $o_db = new DbModel($o_pdo, $db_config_file);
-    $o_db->setElog($o_elog);
 
     if (!is_object($o_db)) {
         $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
         die("Could not get the database to work");
     }
     else {
+        $o_db->setElog($o_elog);
         $o_di->set('db', $o_db);
         if (RODB) {
             $o_pdo_ro = PdoFactory::start($db_config_file, 'ro', $o_di);
@@ -102,12 +102,24 @@ if ($o_pdo !== false) {
         if (!is_object($o_router)) {
             die("Could not create a new Router");
         }
-        $o_twig = TwigFactory::getTwig($twig_config_file, 'main', true);
+        $o_di->set('router',  $o_router);
+
+        if ($twig_config == 'db') {
+            if (!isset($twig_use_cache)) {
+                $twig_use_cache = defined('DEVELOPER_MODE') && DEVELOPER_MODE
+                    ? false
+                    : true;
+            }
+            $o_twig = TwigFactory::getTwig($o_di, $twig_use_cache);
+        }
+        else {
+            $o_twig = TwigFactory::getTwigByFile($twig_config);
+        }
         if (!$o_twig instanceof \Twig_Environment) {
             die("Could not create a new TwigEnviornment");
         }
-        $o_di->set('router',  $o_router);
-        $o_di->set('twig',    $o_twig);
+        $o_di->set('twig', $o_twig);
+        $o_di->setVar('twigConfig', $twig_config);
     }
 }
 else {

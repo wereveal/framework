@@ -28,16 +28,16 @@ require_once BASE_PATH . '/src/config/constants.php';
 if (!file_exists(APPS_PATH . '/Ritc/Library')) {
     die("You must clone the Ritc/Library in the apps dir first and any other desired apps.\n");
 }
-$install_files_path = SRC_CONFIG_PATH . '/install';
 
-/* allows a custom file to be created. Still must be in src/config/install dir */
+/* allows a custom file to be created. Still must be in src/config/install_files dir */
+$install_file = SRC_CONFIG_PATH . '/install_config.php';
 if (isset($argv[1])) {
-    $require_this = $install_files_path . '/' . $argv[1];
+    $install_file = SRC_CONFIG_PATH . '/' . $argv[1];
 }
-else {
-    $require_this = $install_files_path . '/install_config.php';
+if (!file_exists($install_file)) {
+    die("You must create the install_files configuration file in " . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
 }
-$a_install = require_once $require_this;
+$a_install = require_once $install_file;
 
 ### Create the directories for the new app ###
 print "\nCreateing the directories for the new app\n";
@@ -125,32 +125,32 @@ $a_replace = [
 
 ### Create the main controller for the app ###
 print "Creating the main controller for the app\n";
-$controller_text = file_get_contents(SRC_CONFIG_PATH . '/install/controller.txt');
+$controller_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/controller.php.txt');
 $controller_text = str_replace($a_find, $a_replace, $controller_text);
 file_put_contents($app_path . "/Controllers/{$a_install['app_name']}Controller.php", $controller_text);
 
 ### Create the home controller for the app ###
 print "Creating the home controller for the app\n";
 $a_replace[4] = 'Home';
-$controller_text = file_get_contents(SRC_CONFIG_PATH . '/install/controller.txt');
+$controller_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/controller.php.txt');
 $controller_text = str_replace($a_find, $a_replace, $controller_text);
 file_put_contents($app_path . "/Controllers/HomeController.php", $controller_text);
 
 ### Create the main view for the app ###
 print "Creating the main view for the app\n";
-$view_text = file_get_contents(SRC_CONFIG_PATH . '/install/home_view.txt');
+$view_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/home_view.txt');
 $view_text = str_replace($a_find, $a_replace, $view_text);
 file_put_contents($app_path . "/Views/{$a_install['app_name']}View.php", $view_text);
 
 ### Create the doxygen config for the app ###
 print "Creating the doxy config for the app\n";
-$doxy_text = file_get_contents(SRC_CONFIG_PATH . '/install/doxygen_config.txt');
+$doxy_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/doxygen_config.php.txt');
 $doxy_text = str_replace($a_find, $a_replace, $doxy_text);
 file_put_contents($app_path . '/resources/config/doxygen_config.php', $doxy_text);
 
 ### Create the twig_config file ###
 print "Creating the twig config file for app\n";
-$twig_file = file_get_contents(SRC_CONFIG_PATH . '/install/twig_config.txt');
+$twig_file = file_get_contents(SRC_CONFIG_PATH . '/install_files/twig_config.php.txt');
 $new_twig_file = str_replace($a_find, $a_replace, $twig_file);
 file_put_contents($app_path . '/resources/config/twig_config.php', $new_twig_file);
 
@@ -165,7 +165,7 @@ file_put_contents($app_path . $second_file, $twig_text);
 
 ### Create the index.php file ###
 print "Creating the index.php file for app\n";
-$index_text = file_get_contents(SRC_CONFIG_PATH . '/install/index.php.txt');
+$index_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/index.php.txt');
 $index_text = str_replace($a_find, $a_replace, $index_text);
 file_put_contents(PUBLIC_PATH . '/index.php', $index_text);
 

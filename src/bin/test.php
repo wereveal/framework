@@ -34,7 +34,7 @@ $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF wh
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
 
-$db_config_file = SRC_CONFIG_PATH . '/db_config_local.php';
+$db_config_file = SRC_CONFIG_PATH . '/db_config.php';
 $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
 
 if ($o_pdo !== false) {
@@ -52,16 +52,11 @@ else {
     die("Could not connect to the database\n");
 }
 
-$file_contents = file_get_contents(SRC_CONFIG_PATH . '/twig_config.php');
-print $file_contents . "\n";
-$my_string =<<<EOT
-    'FtpAdmin' => [
-        'path'   => APPS_PATH . '/Ritc/FtpAdmin/resources/templates',
-        'prefix' => 'ftp_'
-    ],
-    ### PlaceHolder ###
-EOT;
-$file_contents = str_replace('    ### PlaceHolder ###', $my_string, $file_contents);
-print $file_contents . "\n";
-file_put_contents(SRC_CONFIG_PATH . '/twig_config.php', $file_contents);
+$o_twig = TwigFactory::getTwig($o_di, false);
+if ($o_twig instanceof \Twig_Environment) {
+    print "Yes!\n";
+}
+else {
+    print "Oh NO!\n";
+}
 ?>

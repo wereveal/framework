@@ -1,1 +1,0 @@
-function getNow(){var e=new Date;document.getElementById("report_date").value=e.toLocaleString()}

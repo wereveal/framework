@@ -11,6 +11,10 @@ return [
 "DROP TABLE IF EXISTS `{dbPrefix}navgroups`",
 "DROP TABLE IF EXISTS `{dbPrefix}navigation`",
 "DROP TABLE IF EXISTS `{dbPrefix}urls`",
+"DROP TABLE IF EXISTS `{dbPrefix}twig_templates`",
+"DROP TABLE IF EXISTS `{dbPrefix}twig_dir`",
+"DROP TABLE IF EXISTS `{dbPrefix}twig_prefix`",
+
 
 "CREATE TABLE `{dbPrefix}constants` (
   `const_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -19,7 +23,7 @@ return [
   `const_immutable` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`const_id`),
   UNIQUE KEY `config_key` (`const_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}groups` (
   `group_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -29,28 +33,28 @@ return [
   `group_immutable` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`group_id`),
   UNIQUE KEY `group_name` (`group_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}urls` (
   `url_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `url_host` varchar(255) NOT NULL DEFAULT 'self',
-  `url_text` varchar(255) NOT NULL DEFAULT '',
+  `url_host` varchar(150) NOT NULL DEFAULT 'self',
+  `url_text` varchar(150) NOT NULL DEFAULT '',
   `url_scheme` enum('http','https','ftp','gopher','mailto') NOT NULL DEFAULT 'https',
   `url_immutable` tinyint(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`url_id`),
   UNIQUE KEY `url_text` (`url_text`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}routes` (
   `route_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `url_id` int(11) unsigned NOT NULL,
   `route_class` varchar(64) NOT NULL,
   `route_method` varchar(64) NOT NULL,
-  `route_action` varchar(255) NOT NULL,
+  `route_action` varchar(100) NOT NULL,
   `route_immutable` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`route_id`),
   UNIQUE KEY `url_id` (`url_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}page` (
   `page_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -67,7 +71,7 @@ return [
   `page_immutable` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`page_id`),
   KEY (`url_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}people` (
   `people_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -85,7 +89,7 @@ return [
   PRIMARY KEY (`people_id`),
   UNIQUE KEY `loginid` (`login_id`),
   UNIQUE KEY `shortname` (`short_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}navgroups` (
   `ng_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -94,7 +98,7 @@ return [
   `ng_default` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ng_id`),
   UNIQUE KEY `ng_name` (`ng_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}navigation` (
   `nav_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -109,7 +113,7 @@ return [
   `nav_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`nav_id`),
   KEY `url_id` (`url_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}nav_ng_map` (
   `nnm_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -119,7 +123,7 @@ return [
   UNIQUE KEY `ng_id_2` (`ng_id`,`nav_id`),
   KEY `ng_id` (`ng_id`),
   KEY `nav_id` (`nav_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;",
 
 "CREATE TABLE `{dbPrefix}people_group_map` (
   `pgm_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -129,7 +133,7 @@ return [
   UNIQUE KEY `people_id_2` (`people_id`,`group_id`),
   KEY `people_id` (`people_id`),
   KEY `group_id` (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}routes_group_map` (
   `rgm_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -139,7 +143,34 @@ return [
   UNIQUE KEY `rgm_key` (`route_id`,`group_id`),
   KEY `route_id` (`route_id`),
   KEY `group_id` (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
+
+"CREATE TABLE `{dbPrefix}twig_prefix` (
+  `tp_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `tp_prefix` varchar(32) NOT NULL DEFAULT 'site_',
+  `tp_path` varchar(150) NOT NULL DEFAULT '/src/templates' COMMENT 'Does not include the BASE_PATH of the site',
+  `tp_active` int(2) NOT NULL DEFAULT '1',
+  `tp_default` int(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`tp_id`),
+  UNIQUE KEY `tp_prefix` (`tp_prefix`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
+
+"CREATE TABLE `{dbPrefix}twig_dirs` (
+  `td_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `tp_id` int(11) unsigned NOT NULL,
+  `td_name` varchar(64) NOT NULL DEFAULT '',
+  PRIMARY KEY (`td_id`),
+  UNIQUE KEY `tp_id_td_name` (`tp_id`,`td_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4",
+
+"CREATE TABLE `{dbPrefix}twig_templates` (
+  `tpl_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `td_id` int(11) unsigned NOT NULL,
+  `tpl_name` varchar(128) NOT NULL DEFAULT '',
+  `tpl_immutable` int(2) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`tpl_id`),
+  UNIQUE KEY `td_id_tpl_name` (`td_id`,`tpl_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4",
 
 "ALTER TABLE {dbPrefix}routes ADD CONSTRAINT `{dbPrefix}routes_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE {dbPrefix}page ADD CONSTRAINT `{dbPrefix}page_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
@@ -149,5 +180,7 @@ return [
 "ALTER TABLE {dbPrefix}people_group_map ADD CONSTRAINT `{dbPrefix}pgm_ibfk_1` FOREIGN KEY (`people_id`) REFERENCES `{dbPrefix}people` (`people_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE {dbPrefix}people_group_map ADD CONSTRAINT `{dbPrefix}pgm_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `{dbPrefix}groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE {dbPrefix}routes_group_map ADD CONSTRAINT `{dbPrefix}rgm_ibfk_1` FOREIGN KEY (`route_id`) REFERENCES `{dbPrefix}routes` (`route_id`) ON DELETE CASCADE ON UPDATE CASCADE",
-"ALTER TABLE {dbPrefix}routes_group_map ADD CONSTRAINT `{dbPrefix}rgm_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `{dbPrefix}groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE"
+"ALTER TABLE {dbPrefix}routes_group_map ADD CONSTRAINT `{dbPrefix}rgm_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `{dbPrefix}groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}twig_dirs ADD CONSTRAINT `lib_twig_dirs_ibfk_1` FOREIGN KEY (`tp_id`) REFERENCES `lib_twig_prefix` (`tp_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}twig_templates ADD CONSTRAINT `{dbPrefix}twig_templates_ibfk_1` FOREIGN KEY (`td_id`) REFERENCES `{db_Prefix}twig_dirs` (`td_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 ];

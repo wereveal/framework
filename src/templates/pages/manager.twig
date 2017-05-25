@@ -1,28 +1,12 @@
 {% extends '@' ~ twig_prefix ~ 'default/base.twig' %}
 {% block body %}
-            {% if a_message.message %}
-            <div class="row">
-                <div class="col-md-12">
-                    {% include '@' ~ twig_prefix ~ 'snippets/message.twig' %}
-                </div>
-            </div>
-            {% endif %}
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <ul class="clean-ul">
-                    {% for nav in a_menus %}
-                        <li><a href="{{ nav.url }}">{{ nav.description }}</a></li>
-                    {% endfor %}
-                    </ul>
-                </div>
-            </div>
-            {% if debug_text %}
             <div class="container">
-                <code class="pre">
-                {{ debug_text }}
-                </code>
+                <ul class="clean-ul">
+                {% for nav in a_menus %}
+                    <li><a href="{{ nav.url }}">{{ nav.description }}</a></li>
+                {% endfor %}
+                </ul>
             </div>
-            {% endif %}
 {% endblock %}
 {#
 expected array [

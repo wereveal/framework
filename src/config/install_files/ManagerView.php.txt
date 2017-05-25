@@ -13,7 +13,10 @@
  */
 namespace {NAMESPACE}\{APPNAME}\Views;
 
+use Ritc\Library\Helper\ViewHelper;
 use Ritc\Library\Interfaces\ViewInterface;
+use Ritc\Library\Services\Di;
+use Ritc\Library\Traits\LogitTraits;
 use Ritc\Library\Traits\ViewTraits;
 
 /**
@@ -23,7 +26,7 @@ use Ritc\Library\Traits\ViewTraits;
  */
 class ManagerView implements ViewInterface
 {
-    use ViewTraits;
+    use ViewTraits, LogitTraits;
 
     /**
      * ManagerView constructor.
@@ -32,6 +35,7 @@ class ManagerView implements ViewInterface
     public function __construct(Di $o_di)
     {
         $this->setupView($o_di);
+        $this->setupElog($o_di);
     }
 
    /**
@@ -43,13 +47,10 @@ class ManagerView implements ViewInterface
     {
         $meth = __METHOD__ . '.';
         $this->setAdmLevel($_SESSION['login_id']);
-        $this->setNav();
-        $a_values = $this->getPageValues();
-        $a_twig_values = $this->createDefaultTwigValues('manager', $a_message);
-        $a_twig_values = array_merge($a_values, $a_twig_values);
-        $log_message = 'Final Values for twig: ' . var_export($a_twig_values, true);
-        $this->logIt($log_message, LOG_OFF, $meth . __LINE__);
-        $tpl = '@' . $a_twig_values['twig_prefix'] . 'pages/home_page.twig';
+        $a_twig_values = $this->createDefaultTwigValues($a_message);
+        $tpl = $this->createTplString($a_twig_values);
+          $log_message = 'Final Values for twig: ' . var_export($a_twig_values, true);
+          $this->logIt($log_message, LOG_OFF, $meth . __LINE__);
         return $this->o_twig->render($tpl, $a_twig_values);
     }
 
@@ -62,30 +63,18 @@ class ManagerView implements ViewInterface
      */
     public function renderLoginForm($previous_login_id = '', array $a_message = array())
     {
-        $meth = __METHOD__ . '.';
-        /** @var Session $o_sess */
-        $o_sess  = $this->o_di->get('session');
-        $o_sess->resetSession();
-
         if ($a_message != array()) {
             $a_message = ViewHelper::messageProperties($a_message);
         }
         else {
             $a_message = array();
         }
-
-        $a_page_values = $this->getPageValues();
-        $log_message = 'Page Values ' . var_export($a_page_values, TRUE);
-        $this->logIt($log_message, LOG_OFF, $meth . __LINE__);
-
-        $a_twig_values = $this->createDefaultTwigValues('manager', $a_message);
+        $a_twig_values = $this->createDefaultTwigValues($a_message);
         $a_twig_values['login_id'] = $previous_login_id;
         $a_twig_values['a_menus'] = [];
-
-        $a_values = array_merge($a_page_values, $a_twig_values);
-        $o_sess->unsetVar('login_id');
-        $tpl = '@' . $a_twig_values['twig_prefix'] . 'pages/' . $a_twig_values['tpl'] . '.twig';
-        return $this->o_twig->render($tpl, $a_values);
+        $tpl = $this->createTplString($a_twig_values);
+        $this->o_session->unsetVar('login_id');
+        return $this->o_twig->render($tpl, $a_twig_values);
     }
 
 }

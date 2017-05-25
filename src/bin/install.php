@@ -4,23 +4,22 @@
  * @details   This creates the database config, some standard directories,
  *            and some standard files needed, e.g. index.php and MainController.
  *            This should be run from the cli in the /src/bin directory of the site.
- *            Files in the /src/config/install dir should be modified as needed.
- *            The /src/config/install/install_config.php file is primary but can
- *            copied and change the copy. Call the copied file by name on the cli,
- *            e.g. php install.php install_config.php
+ *            Copy /src/config/install_files/install_config.php.txt to /src/config/install_config.php.
+ *            The copied file may have any name as long as it is in /src/config directory but then it needs to be
+ *            called on the cli, e.g. php install.php my_install_config.php
  * @file      /src/bin/install.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2017-05-11 12:00:18
- * @version   2.4.0
- * @note   <b>Change Log</b><pre>
- *  v2.4.0 - changed several settings, defaults, and actions      - 2017-05-11 wer
- *  v2.3.0 - fix to install setup.php in public dir               - 2017-05-08 wer
- *  v2.2.0 - bug fixes to get postgresql working                  - 2017-04-18 wer
- *  v2.1.0 - lots of bug fixes and additions                      - 2017-01-24 wer
- *  v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
- *  v1.0.0 - initial version                                      - 2015-11-27 wer
- * </pre>
+ * @date      2017-05-25 15:28:28
+ * @version   2.5.0
+ * @note   <b>Change Log</b>
+ * - v2.5.0 - Added several files to be created in app.            - 2017-05-25 wer
+ * - v2.4.0 - changed several settings, defaults, and actions      - 2017-05-11 wer
+ * - v2.3.0 - fix to install_files setup.php in public dir         - 2017-05-08 wer
+ * - v2.2.0 - bug fixes to get postgresql working                  - 2017-04-18 wer
+ * - v2.1.0 - lots of bug fixes and additions                      - 2017-01-24 wer
+ * - v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
+ * - v1.0.0 - initial version                                      - 2015-11-27 wer
  */
 namespace Ritc;
 
@@ -44,19 +43,17 @@ if (!file_exists(APPS_PATH . '/Ritc/Library')) {
     die("You must clone the Ritc/Library in the apps dir first and any other desired apps.\n");
 }
 
-$install_files_path = SRC_CONFIG_PATH . '/install';
+$install_files_path = SRC_CONFIG_PATH . '/install_files';
 
-/* allows a custom file to be created. Still must be in src/config/install dir */
+/* allows a custom file to be created. Still must be in src/config/install_files dir */
+$install_config = SRC_CONFIG_PATH . '/install_config.php';
 if (isset($argv[1])) {
-    $require_this = $install_files_path . '/' . $argv[1];
+    $install_config = SRC_CONFIG_PATH . '/' . $argv[1];
 }
-else {
-    if (!file_exists($install_files_path . '/install_config.php')) {
-        die("You must create the install configuration file in {$install_files_path}. The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
-    }
-    $require_this = $install_files_path . '/install_config.php';
+if (!file_exists($install_config)) {
+    die("You must create the install_configs configuration file in " . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
 }
-$a_install = require_once $require_this;
+$a_install = require_once $install_config;
 
 ### generate files for autoloader ###
 require APPS_PATH . '/Ritc/Library/Helper/AutoloadMapper.php';
@@ -544,6 +541,98 @@ foreach ($a_nnm as $key => $a_record) {
 }
 print "\n\n";
 
+### Enter twig prefixes
+print "Creating Twig Prefixes: ";
+$a_tp_prefix = $a_data['tp_prefix'];
+$a_strings = createStrings($a_tp_prefix);
+$twig_prefix_sql =<<<SQL
+INSERT INTO {$a_install['lib_db_prefix']}twig_prefix
+  ({$a_strings['fields']})
+VALUES
+  ({$a_strings['values']})
+SQL;
+
+$a_table_info = [
+    'table_name'  => $a_install['lib_db_prefix'] . 'twig_dirs',
+    'column_name' => 'tp_id'
+];
+foreach ($a_tp_prefix as $key => $a_record) {
+    $results = $o_db->insert($twig_prefix_sql, $a_record, $a_table_info);
+    if ($results === false) {
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("\nCould not twig prefix data\n");
+    }
+    else {
+        $ids = $o_db->getNewIds();
+        $a_tp_prefix[$key]['tp_id'] = $ids[0];
+        print '+';
+    }
+}
+print "\n\n";
+
+### Enter twig directories
+print "Creating twig directories: ";
+$a_tp_dirs = $a_data['tp_dirs'];
+$a_strings = createStrings($a_tp_dirs);
+$twig_dirs_sql =<<<SQL
+INSERT INTO {$a_install['lib_db_prefix']}twig_dirs
+  ({$a_strings['fields']})
+VALUES
+  ({$a_strings['values']})
+SQL;
+
+$a_table_info = [
+    'table_name'  => $a_install['lib_db_prefix'] . 'twig_dirs',
+    'column_name' => 'td_id'
+];
+foreach ($a_tp_dirs as $key => $a_record) {
+    $a_record['tp_id'] = $a_tp_prefix[$a_record['tp_id']]['tp_id'];
+    $results = $o_db->insert($twig_dirs_sql, $a_record, $a_table_info);
+    if ($results === false) {
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("\nCould not twig dirs data\n");
+    }
+    else {
+        $ids = $o_db->getNewIds();
+        $a_tp_dirs[$key]['td_id'] = $ids[0];
+        print '+';
+    }
+}
+print "\n\n";
+
+### Enter twig templates
+print "Creating twig templates: ";
+$a_tp_tpls = $a_data['tp_templates'];
+$a_strings = createStrings($a_tp_tpls);
+$twig_tpls_sql =<<<SQL
+INSERT INTO {$a_install['lib_db_prefix']}twig_templates
+  ({$a_strings['fields']})
+VALUES
+  ({$a_strings['values']})
+SQL;
+
+$a_table_info = [
+    'table_name'  => $a_install['lib_db_prefix'] . 'twig_templates',
+    'column_name' => 'tpl_id'
+];
+foreach ($a_tp_tpls as $key => $a_record) {
+    $a_record['td_id'] = $a_tp_prefix[$a_record['td_id']]['td_id'];
+    $results = $o_db->insert($twig_tpls_sql, $a_record, $a_table_info);
+    if ($results === false) {
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("\nCould not twig dirs data\n");
+    }
+    else {
+        $ids = $o_db->getNewIds();
+        $a_tp_tpls[$key]['tpl_id'] = $ids[0];
+        print '+';
+    }
+}
+print "\n\n";
+
 ### Enter 'page',
 print "Creating Page: ";
 $a_page    = $a_data['page'];
@@ -563,6 +652,7 @@ $a_table_info = [
 
 foreach ($a_page as $key => $a_record) {
     $a_record['url_id']  = $a_urls[$a_record['url_id']]['url_id'];
+    $a_record['tpl_id'] = $a_tp_tpls[$a_record['tpl_id']]['tpl_id'];
     $results = $o_db->insert($page_sql, $a_record, $a_table_info);
     if ($results === false) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
@@ -672,45 +762,66 @@ EOF;
 ### Create the main controller for the app ###
     print "Creating the main controller for the app\n";
     $a_replace[4] = 'Main';
-    $a_replace[5] = file_get_contents(SRC_CONFIG_PATH . '/install/main_controller.txt');
-    $controller_text = file_get_contents(SRC_CONFIG_PATH . '/install/controller.txt');
+    $a_replace[5] = file_get_contents(SRC_CONFIG_PATH . '/install_files/main_controller.snippet');
+    $controller_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/controller.php.txt');
     $controller_text = str_replace($a_find, $a_replace, $controller_text);
     file_put_contents($app_path . "/Controllers/MainController.php", $controller_text);
 
 ### Create the home controller for the app ###
     print "Creating the home controller for the app\n";
     $a_replace[4] = 'Home';
-    $a_replace[5] = file_get_contents(SRC_CONFIG_PATH . '/install/home_controller.txt');
-    $controller_text = file_get_contents(SRC_CONFIG_PATH . '/install/controller.txt');
+    $a_replace[5] = file_get_contents(SRC_CONFIG_PATH . '/install_files/home_controller.snippet');
+    $controller_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/controller.php.txt');
     $controller_text = str_replace($a_find, $a_replace, $controller_text);
     file_put_contents($app_path . "/Controllers/HomeController.php", $controller_text);
 
+### Create the manager controller for the app ###
+    print "Creating the manager controller for the app\n";
+    $a_replace[4] = 'Manager';
+    $a_replace[5] = '';
+    $controller_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/ManagerController.php.txt');
+    $controller_text = str_replace($a_find, $a_replace, $controller_text);
+    file_put_contents($app_path . "/Controllers/ManagerController.php", $controller_text);
+
 ### Create the home view for the app ###
     print "Creating the home view for the app\n";
-    $view_text = file_get_contents(SRC_CONFIG_PATH . '/install/view.txt');
+    $view_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/HomeView.php.txt');
     $view_text = str_replace($a_find, $a_replace, $view_text);
     file_put_contents($app_path . "/Views/HomeView.php", $view_text);
 
+### Create the manager view for the app ###
+    print "Creating the manager view for the app\n";
+    $view_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/ManagerView.php.txt');
+    $view_text = str_replace($a_find, $a_replace, $view_text);
+    file_put_contents($app_path . "/Views/ManagerView.php", $view_text);
+
 ### Create the doxygen config for the app ###
     print "Creating the doxy config for the app\n";
-    $doxy_text = file_get_contents(SRC_CONFIG_PATH . '/install/doxygen_config.txt');
+    $doxy_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/doxygen_config.php.txt');
     $doxy_text = str_replace($a_find, $a_replace, $doxy_text);
     file_put_contents($app_path . '/resources/config/doxygen_config.php', $doxy_text);
 
 ### Create the twig_config file ###
     print "Creating the twig config file for app\n";
-    $twig_file = file_get_contents(SRC_CONFIG_PATH . '/install/twig_config.txt');
+    $twig_file = file_get_contents(SRC_CONFIG_PATH . '/install_files/twig_config.php.txt');
     $new_twig_file = str_replace($a_find, $a_replace, $twig_file);
     file_put_contents($app_path . '/resources/config/twig_config.php', $new_twig_file);
 
 ### Copy two main twig files ###
     print "Copying twig files\n";
-    $first_file = '/resources/templates/default/base.twig';
-    $second_file = '/resources/templates/pages/index.twig';
-    $twig_text = file_get_contents(LIBRARY_PATH . $first_file);
-    file_put_contents($app_path . $first_file, $twig_text);
-    $twig_text = file_get_contents(LIBRARY_PATH . $second_file);
-    file_put_contents($app_path . $second_file, $twig_text);
+    $base_twig = '/templates/default/base.twig';
+    $resource_path = $app_path . '/resources';
+    $twig_text = file_get_contents(SRC_PATH . $base_twig);
+    file_put_contents($resource_path . $base_twig, $twig_text);
+    $default_templates_path = SRC_PATH . '/templates/pages/';
+    $a_default_files = scandir($default_templates_path);
+    $pages_path = $resource_path . '/templates/pages/';
+    foreach ($a_default_files as $this_file) {
+        if ($this_file != '.' && $this_file != '..') {
+            $twig_text = file_get_contents($default_templates_path . $this_file);
+            file_put_contents($pages_path . $this_file, $twig_text);
+        }
+    }
 } // end creating new directories and files
 else {
     print "App at {$app_path} Exists\n";
@@ -719,14 +830,14 @@ else {
 ### Create the index.php file ###
 print "Creating the public/index.php file\n";
 $a_find = [
-    'NAMESPACE',
-    'APPNAME'
+    '{NAMESPACE}',
+    '{APPNAME}'
 ];
 $a_replace = [
     $a_install['namespace'],
     $a_install['app_name']
 ];
-$index_text = file_get_contents(SRC_CONFIG_PATH . '/install/index.php.txt');
+$index_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/index.php.txt');
 $index_text = str_replace($a_find, $a_replace, $index_text);
 file_put_contents(PUBLIC_PATH . '/index.php', $index_text);
 
@@ -769,11 +880,11 @@ $a_replace = [
     ''
 ];
 if (!empty($http_host)) {
-    $host_text = file_get_contents(SRC_CONFIG_PATH . '/install/specific_host.txt');
+    $host_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/specific_host.snippet');
     $host_text = str_replace($a_find, $a_replace, $host_text);
     $a_replace[7] = $host_text;
 }
-$setup_text = file_get_contents(SRC_CONFIG_PATH . '/install/setup.php.txt');
+$setup_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/setup.php.txt');
 $setup_text = str_replace($a_find, $a_replace, $setup_text);
 file_put_contents(PUBLIC_PATH . '/setup.php', $setup_text);
 
