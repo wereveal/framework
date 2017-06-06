@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -f src/config/install/install_config.php ];
+if [ -f src/config/install_config.php ];
 then
     if [ ! -d ./vendor ]
     then
@@ -35,7 +35,7 @@ then
     fi
 
     cd src/bin
-    php install.php
+    php src/bin/install.php
 else
-    echo "The src/config/install_files/install_config.php file must be created and configured first."
+    echo "The src/config/install_config.php file must be created and configured first.\nSee src/config/install_files/install_config.php.txt"
 fi

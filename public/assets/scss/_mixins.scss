@@ -103,6 +103,21 @@
     }
 }
 
+@mixin set_font($size, $weight, $style, $variant) {
+    @if $size != '' {
+        font-size: $size;
+    }
+    @if $weight != '' {
+        font-weight: $weight;
+    }
+    @if $style != '' {
+        font-style: $style;
+    }
+    @if $variant != '' {
+        font-variant: $variant;
+    }
+}
+
 @mixin font_medium {
     font-weight: 500;
     font-style: normal;
@@ -206,7 +221,7 @@
     margin-bottom: .5rem;
 }
 
-@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+@mixin font-face($name, $path, $weight: false, $style: false, $exts: eot woff2 woff ttf svg) {
     $src: null;
 
     $extmods: (
@@ -227,8 +242,12 @@
 
     @font-face {
         font-family: quote($name);
-        font-style: $style;
-        font-weight: $weight;
+        @if $weight != '' {
+            font-weight: $weight;
+        }
+        @if $style != '' {
+            font-style: $style;
+        }
         src: $src;
     }
 }
@@ -242,3 +261,68 @@
     background: linear-gradient($direction, $colors) no-repeat;
 }
 
+@mixin make_colorful($important: false) {
+    @if $important {
+        $important:  !important;
+    }
+    @else {
+        $important: '';
+    }
+    background: $color-white$important;
+    border-bottom: 1px solid $color-black$important;
+    border-left: 1px solid $gray60$important;
+    border-right: 1px solid $color-black$important;
+    border-top: 1px solid $gray60$important;
+    padding-left: .5rem$important;
+}
+
+@mixin make_colorful_focused($important: false) {
+    @if $important {
+        $important: !important;
+    }
+    @else {
+        $important: '';
+    }
+    background: $blue-xlight$important;
+    border-bottom: 1px solid $blue-medium-dark$important;
+    border-left: 1px solid $blue-dark$important;
+    border-right: 1px solid $blue-medium-dark$important;
+    border-top: 1px solid $blue-dark$important;
+    padding-left: .5rem$important;
+}
+
+@mixin evenRow($color: $gray90, $bg-color: $color-white) {
+    color: $color;
+    background-color: $bg-color;
+    [class*="col"] {
+        border: 0;
+        padding: 0 .25rem;
+        border-radius: 0;
+        margin-top: .25rem;
+        margin-bottom: .25rem;
+        background-color: $bg-color;
+        &.form-label {
+            text-align: right;
+            padding-right: 1rem;
+            font-weight: 700;
+        }
+    }
+}
+
+@mixin oddRow($color: $color-white, $bg-color: $gray90) {
+    color: $color;
+    background-color: $bg-color;
+    [class*="col"] {
+        border: 0;
+        padding: 0 .25rem;
+        margin-top: .25rem;
+        margin-bottom: .25rem;
+        border-radius: 0;
+        background-color: $bg-color;
+        &.form-label {
+            text-align: right;
+            padding-right: 1rem;
+            font-weight: 700;
+        }
+    }
+}

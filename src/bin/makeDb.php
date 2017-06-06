@@ -1,24 +1,21 @@
 <?php
 /**
- * @brief     This file sets up database.
- * @details   This creates the database config.
- *            This should be run from the cli in the /src/bin directory of the site.
- *            Files in the /src/config/install_files dir should be modified as needed.
- *            The /src/config/install_files/install_config.php file is primary but can
- *            copied and change the copy. Call the copied file by name on the cli,
- *            e.g. php install_files.php install_config.php
- * @file      /src/bin/install_files.php
+ * @brief     This file creates the database needed for the library.
+ * @details   This creates the database.
+ *            Copy /src/config/install_files/install_config.php.txt to /src/config/install_config.php.
+ *            The copied file may have any name as long as it is in /src/config directory but then it needs to be
+ *            called on the cli, e.g. php install.php install_db.php
+ * @file      /src/bin/makeDb.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2017-04-18 16:56:19
+ * @date      2017-05-25 15:28:28
  * @version   1.0.0
  * @note   <b>Change Log</b>
- * - v1.0.0 - initial version                                      - 2017-04-18 wer
+ * - v1.0.0 - initial version                                                                       - 2017-05-25 wer
  */
 namespace Ritc;
 
 use Ritc\Library\Factories\PdoFactory;
-use Ritc\Library\Helper\AutoloadMapper;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
@@ -26,43 +23,28 @@ use Ritc\Library\Services\Elog;
 if (strpos(__DIR__, 'Library') !== false) {
     die("Please Run this script from the src/bin directory");
 }
-
 $base_path = str_replace('/src/bin', '', __DIR__);
 define('DEVELOPER_MODE', true);
 define('BASE_PATH', $base_path);
 define('PUBLIC_PATH', $base_path . '/public');
-
-echo 'Base Path: ' . BASE_PATH . "\n";
-echo 'Public Path: ' . PUBLIC_PATH . "\n";
 
 require_once BASE_PATH . '/src/config/constants.php';
 
 if (!file_exists(APPS_PATH . '/Ritc/Library')) {
     die("You must clone the Ritc/Library in the apps dir first and any other desired apps.\n");
 }
+
 $install_files_path = SRC_CONFIG_PATH . '/install_files';
 
-/* allows a custom file to be created. Still must be in src/config/install_files dir */
-$install_file = SRC_CONFIG_PATH . '/install_config.php';
+/* allows a custom file to be created. Still must be in src/config dir */
+$install_config = SRC_CONFIG_PATH . '/install_config.php';
 if (isset($argv[1])) {
-    $install_file = SRC_CONFIG_PATH . '/' . $argv[1];
+    $install_config = SRC_CONFIG_PATH . '/' . $argv[1];
 }
-if (!file_exists($install_file)) {
-    die("You must create the install_files configuration file in " . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
+if (!file_exists($install_config)) {
+    die("You must create the install_configs configuration file in " . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
 }
-$a_install = require_once $install_file;
-
-### generate files for autoloader ###
-require APPS_PATH . '/Ritc/Library/Helper/AutoloadMapper.php';
-$a_dirs = [
-    'src_path'   => SRC_PATH,
-    'config_path' => SRC_CONFIG_PATH,
-    'apps_path'   => APPS_PATH];
-$o_cm = new AutoloadMapper($a_dirs);
-if (!is_object($o_cm)) {
-    die("Could not instance AutoloadMapper");
-}
-$o_cm->generateMapFiles();
+$a_install = require_once $install_config;
 
 ### Setup the database ###
 $db_config_file = $a_install['db_file'];
@@ -159,15 +141,17 @@ function reorgArray($a_org_values = []) {
 $a_data = require $install_files_path .  '/default_data.php';
 
 $o_db->startTransaction();
+print "Creating databases: ";
 foreach ($a_sql as $sql) {
     $sql = str_replace('{dbPrefix}', $a_install['lib_db_prefix'], $sql);
-    print $sql . "\n";
     if ($o_db->rawExec($sql) === false) {
         $error_message = $o_db->getSqlErrorMessage();
         $o_db->rollbackTransaction();
         die("Database failure\n" . var_export($o_pdo->errorInfo(), true) . " \nother: " . $error_message . "\n" . $sql . "\n");
     }
+    print "+";
 }
+print "\n\n";
 
 ### Enter Constants
 print "Entering Constants Data: ";
@@ -184,13 +168,18 @@ $a_table_info = [
     'column_name' => 'const_id'
 ];
 
-if (isset($a_install['twig_prefix']) && isset($a_constants['twig_prefix']['const_value'])) {
+if (!empty($a_install['twig_prefix']) && isset($a_constants['twig_prefix']['const_value'])) {
+    $a_constants['twig_prefix']['const_value'] = $a_install['twig_prefix'];
+}
+if (!empty($a_install['lib_twig_prefix']) && isset($a_constants['lib_twig_prefix']['const_value'])) {
     $a_constants['twig_prefix']['const_value'] = $a_install['twig_prefix'];
 }
 foreach ($a_constants as $key => $a_values) {
     $results = $o_db->insert($sql, $a_values, $a_table_info);
     if (empty($results)) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        print_r($a_values);
+        print "\n";
         $o_db->rollbackTransaction();
         die("\nCould not insert contants data\n");
     }
@@ -326,9 +315,6 @@ foreach ($a_navgroups as $key => $a_nav_group) {
         print "n";
     }
 }
-print "\n\n";
-// print_r($a_navgroups);
-// print "\n\n";
 
 ### Enter 'people_group_map',
 print "Creating people_group_map: ";
@@ -396,6 +382,7 @@ foreach ($a_routes as $key => $a_record) {
     }
 }
 print "\n\n";
+
 ### Enter 'routes_group_map'
 print "Creating routes_group_map: ";
 $a_rgm     = $a_data['routes_group_map'];
@@ -410,14 +397,12 @@ SQL;
 
 $a_table_info = [
     'table_name'  => $a_install['lib_db_prefix'] . 'routes_group_map',
-    'column_name' => 'rgm__id'
+    'column_name' => 'rgm_id'
 ];
 
 foreach ($a_rgm as $key => $a_record) {
     $a_record['route_id'] = $a_routes[$a_record['route_id']]['route_id'];
     $a_record['group_id'] = $a_groups[$a_record['group_id']]['group_id'];
-    // print_r($a_record);
-    print "\n";
     $results = $o_db->insert($rgm_sql, $a_record, $a_table_info);
     if ($results === false) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
@@ -518,11 +503,6 @@ $a_table_info = [
     'column_name' => 'nnm_id'
 ];
 
-// print_r($a_navgroups);
-// print "\n";
-// print_r($a_navigation);
-// print "\n";
-
 foreach ($a_nnm as $key => $a_record) {
     $a_record['ng_id']  = $a_navgroups[$a_record['ng_id']]['ng_id'];
     $a_record['nav_id'] = $a_navigation[$a_record['nav_id']]['nav_id'];
@@ -536,6 +516,98 @@ foreach ($a_nnm as $key => $a_record) {
         $ids = $o_db->getNewIds();
         $a_nnm[$key]['nnm_id'] = $ids[0];
         print "+";
+    }
+}
+print "\n\n";
+
+### Enter twig prefixes
+print "Creating Twig Prefixes: ";
+$a_tp_prefix = $a_data['tp_prefix'];
+$a_strings = createStrings($a_tp_prefix);
+$twig_prefix_sql =<<<SQL
+INSERT INTO {$a_install['lib_db_prefix']}twig_prefix
+  ({$a_strings['fields']})
+VALUES
+  ({$a_strings['values']})
+SQL;
+
+$a_table_info = [
+    'table_name'  => $a_install['lib_db_prefix'] . 'twig_dirs',
+    'column_name' => 'tp_id'
+];
+foreach ($a_tp_prefix as $key => $a_record) {
+    $results = $o_db->insert($twig_prefix_sql, $a_record, $a_table_info);
+    if ($results === false) {
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("\nCould not insert twig prefix data\n");
+    }
+    else {
+        $ids = $o_db->getNewIds();
+        $a_tp_prefix[$key]['tp_id'] = $ids[0];
+        print '+';
+    }
+}
+print "\n\n";
+
+### Enter twig directories
+print "Creating twig directories: ";
+$a_tp_dirs = $a_data['tp_dirs'];
+$a_strings = createStrings($a_tp_dirs);
+$twig_dirs_sql =<<<SQL
+INSERT INTO {$a_install['lib_db_prefix']}twig_dirs
+  ({$a_strings['fields']})
+VALUES
+  ({$a_strings['values']})
+SQL;
+
+$a_table_info = [
+    'table_name'  => $a_install['lib_db_prefix'] . 'twig_dirs',
+    'column_name' => 'td_id'
+];
+foreach ($a_tp_dirs as $key => $a_record) {
+    $a_record['tp_id'] = $a_tp_prefix[$a_record['tp_id']]['tp_id'];
+    $results = $o_db->insert($twig_dirs_sql, $a_record, $a_table_info);
+    if ($results === false) {
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("\nCould not insert twig dirs data\n");
+    }
+    else {
+        $ids = $o_db->getNewIds();
+        $a_tp_dirs[$key]['td_id'] = $ids[0];
+        print '+';
+    }
+}
+print "\n\n";
+
+### Enter twig templates
+print "Creating twig templates: ";
+$a_tp_tpls = $a_data['tp_templates'];
+$a_strings = createStrings($a_tp_tpls);
+$twig_tpls_sql =<<<SQL
+INSERT INTO {$a_install['lib_db_prefix']}twig_templates
+  ({$a_strings['fields']})
+VALUES
+  ({$a_strings['values']})
+SQL;
+
+$a_table_info = [
+    'table_name'  => $a_install['lib_db_prefix'] . 'twig_templates',
+    'column_name' => 'tpl_id'
+];
+foreach ($a_tp_tpls as $key => $a_record) {
+    $a_record['td_id'] = $a_tp_dirs[$a_record['td_id']]['td_id'];
+    $results = $o_db->insert($twig_tpls_sql, $a_record, $a_table_info);
+    if ($results === false) {
+        print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
+        $o_db->rollbackTransaction();
+        die("\nCould not insert twig templates data\n");
+    }
+    else {
+        $ids = $o_db->getNewIds();
+        $a_tp_tpls[$key]['tpl_id'] = $ids[0];
+        print '+';
     }
 }
 print "\n\n";
@@ -559,6 +631,7 @@ $a_table_info = [
 
 foreach ($a_page as $key => $a_record) {
     $a_record['url_id']  = $a_urls[$a_record['url_id']]['url_id'];
+    $a_record['tpl_id'] = $a_tp_tpls[$a_record['tpl_id']]['tpl_id'];
     $results = $o_db->insert($page_sql, $a_record, $a_table_info);
     if ($results === false) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
@@ -579,5 +652,4 @@ if ($o_db->commitTransaction()) {
 else {
     die("Could not commit the transaction.\n");
 }
-
 ?>

@@ -34,7 +34,7 @@ if (!file_exists(APPS_PATH . '/Ritc/Library')) {
 
 $install_files_path = SRC_CONFIG_PATH . '/install_files';
 
-/* allows a custom file to be created. Still must be in src/config/install_files dir */
+/* allows a custom file to be created. Still must be in src/config dir */
 $install_config = SRC_CONFIG_PATH . '/app_config.php';
 if (isset($argv[1])) {
     $install_config = SRC_CONFIG_PATH . '/' . $argv[1];

@@ -45,7 +45,7 @@ if (!file_exists(APPS_PATH . '/Ritc/Library')) {
 
 $install_files_path = SRC_CONFIG_PATH . '/install_files';
 
-/* allows a custom file to be created. Still must be in src/config/install_files dir */
+/* allows a custom file to be created. Still must be in src/config dir */
 $install_config = SRC_CONFIG_PATH . '/install_config.php';
 if (isset($argv[1])) {
     $install_config = SRC_CONFIG_PATH . '/' . $argv[1];
@@ -58,9 +58,10 @@ $a_install = require_once $install_config;
 ### generate files for autoloader ###
 require APPS_PATH . '/Ritc/Library/Helper/AutoloadMapper.php';
 $a_dirs = [
-    'src_path'   => SRC_PATH,
+    'src_path'    => SRC_PATH,
     'config_path' => SRC_CONFIG_PATH,
-    'apps_path'   => APPS_PATH];
+    'apps_path'   => APPS_PATH
+];
 $o_cm = new AutoloadMapper($a_dirs);
 if (!is_object($o_cm)) {
     die("Could not instance AutoloadMapper");
@@ -162,6 +163,7 @@ function reorgArray($a_org_values = []) {
 $a_data = require $install_files_path .  '/default_data.php';
 
 $o_db->startTransaction();
+print "Creating Databases: ";
 foreach ($a_sql as $sql) {
     $sql = str_replace('{dbPrefix}', $a_install['lib_db_prefix'], $sql);
     if ($o_db->rawExec($sql) === false) {
@@ -169,7 +171,9 @@ foreach ($a_sql as $sql) {
         $o_db->rollbackTransaction();
         die("Database failure\n" . var_export($o_pdo->errorInfo(), true) . " \nother: " . $error_message . "\n" . $sql . "\n");
     }
+    print "+";
 }
+print "\n\n";
 
 ### Enter Constants
 print "Entering Constants Data: ";
@@ -333,9 +337,6 @@ foreach ($a_navgroups as $key => $a_nav_group) {
         print "n";
     }
 }
-print "\n\n";
-print_r($a_navgroups);
-print "\n\n";
 
 ### Enter 'people_group_map',
 print "Creating people_group_map: ";
@@ -561,7 +562,7 @@ foreach ($a_tp_prefix as $key => $a_record) {
     if ($results === false) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
-        die("\nCould not twig prefix data\n");
+        die("\nCould not insert twig prefix data\n");
     }
     else {
         $ids = $o_db->getNewIds();
@@ -592,7 +593,7 @@ foreach ($a_tp_dirs as $key => $a_record) {
     if ($results === false) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
-        die("\nCould not twig dirs data\n");
+        die("\nCould not insert twig dirs data\n");
     }
     else {
         $ids = $o_db->getNewIds();
@@ -618,12 +619,12 @@ $a_table_info = [
     'column_name' => 'tpl_id'
 ];
 foreach ($a_tp_tpls as $key => $a_record) {
-    $a_record['td_id'] = $a_tp_prefix[$a_record['td_id']]['td_id'];
+    $a_record['td_id'] = $a_tp_dirs[$a_record['td_id']]['td_id'];
     $results = $o_db->insert($twig_tpls_sql, $a_record, $a_table_info);
     if ($results === false) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
         $o_db->rollbackTransaction();
-        die("\nCould not twig dirs data\n");
+        die("\nCould not insert twig templates data\n");
     }
     else {
         $ids = $o_db->getNewIds();

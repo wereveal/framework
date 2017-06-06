@@ -41,7 +41,7 @@ class HomeView implements ViewInterface
     public function render(array $a_message = [])
     {
         $a_twig_values = $this->createDefaultTwigValues($a_message);
-        $tpl = '@' . $a_twig_values['twig_prefix'] . 'pages/' . $a_twig_values['tpl'] . '.twig';
+        $tpl = $this->createTplString($a_twig_values);
         return $this->o_twig->render($tpl, $a_twig_values);
     }
 }

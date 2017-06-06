@@ -29,7 +29,7 @@ if (!file_exists(APPS_PATH . '/Ritc/Library')) {
     die("You must clone the Ritc/Library in the apps dir first and any other desired apps.\n");
 }
 
-/* allows a custom file to be created. Still must be in src/config/install_files dir */
+/* allows a custom file to be created. Still must be in src/config dir */
 $install_file = SRC_CONFIG_PATH . '/install_config.php';
 if (isset($argv[1])) {
     $install_file = SRC_CONFIG_PATH . '/' . $argv[1];

@@ -1,6 +1,8 @@
+$default-body-font-size: 16px;
 $default-radius:         .25rem;
-$default-h1:             1.75rem;
-$default-body-font-size: 14px;
-$default-sans:           'Lato', Verdana, Helvetica, sans-serif;
-$default-serif:          'Merriweather', Georgia, 'Times New Roman', Times, serif;
-$default-mono:           'VeraMono', Monoco, monospace;
+$default-h1:             1.625rem;
+$default-sans:           "VeraSans", Verdana, Helvetica, sans-serif;
+$default-sans-bold:      "VeraSansBold", sans-serif;
+$default-serif:          "VeraSerif", Georgia, "Times New Roman", Times, serif;
+$default-serif-bold:     "VeraSerifBold", serif;
+$default-mono:           "VeraMono", Monoco, monospace;

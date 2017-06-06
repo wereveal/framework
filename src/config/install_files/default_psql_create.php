@@ -12,10 +12,8 @@ return [
 "DROP TABLE IF EXISTS {dbPrefix}navigation",
 "DROP TABLE IF EXISTS {dbPrefix}urls",
 "DROP TYPE IF EXISTS url_protocol CASCADE",
-"DROP TYPE IF EXISTS content_format",
 
-"CREATE TYPE url_protocol as ENUM ('http', 'https', 'ftp', 'gopher', 'mailto')",
-"CREATE TYPE content_format as ENUM ('html', 'markdown', 'text')",
+"CREATE TYPE url_protocol as ENUM ('http', 'https', 'ftp', 'gopher', 'mailto', 'file')",
 
 "CREATE TABLE {dbPrefix}constants (
   const_id serial NOT NULL,
@@ -42,6 +40,7 @@ return [
   url_immutable integer NOT NULL DEFAULT 0,
   PRIMARY KEY (url_id)
 )",
+"CREATE UNIQUE INDEX urls_url_idx on {dbPrefix}urls (url_scheme, url_host, url_text)",
 
 "CREATE TABLE {dbPrefix}routes (
   route_id serial NOT NULL,

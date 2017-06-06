@@ -1,5 +1,6 @@
 <?php
 return [
+"SET FOREIGN_KEY_CHECKS = 0",
 "DROP TABLE IF EXISTS `{dbPrefix}nav_ng_map`",
 "DROP TABLE IF EXISTS `{dbPrefix}people_group_map`",
 "DROP TABLE IF EXISTS `{dbPrefix}routes_group_map`",
@@ -12,8 +13,9 @@ return [
 "DROP TABLE IF EXISTS `{dbPrefix}navigation`",
 "DROP TABLE IF EXISTS `{dbPrefix}urls`",
 "DROP TABLE IF EXISTS `{dbPrefix}twig_templates`",
-"DROP TABLE IF EXISTS `{dbPrefix}twig_dir`",
+"DROP TABLE IF EXISTS `{dbPrefix}twig_dirs`",
 "DROP TABLE IF EXISTS `{dbPrefix}twig_prefix`",
+"SET FOREIGN_KEY_CHECKS = 1",
 
 
 "CREATE TABLE `{dbPrefix}constants` (
@@ -39,10 +41,10 @@ return [
   `url_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `url_host` varchar(150) NOT NULL DEFAULT 'self',
   `url_text` varchar(150) NOT NULL DEFAULT '',
-  `url_scheme` enum('http','https','ftp','gopher','mailto') NOT NULL DEFAULT 'https',
+  `url_scheme` enum('http','https','ftp','gopher','mailto', 'file') NOT NULL DEFAULT 'https',
   `url_immutable` tinyint(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`url_id`),
-  UNIQUE KEY `url_text` (`url_text`)
+  UNIQUE KEY `urls_url` (`url_scheme`,`url_host`,`url_text`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}routes` (
@@ -60,8 +62,7 @@ return [
   `page_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `url_id` int(11) unsigned NOT NULL,
   `ng_id` int(11) unsigned NOT NULL,
-  `page_twig_prefix` varchar(20) NOT NULL DEFAULT 'site',
-  `page_tpl` varchar(64) NOT NULL DEFAULT 'index',
+  `tpl_id` int(11) unsigned NOT NULL,
   `page_type` varchar(20) NOT NULL DEFAULT 'text/html',
   `page_title` varchar(100) NOT NULL DEFAULT 'Needs a title',
   `page_description` varchar(150) NOT NULL DEFAULT 'Needs a description',
@@ -161,7 +162,7 @@ return [
   `td_name` varchar(64) NOT NULL DEFAULT '',
   PRIMARY KEY (`td_id`),
   UNIQUE KEY `tp_id_td_name` (`tp_id`,`td_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}twig_templates` (
   `tpl_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -170,10 +171,11 @@ return [
   `tpl_immutable` int(2) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`tpl_id`),
   UNIQUE KEY `td_id_tpl_name` (`td_id`,`tpl_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "ALTER TABLE {dbPrefix}routes ADD CONSTRAINT `{dbPrefix}routes_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE {dbPrefix}page ADD CONSTRAINT `{dbPrefix}page_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}page ADD CONSTRAINT `{dbPrefix}page_ibfk_2` FOREIGN KEY (`tpl_id`) REFERENCES `{dbPrefix}twig_templates` (`tpl_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE {dbPrefix}navigation ADD CONSTRAINT `{dbPrefix}navigation_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE {dbPrefix}nav_ng_map ADD CONSTRAINT `{dbPrefix}nnm_ibfk_1` FOREIGN KEY (`ng_id`) REFERENCES `{dbPrefix}navgroups` (`ng_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE {dbPrefix}nav_ng_map ADD CONSTRAINT `{dbPrefix}nnm_ibfk_2` FOREIGN KEY (`nav_id`) REFERENCES `{dbPrefix}navigation` (`nav_id`) ON DELETE CASCADE ON UPDATE CASCADE",
@@ -181,6 +183,6 @@ return [
 "ALTER TABLE {dbPrefix}people_group_map ADD CONSTRAINT `{dbPrefix}pgm_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `{dbPrefix}groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE {dbPrefix}routes_group_map ADD CONSTRAINT `{dbPrefix}rgm_ibfk_1` FOREIGN KEY (`route_id`) REFERENCES `{dbPrefix}routes` (`route_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE {dbPrefix}routes_group_map ADD CONSTRAINT `{dbPrefix}rgm_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `{dbPrefix}groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE",
-"ALTER TABLE {dbPrefix}twig_dirs ADD CONSTRAINT `lib_twig_dirs_ibfk_1` FOREIGN KEY (`tp_id`) REFERENCES `lib_twig_prefix` (`tp_id`) ON DELETE CASCADE ON UPDATE CASCADE",
-"ALTER TABLE {dbPrefix}twig_templates ADD CONSTRAINT `{dbPrefix}twig_templates_ibfk_1` FOREIGN KEY (`td_id`) REFERENCES `{db_Prefix}twig_dirs` (`td_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}twig_dirs ADD CONSTRAINT `lib_twig_dirs_ibfk_1` FOREIGN KEY (`tp_id`) REFERENCES `{dbPrefix}twig_prefix` (`tp_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE {dbPrefix}twig_templates ADD CONSTRAINT `{dbPrefix}twig_templates_ibfk_1` FOREIGN KEY (`td_id`) REFERENCES `{dbPrefix}twig_dirs` (`td_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 ];

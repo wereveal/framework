@@ -1,19 +1,9 @@
 input, textarea {
     &.colorful {
-        background: $color-white !important;
-        border-bottom: 1px solid $color-black !important;
-        border-left: 1px solid $gray60  !important;
-        border-right: 1px solid $color-black !important;
-        border-top: 1px solid $gray60 !important;
-        padding-left: .5rem !important;
+        @include make_colorful(true);
     }
     &.colorful:focus {
-        background: $blue-xlight !important;
-        border-bottom: 1px solid $blue-medium-dark !important;
-        border-left: 1px solid $blue-dark !important;
-        border-right: 1px solid $blue-medium-dark !important;
-        border-top: 1px solid $blue-dark !important;
-        padding-left: .5rem !important;
+        @include make_colorful_focused(true);
     }
 }
 
@@ -23,6 +13,14 @@ textarea {
     }
 }
 
+.form-inline {
+    &.even-row {
+        @include evenRow($color-white);
+    }
+    &.odd-row {
+        @include oddRow($gray90);
+    }
+}
 .colorful-checkbox {
     width: 15px;
     margin: 0;
@@ -78,10 +76,6 @@ label {
         @include font_bold;
         text-align: right;
     }
-}
-
-.hobbit {
-    display: none;
 }
 
 .nice-fieldset {
@@ -154,6 +148,10 @@ label {
         vertical-align: baseline;
         padding-top: .25rem;
         font-weight: 900;
+        text-align: right;
+        @include media-breakpoint-down(sm) {
+            text-align: left;
+        }
     }
 }
 

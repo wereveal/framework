@@ -4,12 +4,9 @@ composer.lock
 /src/config/app_config*.php
 /src/config/db_config*.php
 /src/config/install_config*.php
+/src/config/install_db*.php
 /src/twig_cache/*
-/src/apps/Ritc/Blog
-/src/apps/Ritc/FtpAdmin
-/src/apps/Ritc/Guide
-/src/apps/Ritc/Library
-/src/apps/Ritc/Main
+/src/apps/Ritc/*
 /src/apps/Wer*
 /public/assets/css/*.css
 /public/assets/css/*.map

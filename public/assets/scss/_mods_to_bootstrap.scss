@@ -5,20 +5,16 @@ body {
     font-family: $default-sans;
     font-weight: 400;
     background-color: $color-body;
-    @media only screen and (max-width: 480px) {
+    @include media-breakpoint-down(sm) {
         padding: 0;
     }
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Merriweather', serif;
+    font-family: $default-serif-bold;
     margin-top: 0;
     padding-top: 0;
 }
-
-h1, h2, h3 { font-weight: 900; }
-
-h4, h5, h6 { font-weight: 700; }
 
 h1 {
     font-size: $default-h1;
@@ -59,3 +55,39 @@ p {
     font-size: 1rem;
 }
 
+$myspacers: (
+    5: (
+            x: ($spacer-x * 2),
+            y: ($spacer-y * 2)
+    ),
+    6: (
+            x: ($spacer-x * 3),
+            y: ($spacer-y * 3)
+    )
+) !default;
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+        @each $prop, $abbrev in (margin: m, padding: p) {
+            @each $size, $lengths in $myspacers {
+                $length-x: map-get($lengths, x);
+                $length-y: map-get($lengths, y);
+
+                .#{$abbrev}#{$infix}-#{$size}  { #{$prop}:        $length-y $length-x !important; }
+                .#{$abbrev}t#{$infix}-#{$size} { #{$prop}-top:    $length-y !important; }
+                .#{$abbrev}r#{$infix}-#{$size} { #{$prop}-right:  $length-x !important; }
+                .#{$abbrev}b#{$infix}-#{$size} { #{$prop}-bottom: $length-y !important; }
+                .#{$abbrev}l#{$infix}-#{$size} { #{$prop}-left:   $length-x !important; }
+                .#{$abbrev}x#{$infix}-#{$size} {
+                    #{$prop}-right: $length-x !important;
+                    #{$prop}-left:  $length-x !important;
+                }
+                .#{$abbrev}y#{$infix}-#{$size} {
+                    #{$prop}-top:    $length-y !important;
+                    #{$prop}-bottom: $length-y !important;
+                }
+            }
+        }
+    }
+}
