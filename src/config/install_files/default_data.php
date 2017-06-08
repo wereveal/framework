@@ -453,7 +453,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 1,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'manager'    => [
         'url_id'          => 'manager',
@@ -464,7 +465,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 2,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'tests'    => [
         'url_id'          => 'tests',
@@ -475,7 +477,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 5,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'login'      => [
         'url_id'          => 'login',
@@ -486,7 +489,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 4,
-        'nav_active'      => 0
+        'nav_active'      => 0,
+        'nav_immutable'   => 1
     ],
     'logout'     => [
         'url_id'          => 'logout',
@@ -497,7 +501,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 4,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'library'    => [
         'url_id'          => 'library',
@@ -508,7 +513,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 3,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'lib_login' => [
         'url_id'          => 'lib_login',
@@ -519,7 +525,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 10,
-        'nav_active'      => 0
+        'nav_active'      => 0,
+        'nav_immutable'   => 1
     ],
     'lib_logout' => [
         'url_id'          => 'lib_logout',
@@ -530,7 +537,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 10,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'constants'  => [
         'url_id'          => 'constants',
@@ -541,7 +549,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 7,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'groups'     => [
         'url_id'          => 'groups',
@@ -552,7 +561,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 5,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'people'     => [
         'url_id'          => 'people',
@@ -563,7 +573,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 6,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'urls'       => [
         'url_id'          => 'urls',
@@ -574,7 +585,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 1,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'pages'      => [
         'url_id'          => 'pages',
@@ -585,7 +597,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 3,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'routes'     => [
         'url_id'          => 'routes',
@@ -596,7 +609,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 2,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'navigation' => [
         'url_id'          => 'navigation',
@@ -607,7 +621,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 4,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'twig' => [
         'url_id'          => 'twig',
@@ -618,7 +633,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 8,
-        'nav_active'      => 1
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
     ],
     'lib_tests'      => [
         'url_id'          => 'lib_tests',
@@ -629,7 +645,8 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 9,
-        'nav_active'      => 0
+        'nav_active'      => 0,
+        'nav_immutable'   => 1
     ]
 ];
 

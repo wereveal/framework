@@ -107,6 +107,7 @@ return [
   nav_level integer NOT NULL DEFAULT 1,
   nav_order integer NOT NULL DEFAULT 0,
   nav_active integer NOT NULL DEFAULT 1,
+  nav_immutable integer NOT NULL DEFAULT 0,
   PRIMARY KEY (nav_id)
 )",
 "CREATE INDEX nav_url_id_idx on {dbPrefix}navigation (url_id)",

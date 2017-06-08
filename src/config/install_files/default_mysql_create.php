@@ -112,6 +112,7 @@ return [
   `nav_level` int(11) NOT NULL DEFAULT '1',
   `nav_order` int(11) NOT NULL DEFAULT '0',
   `nav_active` tinyint(1) NOT NULL DEFAULT '1',
+  `nav_immutable` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`nav_id`),
   KEY `url_id` (`url_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
