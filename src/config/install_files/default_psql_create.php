@@ -92,6 +92,7 @@ return [
   ng_name character varying(128) NOT NULL DEFAULT 'Main'::character varying,
   ng_active integer NOT NULL DEFAULT 1,
   ng_default integer NOT NULL DEFAULT 0,
+  ng_immutable integer NOT NULL DEFAULT 0,
   PRIMARY KEY (ng_id),
   UNIQUE (ng_name)
 )",

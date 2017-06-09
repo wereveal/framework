@@ -97,6 +97,7 @@ return [
   `ng_name` varchar(128) NOT NULL DEFAULT 'Main',
   `ng_active` tinyint(1) NOT NULL DEFAULT '1',
   `ng_default` tinyint(1) NOT NULL DEFAULT '0',
+  `ng_immutable` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ng_id`),
   UNIQUE KEY `ng_name` (`ng_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
