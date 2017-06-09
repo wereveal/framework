@@ -173,7 +173,7 @@ foreach ($a_sql as $sql) {
     }
     print "+";
 }
-print "\n\n";
+print "\n";
 
 ### Enter Constants
 print "Entering Constants Data: ";
@@ -209,7 +209,7 @@ foreach ($a_constants as $key => $a_values) {
         print "c";
     }
 }
-print "\n\n";
+print "\n";
 
 ### Enter Groups
 print "Create Groups: ";
@@ -239,7 +239,7 @@ foreach ($a_groups as $key => $a_values) {
         print "g";
     }
 }
-print "\n\n";
+print "\n";
 
 ### Enter 'urls'
 print "Create URLs: ";
@@ -270,7 +270,7 @@ foreach ($a_urls as $key => $a_record) {
         print "u";
     }
 }
-print "\n\n";
+print "\n";
 
 ### Enter 'people'
 print "Creating People: ";
@@ -306,7 +306,7 @@ foreach ($a_people as $key => $a_person) {
         print "p";
     }
 }
-print "\n\n";
+print "\n";
 
 ### Enter 'navgroups',
 print "Creating NavGroups: ";
@@ -337,6 +337,7 @@ foreach ($a_navgroups as $key => $a_nav_group) {
         print "n";
     }
 }
+print "\n";
 
 ### Enter 'people_group_map',
 print "Creating people_group_map: ";
@@ -370,7 +371,7 @@ foreach ($a_pgm as $key => $a_raw_data) {
         print '+';
     }
 }
-print "\n\n";
+print "\n";
 
 ### Enter 'routes'
 print "Creating Routes: ";
@@ -403,7 +404,7 @@ foreach ($a_routes as $key => $a_record) {
         print "r";
     }
 }
-print "\n\n";
+print "\n";
 
 ### Enter 'routes_group_map'
 print "Creating routes_group_map: ";
@@ -437,7 +438,7 @@ foreach ($a_rgm as $key => $a_record) {
         print "+";
     }
 }
-print "\n\n";
+print "\n";
 
 ### Enter 'navigation',
 print "Creating Navigation: ";
@@ -485,7 +486,7 @@ foreach ($a_navigation as $key => $a_record) {
     }
 }
 print "\n";
-print "Updating nav records with parent ids: ";
+print "  Updating nav records with parent ids: ";
 foreach ($a_navigation as $key => $a_record) {
     $search_values = [':nav_name' => $a_record['nav_parent_name']];
     $results = $o_db->search($parent_sql, $search_values);
@@ -506,7 +507,7 @@ foreach ($a_navigation as $key => $a_record) {
     }
 }
 
-print "\n\n";
+print "\n";
 
 ### Enter 'nav_ng_map'
 print "Creating nav_ng_map: ";
@@ -540,7 +541,7 @@ foreach ($a_nnm as $key => $a_record) {
         print "+";
     }
 }
-print "\n\n";
+print "\n";
 
 ### Enter twig prefixes
 print "Creating Twig Prefixes: ";
@@ -570,7 +571,7 @@ foreach ($a_tp_prefix as $key => $a_record) {
         print '+';
     }
 }
-print "\n\n";
+print "\n";
 
 ### Enter twig directories
 print "Creating twig directories: ";
@@ -601,7 +602,7 @@ foreach ($a_tp_dirs as $key => $a_record) {
         print '+';
     }
 }
-print "\n\n";
+print "\n";
 
 ### Enter twig templates
 print "Creating twig templates: ";
@@ -632,7 +633,7 @@ foreach ($a_tp_tpls as $key => $a_record) {
         print '+';
     }
 }
-print "\n\n";
+print "\n";
 
 ### Enter 'page',
 print "Creating Page: ";
@@ -666,7 +667,7 @@ foreach ($a_page as $key => $a_record) {
         print "+";
     }
 }
-print "\n\n";
+print "\n";
 
 if ($o_db->commitTransaction()) {
     print "Data Insert Complete.\n";

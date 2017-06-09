@@ -33,8 +33,6 @@ then
     else
         echo "."
     fi
-
-    cd src/bin
     php src/bin/install.php
 else
     echo "The src/config/install_config.php file must be created and configured first.\nSee src/config/install_files/install_config.php.txt"
