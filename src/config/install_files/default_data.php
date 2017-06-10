@@ -262,6 +262,12 @@ $a_navgroups = [
         'ng_default'   => 0,
         'ng_immutable' => 1
     ],
+    'managerlinks' => [
+        'ng_name'      => 'ManagerLinks',
+        'ng_active'    => 1,
+        'ng_default'   => 0,
+        'ng_immutable' => 1
+    ],
 	'sitemap' => [
         'ng_name'      => 'SiteMap',
         'ng_active'    => 1,
@@ -280,13 +286,12 @@ $a_navgroups = [
         'ng_default'   => 0,
         'ng_immutable' => 1
     ],
-	'managerlinks' => [
-        'ng_name'      => 'ManagerLinks',
+    'configtestlinks' => [
+        'ng_name'      => 'ConfigTestLinks',
         'ng_active'    => 1,
         'ng_default'   => 0,
         'ng_immutable' => 1
-    ]
-
+    ],
 ];
 
 $a_people_group = [
@@ -672,9 +677,81 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 9,
-        'nav_active'      => 0,
+        'nav_active'      => 1,
         'nav_immutable'   => 1
-    ]
+    ],
+    'pagemodel_test'      => [
+        'url_id'          => 'lib_tests',
+        'nav_parent_id'   => 'lib_tests',
+        'nav_name'        => 'pagemodel_test',
+        'nav_text'        => 'PageModel',
+        'nav_description' => 'Page Model',
+        'nav_css'         => '',
+        'nav_level'       => 3,
+        'nav_order'       => 1,
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
+    ],
+    'peoplemodel_test'      => [
+        'url_id'          => 'lib_tests',
+        'nav_parent_id'   => 'lib_tests',
+        'nav_name'        => 'peoplemodel_test',
+        'nav_text'        => 'PeopleModel',
+        'nav_description' => 'People Model',
+        'nav_css'         => '',
+        'nav_level'       => 3,
+        'nav_order'       => 1,
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
+    ],
+    'urlsmodel_test'      => [
+        'url_id'          => 'lib_tests',
+        'nav_parent_id'   => 'lib_tests',
+        'nav_name'        => 'urlsmodel_test',
+        'nav_text'        => 'UrlsModel',
+        'nav_description' => 'Urls Model',
+        'nav_css'         => '',
+        'nav_level'       => 3,
+        'nav_order'       => 1,
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
+    ],
+    'navgroupsmodel_test'      => [
+        'url_id'          => 'lib_tests',
+        'nav_parent_id'   => 'lib_tests',
+        'nav_name'        => 'navgroupsmodel_test',
+        'nav_text'        => 'NavgroupsModel',
+        'nav_description' => 'Navgroups Model',
+        'nav_css'         => '',
+        'nav_level'       => 3,
+        'nav_order'       => 1,
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
+    ],
+    'navigationmodel_test'      => [
+        'url_id'          => 'lib_tests',
+        'nav_parent_id'   => 'lib_tests',
+        'nav_name'        => 'navigationmodel_test',
+        'nav_text'        => 'NavigationModel',
+        'nav_description' => 'Navigation Model',
+        'nav_css'         => '',
+        'nav_level'       => 3,
+        'nav_order'       => 1,
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
+    ],
+    'navngmapmodel_test'      => [
+        'url_id'          => 'lib_tests',
+        'nav_parent_id'   => 'lib_tests',
+        'nav_name'        => 'navngmapmodel_test',
+        'nav_text'        => 'NavNgMapModel',
+        'nav_description' => 'NavNgMap Model',
+        'nav_css'         => '',
+        'nav_level'       => 3,
+        'nav_order'       => 1,
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
+    ],
 ];
 
 $a_nav_ng_map = [
@@ -717,7 +794,13 @@ $a_nav_ng_map = [
     ['ng_id' => 'configlinks',  'nav_id' => 'routes'],
     ['ng_id' => 'configlinks',  'nav_id' => 'navigation'],
     ['ng_id' => 'configlinks',  'nav_id' => 'twig'],
-    ['ng_id' => 'configlinks',  'nav_id' => 'lib_tests']
+    ['ng_id' => 'configlinks',  'nav_id' => 'lib_tests'],
+    ['ng_id' => 'configtestlinks', 'nav_id' => 'pagemodel_test'],
+    ['ng_id' => 'configtestlinks', 'nav_id' => 'peoplemodel_test'],
+    ['ng_id' => 'configtestlinks', 'nav_id' => 'urlsmodel_test'],
+    ['ng_id' => 'configtestlinks', 'nav_id' => 'navgroupsmodel_test'],
+    ['ng_id' => 'configtestlinks', 'nav_id' => 'navigationmodel_test'],
+    ['ng_id' => 'configtestlinks', 'nav_id' => 'navngmapmodel_test'],
 ];
 
 $a_page = [
