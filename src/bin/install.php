@@ -83,6 +83,7 @@ return [
     'passro'     => '{$a_install['db_pass']}',
     'persist'    => {$a_install['db_persist']},
     'prefix'     => '{$a_install['db_prefix']}',
+    'errmode'    => '{$a_install['db_errmode']}',
     'db_prefix'  => '{$a_install['db_prefix']}',
     'lib_prefix' => '{$a_install['lib_db_prefix']}'
 ];

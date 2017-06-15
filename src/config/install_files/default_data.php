@@ -680,6 +680,18 @@ $a_navigation = [
         'nav_active'      => 1,
         'nav_immutable'   => 1
     ],
+    'constantsmodel_test'      => [
+        'url_id'          => 'lib_tests',
+        'nav_parent_id'   => 'lib_tests',
+        'nav_name'        => 'constantsmodel_test',
+        'nav_text'        => 'ConstantsModel',
+        'nav_description' => 'Constants Model',
+        'nav_css'         => '',
+        'nav_level'       => 3,
+        'nav_order'       => 1,
+        'nav_active'      => 1,
+        'nav_immutable'   => 1
+    ],
     'pagemodel_test'      => [
         'url_id'          => 'lib_tests',
         'nav_parent_id'   => 'lib_tests',
@@ -795,6 +807,7 @@ $a_nav_ng_map = [
     ['ng_id' => 'configlinks',  'nav_id' => 'navigation'],
     ['ng_id' => 'configlinks',  'nav_id' => 'twig'],
     ['ng_id' => 'configlinks',  'nav_id' => 'lib_tests'],
+    ['ng_id' => 'configtestlinks', 'nav_id' => 'constantsmodel_test'],
     ['ng_id' => 'configtestlinks', 'nav_id' => 'pagemodel_test'],
     ['ng_id' => 'configtestlinks', 'nav_id' => 'peoplemodel_test'],
     ['ng_id' => 'configtestlinks', 'nav_id' => 'urlsmodel_test'],

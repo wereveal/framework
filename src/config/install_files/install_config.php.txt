@@ -13,6 +13,7 @@ return [
     'db_user'         => 'dbuser',
     'db_pass'         => 'dbpass',
     'db_persist'      => 'false',                         // normally leave this alone
+    'db_errmode'      => 'exception',                     // normally leave this alone
     'db_prefix'       => 'main_',                         // change to be desired prefix or make it empty
     'lib_db_prefix'   => 'lib_',                          // normally leave this alone
     'twig_prefix'     => '',                              // normally leave this alone (defaults to site_)

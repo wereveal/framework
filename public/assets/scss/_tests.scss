@@ -1,0 +1,6 @@
+ul.test-results {
+    @include clean_ul;
+    ul {
+        @include clean_ul;
+    }
+}
