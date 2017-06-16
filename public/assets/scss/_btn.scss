@@ -63,12 +63,12 @@
 .btn-gray {
     color: $gray90;
     border: solid 1px $gray35;
-    @include linear-gradient($gray60, $gray35);
+    @include linearGradient($gray60, $gray35);
     &:hover {
-        @include linear-gradient($gray50, $gray25);
+        @include linearGradient($gray50, $gray25);
     }
     &:active {
-        @include linear-gradient($gray25, $gray50);
+        @include linearGradient($gray25, $gray50);
     }
 }
 .btn-white {

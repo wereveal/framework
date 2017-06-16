@@ -1,5 +1,7 @@
 /* Changes from Bootstrap */
-html { font-size: $default-body-font-size; }
+html {
+    font-size: $default-body-font-size;
+}
 
 body {
     font-family: $default-sans;
@@ -11,83 +13,40 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: $default-serif-bold;
+    font-family: $default-serif;
     margin-top: 0;
     padding-top: 0;
 }
 
 h1 {
-    font-size: $default-h1;
     &.smaller {
-        font-size: $default-h1 * .875;
+        font-size: $font-size-h2;
     }
 }
 
 h2 {
-    font-size: $default-h1 * .875;
     &.smaller {
-        font-size: $default-h1 * .75;
+        font-size: $font-size-h3;
     }
 }
 
 h3 {
-    font-size: $default-h1 * .75;
     &.smaller {
-        font-size: $default-h1 * .625;
+        font-size: $font-size-h4;
     }
 }
 
 h4 {
-    font-size: $default-h1 * .625;
     &.smaller {
-        font-size: $default-h1 * .5;
+        font-size: 1rem;
     }
 }
 
-h5, h6 { font-size: 1rem; }
+h1, h3, h5 { color: $color-heading; }
 
-h1, h3, h5 { color: $color-dark; }
-
-h2, h4, h6 { color: $color-complement; }
+h2, h4, h6 { color: $color-heading-alt; }
 
 p {
     font-weight: 400;
     font-size: 1rem;
-}
-
-$myspacers: (
-    5: (
-            x: ($spacer-x * 2),
-            y: ($spacer-y * 2)
-    ),
-    6: (
-            x: ($spacer-x * 3),
-            y: ($spacer-y * 3)
-    )
-) !default;
-
-@each $breakpoint in map-keys($grid-breakpoints) {
-    @include media-breakpoint-up($breakpoint) {
-        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
-        @each $prop, $abbrev in (margin: m, padding: p) {
-            @each $size, $lengths in $myspacers {
-                $length-x: map-get($lengths, x);
-                $length-y: map-get($lengths, y);
-
-                .#{$abbrev}#{$infix}-#{$size}  { #{$prop}:        $length-y $length-x !important; }
-                .#{$abbrev}t#{$infix}-#{$size} { #{$prop}-top:    $length-y !important; }
-                .#{$abbrev}r#{$infix}-#{$size} { #{$prop}-right:  $length-x !important; }
-                .#{$abbrev}b#{$infix}-#{$size} { #{$prop}-bottom: $length-y !important; }
-                .#{$abbrev}l#{$infix}-#{$size} { #{$prop}-left:   $length-x !important; }
-                .#{$abbrev}x#{$infix}-#{$size} {
-                    #{$prop}-right: $length-x !important;
-                    #{$prop}-left:  $length-x !important;
-                }
-                .#{$abbrev}y#{$infix}-#{$size} {
-                    #{$prop}-top:    $length-y !important;
-                    #{$prop}-bottom: $length-y !important;
-                }
-            }
-        }
-    }
 }

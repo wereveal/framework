@@ -22,7 +22,6 @@ $blue-light:       #7fffff;
 $blue-xlight:      #e5ffff;
 $blue-complement:  #9fc8e6;
 
-// the number after gray is brightness, lower the darker
 $gray20: #333;
 $gray25: #404040;
 $gray35: #595959;
@@ -35,14 +34,23 @@ $gray80: #ccc;
 $gray90: #e6e6e6;
 $gray95: #f2f2f2;
 
-$gray-dark:        $gray20;
 $gray-medium-dark: $gray35;
 $gray-medium:      $gray50;
 $gray-med-light:   $gray65;
-$gray-light:       $gray80;
 $gray-xlight:      $gray90;
 $gray-barely:      $gray95;
 $gray-complement:  #276998;
+
+$grey-lightest: #f7f7f9;
+$grey-lighter: darken($grey-lightest, 10%);
+$grey-light: darken($grey-lighter, 10%);
+$grey-med-light: darken($grey-light, 10%);
+$grey-medium: darken($grey-med-light, 10%);
+$grey: $grey-medium;
+$grey-med-dark: darken($grey-medium, 10%);
+$grey-dark: darken($grey-med-dark, 10%);
+$grey-darker: darken($grey-dark, 10%);
+$grey-darkest: darken($grey-darker, 10%);
 
 $slate-dark:   #2f4f4f;
 $slate-medium: #708090;
@@ -69,20 +77,6 @@ $green-light:       lighten($green-dark, 66%);
 $green-xlight:      #e9ffe9;
 $green-complement:  #640032;
 
-/* Matches Bootstrap Alert Colors */
-$twbs-success-text:   #3c763d !default;
-$twbs-success-bg:     #dff0d8 !default;
-$twbs-success-border: darken($twbs-success-bg, 5%) !default;
-$twbs-info-text:      #31708f !default;
-$twbs-info-bg:        #d9edf7 !default;
-$twbs-info-border:    darken($twbs-info-bg, 7%) !default;
-$twbs-warning-text:   #8a6d3b !default;
-$twbs-warning-bg:     #fcf8e3 !default;
-$twbs-warning-border: darken($twbs-warning-bg, 5%) !default;
-$twbs-danger-text:    #a94442 !default;
-$twbs-danger-bg:      #f2dede !default;
-$twbs-danger-border:  darken($twbs-danger-bg, 5%) !default;
-
 $color-black:      $black-color;
 $color-blue:       $blue-color;
 $color-gray:       $gray-color;
@@ -100,15 +94,17 @@ $color-violet:     $violet-color;
 $color-white:      $white-color;
 $color-yellow:     $yellow-color;
 
-$color-default:    $gray-color;
-$color-dark:       $gray-dark;
-$color-medium:     $gray-medium;
-$color-light:      $gray-light;
-$color-xlight:     $gray-xlight;
-$color-complement: $gray-complement;
-$color-body:       $color_white;
-$color-container:  $color_off-white;
-$color-border:     $gray-dark;
-$color-shadow:     transparentize($color-default, .35);
-$color-shadow-alt: transparentize($color-complement, .35);
-$color-span:       $color-off-white;
+$color-default:     $grey-darkest;
+$color-dark:        $grey-dark;
+$color-medium:      $grey-medium;
+$color-light:       $grey-light;
+$color-xlight:      $grey-lightest;
+$color-complement:  $gray-complement;
+$color-body:        $white-color;
+$color-container:   $off-white-color;
+$color-border:      $grey-darkest;
+$color-shadow:      transparentize($color-default, .35);
+$color-shadow-alt:  transparentize($color-complement, .35);
+$color-span:        $off-white-color;
+$color-heading:     $grey-darkest;
+$color-heading-alt: $gray-complement;

@@ -44,7 +44,7 @@ hr.item-card {
 }
 
 .header-small-caps {
-    @include font_sc_extra_bold;
+    @include fontSmallCapsExtraBold;
 }
 
 .header-sans, .font-sans {
@@ -64,11 +64,11 @@ hr.item-card {
 }
 
 .font-small-caps {
-    @include font_sc;
+    @include fontSmallCaps;
 }
 
 .font-small-caps-bold {
-    @include font_sc_bold;
+    @include fontSmallCapsBold;
 }
 
 .container {
@@ -179,8 +179,24 @@ hr.item-card {
     }
 }
 
+.white {
+    color: $white-color;
+}
+
+.black {
+    color: $black-color;
+}
+
 .red {
     color: $red-color;
+}
+
+.orange {
+    color: $orange-color;
+}
+
+.yellow {
+    color: $yellow-color;
 }
 
 .green {
@@ -191,12 +207,60 @@ hr.item-card {
     color: $blue-color;
 }
 
+.teal {
+    color: $teal-color;
+}
+
+.pink {
+    color: $pink-color;
+}
+
+.purple {
+    color: $purple;
+}
+
 .dark-grey {
     color: $gunmetal-dark;
 }
 
 .slate {
     color: $color-slate;
+}
+
+.grey-lightest {
+    color: $grey-lightest;
+}
+
+.grey-lighter {
+    color: $grey-lighter;
+}
+
+.grey-light {
+    color: $grey-light;
+}
+
+.grey-med-light {
+    color: $grey-med-light;
+}
+
+.grey-medium {
+    color: $grey-medium;
+}
+
+.grey-med-dark {
+    color: $grey-med-dark;
+}
+
+.grey-dark {
+    color: $grey-dark;
+}
+
+.grey-darker {
+    color: $grey-darker;
+}
+
+.grey-darkest {
+    color: $grey-darkest;
 }
 
 .border-radius-top-right {
@@ -236,7 +300,7 @@ hr.item-card {
 }
 
 .clean-ul {
-    @include clean_ul;
+    @include listStyleNone;
 }
 
 .list-header {

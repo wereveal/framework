@@ -1,3 +1,19 @@
+@function strReplace($string, $search, $replace: "") {
+    $index: str-index($string, $search);
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + strReplace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+@function isDirection($value) {
+    $is-keyword: index((to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
+    $is-angle: type-of($value) == 'number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+    @return $is-keyword or $is-angle;
+}
+
 @mixin rounded($radius) {
     border-radius: $radius;
 }
@@ -103,7 +119,7 @@
     }
 }
 
-@mixin set_font($size, $weight, $style, $variant) {
+@mixin setFont($size, $weight, $style, $variant) {
     @if $size != '' {
         font-size: $size;
     }
@@ -118,85 +134,83 @@
     }
 }
 
-@mixin font_medium {
+@mixin fontMedium {
     font-weight: 500;
     font-style: normal;
 }
 
-@mixin font_bold {
+@mixin fontBold {
     font-weight: 700;
     font-style: normal;
 }
 
-@mixin font_extra_bold {
+@mixin fontExtraBold {
     font-weight: 900;
     font-style: normal;
 }
 
-@mixin font_italic {
+@mixin fontItalic {
     font-weight: 400;
     font-style: italic;
 }
 
-@mixin font_medium_italic {
+@mixin fontMediumItalic {
     font-weight: 500;
     font-style: italic;
 
 }
 
-@mixin font_bold_italic {
+@mixin fontBoldItalic {
     font-weight: 700;
     font-style: italic;
-
 }
 
-@mixin font_extra_bold_italic {
+@mixin fontExtraBoldItalic {
     font-weight: 900;
     font-style: italic;
-
 }
 
-@mixin font_sc {
+@mixin fontSmallCaps {
     font-weight: 500;
     font-style: normal;
     font-variant: small-caps;
 }
 
-@mixin font_sc_bold {
+@mixin fontSmallCapsBold {
     font-weight: 700;
     font-style: normal;
     font-variant: small-caps;
 }
 
-@mixin font_sc_extra_bold {
+@mixin fontSmallCapsExtraBold {
     font-weight: 900;
     font-style: normal;
     font-variant: small-caps;
 }
 
-@mixin font_sc_italic {
+@mixin fontSmallCapsItalic {
     font-weight: 400;
     font-style: italic;
     font-variant: small-caps;
 }
 
-@mixin font_sc_bold_italic {
+@mixin fontSmallCapsBoldItalic {
     font-weight: 700;
     font-style: italic;
     font-variant: small-caps;
 }
 
-@mixin font_sc_extra_bold_italic {
+@mixin fontSmallCapsXBoldItalic {
     font-weight: 900;
     font-style: italic;
     font-variant: small-caps;
 }
 
-@mixin clean_ul {
+@mixin listStyleNone {
     list-style-type: none;
 }
 
-@mixin message_type($bkgd-color, $border-color, $body-color) {
+@mixin messageColors($bkgd-color, $border-color, $body-color) {
     border: 3px solid $border-color;
     border-radius: $default-radius;
     background-color: $bkgd-color;
@@ -214,19 +228,19 @@
     }
 }
 
-@mixin fancy_fieldset {
+@mixin fancyFieldset {
     border: 1px solid $color-border;
     border-radius: $default-radius;
     padding: .75rem;
     margin-bottom: .5rem;
 }
 
-@mixin font-face($name, $path, $weight: false, $style: false, $exts: eot woff2 woff ttf svg) {
+@mixin fontFace($name, $path, $weight: false, $style: false, $exts: eot woff2 woff ttf svg) {
     $src: null;
 
     $extmods: (
             eot: "?",
-            svg: "#" + str-replace($name, " ", "_")
+            svg: "#" + strReplace($name, " ", "_")
     );
 
     $formats: (
@@ -252,8 +266,8 @@
     }
 }
 
-@mixin linear-gradient($direction, $colors...) {
-    @if is-direction($direction) == false {
+@mixin linearGradient($direction, $colors...) {
+    @if isDirection($direction) == false {
         $colors: $direction, $colors;
         $direction: 180deg;
     }
@@ -261,7 +275,7 @@
     background: linear-gradient($direction, $colors) no-repeat;
 }
 
-@mixin make_colorful($important: false) {
+@mixin makeColorful($important: false) {
     @if $important {
         $important:  !important;
     }
@@ -276,7 +290,7 @@
     padding-left: .5rem$important;
 }
 
-@mixin make_colorful_focused($important: false) {
+@mixin makeColorfulFocused($important: false) {
     @if $important {
         $important: !important;
     }

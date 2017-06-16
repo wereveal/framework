@@ -1,9 +1,9 @@
 input, textarea {
     &.colorful {
-        @include make_colorful(true);
+        @include makeColorful(true);
     }
     &.colorful:focus {
-        @include make_colorful_focused(true);
+        @include makeColorfulFocused(true);
     }
 }
 
@@ -70,20 +70,20 @@ input[type=checkbox] {
 label {
     &.error {
         color: $color-red;
-        @include font_bold_italic;
+        @include fontBoldItalic;
     }
     &.nice-label {
-        @include font_bold;
+        @include fontBold;
         text-align: right;
     }
 }
 
 .nice-fieldset {
-    @include fancy_fieldset;
+    @include fancyFieldset;
     legend {
         float: left;
         font-size: 1rem;
-        @include font_sc_bold;
+        @include fontSmallCapsBold;
         &.big-legend {
             font-size: 1.5rem;
             color: $gray-dark;
@@ -102,7 +102,7 @@ label {
 }
 
 .psuedo-label {
-    @include font_bold;
+    @include fontBold;
     text-align: right;
     padding-right: 1rem;
 }

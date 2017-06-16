@@ -2,11 +2,11 @@
 .navbar {
     @include paddingSize(.25, 'tb', '');
     &.bg-gray {
-        @include linear-gradient(180deg, $gray90, $gray95);
+        @include linearGradient(180deg, $gray90, $gray95);
         color: $color-black;
         a {
             &.nav-link {
-                @include font_sc_bold;
+                @include fontSmallCapsBold;
                 font-size: 1.25rem;
                 color: $gray40;
                 &.active {
@@ -21,12 +21,12 @@
 }
 
 .manager-links {
-    @include clean_ul;
+    @include listStyleNone;
     a {
-        @include font_sc_extra_bold;
+        @include fontSmallCapsExtraBold;
     }
     ul {
-        @include clean_ul;
+        @include listStyleNone;
         padding-left: 2rem;
     }
 }

@@ -1,8 +1,80 @@
+/** Overrides Boostrap vars **/
 $default-body-font-size: 16px;
 $default-radius:         .25rem;
-$default-h1:             1.625rem;
-$default-sans:           "VeraSans", Verdana, Helvetica, sans-serif;
+$default-h1:             2rem;
+$default-sans:           "VeraSans", -apple-system, system-ui, BlinkMacSystemFont, Verdana, Helvetica, sans-serif;
 $default-sans-bold:      "VeraSansBold", sans-serif;
 $default-serif:          "VeraSerif", Georgia, "Times New Roman", Times, serif;
 $default-serif-bold:     "VeraSerifBold", serif;
-$default-mono:           "VeraMono", Monoco, monospace;
+$default-mono:           "VeraMono", Menlo, Monoco, Consolas, monospace;
+
+$font-family-sans-serif: $default-sans;
+$font-family-serif: $default-serif;
+$font-family-monospace: $default-mono;
+$font-family-base: $default-sans;
+
+$font-size-h1: $default-h1;
+$font-size-h2: $default-h1 * .875;
+$font-size-h3: $default-h1 * .75;
+$font-size-h4: $default-h1 * .625;
+$font-size-h5: 1rem;
+$font-size-h6: 1rem;
+
+$spacer:   1rem;
+$spacer-x: $spacer;
+$spacer-y: $spacer;
+$spacers: (
+    0: (
+        x: 0,
+        y: 0
+    ),
+    1: (
+        x: ($spacer-x * .25),
+        y: ($spacer-y * .25)
+    ),
+    q: (
+        x: ($spacer-x * .25),
+        y: ($spacer-y * .25)
+    ),
+    2: (
+        x: ($spacer-x * .5),
+        y: ($spacer-y * .5)
+    ),
+    h: (
+        x: ($spacer-x * .5),
+        y: ($spacer-y * .5)
+    ),
+    3: (
+        x: $spacer-x,
+        y: $spacer-y
+    ),
+    one: (
+        x: $spacer-x,
+        y: $spacer-y
+    ),
+    4: (
+        x: ($spacer-x * 1.5),
+        y: ($spacer-y * 1.5)
+    ),
+    oh: (
+        x: ($spacer-x * 1.5),
+        y: ($spacer-y * 1.5)
+    ),
+    5: (
+        x: ($spacer-x * 3),
+        y: ($spacer-y * 3)
+    ),
+    tre: (
+        x: ($spacer-x * 3),
+        y: ($spacer-y * 3)
+    ),
+    6: (
+        x: ($spacer-x * 2),
+        y: ($spacer-y * 2)
+    ),
+    two: (
+        x: ($spacer-x * 2),
+        y: ($spacer-y * 2)
+    )
+);
+

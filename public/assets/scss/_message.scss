@@ -1,21 +1,21 @@
 .message {
     &.success {
-        @include message_type($twbs-success-bg, $twbs-success-border, $twbs-success-text);
+        @include messageColors($alert-success-bg, $alert-success-border, $alert-success-text);
     }
     &.info {
-        @include message_type($twbs-info-bg, $twbs-info-border, $twbs-info-text);
+        @include messageColors($alert-info-bg, $alert-info-border, $alert-info-text);
     }
     &.warning {
-        @include message_type($twbs-warning-bg, $twbs-warning-border, $twbs-warning-text);
+        @include messageColors($alert-warning-bg, $alert-warning-border, $alert-warning-text);
     }
     &.error {
-        @include message_type($twbs-danger-bg, $twbs-danger-border, $twbs-danger-text);
+        @include messageColors($alert-danger-bg, $alert-danger-border, $alert-danger-text);
     }
     &.failure {
-        @include message_type($twbs-danger-bg, $twbs-danger-border, $twbs-danger-text);
+        @include messageColors($alert-danger-bg, $alert-danger-border, $alert-danger-text);
     }
     &.code {
         font-family: $default-mono;
-        @include message_type($color-container, $color-border, $color-dark);
+        @include messageColors($color-container, $color-border, $color-dark);
     }
 }

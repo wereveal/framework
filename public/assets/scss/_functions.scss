@@ -1,3 +1,4 @@
+// in mixins so only needed if used where mixins isn't
 @function str-replace($string, $search, $replace: "") {
     $index: str-index($string, $search);
 
