@@ -3,7 +3,7 @@
  * @brief     View for the Manager page.
  * @details   This is specific for managing the entries in the guide.
  * @ingroup   {app_name}_views
- * @file      {NAMESPACE}/{APPNAME}/Views/ConfigView.php
+ * @file      {NAMESPACE}/{APPNAME}/Views/ManagerView.php
  * @namespace {NAMESPACE}\{APPNAME}\Views
  * @author    {author} <{email}>
  * @version   1.0.0-alpha.0
@@ -20,16 +20,16 @@ use Ritc\Library\Traits\LogitTraits;
 use Ritc\Library\Traits\ViewTraits;
 
 /**
- * Class ConfigView
- * @class   ConfigView
+ * Class ManagerView
+ * @class   ManagerView
  * @package {NAMESPACE}\{APPNAME}\Views
  */
-class ConfigView implements ViewInterface
+class ManagerView implements ViewInterface
 {
     use ViewTraits, LogitTraits;
 
     /**
-     * ConfigView constructor.
+     * ManagerView constructor.
      * @param \Ritc\Library\Services\Di $o_di
      */
     public function __construct(Di $o_di)
@@ -45,12 +45,9 @@ class ConfigView implements ViewInterface
      */
     public function render($a_message = array())
     {
-        $meth = __METHOD__ . '.';
         $this->setAdmLevel($_SESSION['login_id']);
         $a_twig_values = $this->createDefaultTwigValues($a_message);
         $tpl = $this->createTplString($a_twig_values);
-          $log_message = 'Final Values for twig: ' . var_export($a_twig_values, true);
-          $this->logIt($log_message, LOG_OFF, $meth . __LINE__);
         return $this->o_twig->render($tpl, $a_twig_values);
     }
 

@@ -88,6 +88,7 @@ $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF wh
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
 
+/** @var \PDO $o_pdo */
 $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
 
 if ($o_pdo !== false) {

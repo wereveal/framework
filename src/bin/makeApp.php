@@ -40,7 +40,7 @@ if (isset($argv[1])) {
     $install_config = SRC_CONFIG_PATH . '/' . $argv[1];
 }
 if (!file_exists($install_config)) {
-    die("You must create the install_files configuration file in " . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
+    die("You must create the install_files configuration file in " . SRC_CONFIG_PATH . ". The default name for the file is app_config.php. You may name it anything but it must then be specified on the command line.\n");
 }
 $a_install = require_once $install_config;
 
@@ -161,9 +161,9 @@ EOF;
 
 ### Create the manager view for the app ###
     print "Creating the manager view for the app\n";
-    $view_text = file_get_contents($install_files_path . '/ConfigView.php.txt');
+    $view_text = file_get_contents($install_files_path . '/ManagerView.php.txt');
     $view_text = str_replace($a_find, $a_replace, $view_text);
-    file_put_contents($app_path . "/Views/ConfigView.php", $view_text);
+    file_put_contents($app_path . "/Views/ManagerView.php", $view_text);
 
 ### Create the doxygen config for the app ###
     print "Creating the doxy config for the app\n";

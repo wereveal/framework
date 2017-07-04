@@ -12,10 +12,12 @@
 **/
 namespace {NAMESPACE}\{APPNAME}\Controllers;
 
-use {NAMESPACE}\{APPNAME}\Views\ConfigView;
+use Ritc\Library\Helper\ViewHelper;
 use Ritc\Library\Interfaces\ControllerInterface;
-use Ritc\Library\Traits\ConfigControllerTraits;
+use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\LogitTraits;
+use Ritc\Library\Traits\ManagerControllerTraits;
+use {NAMESPACE}\{APPNAME}\Views\ManagerView;
 
 /**
  * Class ManagerController
@@ -24,7 +26,7 @@ use Ritc\Library\Traits\LogitTraits;
  */
 class ManagerController implements ControllerInterface
 {
-    use ConfigControllerTraits, LogitTraits;
+    use ManagerControllerTraits, LogitTraits;
 
     protected $o_view;
 
@@ -36,7 +38,7 @@ class ManagerController implements ControllerInterface
     {
         $this->setupManagerController($o_di);
         $this->setupElog($o_di);
-        $this->o_view = new ConfigView($o_di);
+        $this->o_view = new ManagerView($o_di);
     }
 
     /**
@@ -66,8 +68,8 @@ class ManagerController implements ControllerInterface
                 return $this->o_view->render($a_message);
             }
             else {
-                $login_id = isset($this->a_post_values['login_id'])
-                    ? $this->a_post_values['login_id']
+                $login_id = isset($this->a_post['login_id'])
+                    ? $this->a_post['login_id']
                     : '';
                 return $this->login($login_id, $a_message);
             }
@@ -77,9 +79,20 @@ class ManagerController implements ControllerInterface
         }
     }
 
+    /**
+     * Does the login stuff.
+     * @param string $login_id
+     * @param array  $a_message
+     * @return string
+     */
     protected function login($login_id = '', array $a_message = [])
     {
             $this->o_session->resetSession();
-            return $this->o_view->renderLoginForm($login_id, $a_message);
+            $a_values = [
+                'a_message' => $a_message,
+                'location'  => '/manager/',
+                'login_id'  => $login_id
+            ];
+            return $this->o_view->renderLoginForm($a_values);
     }
 }
