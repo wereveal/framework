@@ -27,6 +27,9 @@ class {controller_name}Controller implements ControllerInterface
 {
     use ControllerTraits, LogitTraits;
 
+    /** @var {controller_name}View $o_view */
+    private $o_view;
+
     /**
      * {controller_name}Controller constructor.
      * @param \Ritc\Library\Services\Di $o_di
@@ -35,6 +38,7 @@ class {controller_name}Controller implements ControllerInterface
     {
         $this->setupController($o_di);
         $this->setupElog($o_di);
+        $this->o_view = new {controller_name}View($o_di);
     }
     {controller_method}
 }

@@ -67,7 +67,7 @@ if (!is_object($o_cm)) {
     die("Could not instance AutoloadMapper");
 }
 $o_cm->generateMapFiles();
-
+$app_path = APPS_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
 ### Setup the database ###
 $db_config_file = $a_install['db_file'];
 $db_config_file_text =<<<EOT
@@ -544,9 +544,47 @@ foreach ($a_nnm as $key => $a_record) {
 }
 print "\n";
 
-### Enter twig prefixes
-print "Creating Twig Prefixes: ";
+### Twig tables data ###
+print "Starting the Twig db stuff. \n";
 $a_tp_prefix = $a_data['tp_prefix'];
+$a_tp_dirs = $a_data['tp_dirs'];
+$a_tp_tpls = $a_data['tp_templates'];
+
+#### Add app twig config to arrays if the prefix is set ####
+if (!empty($a_values['app_twig_prefix'])) {
+    $prefix = $a_values['app_twig_prefix'];
+    $key_name = str_replace('_', '', $prefix);
+    if (!isset($a_tp_prefix[$key_name])) {
+        $a_tp_prefix[$key_name] = [
+            'tp_prefix'  => $prefix,
+            'tp_path'    => $app_path . '/resources/templates',
+            'tp_active'  => 1,
+            'tp_default' => 0
+        ];
+
+        $a_dir_names = [
+            'default',
+            'elements',
+            'forms',
+            'pages',
+            'snippets'
+        ];
+        foreach ($a_dir_names as $name) {
+            $a_tp_dirs[$prefix . $name] = [
+                'tp_id'   => $key_name,
+                'td_name' => $name
+            ];
+        }
+        $a_tp_tpls[$prefix . 'index'] = [
+            'td_id'         => $prefix . 'pages',
+            'tpl_name'      => 'index',
+            'tpl_immutable' => 0
+        ];
+    }
+}
+
+### Enter twig prefixes into database ###
+print "Creating Twig Prefixes: ";
 $a_strings = createStrings($a_tp_prefix);
 $twig_prefix_sql =<<<SQL
 INSERT INTO {$a_install['lib_db_prefix']}twig_prefix
@@ -574,9 +612,8 @@ foreach ($a_tp_prefix as $key => $a_record) {
 }
 print "\n";
 
-### Enter twig directories
+### Enter twig directories into database ###
 print "Creating twig directories: ";
-$a_tp_dirs = $a_data['tp_dirs'];
 $a_strings = createStrings($a_tp_dirs);
 $twig_dirs_sql =<<<SQL
 INSERT INTO {$a_install['lib_db_prefix']}twig_dirs
@@ -605,9 +642,8 @@ foreach ($a_tp_dirs as $key => $a_record) {
 }
 print "\n";
 
-### Enter twig templates
+### Enter twig templates into database ###
 print "Creating twig templates: ";
-$a_tp_tpls = $a_data['tp_templates'];
 $a_strings = createStrings($a_tp_tpls);
 $twig_tpls_sql =<<<SQL
 INSERT INTO {$a_install['lib_db_prefix']}twig_templates
@@ -678,8 +714,6 @@ else {
 }
 
 ### Create the directories for the new app ###
-$app_path = APPS_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
-
 if (!file_exists($app_path)) {
     print "\nCreating the directories for the new app\n";
     $a_new_dirs = [
