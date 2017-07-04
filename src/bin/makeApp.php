@@ -161,9 +161,9 @@ EOF;
 
 ### Create the manager view for the app ###
     print "Creating the manager view for the app\n";
-    $view_text = file_get_contents($install_files_path . '/ManagerView.php.txt');
+    $view_text = file_get_contents($install_files_path . '/ConfigView.php.txt');
     $view_text = str_replace($a_find, $a_replace, $view_text);
-    file_put_contents($app_path . "/Views/ManagerView.php", $view_text);
+    file_put_contents($app_path . "/Views/ConfigView.php", $view_text);
 
 ### Create the doxygen config for the app ###
     print "Creating the doxy config for the app\n";

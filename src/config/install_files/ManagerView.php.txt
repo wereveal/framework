@@ -3,7 +3,7 @@
  * @brief     View for the Manager page.
  * @details   This is specific for managing the entries in the guide.
  * @ingroup   {app_name}_views
- * @file      {NAMESPACE}/{APPNAME}/Views/ManagerView.php
+ * @file      {NAMESPACE}/{APPNAME}/Views/ConfigView.php
  * @namespace {NAMESPACE}\{APPNAME}\Views
  * @author    {author} <{email}>
  * @version   1.0.0-alpha.0
@@ -20,16 +20,16 @@ use Ritc\Library\Traits\LogitTraits;
 use Ritc\Library\Traits\ViewTraits;
 
 /**
- * Class ManagerView
- * @class   ManagerView
+ * Class ConfigView
+ * @class   ConfigView
  * @package {NAMESPACE}\{APPNAME}\Views
  */
-class ManagerView implements ViewInterface
+class ConfigView implements ViewInterface
 {
     use ViewTraits, LogitTraits;
 
     /**
-     * ManagerView constructor.
+     * ConfigView constructor.
      * @param \Ritc\Library\Services\Di $o_di
      */
     public function __construct(Di $o_di)
@@ -64,7 +64,7 @@ class ManagerView implements ViewInterface
     public function renderLoginForm($previous_login_id = '', array $a_message = array())
     {
         if ($a_message != array()) {
-            $a_message = ViewHelper::messageProperties($a_message);
+            $a_message = ViewHelper::fullMessage($a_message);
         }
         else {
             $a_message = array();
