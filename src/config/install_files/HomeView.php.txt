@@ -39,7 +39,7 @@ class HomeView implements ViewInterface
 
     /**
      * Main method required by interface.
-     * @param array $a_message
+     * @param array $a_message optional
      * @return string
      */
     public function render(array $a_message = [])

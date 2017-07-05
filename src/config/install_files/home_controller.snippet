@@ -1,9 +1,11 @@
+
     /**
-     * Main Router and Puker outer (more descriptive method name).
-     * Turns over the hard work to the specific methods and views.
+     * Main Router and Puker outer (more descriptive method name).
+     * Turns over the hard work to the specific methods and views.
+     * @param array $a_message optional
      * @return string
      */
-    public function route()
+    public function route(array $a_message = [])
     {
         // TODO: Implement route() method.
         return $this->o_view->render($a_message);
@@ -11,9 +13,10 @@
 
     /**
      * Routes to the error page.
+     * @param array $a_message optional
      * @return string
      */
-    public function routeError()
+    public function routeError(array $a_message = [])
     {
         // TODO: Implement routeError() method.
         return $this->o_view->renderError($a_message);

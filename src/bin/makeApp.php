@@ -95,9 +95,14 @@ if (!empty($a_install['app_twig_prefix']) && file_exists(SRC_CONFIG_PATH . '/' .
 
     $prefix = $a_install['app_twig_prefix'];
     $key_name = str_replace('_', '', $prefix);
+    $tp_path = '/src/apps/'
+               . $a_install['namespace']
+               . '/'
+               . $a_install['app_name']
+               . '/resources/templates';
     $a_tp_prefix[$key_name] = [
         'tp_prefix'  => $prefix,
-        'tp_path'    => $app_path . '/resources/templates',
+        'tp_path'    => $tp_path,
         'tp_active'  => 1,
         'tp_default' => 0
     ];
