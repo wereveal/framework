@@ -7,7 +7,12 @@ then
         then
             echo "The composer.json file must exist at the base of the site."
         else
-            composer.phar install
+            if [ -x composer.phar ]
+            then
+                composer.phar install
+            else
+                composer install
+            fi
         fi
     else
         echo "."
