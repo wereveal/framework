@@ -129,7 +129,7 @@ else {
 
 switch ($a_install['db_type']) {
     case 'pgsql':
-        $a_sql = require $install_files_path .  '/default_psql_create.php';
+        $a_sql = require $install_files_path .  '/default_pgsql_create.php';
         break;
     case 'sqlite':
         $a_sql = array();
