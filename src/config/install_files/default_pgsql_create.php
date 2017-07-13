@@ -59,8 +59,7 @@ return [
   page_id serial NOT NULL,
   url_id integer NOT NULL,
   ng_id integer NOT NULL,
-  page_twig_prefix character varying(20) NOT NULL DEFAULT 'site'::character varying,
-  page_tpl character varying(64) NOT NULL DEFAULT 'index'::character varying,
+  tpl_id integer NOT NULL,
   page_type character varying(20) NOT NULL DEFAULT 'text/html'::character varying,
   page_title character varying(100) NOT NULL DEFAULT 'The Title'::character varying,
   page_description character varying(150) NOT NULL DEFAULT 'The Description'::character varying,
@@ -159,7 +158,7 @@ return [
     tp_id integer NOT NULL,
     td_name character varying(64) NOT NULL
 )",
-"CREATE UNIQUE INDEX td_id_idx on {dbPrefix}twig_dirs USING btree (tp_id)",
+"CREATE UNIQUE INDEX td_id_idx on {dbPrefix}twig_dirs USING btree (td_id)",
 "CREATE UNIQUE INDEX td_combo_idx on {dbPrefix}twig_dirs USING btree (tp_id,td_name)",
 
 "CREATE TABLE {dbPrefix}twig_templates (
