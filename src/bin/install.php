@@ -140,6 +140,11 @@ switch ($a_install['db_type']) {
         $a_sql = require $install_files_path .  '/default_mysql_create.php';
 }
 
+/**
+ * Creates the strings needed for sql.
+ * @param array $a_records
+ * @return array
+ */
 function createStrings($a_records = []) {
     $a_record = array_shift($a_records);
     $fields = '';
@@ -154,6 +159,11 @@ function createStrings($a_records = []) {
     ];
 }
 
+/**
+ * Reorganizes the array.
+ * @param array $a_org_values
+ * @return array
+ */
 function reorgArray($a_org_values = []) {
     $a_values = [];
     foreach ($a_org_values as $a_value) {
@@ -162,15 +172,19 @@ function reorgArray($a_org_values = []) {
     return $a_values;
 }
 
+/**
+ * Rolls back the transaction and exits the script.
+ * @param DbModel $o_db
+ * @param string  $message
+ */
 function failIt(DbModel $o_db, $message = '') {
     try {
         $o_db->rollbackTransaction();
     }
     catch (ModelException $e) {
-        print "Could not rollback transaction: " . $e->errorMessage() . "\n";
+        print "Could not rollback transaction: " . var_export($e->errorMessage()) . "\n";
     }
     die("\n{$message}\n");
-
 }
 
 $a_data = require $install_files_path .  '/default_data.php';
@@ -655,7 +669,7 @@ VALUES
 SQL;
 
 $a_table_info = [
-    'table_name'  => $a_install['lib_db_prefix'] . 'twig_dirs',
+    'table_name'  => $a_install['lib_db_prefix'] . 'twig_prefix',
     'column_name' => 'tp_id'
 ];
 foreach ($a_tp_prefix as $key => $a_record) {
@@ -671,7 +685,7 @@ foreach ($a_tp_prefix as $key => $a_record) {
         }
     }
     catch(ModelException $e) {
-        failIt($o_db, 'Could not insert twig prefix data. ' . $e->errorMessage());
+        failIt($o_db, 'Could not insert twig prefix data. ' . var_export($e->errorMessage()));
     }
 }
 print "\n";
@@ -691,7 +705,9 @@ $a_table_info = [
     'column_name' => 'td_id'
 ];
 foreach ($a_tp_dirs as $key => $a_record) {
-    $a_record['tp_id'] = $a_tp_prefix[$a_record['tp_id']]['tp_id'];
+    $tp_id                    = $a_tp_prefix[$a_record['tp_id']]['tp_id'];
+    $a_tp_dirs[$key]['tp_id'] = $tp_id;
+    $a_record['tp_id']        = $tp_id;
     try {
         $results = $o_db->insert($twig_dirs_sql, $a_record, $a_table_info);
         if ($results === false) {
@@ -704,7 +720,7 @@ foreach ($a_tp_dirs as $key => $a_record) {
         }
     }
     catch (ModelException $e) {
-        failIt($o_db, 'Could not insert twig dirs data. ' . $e->errorMessage());
+        failIt($o_db, 'Could not insert twig dirs data. ' . var_export($e->errorMessage()));
     }
 }
 print "\n";
@@ -724,7 +740,9 @@ $a_table_info = [
     'column_name' => 'tpl_id'
 ];
 foreach ($a_tp_tpls as $key => $a_record) {
-    $a_record['td_id'] = $a_tp_dirs[$a_record['td_id']]['td_id'];
+    $td_id                    = $a_tp_dirs[$a_record['td_id']]['td_id'];
+    $a_tp_tpls[$key]['td_id'] = $td_id;
+    $a_record['td_id']        = $td_id;
     try {
         $results = $o_db->insert($twig_tpls_sql, $a_record, $a_table_info);
         if ($results === false) {
