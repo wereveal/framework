@@ -14,9 +14,12 @@
 */
 namespace Ritc;
 
+use Ritc\Library\Exceptions\FactoryException;
+use Ritc\Library\Exceptions\ModelException;
+use Ritc\Library\Exceptions\ServiceException;
 use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Factories\TwigFactory;
-use Ritc\Library\Helper\ConstantsHelper;
+use Ritc\Library\Models\ConstantsCreator;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
@@ -56,73 +59,102 @@ else {
         $o_loader->addPsr4($psr4_prefix, $psr0_paths);
     }
 }
-
-$o_elog = Elog::start();
+try {
+    $o_elog = Elog::start();
+}
+catch (ServiceException $e) {
+    error_log($e->errorMessage(), 0);
+    die($e->errorMessage());
+}
 $o_elog->setIgnoreLogOff(false); // turns on logging globally ignoring LOG_OFF when set to true
-$o_elog->setErrorHandler(E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR);
-
+$o_elog->setErrorHandler(E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR | E_USER_DEPRECATED); // Elog only handles user errors
 $o_elog->write("Testing the elog at the very start.\n", LOG_OFF);
 
-$o_session = Session::start();
+try {
+    $o_session = Session::start();
+}
+catch (ServiceException $e) {
+    $o_elog->write($e->errorMessage(), LOG_ALWAYS);
+    die('Unable to start the session.');
+}
 
-$o_di = new Di();
+try {
+    $o_di = new Di();
+}
+catch (\Error $e) {
+    $o_elog->write($e->getMessage(), LOG_ALWAYS);
+    die('Unable to start Di');
+}
 $o_di->set('elog', $o_elog);
 $o_di->set('session', $o_session);
 $o_di->setVar('dbConfig', $db_config_file);
 
-$o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
-if ($o_pdo !== false) {
+try {
+    $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+}
+catch (FactoryException $e) {
+    die($e->errorMessage());
+
+}
+try {
     $o_db = new DbModel($o_pdo, $db_config_file);
+}
+catch (\Error $e) {
+    die("Could not get the database to work: " . $e->getMessage());
+}
 
-    if (!is_object($o_db)) {
-        $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
-        die("Could not get the database to work");
+$o_db->setElog($o_elog);
+$o_di->set('db', $o_db);
+if (RODB) {
+    try {
+        $o_pdo_ro = PdoFactory::start($db_config_file, 'ro', $o_di);
     }
-    else {
-        $o_db->setElog($o_elog);
-        $o_di->set('db', $o_db);
-        if (RODB) {
-            $o_pdo_ro = PdoFactory::start($db_config_file, 'ro', $o_di);
-            if ($o_pdo_ro !== false) {
-                $o_db_ro = new DbModel($o_pdo_ro, $db_config_file);
-                if (!is_object($o_db_ro)) {
-                    $o_elog->write("Could not create a new DbModel for read only\n", LOG_ALWAYS);
-                    die("Could not get the database to work");
-                }
-                $o_di->set('rodb', $o_db_ro);
-            }
-        }
-
-        if (!ConstantsHelper::start($o_di)) {
-            $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
-            require_once SRC_CONFIG_PATH . '/fallback_constants.php';
-        }
-        $o_session->setIdleTime(SESSION_IDLE_TIME);
-        $o_router = new Router($o_di);
-        if (!is_object($o_router)) {
-            die("Could not create a new Router");
-        }
-        $o_di->set('router',  $o_router);
-
-        if ($twig_config == 'db') {
-            if (!isset($twig_use_cache)) {
-                $twig_use_cache = defined('DEVELOPER_MODE') && DEVELOPER_MODE
-                    ? false
-                    : true;
-            }
-            $o_twig = TwigFactory::getTwig($o_di, $twig_use_cache);
-        }
-        else {
-            $o_twig = TwigFactory::getTwigByFile($twig_config);
-        }
-        if (!$o_twig instanceof \Twig_Environment) {
-            die("Could not create a new TwigEnviornment");
-        }
-        $o_di->set('twig', $o_twig);
-        $o_di->setVar('twigConfig', $twig_config);
+    catch (FactoryException $e) {
+        die("Could not start the RO PDOFactory: " . $e->errorMessage());
     }
+    try {
+        $o_db_ro = new DbModel($o_pdo_ro, $db_config_file);
+    }
+    catch (\Error $e) {
+        die("Could not get the ro database to work: " . $e->getMessage());
+    }
+    $o_di->set('rodb', $o_db_ro);
+}
+
+try {
+    ConstantsCreator::start($o_di);
+}
+catch (ModelException $e) {
+    $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
+    require_once SRC_CONFIG_PATH . '/fallback_constants.php';
+}
+catch (\Error $e) {
+    $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
+    require_once SRC_CONFIG_PATH . '/fallback_constants.php';
+}
+$o_session->setIdleTime(SESSION_IDLE_TIME); // has to be here since it relies on the constant being set.
+try {
+    $o_router = new Router($o_di);
+}
+catch (\Error $e) {
+    $o_elog->write("Could not create new instance of Router: " . $e->getMessage());
+    die("A fatal error has occured. Please try again");
+}
+$o_di->set('router',  $o_router);
+
+if ($twig_config == 'db') {
+    if (!isset($twig_use_cache)) {
+        $twig_use_cache = defined('DEVELOPER_MODE') && DEVELOPER_MODE
+            ? false
+            : true;
+    }
+    $o_twig = TwigFactory::getTwig($o_di, $twig_use_cache);
 }
 else {
-    $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
-    die("Could not connect to the database");
+    $o_twig = TwigFactory::getTwigByFile($twig_config);
 }
+if (!$o_twig instanceof \Twig_Environment) {
+    die("Could not create a new TwigEnviornment");
+}
+$o_di->set('twig', $o_twig);
+$o_di->setVar('twigConfig', $twig_config);
