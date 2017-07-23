@@ -148,9 +148,20 @@ if ($twig_config == 'db') {
             ? false
             : true;
     }
-    $o_twig = TwigFactory::getTwig($o_di, $twig_use_cache);
+    try {
+        $o_twig = TwigFactory::getTwig($o_di, $twig_use_cache);
+    }
+    catch (FactoryException $e) {
+
+    }
 }
 else {
+    try {
+
+    }
+    catch (FactoryException $e) {
+
+    }
     $o_twig = TwigFactory::getTwigByFile($twig_config);
 }
 if (!$o_twig instanceof \Twig_Environment) {
