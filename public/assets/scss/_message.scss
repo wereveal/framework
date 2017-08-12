@@ -1,18 +1,18 @@
 .message {
     &.success {
-        @include messageColors($alert-success-bg, $alert-success-border, $alert-success-text);
+        @include messageColors($green-lighter, $green-dark, $green-color);
     }
     &.info {
-        @include messageColors($alert-info-bg, $alert-info-border, $alert-info-text);
+        @include messageColors($blue-light, $blue-dark, $blue-color);
     }
     &.warning {
-        @include messageColors($alert-warning-bg, $alert-warning-border, $alert-warning-text);
+        @include messageColors($orange-light, $orange-dark, $orange-color);
     }
     &.error {
-        @include messageColors($alert-danger-bg, $alert-danger-border, $alert-danger-text);
+        @include messageColors($red-light, $red-dark, $red-color);
     }
     &.failure {
-        @include messageColors($alert-danger-bg, $alert-danger-border, $alert-danger-text);
+        @include messageColors($red-light, $red-dark, $red-color);
     }
     &.code {
         font-family: $default-mono;
