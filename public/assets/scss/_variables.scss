@@ -23,59 +23,18 @@ $font-size-h6: 1rem;
 $spacer:   1rem;
 $spacer-x: $spacer;
 $spacer-y: $spacer;
-/*
 $spacers: (
-    0: (
-        x: 0,
-        y: 0
-    ),
-    1: (
-        x: ($spacer-x * .25),
-        y: ($spacer-y * .25)
-    ),
-    q: (
-        x: ($spacer-x * .25),
-        y: ($spacer-y * .25)
-    ),
-    2: (
-        x: ($spacer-x * .5),
-        y: ($spacer-y * .5)
-    ),
-    h: (
-        x: ($spacer-x * .5),
-        y: ($spacer-y * .5)
-    ),
-    3: (
-        x: $spacer-x,
-        y: $spacer-y
-    ),
-    one: (
-        x: $spacer-x,
-        y: $spacer-y
-    ),
-    4: (
-        x: ($spacer-x * 1.5),
-        y: ($spacer-y * 1.5)
-    ),
-    oh: (
-        x: ($spacer-x * 1.5),
-        y: ($spacer-y * 1.5)
-    ),
-    5: (
-        x: ($spacer-x * 3),
-        y: ($spacer-y * 3)
-    ),
-    tre: (
-        x: ($spacer-x * 3),
-        y: ($spacer-y * 3)
-    ),
-    6: (
-        x: ($spacer-x * 2),
-        y: ($spacer-y * 2)
-    ),
-    two: (
-        x: ($spacer-x * 2),
-        y: ($spacer-y * 2)
-    )
+    0: 0,
+    1: $spacer-x * .25,
+    q: $spacer-x * .25,
+    2: $spacer-x * .5,
+    h: $spacer-x * .5,
+    3: $spacer-x,
+    one: $spacer-x,
+    4: $spacer-x * 1.5,
+    oh: $spacer-x * 1.5,
+    5: $spacer-x * 3,
+    tre: $spacer-x * 3,
+    6: $spacer-x * 2,
+    two: $spacer-x * 2,
 );
-*/
