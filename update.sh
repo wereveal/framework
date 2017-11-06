@@ -11,13 +11,14 @@ else
     fi
 fi
 
-if [ -f public/assets/bower.json ]
+if [ -f public/assets/package.json ]
 then
     cd public/assets
-    bower update
+    yarn install --modules-folder vendor
+    sass --update scss:css
     cd ../../
 else
-    echo "The bower.json file must exist in the public/assets directory."
+    echo "The package.json file must exist in the public/assets directory."
 fi
 
 echo "Updating the Library."

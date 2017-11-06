@@ -21,31 +21,35 @@ then
         else
             if [ -x composer.phar ]
             then
-                composer.phar update 
+                composer.phar update
             else
-                composer update 
+                composer update
             fi
         fi
     fi
 
     if [ ! -d public/assets/vendor ]
     then
-        if [ -f public/assets/bower.json ]
+        if [ -f public/assets/package.json ]
         then
             cd public/assets
-            bower install
+            yarn install --modules-folder vendor
+            yarn config set modules-folder vendor
+            sass --update scss:css
             cd ../../
         else
-            echo "The bower.json file must exist in the public/assets directory."
+            echo "The package.json file must exist in the public/assets directory."
         fi
     else
-        if [ -f public/assets/bower.json ]
+        if [ -f public/assets/package.json ]
         then
             cd public/assets
-            bower update 
+            yarn install --modules-folder vendor
+            yarn config set modules-folder vendor
+            sass --update scss:css
             cd ../../
         else
-            echo "The bower.json file must exist in the public/assets directory."
+            echo "The package.json file must exist in the public/assets directory."
         fi
     fi
 
