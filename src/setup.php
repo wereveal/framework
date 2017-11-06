@@ -152,20 +152,16 @@ if ($twig_config == 'db') {
         $o_twig = TwigFactory::getTwig($o_di, $twig_use_cache);
     }
     catch (FactoryException $e) {
-
+        die("Couldn't create twig instance from database. " . $e->errorMessage());
     }
 }
 else {
     try {
-
+        $o_twig = TwigFactory::getTwig('twig_config.php');
     }
     catch (FactoryException $e) {
-
+        die("Couldn't create twig instance from file. " . $e->errorMessage());
     }
-    $o_twig = TwigFactory::getTwigByFile($twig_config);
-}
-if (!$o_twig instanceof \Twig_Environment) {
-    die("Could not create a new TwigEnviornment");
 }
 $o_di->set('twig', $o_twig);
 $o_di->setVar('twigConfig', $twig_config);

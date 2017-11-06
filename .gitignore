@@ -8,6 +8,7 @@ composer.lock
 /src/twig_cache/*
 /src/apps/Ritc/*
 /src/apps/Wer*
+/src/apps/Terramark*
 /public/assets/css/*.css
 /public/assets/css/*.map
 /public/assets/images/touch/*.ico
