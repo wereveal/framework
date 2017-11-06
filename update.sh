@@ -15,7 +15,7 @@ if [ -f public/assets/package.json ]
 then
     cd public/assets
     yarn install --modules-folder vendor
-    sass --update scss:css
+    sass --update -t scss:css
     cd ../../
 else
     echo "The package.json file must exist in the public/assets directory."
