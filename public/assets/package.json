@@ -1,0 +1,18 @@
+{
+  "name": "node_stuff",
+  "version": "1.0.0",
+  "authors": [
+    "William E Reveal (from Mac) <bill@revealitconsulting.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta.2",
+    "html5shiv": "^3.7.3",
+    "jquery": "^3.1.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-validation": "^1.16.0"
+  }
+}
