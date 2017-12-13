@@ -1228,6 +1228,15 @@ $a_twig_tpls = [
     ]
 ];
 
+$a_twig_default_dir_names = [
+    'default',
+    'elements',
+    'forms',
+    'pages',
+    'snippets',
+    'tests'
+];
+
 return [
     'constants'        => $a_constants,
     'groups'           => $a_groups,
@@ -1242,5 +1251,6 @@ return [
     'page'             => $a_page,
     'tp_prefix'        => $a_twig_prefix,
     'tp_dirs'          => $a_twig_dirs,
-    'tp_templates'     => $a_twig_tpls
+    'tp_templates'     => $a_twig_tpls,
+    'tp_default_dirs'  => $a_twig_default_dir_names
 ];

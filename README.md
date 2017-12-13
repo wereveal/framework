@@ -8,17 +8,30 @@
 * Once cloned, immediately create a fresh app. The framework is intended to give a fresh start, so new git repo, not a fork.
     1. rm -Rf .git
     2. git init
-    3. composer.phar install
-    4. bower install
-*  clone Library from git if not installed via composer
-    1. cd /src/apps/Ritc
-    2. git clone ritclibrary Library
-    3. clone any other Ritc app needed
-* New App configuration
-    1. create database and assign user to it. Tables will be made with install.php.
-    2. Move to /src/config/install and copy install_config.txt to a file with a name that ends with config.php, the default is install_config.php. Specify the file name on the command line when you run install.php if it isn't named install_config.php.
-    3. php install.php (alternative config file name)
-* Run compass compile in the public/assets directory to generate initial css files. After modifying the scss files as needed, recompile.
+    3. git commit -a -m "Initial commit"
+    4. Automagical or Manual install
+       1. Automagical
+          1. cp src/config/install_files/install_config.php.txt to src/config/install_config.php
+          1. Change settings in src/config/install_config.php to match new app(s)
+          1. bash ./install.sh
+       2. manual
+          1. composer(.phar) install
+          2. cd public/assets
+          3. yarn install --modules-folder vendor
+          4. sass update scss:css (After modifying the scss files as needed, recompile.)
+          5. cd ../../
+          6. git clone https://www.revealitconsulting.com/git/ritc/library src/apps/Ritc/Library
+          7. copy src/config/install_files/install_config.php.txt to src/config/install_config.php
+          8. Change settings in src/config/install_config.php to match new app(s)
+          9. php src/bin/install.php
+    5. Optionally install jquery-ui
+	   1. bash ./doJqueryUi
+		  or
+       1. cd public/assets/vendor/jquery-ui/
+       2. npm install grunt --save-dev
+       3. npm install
+       4. grunt
+       5. if a different theme desired for jquery-ui, download it from jqueryui (http://jqueryui.com/themeroller/).
 
 ### Contribution guidelines ###
 
