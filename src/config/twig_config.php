@@ -19,7 +19,7 @@ if (!defined('TWIG_PREFIX')) {
 $a_places = [
     'Site' => [
         'path'   => SRC_PATH . '/templates',
-        'prefix' => 'site_'
+        'prefix' => TWIG_PREFIX
     ],
     'Library' => [
         'path'   => APPS_PATH . '/Ritc/Library/resources/templates',

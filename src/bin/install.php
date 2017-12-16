@@ -13,6 +13,7 @@
  * @date      2017-05-25 15:28:28
  * @version   2.5.0
  * @note   <b>Change Log</b>
+ * - v3.0.0 - Changed to use DbInstallerModel and NewAppHelper     - 2017-12-15 wer
  * - v2.5.0 - Added several files to be created in app.            - 2017-05-25 wer
  * - v2.4.0 - changed several settings, defaults, and actions      - 2017-05-11 wer
  * - v2.3.0 - fix to install_files setup.php in public dir         - 2017-05-08 wer
@@ -23,7 +24,9 @@
  */
 namespace Ritc;
 
+use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ModelException;
+use Ritc\Library\Exceptions\ServiceException;
 use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Helper\AutoloadMapper;
 use Ritc\Library\Helper\NewAppHelper;
@@ -57,6 +60,50 @@ if (!file_exists($install_config)) {
     die("You must create the install_configs configuration file in " . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
 }
 $a_install = require_once $install_config;
+$a_required_keys = [
+    'app_name',
+    'namespace',
+    'db_file',
+    'db_host',
+    'db_type',
+    'db_port',
+    'db_name',
+    'db_user',
+    'db_pass',
+    'db_persist',
+    'db_errmode',
+    'db_prefix',
+    'lib_db_prefix'
+];
+foreach ($a_required_keys as $key) {
+    if (empty($a_install[$key])) {
+        die("The install config file does not have required values");
+    }
+}
+$a_needed_keys = [
+    'author',
+    'short_author',
+    'email',
+    'twig_prefix',
+    'lib_twig_prefix',
+    'app_twig_prefix',
+    'loader',
+    'superadmin',
+    'admin',
+    'manager',
+    'developer_mode',
+    'public_path',
+    'base_path',
+    'http_host',
+    'domain',
+    'tld',
+    'specific_host'
+];
+foreach ($a_needed_keys as $key) {
+    if (!isset($a_install[$key])) {
+        $a_install[$key] = '';
+    }
+}
 
 ### generate files for autoloader ###
 require APPS_PATH . '/Ritc/Library/Helper/AutoloadMapper.php';
@@ -107,17 +154,28 @@ else {
     }
 }
 
-$o_elog = Elog::start();
-$o_elog->write("Test\n", LOG_OFF);
-$o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
+try {
+    $o_elog = Elog::start();
+    $o_elog->write("Test\n", LOG_OFF);
+    $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
+}
+catch (ServiceException $e) {
+    die("Unable to start Elog" . $e->errorMessage());
+}
+
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
-/** @var \PDO $o_pdo */
-$o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+try {
+    /** @var \PDO $o_pdo */
+    $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+}
+catch (FactoryException $e) {
+    die("Unable to start the PdoFactory. " . $e->errorMessage());
+}
 
 if ($o_pdo !== false) {
     $o_db = new DbModel($o_pdo, $db_config_file);
-    if (!is_object($o_db)) {
+    if (!$o_db instanceof DbModel) {
         $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
         die("Could not get the database to work\n");
     }
@@ -190,13 +248,17 @@ function failIt(DbModel $o_db, $message = '') {
         $o_db->rollbackTransaction();
     }
     catch (ModelException $e) {
-        print "Could not rollback transaction: " . var_export($e->errorMessage()) . "\n";
+        print "Could not rollback transaction: " . $e->errorMessage() . "\n";
     }
     die("\n{$message}\n");
 }
 
-
-$o_db->startTransaction();
+try {
+    $o_db->startTransaction();
+}
+catch (ModelException $e) {
+    print "Could not start transaction: " . $e->errorMessage() . "\n";
+}
 $o_installer_model = new DbInstallerModel($o_di);
 print "Creating Databases: ";
 if (!$o_installer_model->createTables()) {
@@ -307,6 +369,12 @@ if (!$o_installer_model->insertPage()) {
 }
 print "success\n";
 
+$o_new_app_helper = new NewAppHelper($o_di);
+$results = $o_new_app_helper->createDbRecords();
+if ($results !== true) {
+    failIt($o_db, $results);
+}
+
 try {
     $o_db->commitTransaction();
     print "Data Insert Complete.\n";
@@ -315,7 +383,6 @@ catch (ModelException $e) {
     failIt($o_db, "Could not commit the transaction.");
 }
 
-$o_new_app_helper = new NewAppHelper($o_di);
 print "\nCreating the directories for the new app\n";
 if ($o_new_app_helper->createDirectories()) {
     print "\nCreating default files.\n";
@@ -324,4 +391,4 @@ if ($o_new_app_helper->createDirectories()) {
 
 ### Regenerate Autoload Map files
 $o_cm->generateMapFiles();
-?>
+

@@ -1037,7 +1037,7 @@ $a_replace = [
     ''
 ];
 if (!empty($http_host)) {
-    $host_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/specific_host.snippet');
+    $host_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/http_host.snippet');
     $host_text = str_replace($a_find, $a_replace, $host_text);
     $a_replace[7] = $host_text;
 }

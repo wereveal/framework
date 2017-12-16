@@ -1,0 +1,42 @@
+{% extends '@' ~ twig_prefix ~ 'default/base.twig' %}
+{% block body %}
+            <div class="container">
+                {{ body_text | raw }}
+            </div>
+{% endblock %}
+{#
+expected array [
+    'lang',
+    'charset',
+    'title',
+    'description',
+    'base_url',
+    'page_url',
+    'public_dir',
+    'twig_prefix',
+    'a_menus',
+    'a_message',
+    'body_text',
+    'debug_text',
+    'copyright_date',
+    'site_url',
+    'rights_holder',
+    ]
+blocks available to extend:
+    title
+    description
+    meta
+    vendor_stylesheets
+    stylesheets
+    icons
+    vendor_js
+    head_js
+    header
+    search
+    message
+    body
+    footer
+    debug
+    bottom_vendor_js
+    bottom_js
+#}

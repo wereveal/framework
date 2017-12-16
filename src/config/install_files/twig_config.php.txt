@@ -10,7 +10,7 @@ $a_default_dirs = [
 
 
 $path   = APPS_PATH . '/{NAMESPACE}/{APPNAME}/resources/templates';
-$prefix = '{twig_prefix}';
+$prefix = '{app_twig_prefix}';
 
 $a_additional_paths = [];
 foreach ($a_default_dirs as $dir) {
