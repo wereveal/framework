@@ -338,7 +338,7 @@ print "success\n";
 
 ### Twig tables data ###
 print "Starting the Twig db stuff. \n";
-print "Updating data for app specific";
+print "Updating data for app specific\n";
 $o_installer_model->createTwigAppConfig();
 
 ### Enter twig prefixes into database ###
@@ -369,11 +369,15 @@ if (!$o_installer_model->insertPage()) {
 }
 print "success\n";
 
+### New App Stuff
+print "\nSetting up the app\n";
 $o_new_app_helper = new NewAppHelper($o_di);
+print "Creating twig db records";
 $results = $o_new_app_helper->createDbRecords();
 if ($results !== true) {
     failIt($o_db, $results);
 }
+print "success\n";
 
 try {
     $o_db->commitTransaction();

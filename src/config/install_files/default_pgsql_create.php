@@ -22,7 +22,7 @@ return [
   const_id serial NOT NULL,
   const_name character varying(64) NOT NULL UNIQUE,
   const_value character varying(64) NOT NULL,
-  const_immutable integer NOT NULL DEFAULT 0,
+  const_immutable character varying(10) NOT NULL DEFAULT 'false'::character varying,
   PRIMARY KEY (const_id)
 )",
 
@@ -31,7 +31,7 @@ return [
   group_name character varying(40) NOT NULL UNIQUE,
   group_description character varying(128) NOT NULL,
   group_auth_level integer NOT NULL DEFAULT 0,
-  group_immutable integer NOT NULL DEFAULT 0,
+  group_immutable character varying(10) NOT NULL DEFAULT 'false'::character varying,
   PRIMARY KEY (group_id)
 )",
 
@@ -40,7 +40,7 @@ return [
   url_host character varying(255) NOT NULL DEFAULT 'self'::character varying,
   url_text character varying(255) NOT NULL DEFAULT ''::character varying,
   url_scheme url_protocol NOT NULL DEFAULT 'https'::url_protocol,
-  url_immutable integer NOT NULL DEFAULT 0,
+  url_immutable character varying(10) NOT NULL DEFAULT 'false'::character varying,
   PRIMARY KEY (url_id)
 )",
 "CREATE UNIQUE INDEX urls_url_idx on {dbPrefix}urls USING btree (url_scheme, url_host, url_text)",
@@ -51,7 +51,7 @@ return [
   route_class character varying(64) NOT NULL,
   route_method character varying(64) NOT NULL,
   route_action character varying(255) NOT NULL,
-  route_immutable integer NOT NULL DEFAULT 0::integer,
+  route_immutable character varying(10) NOT NULL DEFAULT 'false'::character varying,
   PRIMARY KEY (route_id)
 )",
 
@@ -66,7 +66,7 @@ return [
   page_base_url character varying(50) NOT NULL DEFAULT '/'::character varying,
   page_lang character varying(50) NOT NULL DEFAULT 'en'::character varying,
   page_charset character varying(100) NOT NULL DEFAULT 'utf-8'::character varying,
-  page_immutable integer NOT NULL DEFAULT 0,
+  page_immutable character varying(10) NOT NULL DEFAULT 'false'::character varying,
   PRIMARY KEY (page_id)
 )",
 "CREATE INDEX pgm_url_id_idx on {dbPrefix}page USING btree (url_id)",
@@ -94,7 +94,7 @@ return [
   ng_name character varying(128) NOT NULL DEFAULT 'Main'::character varying,
   ng_active integer NOT NULL DEFAULT 1,
   ng_default integer NOT NULL DEFAULT 0,
-  ng_immutable integer NOT NULL DEFAULT 0,
+  ng_immutable character varying(10) NOT NULL DEFAULT 'false'::character varying,
   PRIMARY KEY (ng_id),
   UNIQUE (ng_name)
 )",
@@ -110,7 +110,7 @@ return [
   nav_level integer NOT NULL DEFAULT 1,
   nav_order integer NOT NULL DEFAULT 0,
   nav_active integer NOT NULL DEFAULT 1,
-  nav_immutable integer NOT NULL DEFAULT 0,
+  nav_immutable character varying(10) NOT NULL DEFAULT 'false'::character varying,
   PRIMARY KEY (nav_id)
 )",
 "CREATE INDEX nav_url_id_idx on {dbPrefix}navigation USING btree (url_id)",
@@ -165,7 +165,7 @@ return [
     tpl_id serial NOT NULL,
     td_id integer NOT NULL,
     tpl_name character varying(128) NOT NULL,
-    tpl_immutable integer DEFAULT 0 NOT NULL
+    tpl_immutable character varying(10) NOT NULL DEFAULT 'false'::character varying 
 )",
 "CREATE UNIQUE INDEX tpl_id_idx on {dbPrefix}twig_templates USING btree (tpl_id)",
 "CREATE UNIQUE INDEX tpl_combo_idx on {dbPrefix}twig_templates USING btree (td_id, tpl_name)",

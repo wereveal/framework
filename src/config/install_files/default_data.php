@@ -26,37 +26,37 @@ $a_constants = [
 	'display_date_format' => [
         'const_name'      => 'DISPLAY_DATE_FORMAT',
         'const_value'     => 'm/d/Y',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'email_domain' => [
         'const_name'      => 'EMAIL_DOMAIN',
         'const_value'     => 'revealitconsulting.com',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'email_form_to' => [
         'const_name'      => 'EMAIL_FORM_TO',
         'const_value'     => 'bill@revealitconsulting.com',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'error_email_address' => [
         'const_name'      => 'ERROR_EMAIL_ADDRESS',
         'const_value'     => 'webmaster@revealitconsulting.com',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'page_template' => [
         'const_name'      => 'PAGE_TEMPLATE',
         'const_value'     => 'index.twig',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'twig_prefix' => [
         'const_name'      => 'TWIG_PREFIX',
         'const_value'     => 'site_',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'lib_twig_prefix' => [
         'const_name'      => 'LIB_TWIG_PREFIX',
         'const_value'     =>  'lib_',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'theme_name' => [
         'const_name'      => 'THEME_NAME',
@@ -71,77 +71,77 @@ $a_constants = [
     'css_dir_name' => [
         'const_name'      => 'CSS_DIR_NAME',
         'const_value'     => 'css',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'html_dir_name' => [
         'const_name'      => 'HTML_DIR_NAME',
         'const_value'     => 'html',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'js_dir_name' => [
         'const_name'      => 'JS_DIR_NAME',
         'const_value'     => 'js',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'image_dir_name' => [
         'const_name'      => 'IMAGE_DIR_NAME',
         'const_value'     => 'images',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'admin_dir_name' => [
         'const_name'      => 'ADMIN_DIR_NAME',
         'const_value'     => 'manager',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'assets_dir_name' => [
         'const_name'      => 'ASSETS_DIR_NAME',
         'const_value'     => 'assets',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'files_dir_name' => [
         'const_name'      => 'FILES_DIR_NAME',
         'const_value'     => 'files',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'display_phone_format' => [
         'const_name'      => 'DISPLAY_PHONE_FORMAT',
         'const_value'     => 'XXX-XXX-XXXX',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'themes_dir' => [
         'const_name'      => 'THEMES_DIR',
         'const_value'     => '',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'rights_holder' => [
         'const_name'      => 'RIGHTS_HOLDER',
         'const_value'     => 'Reveal IT Consulting',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'copyright_date' => [
         'const_name'      => 'COPYRIGHT_DATE',
         'const_value'     => '2001-2017',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'private_dir_name' => [
         'const_name'      => 'PRIVATE_DIR_NAME',
         'const_value'     => 'private',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'tmp_dir_name' => [
         'const_name'      => 'TMP_DIR_NAME',
         'const_value'     => 'tmp',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'developer_mode' => [
         'const_name'      => 'DEVELOPER_MODE',
         'const_value'     => 'true',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ],
     'session_idle_time' => [
         'const_name'      => 'SESSION_IDLE_TIME',
         'const_value'     => '1800',
-        'const_immutable' => 1
+        'const_immutable' => 'true'
     ]
 ];
 
@@ -150,61 +150,61 @@ $a_groups = [
         'group_name'        => 'SuperAdmin',
         'group_description' => 'The group for super administrators. There should be only a couple of these.',
         'group_auth_level'  => 10,
-        'group_immutable'   => 1
+        'group_immutable'   => 'true'
     ],
     'admin' =>  [
         'group_name'        => 'Admins',
         'group_description' => 'The group for managing the advanced configuration of the site.',
         'group_auth_level'  => 9,
-        'group_immutable'   => 1
+        'group_immutable'   => 'true'
     ],
 	'manager' => [
         'group_name'        => 'Managers',
         'group_description' => 'Managers for the app should be in this group.',
         'group_auth_level'  => 8,
-        'group_immutable'   => 1
+        'group_immutable'   => 'true'
     ],
 	'editor' => [
         'group_name'        => 'Editor',
         'group_description' => 'Editor for the CMS which does not exist in the Manager',
         'group_auth_level'  => 5,
-        'group_immutable'   => 1
+        'group_immutable'   => 'true'
     ],
 	'registered' => [
         'group_name'        => 'Registered',
         'group_description' => 'The group for people that should not have access to the manager.',
         'group_auth_level'  => 1,
-        'group_immutable'   => 1
+        'group_immutable'   => 'true'
     ],
 	'anonymous' => [
         'group_name'        => 'Anonymous',
         'group_description' => 'Not logged in or possibly unregistered',
         'group_auth_level'  => 0,
-        'group_immutable'   => 1
+        'group_immutable'   => 'true'
     ]
 ];
 
 $a_urls = [
-	'home'             => ['url_host' => 'self', 'url_text' => $a_u['home'],             'url_scheme' => 'http',  'url_immutable' => 1],
-	'manager'          => ['url_host' => 'self', 'url_text' => $a_u['manager'],          'url_scheme' => 'https', 'url_immutable' => 1],
-	'login'            => ['url_host' => 'self', 'url_text' => $a_u['login'],            'url_scheme' => 'https', 'url_immutable' => 1],
-	'logout'           => ['url_host' => 'self', 'url_text' => $a_u['logout'],           'url_scheme' => 'https', 'url_immutable' => 1],
-    'tests'            => ['url_host' => 'self', 'url_text' => $a_u['tests'],            'url_scheme' => 'https', 'url_immutable' => 1],
-    'test_results'     => ['url_host' => 'self', 'url_text' => $a_u['test_results'],     'url_scheme' => 'https', 'url_immutable' => 1],
-	'library'          => ['url_host' => 'self', 'url_text' => $a_u['library'],          'url_scheme' => 'https', 'url_immutable' => 1],
-    'lib_login'        => ['url_host' => 'self', 'url_text' => $a_u['lib_login'],        'url_scheme' => 'https', 'url_immutable' => 1],
-    'lib_logout'       => ['url_host' => 'self', 'url_text' => $a_u['lib_logout'],       'url_scheme' => 'https', 'url_immutable' => 1],
-	'constants'        => ['url_host' => 'self', 'url_text' => $a_u['constants'],        'url_scheme' => 'https', 'url_immutable' => 1],
-	'groups'           => ['url_host' => 'self', 'url_text' => $a_u['groups'],           'url_scheme' => 'https', 'url_immutable' => 1],
-	'people'           => ['url_host' => 'self', 'url_text' => $a_u['people'],           'url_scheme' => 'https', 'url_immutable' => 1],
-	'urls'             => ['url_host' => 'self', 'url_text' => $a_u['urls'],             'url_scheme' => 'https', 'url_immutable' => 1],
-	'routes'           => ['url_host' => 'self', 'url_text' => $a_u['routes'],           'url_scheme' => 'https', 'url_immutable' => 1],
-	'navigation'       => ['url_host' => 'self', 'url_text' => $a_u['navigation'],       'url_scheme' => 'https', 'url_immutable' => 1],
-	'pages'            => ['url_host' => 'self', 'url_text' => $a_u['pages'],            'url_scheme' => 'https', 'url_immutable' => 1],
-	'lib_tests'        => ['url_host' => 'self', 'url_text' => $a_u['lib_tests'],        'url_scheme' => 'https', 'url_immutable' => 1],
-    'lib_test_results' => ['url_host' => 'self', 'url_text' => $a_u['lib_test_results'], 'url_scheme' => 'https', 'url_immutable' => 1],
-    'twig'             => ['url_host' => 'self', 'url_text' => $a_u['twig'],             'url_scheme' => 'https', 'url_immutable' => 1],
-	'error'            => ['url_host' => 'self', 'url_text' => $a_u['error'],            'url_scheme' => 'https', 'url_immutable' => 1]
+	'home'             => ['url_host' => 'self', 'url_text' => $a_u['home'],             'url_scheme' => 'http',  'url_immutable' => 'true'],
+	'manager'          => ['url_host' => 'self', 'url_text' => $a_u['manager'],          'url_scheme' => 'https', 'url_immutable' => 'true'],
+	'login'            => ['url_host' => 'self', 'url_text' => $a_u['login'],            'url_scheme' => 'https', 'url_immutable' => 'true'],
+	'logout'           => ['url_host' => 'self', 'url_text' => $a_u['logout'],           'url_scheme' => 'https', 'url_immutable' => 'true'],
+    'tests'            => ['url_host' => 'self', 'url_text' => $a_u['tests'],            'url_scheme' => 'https', 'url_immutable' => 'true'],
+    'test_results'     => ['url_host' => 'self', 'url_text' => $a_u['test_results'],     'url_scheme' => 'https', 'url_immutable' => 'true'],
+	'library'          => ['url_host' => 'self', 'url_text' => $a_u['library'],          'url_scheme' => 'https', 'url_immutable' => 'true'],
+    'lib_login'        => ['url_host' => 'self', 'url_text' => $a_u['lib_login'],        'url_scheme' => 'https', 'url_immutable' => 'true'],
+    'lib_logout'       => ['url_host' => 'self', 'url_text' => $a_u['lib_logout'],       'url_scheme' => 'https', 'url_immutable' => 'true'],
+	'constants'        => ['url_host' => 'self', 'url_text' => $a_u['constants'],        'url_scheme' => 'https', 'url_immutable' => 'true'],
+	'groups'           => ['url_host' => 'self', 'url_text' => $a_u['groups'],           'url_scheme' => 'https', 'url_immutable' => 'true'],
+	'people'           => ['url_host' => 'self', 'url_text' => $a_u['people'],           'url_scheme' => 'https', 'url_immutable' => 'true'],
+	'urls'             => ['url_host' => 'self', 'url_text' => $a_u['urls'],             'url_scheme' => 'https', 'url_immutable' => 'true'],
+	'routes'           => ['url_host' => 'self', 'url_text' => $a_u['routes'],           'url_scheme' => 'https', 'url_immutable' => 'true'],
+	'navigation'       => ['url_host' => 'self', 'url_text' => $a_u['navigation'],       'url_scheme' => 'https', 'url_immutable' => 'true'],
+	'pages'            => ['url_host' => 'self', 'url_text' => $a_u['pages'],            'url_scheme' => 'https', 'url_immutable' => 'true'],
+	'lib_tests'        => ['url_host' => 'self', 'url_text' => $a_u['lib_tests'],        'url_scheme' => 'https', 'url_immutable' => 'true'],
+    'lib_test_results' => ['url_host' => 'self', 'url_text' => $a_u['lib_test_results'], 'url_scheme' => 'https', 'url_immutable' => 'true'],
+    'twig'             => ['url_host' => 'self', 'url_text' => $a_u['twig'],             'url_scheme' => 'https', 'url_immutable' => 'true'],
+	'error'            => ['url_host' => 'self', 'url_text' => $a_u['error'],            'url_scheme' => 'https', 'url_immutable' => 'true']
 ];
 
 $a_people = [
@@ -254,43 +254,43 @@ $a_navgroups = [
         'ng_name'      => 'Main',
         'ng_active'    => 1,
         'ng_default'   => 1,
-        'ng_immutable' => 1
+        'ng_immutable' => 'true'
     ],
     'manager' => [
         'ng_name'      => 'Manager',
         'ng_active'    => 1,
         'ng_default'   => 0,
-        'ng_immutable' => 1
+        'ng_immutable' => 'true'
     ],
     'managerlinks' => [
         'ng_name'      => 'ManagerLinks',
         'ng_active'    => 1,
         'ng_default'   => 0,
-        'ng_immutable' => 1
+        'ng_immutable' => 'true'
     ],
 	'sitemap' => [
         'ng_name'      => 'SiteMap',
         'ng_active'    => 1,
         'ng_default'   => 0,
-        'ng_immutable' => 1
+        'ng_immutable' => 'true'
     ],
 	'pagelinks' => [
         'ng_name'      => 'PageLinks',
         'ng_active'    => 1,
         'ng_default'   => 0,
-        'ng_immutable' => 1
+        'ng_immutable' => 'true'
     ],
     'configlinks' => [
         'ng_name'      => 'ConfigLinks',
         'ng_active'    => 1,
         'ng_default'   => 0,
-        'ng_immutable' => 1
+        'ng_immutable' => 'true'
     ],
     'configtestlinks' => [
         'ng_name'      => 'ConfigTestLinks',
         'ng_active'    => 1,
         'ng_default'   => 0,
-        'ng_immutable' => 1
+        'ng_immutable' => 'true'
     ],
 ];
 
@@ -315,140 +315,140 @@ $a_routes = [
         'route_class'     => 'HomeController',
         'route_method'    => 'route',
         'route_action'    => '',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
     ],
     'error' => [
         'url_id'          => 'error',
         'route_class'     => 'HomeController',
         'route_method'    => 'routeError',
         'route_action'    => '',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
     ],
 	'manager' => [
 	    'url_id'          => 'manager',
         'route_class'     => 'ManagerController',
         'route_method'    => 'route',
         'route_action'    => '',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
 	],
 	'login' => [
 	    'url_id'          => 'login',
         'route_class'     => 'ManagerController',
         'route_method'    => 'route',
         'route_action'    => 'login',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
 	],
 	'logout' => [
 	    'url_id'          => 'logout',
         'route_class'     => 'ManagerController',
         'route_method'    => 'route',
         'route_action'    => 'logout',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
 	],
     'tests' => [
         'url_id'          => 'tests',
         'route_class'     => 'ManagerController',
         'route_method'    => 'route',
         'route_action'    => 'tests',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
     ],
     'test_results' => [
         'url_id'          => 'test_results',
         'route_class'     => 'ManagerController',
         'route_method'    => 'route',
         'route_action'    => 'tests',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
     ],
 	'library' => [
 	    'url_id'          => 'library',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => '',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
 	],
 	'constants' => [
 	    'url_id'          => 'constants',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => 'constants',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
 	],
 	'groups' => [
 	    'url_id'          => 'groups',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => 'groups',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
 	],
     'lib_login' => [
         'url_id'          => 'lib_login',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => 'login',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
     ],
     'lib_logout' => [
         'url_id'          => 'lib_logout',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => 'logout',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
     ],
 	'navigation' => [
 	    'url_id'          => 'navigation',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => 'navigation',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
 	],
     'pages' => [
         'url_id'          => 'pages',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => 'pages',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
     ],
 	'people' => [
 	    'url_id'          => 'people',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => 'people',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
 	],
     'routes' => [
         'url_id'          => 'routes',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => 'routes',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
     ],
     'lib_tests' => [
         'url_id'          => 'lib_tests',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => 'tests',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
     ],
     'lib_test_results' => [
         'url_id'          => 'lib_test_results',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => 'tests',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
     ],
     'twig' => [
         'url_id'          => 'twig',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => 'twig',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
     ],
 	'urls' => [
 	    'url_id'          => 'urls',
         'route_class'     => 'LibraryController',
         'route_method'    => 'route',
         'route_action'    => 'urls',
-        'route_immutable' => 1
+        'route_immutable' => 'true'
 	]
 ];
 
@@ -486,7 +486,7 @@ $a_navigation = [
         'nav_level'       => 1,
         'nav_order'       => 1,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'manager'    => [
         'url_id'          => 'manager',
@@ -498,7 +498,7 @@ $a_navigation = [
         'nav_level'       => 1,
         'nav_order'       => 2,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'tests'    => [
         'url_id'          => 'tests',
@@ -510,7 +510,7 @@ $a_navigation = [
         'nav_level'       => 1,
         'nav_order'       => 5,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'login'      => [
         'url_id'          => 'login',
@@ -522,7 +522,7 @@ $a_navigation = [
         'nav_level'       => 1,
         'nav_order'       => 4,
         'nav_active'      => 0,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'logout'     => [
         'url_id'          => 'logout',
@@ -534,7 +534,7 @@ $a_navigation = [
         'nav_level'       => 1,
         'nav_order'       => 4,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'library'    => [
         'url_id'          => 'library',
@@ -546,7 +546,7 @@ $a_navigation = [
         'nav_level'       => 1,
         'nav_order'       => 3,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'lib_login' => [
         'url_id'          => 'lib_login',
@@ -558,7 +558,7 @@ $a_navigation = [
         'nav_level'       => 2,
         'nav_order'       => 10,
         'nav_active'      => 0,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'lib_logout' => [
         'url_id'          => 'lib_logout',
@@ -570,7 +570,7 @@ $a_navigation = [
         'nav_level'       => 2,
         'nav_order'       => 10,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'constants'  => [
         'url_id'          => 'constants',
@@ -582,7 +582,7 @@ $a_navigation = [
         'nav_level'       => 2,
         'nav_order'       => 7,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'groups'     => [
         'url_id'          => 'groups',
@@ -594,7 +594,7 @@ $a_navigation = [
         'nav_level'       => 2,
         'nav_order'       => 5,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'people'     => [
         'url_id'          => 'people',
@@ -606,7 +606,7 @@ $a_navigation = [
         'nav_level'       => 2,
         'nav_order'       => 6,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'urls'       => [
         'url_id'          => 'urls',
@@ -618,7 +618,7 @@ $a_navigation = [
         'nav_level'       => 2,
         'nav_order'       => 1,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'pages'      => [
         'url_id'          => 'pages',
@@ -630,7 +630,7 @@ $a_navigation = [
         'nav_level'       => 2,
         'nav_order'       => 3,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'routes'     => [
         'url_id'          => 'routes',
@@ -642,7 +642,7 @@ $a_navigation = [
         'nav_level'       => 2,
         'nav_order'       => 2,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'navigation' => [
         'url_id'          => 'navigation',
@@ -654,7 +654,7 @@ $a_navigation = [
         'nav_level'       => 2,
         'nav_order'       => 4,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'twig' => [
         'url_id'          => 'twig',
@@ -666,7 +666,7 @@ $a_navigation = [
         'nav_level'       => 2,
         'nav_order'       => 8,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'lib_tests'      => [
         'url_id'          => 'lib_tests',
@@ -678,7 +678,7 @@ $a_navigation = [
         'nav_level'       => 2,
         'nav_order'       => 9,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'constantsmodel_test'      => [
         'url_id'          => 'lib_tests',
@@ -690,7 +690,7 @@ $a_navigation = [
         'nav_level'       => 3,
         'nav_order'       => 1,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'pagemodel_test'      => [
         'url_id'          => 'lib_tests',
@@ -702,7 +702,7 @@ $a_navigation = [
         'nav_level'       => 3,
         'nav_order'       => 1,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'peoplemodel_test'      => [
         'url_id'          => 'lib_tests',
@@ -714,7 +714,7 @@ $a_navigation = [
         'nav_level'       => 3,
         'nav_order'       => 1,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'urlsmodel_test'      => [
         'url_id'          => 'lib_tests',
@@ -726,7 +726,7 @@ $a_navigation = [
         'nav_level'       => 3,
         'nav_order'       => 1,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'navgroupsmodel_test'      => [
         'url_id'          => 'lib_tests',
@@ -738,7 +738,7 @@ $a_navigation = [
         'nav_level'       => 3,
         'nav_order'       => 1,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'navigationmodel_test'      => [
         'url_id'          => 'lib_tests',
@@ -750,7 +750,7 @@ $a_navigation = [
         'nav_level'       => 3,
         'nav_order'       => 1,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
     'navngmapmodel_test'      => [
         'url_id'          => 'lib_tests',
@@ -762,7 +762,7 @@ $a_navigation = [
         'nav_level'       => 3,
         'nav_order'       => 1,
         'nav_active'      => 1,
-        'nav_immutable'   => 1
+        'nav_immutable'   => 'true'
     ],
 ];
 
@@ -827,7 +827,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'error' => [
         'url_id'           => 'error',
@@ -839,7 +839,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'manager' => [
         'url_id'           => 'manager',
@@ -851,7 +851,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'manager_tests' => [
         'url_id'           => 'tests',
@@ -863,7 +863,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'manager_test_results' => [
         'url_id'           => 'test_results',
@@ -875,7 +875,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'login' => [
         'url_id'           => 'login',
@@ -887,7 +887,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'logout' => [
         'url_id'           => 'logout',
@@ -899,7 +899,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'verify_delete' => [
         'url_id'           => 'manager',
@@ -911,7 +911,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'library' => [
         'url_id'           => 'library',
@@ -923,7 +923,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'constants' => [
         'url_id'           => 'constants',
@@ -935,7 +935,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'groups' => [
         'url_id'           => 'groups',
@@ -947,7 +947,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'people' => [
         'url_id'           => 'people',
@@ -959,7 +959,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'urls' => [
         'url_id'           => 'urls',
@@ -971,7 +971,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'routes' => [
         'url_id'           => 'routes',
@@ -983,7 +983,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'navigation' => [
         'url_id'           => 'navigation',
@@ -995,7 +995,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'pages' => [
         'url_id'           => 'pages',
@@ -1007,7 +1007,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'twig' => [
         'url_id'           => 'twig',
@@ -1019,7 +1019,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'lib_tests' => [
         'url_id'           => 'lib_tests',
@@ -1031,7 +1031,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
     'lib_test_results' => [
         'url_id'           => 'lib_test_results',
@@ -1043,7 +1043,7 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 1
+        'page_immutable'   => 'true'
     ],
 ];
 
@@ -1109,122 +1109,122 @@ $a_twig_tpls = [
     'index' => [
         'td_id'         => 'site_pages',
         'tpl_name'      => 'index',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'login' =>  [
         'td_id'         => 'site_pages',
         'tpl_name'      => 'login',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'manager' => [
         'td_id'         => 'site_pages',
         'tpl_name'      => 'manager',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'verify_delete' => [
         'td_id'         => 'site_pages',
         'tpl_name'      => 'verify_delete',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'error' => [
         'td_id'         => 'site_pages',
         'tpl_name'      => 'error',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'test' => [
         'td_id'         => 'site_pages',
         'tpl_name'      => 'test',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'test_results' => [
         'td_id'         => 'site_pages',
         'tpl_name'      => 'test_results',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'library' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'index',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_vd' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'verify_delete',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_constants' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'constants',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_groups' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'groups',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_nav' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'navigation',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_nav_form' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'navigation_form',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_pages' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'pages',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_page_form' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'page_form',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_people' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'people',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_person_form' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'person_form',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_routes' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'routes',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_urls' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'urls',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_error' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'error',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_tail' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'tail',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_twig' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'twig',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_test' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'test_list',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ],
     'lib_test_results' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'test_results',
-        'tpl_immutable' => 1
+        'tpl_immutable' => 'true'
     ]
 ];
 
