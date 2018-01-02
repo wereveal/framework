@@ -95,8 +95,8 @@ return [
 "CREATE TABLE `{dbPrefix}navgroups` (
   `ng_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `ng_name` varchar(128) NOT NULL DEFAULT 'Main',
-  `ng_active` tinyint(1) NOT NULL DEFAULT '1',
-  `ng_default` tinyint(1) NOT NULL DEFAULT '0',
+  `ng_active` varchar(10) NOT NULL DEFAULT 'true',
+  `ng_default` varchar(10) NOT NULL DEFAULT 'false',
   `ng_immutable` varchar(10) NOT NULL DEFAULT 'false',
   PRIMARY KEY (`ng_id`),
   UNIQUE KEY `ng_name` (`ng_name`)
@@ -112,7 +112,7 @@ return [
   `nav_css` varchar(64) NOT NULL DEFAULT 'menu-item',
   `nav_level` int(11) NOT NULL DEFAULT '1',
   `nav_order` int(11) NOT NULL DEFAULT '0',
-  `nav_active` tinyint(1) NOT NULL DEFAULT '1',
+  `nav_active` varchar(10) NOT NULL DEFAULT 'true',
   `nav_immutable` varchar(10) NOT NULL DEFAULT 'false',
   PRIMARY KEY (`nav_id`),
   KEY `url_id` (`url_id`)

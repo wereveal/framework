@@ -252,44 +252,44 @@ $a_people = [
 $a_navgroups = [
 	'main' => [
         'ng_name'      => 'Main',
-        'ng_active'    => 1,
-        'ng_default'   => 1,
+        'ng_active'    => 'true',
+        'ng_default'   => 'true',
         'ng_immutable' => 'true'
     ],
     'manager' => [
         'ng_name'      => 'Manager',
-        'ng_active'    => 1,
-        'ng_default'   => 0,
+        'ng_active'    => 'true',
+        'ng_default'   => 'false',
         'ng_immutable' => 'true'
     ],
     'managerlinks' => [
         'ng_name'      => 'ManagerLinks',
-        'ng_active'    => 1,
-        'ng_default'   => 0,
+        'ng_active'    => 'true',
+        'ng_default'   => 'false',
         'ng_immutable' => 'true'
     ],
 	'sitemap' => [
         'ng_name'      => 'SiteMap',
-        'ng_active'    => 1,
-        'ng_default'   => 0,
+        'ng_active'    => 'true',
+        'ng_default'   => 'false',
         'ng_immutable' => 'true'
     ],
 	'pagelinks' => [
         'ng_name'      => 'PageLinks',
-        'ng_active'    => 1,
-        'ng_default'   => 0,
+        'ng_active'    => 'true',
+        'ng_default'   => 'false',
         'ng_immutable' => 'true'
     ],
     'configlinks' => [
         'ng_name'      => 'ConfigLinks',
-        'ng_active'    => 1,
-        'ng_default'   => 0,
+        'ng_active'    => 'true',
+        'ng_default'   => 'false',
         'ng_immutable' => 'true'
     ],
     'configtestlinks' => [
         'ng_name'      => 'ConfigTestLinks',
-        'ng_active'    => 1,
-        'ng_default'   => 0,
+        'ng_active'    => 'true',
+        'ng_default'   => 'false',
         'ng_immutable' => 'true'
     ],
 ];
@@ -485,7 +485,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 1,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'manager'    => [
@@ -497,7 +497,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 2,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'tests'    => [
@@ -509,7 +509,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 5,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'login'      => [
@@ -521,7 +521,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 4,
-        'nav_active'      => 0,
+        'nav_active'      => 'false',
         'nav_immutable'   => 'true'
     ],
     'logout'     => [
@@ -533,7 +533,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 4,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'library'    => [
@@ -545,7 +545,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 3,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'lib_login' => [
@@ -557,7 +557,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 10,
-        'nav_active'      => 0,
+        'nav_active'      => 'false',
         'nav_immutable'   => 'true'
     ],
     'lib_logout' => [
@@ -569,7 +569,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 10,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'constants'  => [
@@ -581,7 +581,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 7,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'groups'     => [
@@ -593,7 +593,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 5,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'people'     => [
@@ -605,7 +605,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 6,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'urls'       => [
@@ -617,7 +617,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 1,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'pages'      => [
@@ -629,7 +629,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 3,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'routes'     => [
@@ -641,7 +641,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 2,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'navigation' => [
@@ -653,7 +653,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 4,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'twig' => [
@@ -665,7 +665,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 8,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'lib_tests'      => [
@@ -677,7 +677,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 2,
         'nav_order'       => 9,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'constantsmodel_test'      => [
@@ -689,7 +689,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'pagemodel_test'      => [
@@ -701,7 +701,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'peoplemodel_test'      => [
@@ -713,7 +713,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'urlsmodel_test'      => [
@@ -725,7 +725,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'navgroupsmodel_test'      => [
@@ -737,7 +737,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'navigationmodel_test'      => [
@@ -749,7 +749,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
     'navngmapmodel_test'      => [
@@ -761,7 +761,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 1,
+        'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
 ];

@@ -92,8 +92,8 @@ return [
 "CREATE TABLE {dbPrefix}navgroups (
   ng_id serial NOT NULL,
   ng_name character varying(128) NOT NULL DEFAULT 'Main'::character varying,
-  ng_active integer NOT NULL DEFAULT 1,
-  ng_default integer NOT NULL DEFAULT 0,
+  ng_active character varying(10) NOT NULL DEFAULT 'true'::character varying,
+  ng_default character varying(10) NOT NULL DEFAULT 'false'::character varying,
   ng_immutable character varying(10) NOT NULL DEFAULT 'false'::character varying,
   PRIMARY KEY (ng_id),
   UNIQUE (ng_name)
@@ -109,7 +109,7 @@ return [
   nav_css character varying(64) NOT NULL DEFAULT 'menu-item'::character varying,
   nav_level integer NOT NULL DEFAULT 1,
   nav_order integer NOT NULL DEFAULT 0,
-  nav_active integer NOT NULL DEFAULT 1,
+  nav_active character varying(10) NOT NULL DEFAULT 'true'::character varying,
   nav_immutable character varying(10) NOT NULL DEFAULT 'false'::character varying,
   PRIMARY KEY (nav_id)
 )",
