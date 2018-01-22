@@ -114,7 +114,7 @@ $o_cm = new AutoloadMapper($a_dirs);
 if (!is_object($o_cm)) {
     die("Could not instance AutoloadMapper");
 }
-$o_cm->generateMapFiles();
+# $o_cm->generateMapFiles();
 
 $app_path = APPS_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
 ### Setup the database ###

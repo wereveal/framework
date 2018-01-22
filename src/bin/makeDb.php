@@ -1,17 +1,16 @@
 <?php
 /**
- * @brief     This file sets up standard stuff for the Framework.
- * @details   This creates the database config, some standard directories,
- *            and some standard files needed, e.g. index.php and MainController.
+ * @brief     This file sets up the database.
+ * @details   This creates the database tables and inserts default data.
  *            This should be run from the cli in the /src/bin directory of the site.
  *            Copy /src/config/install_files/install_config.php.txt to /src/config/install_config.php.
  *            The copied file may have any name as long as it is in /src/config directory but then it needs to be
- *            called on the cli, e.g. php install.php my_install_config.php
- * @file      /src/bin/install.php
+ *            called on the cli, e.g. php makeDb.php my_install_config.php
+ * @file      /src/bin/makeDb.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2017-05-25 15:28:28
- * @version   2.5.0
+ * @date      2017-12-15 15:52:40
+ * @version   3.0.0
  * @note   <b>Change Log</b>
  * - v3.0.0 - Changed to use DbInstallerModel and NewAppHelper     - 2017-12-15 wer
  * - v2.5.0 - Added several files to be created in app.            - 2017-05-25 wer
@@ -243,12 +242,14 @@ function reorgArray($a_org_values = []) {
  * @param DbModel $o_db
  * @param string  $message
  */
-function failIt(DbModel $o_db, $message = '') {
-    try {
-        $o_db->rollbackTransaction();
-    }
-    catch (ModelException $e) {
-        print "Could not rollback transaction: " . $e->errorMessage() . "\n";
+function failIt(DbModel $o_db, $message = '', $rollback = true) {
+    if ($rollback) {
+        try {
+            $o_db->rollbackTransaction();
+        }
+        catch (ModelException $e) {
+            print "Could not rollback transaction: " . $e->errorMessage() . "\n";
+        }
     }
     die("\n{$message}\n");
 }
@@ -265,76 +266,93 @@ if (!$o_installer_model->createTables()) {
     failIt($o_db, $o_installer_model->getErrorMessage());
 }
 print "success\n";
+try {
+    $o_db->commitTransaction();
+}
+catch (ModelException $e) {
+    failIt($o_db, $e->errorMessage());
+}
+
+$rollback = false;
+if ($o_db->getDbType() != 'pgsql') {
+    try {
+        $o_db->startTransaction();
+    }
+    catch (ModelException $e) {
+        $message = "Could not start transaction: " . $e->errorMessage() . "\n";
+        die($message);
+    }
+    $rollback = true;
+}
 
 ### Enter Constants
 print "Entering Constants Data: ";
 if (!$o_installer_model->insertConstants()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
 ### Enter Groups
 print "Create Groups: ";
 if (!$o_installer_model->insertGroups()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
 ### Enter 'urls'
 print "Create URLs: ";
 if (!$o_installer_model->insertUrls()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
 ### Enter 'people'
 print "Creating People: ";
 if (!$o_installer_model->insertPeople()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
 ### Enter 'navgroups',
 print "Creating NavGroups: ";
 if (!$o_installer_model->insertNavgroups()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
 ### Enter 'people_group_map',
 print "Creating people_group_map: ";
 if (!$o_installer_model->insertPGM()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
 ### Enter 'routes'
 print "Creating Routes: ";
 if (!$o_installer_model->insertRoutes()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
 ### Enter 'routes_group_map'
 print "Creating routes_group_map: ";
 if (!$o_installer_model->insertRGM()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
 ### Enter 'navigation',
 print "Creating Navigation: ";
 if (!$o_installer_model->insertNavigation()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
 ### Enter 'nav_ng_map'
 print "Creating nav_ng_map: ";
 if (!$o_installer_model->insertNNM()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
-print "success\n";
 
 ### Twig tables data ###
 print "Starting the Twig db stuff. \n";
@@ -344,28 +362,28 @@ $o_installer_model->createTwigAppConfig();
 ### Enter twig prefixes into database ###
 print "Creating Twig Prefixes: ";
 if (!$o_installer_model->insertTwigPrefixes()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
 ### Enter twig directories into database ###
 print "Creating twig directories: ";
 if (!$o_installer_model->insertTwigDirs()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
 ### Enter twig templates into database ###
 print "Creating twig templates: ";
 if (!$o_installer_model->insertTwigTemplates()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
 ### Enter 'page',
 print "Creating Page: ";
 if (!$o_installer_model->insertPage()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
 }
 print "success\n";
 
@@ -374,7 +392,7 @@ try {
     print "Data Insert Complete.\n";
 }
 catch (ModelException $e) {
-    failIt($o_db, "Could not commit the transaction.");
+    failIt($o_db, "Could not commit the transaction.", $rollback);
 }
 
 ### Regenerate Autoload Map files
