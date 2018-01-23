@@ -373,8 +373,8 @@ print "success\n";
 print "\nSetting up the app\n";
 $o_new_app_helper = new NewAppHelper($o_di);
 print "Creating twig db records";
-$results = $o_new_app_helper->createDbRecords();
-if ($results !== true) {
+$results = $o_new_app_helper->createTwigDbRecords();
+if (is_string($results)) {
     failIt($o_db, $results);
 }
 print "success\n";

@@ -209,7 +209,7 @@ $o_di->setVar('app_path', $app_path);
 print "\nSetting up the app\n";
 $o_new_app_helper = new NewAppHelper($o_di);
 print "Creating twig db records";
-$results = $o_new_app_helper->createDbRecords();
+$results = $o_new_app_helper->createTwigDbRecords();
 if ($results !== true) {
     die("\n". $results);
 }
