@@ -1051,14 +1051,14 @@ $a_twig_prefix = [
     'site' => [
         'tp_prefix'  => 'site_',
         'tp_path'    => '/src/templates',
-        'tp_active'  => 1,
-        'tp_default' => 1
+        'tp_active'  => 'true',
+        'tp_default' => 'true'
     ],
     'lib' => [
         'tp_prefix'  => 'lib_',
         'tp_path'    => '/src/apps/Ritc/Library/resources/templates',
-        'tp_active'  => 1,
-        'tp_default' => 0
+        'tp_active'  => 'true',
+        'tp_default' => 'false'
     ]
 ];
 
@@ -1238,19 +1238,19 @@ $a_twig_default_dir_names = [
 ];
 
 return [
-    'constants'        => $a_constants,
-    'groups'           => $a_groups,
-    'urls'             => $a_urls,
-    'people'           => $a_people,
-    'navgroups'        => $a_navgroups,
-    'people_group_map' => $a_people_group,
-    'routes'           => $a_routes,
-    'routes_group_map' => $a_route_group_map,
-    'navigation'       => $a_navigation,
-    'nav_ng_map'       => $a_nav_ng_map,
-    'page'             => $a_page,
-    'tp_prefix'        => $a_twig_prefix,
-    'tp_dirs'          => $a_twig_dirs,
-    'tp_templates'     => $a_twig_tpls,
-    'tp_default_dirs'  => $a_twig_default_dir_names
+    'constants'         => $a_constants,
+    'groups'            => $a_groups,
+    'urls'              => $a_urls,
+    'people'            => $a_people,
+    'navgroups'         => $a_navgroups,
+    'people_group_map'  => $a_people_group,
+    'routes'            => $a_routes,
+    'routes_group_map'  => $a_route_group_map,
+    'navigation'        => $a_navigation,
+    'nav_ng_map'        => $a_nav_ng_map,
+    'page'              => $a_page,
+    'twig_prefix'       => $a_twig_prefix,
+    'twig_dirs'         => $a_twig_dirs,
+    'twig_templates'    => $a_twig_tpls,
+    'twig_default_dirs' => $a_twig_default_dir_names
 ];
