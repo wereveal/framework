@@ -25,13 +25,16 @@
           8. Change settings in src/config/install_config.php to match new app(s)
           9. php src/bin/install.php
     5. Optionally install jquery-ui
-	   1. bash ./doJqueryUi
-		  or
+
+       In the /public/assets dir
+	   bash ./doJqueryUi
+
+	   or
+
        1. cd public/assets/vendor/jquery-ui/
-       2. npm install grunt --save-dev
-       3. npm install
-       4. grunt
-       5. if a different theme desired for jquery-ui, download it from jqueryui (http://jqueryui.com/themeroller/).
+       2. npm install
+       3. npm test
+       4. if a different theme desired for jquery-ui, download it from jqueryui (http://jqueryui.com/themeroller/).
 
 ### Contribution guidelines ###
 
