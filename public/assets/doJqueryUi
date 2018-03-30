@@ -1,3 +1,4 @@
 #!/bin/bash
 cd vendor/jquery-ui/
-npm install grunt --save-dev && npm install && grunt
+npm install
+npm test
