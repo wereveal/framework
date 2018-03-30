@@ -1,8 +1,9 @@
+@import "../vendor/bootstrap/scss/bootstrap";
 @import "variables";
 @import "mixins";
 @import "color";
-@import "../vendor/bootstrap/scss/bootstrap";
-@import "mods_to_bootstrap";
 @import "fonts";
+@import "mods_to_bootstrap";
 @import "main_common";
 @import "nav";
+@import "form";

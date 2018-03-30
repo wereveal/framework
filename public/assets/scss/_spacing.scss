@@ -1,3 +1,7 @@
+.margin-top-0 {
+    @include marginSize(0, 'top', '');
+}
+
 .margin-top-1 {
     @include marginSize(1, 'top', '');
 }
@@ -12,6 +16,10 @@
 
 .margin-top-quarter {
     @include marginSize(.25, 'top', '');
+}
+
+.margin-bottom-0 {
+    @include marginSize(0, 'bottom', '');
 }
 
 .margin-bottom-1 {
@@ -30,6 +38,10 @@
     @include marginSize(.25, 'bottom', '');
 }
 
+.margin-left-0 {
+    @include marginSize(0, 'left', '');
+}
+
 .margin-left-1 {
     @include marginSize(1, 'left', '');
 }
@@ -44,6 +56,10 @@
 
 .margin-left-quarter {
     @include marginSize(.25, 'left', '');
+}
+
+.margin-right-0 {
+    @include marginSize(0, 'right', '');
 }
 
 .margin-right-1 {
@@ -62,6 +78,10 @@
     @include marginSize(.25, 'right', '');
 }
 
+.margin-lr-0 {
+    @include marginSize(0, 'lr', '');
+}
+
 .margin-lr-1 {
     @include marginSize(1, 'lr', '');
 }
@@ -76,6 +96,10 @@
 
 .margin-lr-quarter {
     @include marginSize(.25, 'lr', '');
+}
+
+.margin-tb-0 {
+    @include marginSize(0, 'tb', '');
 }
 
 .margin-tb-1 {
@@ -114,6 +138,30 @@
     @include marginSize(.25, 'all', '');
 }
 
+.pad-right-0 {
+    @include paddingSize(0, 'right', '');
+}
+
+.pad-bottom-0 {
+    @include paddingSize(0, 'bottom', '');
+}
+
+.pad-left-0 {
+    @include paddingSize(0, 'left', '');
+}
+
+.pad-top-0 {
+    @include paddingSize(0, 'top', '');
+}
+
+.pad-tb-0 {
+    @include paddingSize(0, 'tb', '');
+}
+
+.pad-lr-0 {
+    @include paddingSize(0, 'lr', '');
+}
+
 .pad-right {
     @include paddingSize(1, 'right', '');
 }
@@ -133,6 +181,7 @@
 .pad-tb {
     @include paddingSize(1, 'tb', '');
 }
+
 .pad-lr {
     @include paddingSize(1, 'lr', '');
 }

@@ -163,5 +163,10 @@ else {
         die("Couldn't create twig instance from file. " . $e->errorMessage());
     }
 }
-$o_di->set('twig', $o_twig);
+if ($o_twig instanceof \Twig_Environment) {
+    $o_di->set('twig', $o_twig);
+}
+else {
+    die("Unable to set the Twig instance");
+}
 $o_di->setVar('twigConfig', $twig_config);

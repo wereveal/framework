@@ -17,6 +17,16 @@
         a:hover {
             color: $color-black;
         }
+        li {
+            &.show > .nav-link {
+                color: $blue_medium-dark;
+            }
+            &.nav-item {
+                a:hover {
+                    color: $blue_medium-dark;
+                }
+            }
+        }
     }
 }
 
