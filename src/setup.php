@@ -91,6 +91,9 @@ $o_di->setVar('dbConfig', $db_config_file);
 
 try {
     $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+    if (!$o_pdo instanceof \PDO) {
+        die("PDO instance was not created");
+    }
 }
 catch (FactoryException $e) {
     die($e->errorMessage());
@@ -108,6 +111,9 @@ $o_di->set('db', $o_db);
 if (RODB) {
     try {
         $o_pdo_ro = PdoFactory::start($db_config_file, 'ro', $o_di);
+        if (!$o_pdo_ro instanceof \PDO) {
+            die("Could not start the RO PDOFactory.");
+        }
     }
     catch (FactoryException $e) {
         die("Could not start the RO PDOFactory: " . $e->errorMessage());
@@ -138,7 +144,7 @@ try {
 }
 catch (\Error $e) {
     $o_elog->write("Could not create new instance of Router: " . $e->getMessage());
-    die("A fatal error has occured. Please try again");
+    die("A fatal error has occurred. Please try again");
 }
 $o_di->set('router',  $o_router);
 
