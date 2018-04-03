@@ -23,9 +23,39 @@ $a_u = [
 ];
 
 $a_constants = [
+    'admin_dir_name' => [
+        'const_name'      => 'ADMIN_DIR_NAME',
+        'const_value'     => 'manager',
+        'const_immutable' => 'true'
+    ],
+    'admin_theme_name' => [
+        'const_name'      => 'ADMIN_THEME_NAME',
+        'const_value'     => '',
+        'const_immutable' => 'true'
+    ],
+    'assets_dir_name' => [
+        'const_name'      => 'ASSETS_DIR_NAME',
+        'const_value'     => 'assets',
+        'const_immutable' => 'true'
+    ],
+    'copyright_date' => [
+        'const_name'      => 'COPYRIGHT_DATE',
+        'const_value'     => '2018',
+        'const_immutable' => 'true'
+    ],
+    'css_dir_name' => [
+        'const_name'      => 'CSS_DIR_NAME',
+        'const_value'     => 'css',
+        'const_immutable' => 'true'
+    ],
 	'display_date_format' => [
         'const_name'      => 'DISPLAY_DATE_FORMAT',
         'const_value'     => 'm/d/Y',
+        'const_immutable' => 'true'
+    ],
+    'display_phone_format' => [
+        'const_name'      => 'DISPLAY_PHONE_FORMAT',
+        'const_value'     => 'XXX-XXX-XXXX',
         'const_immutable' => 'true'
     ],
     'email_domain' => [
@@ -43,34 +73,9 @@ $a_constants = [
         'const_value'     => 'webmaster@revealitconsulting.com',
         'const_immutable' => 'true'
     ],
-    'page_template' => [
-        'const_name'      => 'PAGE_TEMPLATE',
-        'const_value'     => 'index.twig',
-        'const_immutable' => 'true'
-    ],
-    'twig_prefix' => [
-        'const_name'      => 'TWIG_PREFIX',
-        'const_value'     => 'site_',
-        'const_immutable' => 'true'
-    ],
-    'lib_twig_prefix' => [
-        'const_name'      => 'LIB_TWIG_PREFIX',
-        'const_value'     =>  'lib_',
-        'const_immutable' => 'true'
-    ],
-    'theme_name' => [
-        'const_name'      => 'THEME_NAME',
-        'const_value'     => '',
-        'const_immutable' => 1
-    ],
-    'admin_theme_name' => [
-        'const_name'      => 'ADMIN_THEME_NAME',
-        'const_value'     => '',
-        'const_immutable' => 1
-    ],
-    'css_dir_name' => [
-        'const_name'      => 'CSS_DIR_NAME',
-        'const_value'     => 'css',
+    'files_dir_name' => [
+        'const_name'      => 'FILES_DIR_NAME',
+        'const_value'     => 'files',
         'const_immutable' => 'true'
     ],
     'html_dir_name' => [
@@ -78,39 +83,29 @@ $a_constants = [
         'const_value'     => 'html',
         'const_immutable' => 'true'
     ],
-    'js_dir_name' => [
-        'const_name'      => 'JS_DIR_NAME',
-        'const_value'     => 'js',
-        'const_immutable' => 'true'
-    ],
     'image_dir_name' => [
         'const_name'      => 'IMAGE_DIR_NAME',
         'const_value'     => 'images',
         'const_immutable' => 'true'
     ],
-    'admin_dir_name' => [
-        'const_name'      => 'ADMIN_DIR_NAME',
-        'const_value'     => 'manager',
+    'js_dir_name' => [
+        'const_name'      => 'JS_DIR_NAME',
+        'const_value'     => 'js',
         'const_immutable' => 'true'
     ],
-    'assets_dir_name' => [
-        'const_name'      => 'ASSETS_DIR_NAME',
-        'const_value'     => 'assets',
-        'const_immutable' => 'true'
-    ],
-    'files_dir_name' => [
-        'const_name'      => 'FILES_DIR_NAME',
-        'const_value'     => 'files',
-        'const_immutable' => 'true'
-    ],
-    'display_phone_format' => [
-        'const_name'      => 'DISPLAY_PHONE_FORMAT',
-        'const_value'     => 'XXX-XXX-XXXX',
-        'const_immutable' => 'true'
-    ],
-    'themes_dir' => [
-        'const_name'      => 'THEMES_DIR',
+    'lib_theme_name' => [
+        'const_name'      => 'LIB_THEME_NAME',
         'const_value'     => '',
+        'const_immutable' => 'true'
+    ],
+    'page_template' => [
+        'const_name'      => 'PAGE_TEMPLATE',
+        'const_value'     => 'index.twig',
+        'const_immutable' => 'true'
+    ],
+    'private_dir_name' => [
+        'const_name'      => 'PRIVATE_DIR_NAME',
+        'const_value'     => 'private',
         'const_immutable' => 'true'
     ],
     'rights_holder' => [
@@ -118,14 +113,19 @@ $a_constants = [
         'const_value'     => 'Reveal IT Consulting',
         'const_immutable' => 'true'
     ],
-    'copyright_date' => [
-        'const_name'      => 'COPYRIGHT_DATE',
-        'const_value'     => '2001-2017',
+    'session_idle_time' => [
+        'const_name'      => 'SESSION_IDLE_TIME',
+        'const_value'     => '1800',
         'const_immutable' => 'true'
     ],
-    'private_dir_name' => [
-        'const_name'      => 'PRIVATE_DIR_NAME',
-        'const_value'     => 'private',
+    'theme_name' => [
+        'const_name'      => 'THEME_NAME',
+        'const_value'     => '',
+        'const_immutable' => 'true'
+    ],
+    'themes_dir' => [
+        'const_name'      => 'THEMES_DIR',
+        'const_value'     => '',
         'const_immutable' => 'true'
     ],
     'tmp_dir_name' => [
@@ -136,11 +136,6 @@ $a_constants = [
     'developer_mode' => [
         'const_name'      => 'DEVELOPER_MODE',
         'const_value'     => 'true',
-        'const_immutable' => 'true'
-    ],
-    'session_idle_time' => [
-        'const_name'      => 'SESSION_IDLE_TIME',
-        'const_value'     => '1800',
         'const_immutable' => 'true'
     ]
 ];

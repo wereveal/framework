@@ -7,7 +7,7 @@ switch ($_SERVER['HTTP_HOST']) { // Allows for different development and product
     case 'localhost':                                     // shows most commonly used configuration options, see /src/config/constants.php for other possible settings.
         define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']); // required, this is the normal default
         define('BASE_PATH', dirname(PUBLIC_PATH));        // required, this is the normal default
-        define('PUBLIC_DIR', '/');                        // optional, this is the default, see in.a.subdirectory.example below for when it would be used.
+        define('PUBLIC_DIR', '');                         // optional, this is the default, see in.a.subdirectory.example below for when it would be used.
         define('DEVELOPER_MODE', true);                   // optional, defaults to false, see /src/config/constants.php
         $db_config_file = 'db_config_local.php';          // optional, defaults to db_config.php
         $twig_config    = 'db';                           // optional, defaults to db (which specifies a db config).
@@ -31,9 +31,9 @@ switch ($_SERVER['HTTP_HOST']) { // Allows for different development and product
         define('BASE_PATH', PUBLIC_PATH . '/base_directory_name_like_framework');
         break;
     case 'in.a.subdirectory.example': // public dir is a subdirectory of a larger site but the rest is outside
-        define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT'] . '/the_subdirectory');
-        define('BASE_PATH', dirname(dirname(PUBLIC_PATH)) . '/where.the.base.is'); // in this example, outside the public directory
         define('PUBLIC_DIR', '/the_subdirectory');
+        define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT'] . PUBLIC_DIR);
+        define('BASE_PATH', dirname(dirname(PUBLIC_PATH)) . '/where.the.base.is'); // in this example, outside the public directory
         $db_config_file = 'db_config_silly.php'; // has a special db_config file
         break;
     case 'test.mysite.com': // test server
