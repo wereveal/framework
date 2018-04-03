@@ -5,12 +5,16 @@
  * @file      setup.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2017-05-13 16:01:41
- * @version   2.0.0
+ * @date      2018-04-03 16:29:01
+ * @version   2.1.0
+ * @note <b>Change Log</b>
+ * v2.1.0 - Modification to ConstantsCreator reflected here     - 2018-04-03 wer
+ * v2.0.0 - Next gen start script                               - 2017-05-12 wer
+ *
  * @note NOTE:
  * - _path and _PATH indicates a full server path
  * - _dir and _DIR indicates the path in the site (URI)
- * - Both paths do not end with a slash
+ * - Both path and dir do not end with a slash
 */
 namespace Ritc;
 
@@ -128,7 +132,15 @@ if (RODB) {
 }
 
 try {
-    ConstantsCreator::start($o_di);
+    /** @var ConstantsCreator $o_const_creator */
+    $o_const_creator = ConstantsCreator::start($o_di);
+    try {
+        $o_const_creator->defineConstants();
+    }
+    catch (ModelException $e) {
+        $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
+        require_once SRC_CONFIG_PATH . '/fallback_constants.php';
+    }
 }
 catch (ModelException $e) {
     $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
@@ -138,6 +150,13 @@ catch (\Error $e) {
     $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
     require_once SRC_CONFIG_PATH . '/fallback_constants.php';
 }
+unset($o_const_creator); // probably unneeded but just in case something gets heavy along the way
+                         // php garbage collection will take care of it.
+/*
+$a_constants = get_defined_constants(true);
+$o_elog->write(var_export($a_constants['user'], true), LOG_ON);
+*/
+
 $o_session->setIdleTime(SESSION_IDLE_TIME); // has to be here since it relies on the constant being set.
 try {
     $o_router = new Router($o_di);
