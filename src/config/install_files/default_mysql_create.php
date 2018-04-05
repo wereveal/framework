@@ -82,6 +82,7 @@ return [
   `password` varchar(128) NOT NULL,
   `description` varchar(250) NOT NULL DEFAULT '',
   `is_logged_in` varchar(10) NOT NULL DEFAULT 'false',
+  `last_logged_in` date NOT NULL DEFAULT '1000-01-01',
   `bad_login_count` int(11) NOT NULL DEFAULT '0',
   `bad_login_ts` int(11) NOT NULL DEFAULT '0',
   `is_active` varchar(10) NOT NULL DEFAULT 'true',
