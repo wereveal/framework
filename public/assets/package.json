@@ -9,10 +9,12 @@
   "license": "MIT",
   "homepage": "",
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.5",
     "bootstrap": "^4.0.0",
     "html5shiv": "^3.7.3",
     "jquery": "^3.1.1",
     "jquery-ui": "^1.12.1",
-    "jquery-validation": "^1.16.0"
+    "jquery-validation": "^1.16.0",
+    "popper.js": "^1.12.0"
   }
 }

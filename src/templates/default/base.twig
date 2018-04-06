@@ -13,7 +13,8 @@
 {% endblock %}
 {% block meta %}{% endblock %}
 {% block vendor_stylesheets %}
-        <script src="https://use.fontawesome.com/1465136e8a.js"></script>
+        <link rel="stylesheet" href="{{ public_dir }}/assets/vendor/@fortawesome/fontawesome/styles.css" media="screen">
+        <script src="{{ public_dir }}/assets/vendor/@fortawesome/fontawesome/index.js"></script>
 {% endblock %}
 {% block stylesheets %}
         <link rel="stylesheet" href="{{ public_dir }}/assets/css/styles.css" media="screen">
@@ -120,7 +121,7 @@
 {% endblock %}
         </div>
 {% block bottom_vendor_js %}
-        <script src="{{ public_dir }}/assets/vendor/tether/dist/js/tether.min.js"></script>
+        <script src="{{ public_dir }}/assets/vendor/popper.js/dist/popper.js"></script>
         <script src="{{ public_dir }}/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 {% endblock %}
 {% block bottom_js %}{% endblock %}
