@@ -34,7 +34,15 @@ hr.item-card {
 }
 
 .bold {
+    font-weight: 700;
+}
+
+.xbold {
     font-weight: 900;
+}
+
+.italic {
+    font-style: italic;
 }
 
 .btn-xs {
@@ -54,6 +62,10 @@ hr.item-card {
 
 .hobbit {
     display: none;
+}
+
+.font-smaller {
+    font-size: .85rem;
 }
 
 .font-small {

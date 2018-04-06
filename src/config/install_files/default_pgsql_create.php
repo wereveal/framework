@@ -79,6 +79,7 @@ return [
   password character varying(128) NOT NULL,
   description character varying(250) NOT NULL DEFAULT ''::character varying,
   is_logged_in character varying(10) NOT NULL DEFAULT 'false'::character varying,
+  last_logged_in date NOT NULL DEFAULT '1000-01-01'::date,
   bad_login_count integer NOT NULL DEFAULT 0,
   bad_login_ts integer NOT NULL DEFAULT 0,
   is_active character varying(10) NOT NULL DEFAULT 'true'::character varying,
