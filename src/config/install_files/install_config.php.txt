@@ -16,9 +16,6 @@ return [
     'db_errmode'      => 'exception',                     // normally leave this alone
     'db_prefix'       => 'main_',                         // change to be desired prefix or make it empty
     'lib_db_prefix'   => 'lib_',                          // normally leave this alone
-    'twig_prefix'     => '',                              // normally leave this alone (defaults to site_)
-    'lib_twig_prefix' => '',                              // normally leave this alone (defaults to lib_)
-    'app_twig_prefix' => 'main_',                         // change this for app specific twig templates
     'loader'          => 'psr4',                          // normally leave this alone
     'superadmin'      => 'letGSAin',                      // change this
     'admin'           => 'letADMin',                      // change this

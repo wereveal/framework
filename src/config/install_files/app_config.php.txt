@@ -5,7 +5,6 @@ return [
     'author'          => 'William E Reveal',              // specify the author of the app
     'short_author'    => 'wer',                           // abbreviation for the author
     'email'           => '<bill@revealitconsulting.com>', // email of the author
-    'app_twig_prefix' => 'main_',                         // twig_prefix for the app templates
 	'domain'          => 'domain',                        // domain name of site
 	'tld'             => 'tld',                           // top level domain, e.g., com, net, org
     'db_file'         => 'db_config.php',                 // all db_ keys will be used to create the db_file

@@ -96,7 +96,7 @@
 {% block message %}
         {% if a_message.message %}
             <div class="container container-message">
-                {% include '@' ~ twig_prefix ~ 'snippets/message.twig' %}
+                {% include '@' ~ page_prefix ~ 'snippets/message.twig' %}
             </div>
         {% endif %}
 {% endblock %}
@@ -135,7 +135,7 @@
     'base_url',
     'page_url',
     'public_dir',
-    'twig_prefix',
+    'page_prefix',
     'a_menus',
     'a_message',
     'body_text',
