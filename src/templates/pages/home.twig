@@ -1,4 +1,4 @@
-{% extends '@' ~ twig_prefix ~ 'default/base.twig' %}
+{% extends '@' ~ page_prefix ~ 'default/base.twig' %}
 {% block body %}
             <div class="container">
                 {{ body_text | raw }}
@@ -13,7 +13,7 @@ expected array [
     'base_url',
     'page_url',
     'public_dir',
-    'twig_prefix',
+    'page_prefix',
     'a_menus',
     'a_message',
     'body_text',

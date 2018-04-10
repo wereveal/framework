@@ -13,8 +13,7 @@
 {% endblock %}
 {% block meta %}{% endblock %}
 {% block vendor_stylesheets %}
-        <link rel="stylesheet" href="{{ public_dir }}/assets/vendor/@fortawesome/fontawesome/styles.css" media="screen">
-        <script src="{{ public_dir }}/assets/vendor/@fortawesome/fontawesome/index.js"></script>
+        <link rel="stylesheet" href="{{ public_di }}/assets/fonts/fontawesome/css/fa-svg-with-js.css">
 {% endblock %}
 {% block stylesheets %}
         <link rel="stylesheet" href="{{ public_dir }}/assets/css/styles.css" media="screen">
@@ -30,6 +29,7 @@
 {% endblock %}
 {% block vendor_js %}
         <script src="{{ public_dir }}/assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="{{ public_dir }}/assets/fonts/fontawesome/js/fontawesome-all.min.js"></script>
 {% endblock %}
 {% block head_js %}{% endblock %}
     </head>
@@ -96,7 +96,7 @@
 {% block message %}
         {% if a_message.message %}
             <div class="container container-message">
-                {% include '@' ~ twig_prefix ~ 'snippets/message.twig' %}
+                {% include '@' ~ page_prefix ~ 'snippets/message.twig' %}
             </div>
         {% endif %}
 {% endblock %}
@@ -135,7 +135,7 @@
     'base_url',
     'page_url',
     'public_dir',
-    'twig_prefix',
+    'page_prefix',
     'a_menus',
     'a_message',
     'body_text',
