@@ -28,6 +28,8 @@ $flotsam = ob_get_clean();
 ob_start();
     print $html;
     if (DEVELOPER_MODE) {
+        print '<pre>';
         print $flotsam;
+        print '</pre>';
     }
 ob_end_flush();
