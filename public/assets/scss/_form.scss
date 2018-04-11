@@ -38,8 +38,9 @@ textarea {
         height: 15px;
         top: 0;
         left: 0;
-        background: $gray-xlight;
-        border: 1px solid $gray-dark;
+        background: $blue-xlight;
+        border: 1px solid $blue-dark;
+        border-radius: 3px;
         box-shadow: 1px 1px 1px $color-shadow;
     }
     label:after {
@@ -51,13 +52,18 @@ textarea {
         background: transparent;
         top: 2px;
         left: 2px;
-        border: 3px solid $gray-dark;
+        border: 3px solid $blue-dark;
         border-top: none;
         border-right: none;
         transform: rotate(-45deg);
     }
     label:hover::after {
         opacity: 0.5;
+    }
+    span {
+        position: absolute;
+        top: -5px;
+        left: 20px;
     }
 }
 

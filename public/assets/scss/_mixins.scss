@@ -89,8 +89,68 @@
     }
 }
 
+@mixin marginSizePx($size, $where, $when) {
+    $size: $size * 1px;
+    @if $when != '' {
+        $size: $size !important;
+    }
+    @if $where == 'top' {
+        margin-top: $size;
+    }
+    @else if $where == 'bottom' {
+        margin-bottom: $size;
+    }
+    @else if $where == 'left' {
+        margin-left: $size;
+    }
+    @else if $where == 'right' {
+        margin-right: $size;
+    }
+    @else if $where == 'tb' {
+        margin-top: $size;
+        margin-bottom: $size;
+    }
+    @else if $where == 'lr' {
+        margin-left: $size;
+        margin-right: $size;
+    }
+    @else {
+        margin: $size;
+    }
+}
+
 @mixin paddingSize($size, $where, $when) {
     $size: 1rem * $size;
+    @if $when != '' {
+        $size: $size !important;
+    }
+    @if $where == 'top' {
+        padding-top: $size;
+    }
+    @else if $where == 'bottom' {
+        padding-bottom: $size;
+    }
+    @else if $where == 'left' {
+        padding-left: $size;
+    }
+    @else if $where == 'right' {
+        padding-right: $size;
+    }
+    @else if $where == 'tb' {
+        padding-top: $size;
+        padding-bottom: $size;
+    }
+    @else if $where == 'lr' {
+        padding-left: $size;
+        padding-right: $size;
+    }
+    @else {
+        padding: $size;
+    }
+}
+
+@mixin paddingSizePx($size, $where, $when) {
+    $size: $size * 1px;
     @if $when != '' {
         $size: $size !important;
     }
