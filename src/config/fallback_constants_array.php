@@ -1,7 +1,6 @@
 <?php
 return [
     ['ADMIN_DIR_NAME', 'manager', 'true'],
-    ['ADMIN_THEME_NAME', '', 'true'],
     ['ASSETS_DIR_NAME', 'assets', 'true'],
     ['COPYRIGHT_DATE', '2018', 'true'],
     ['CSS_DIR_NAME', 'css', 'true'],
@@ -11,6 +10,7 @@ return [
     ['EMAIL_FORM_TO', 'me@replaceme.com', 'true'],
     ['ERROR_EMAIL_ADDRESS', 'webmaster@revealitconsulting.com', 'true'],
     ['FILES_DIR_NAME', 'files', 'true'],
+    ['FONTS_DIR_NAME', 'fonts', 'true'],
     ['HTML_DIR_NAME', 'html', 'true'],
     ['IMAGE_DIR_NAME', 'images', 'true'],
     ['JS_DIR_NAME', 'js', 'true'],
@@ -18,9 +18,9 @@ return [
     ['PAGE_TEMPLATE', 'index.twig', 'true'],
     ['PRIVATE_DIR_NAME', 'private', 'true'],
     ['RIGHTS_HOLDER', 'Reveal IT Consulting', 'true'],
+    ['SCSS', 'scss', 'true'],
     ['SESSION_IDLE_TIME', 1800, 'true'],
-    ['THEMES_DIR', '', 'true'],
-    ['THEME_NAME', '', 'true'],
     ['TMP_DIR_NAME', 'tmp', 'true'],
+    ['VENDOR_DIR_NAME', 'vendor', 'true'],
     ['DEVELOPER_MODE', false, 'true'],
 ];

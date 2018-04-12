@@ -28,11 +28,6 @@ $a_constants = [
         'const_value'     => 'manager',
         'const_immutable' => 'true'
     ],
-    'admin_theme_name' => [
-        'const_name'      => 'ADMIN_THEME_NAME',
-        'const_value'     => '',
-        'const_immutable' => 'true'
-    ],
     'assets_dir_name' => [
         'const_name'      => 'ASSETS_DIR_NAME',
         'const_value'     => 'assets',
@@ -78,6 +73,11 @@ $a_constants = [
         'const_value'     => 'files',
         'const_immutable' => 'true'
     ],
+    'fonts_dir_name' => [
+        'const_name'      => 'FONTS_DIR_NAME',
+        'const_value'     => 'fonts',
+        'const_immutable' => 'true'
+    ],
     'html_dir_name' => [
         'const_name'      => 'HTML_DIR_NAME',
         'const_value'     => 'html',
@@ -91,11 +91,6 @@ $a_constants = [
     'js_dir_name' => [
         'const_name'      => 'JS_DIR_NAME',
         'const_value'     => 'js',
-        'const_immutable' => 'true'
-    ],
-    'lib_theme_name' => [
-        'const_name'      => 'LIB_THEME_NAME',
-        'const_value'     => '',
         'const_immutable' => 'true'
     ],
     'page_template' => [
@@ -113,24 +108,24 @@ $a_constants = [
         'const_value'     => 'Reveal IT Consulting',
         'const_immutable' => 'true'
     ],
+    'scss_dir_name' => [
+        'const_name'      => 'SCSS_DIR_NAME',
+        'const_value'     => 'scss',
+        'const_immutable' => 'true'
+    ],
     'session_idle_time' => [
         'const_name'      => 'SESSION_IDLE_TIME',
         'const_value'     => '1800',
         'const_immutable' => 'true'
     ],
-    'theme_name' => [
-        'const_name'      => 'THEME_NAME',
-        'const_value'     => '',
-        'const_immutable' => 'true'
-    ],
-    'themes_dir' => [
-        'const_name'      => 'THEMES_DIR',
-        'const_value'     => '',
-        'const_immutable' => 'true'
-    ],
     'tmp_dir_name' => [
         'const_name'      => 'TMP_DIR_NAME',
         'const_value'     => 'tmp',
+        'const_immutable' => 'true'
+    ],
+    'vendor_dir_name' => [
+        'const_name'      => 'VENDOR_DIR_NAME',
+        'const_value'     => 'vendor',
         'const_immutable' => 'true'
     ],
     'developer_mode' => [

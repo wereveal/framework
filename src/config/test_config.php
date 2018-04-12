@@ -22,7 +22,7 @@ return [
     'loader'          => 'psr4',                          // normally leave this alone
     'superadmin'      => 'letGSAin',                      // change this
     'admin'           => 'letADMin',                      // change this
-    'manager'         => 'letMANin',                      // change this
+    'library'         => 'letMANin',                      // change this
     'developer_mode'  => 'false',                         // or 'true' when in development
     'public_path'     => '',                              // leave blank for default setting
     'base_path'       => '',                              // leave blank for default setting
