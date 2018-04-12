@@ -1076,6 +1076,10 @@ $a_twig_dirs = [
         'tp_id'     => 'site',
         'td_name'   => 'snippets',
     ],
+    'site_tests'    => [
+        'tp_id'     => 'site',
+        'td_name'   => 'tests'
+    ],
     'lib_default' => [
         'tp_id'   => 'lib',
         'td_name' => 'default',
@@ -1095,6 +1099,10 @@ $a_twig_dirs = [
     'lib_snippets' => [
         'tp_id'   => 'lib',
         'td_name' => 'snippets',
+    ],
+    'lib_tests'    => [
+        'tp_id'     => 'lib',
+        'td_name'   => 'tests'
     ]
 ];
 
