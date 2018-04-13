@@ -1058,47 +1058,55 @@ $a_twig_prefix = [
 $a_twig_dirs = [
     'site_default' => [
         'tp_id'   => 'site',
-        'td_name' => 'default',
+        'td_name' => 'default'
     ],
     'site_elements' => [
         'tp_id'   => 'site',
-        'td_name' => 'elements',
+        'td_name' => 'elements'
     ],
     'site_forms' => [
         'tp_id'   => 'site',
-        'td_name' => 'forms',
+        'td_name' => 'forms'
     ],
     'site_pages' => [
         'tp_id'   => 'site',
-        'td_name' => 'pages',
+        'td_name' => 'pages'
     ],
     'site_snippets' => [
         'tp_id'     => 'site',
-        'td_name'   => 'snippets',
+        'td_name'   => 'snippets'
     ],
     'site_tests'    => [
         'tp_id'     => 'site',
         'td_name'   => 'tests'
     ],
+    'site_themes'    => [
+        'tp_id'     => 'site',
+        'td_name'   => 'themes'
+    ],
     'lib_default' => [
         'tp_id'   => 'lib',
-        'td_name' => 'default',
+        'td_name' => 'default'
+    ],
+    'lib_themes'  => [
+        'tp_id'    => 'lib',
+        'td_name'  => 'themes'
     ],
     'lib_elements' => [
         'tp_id'    => 'lib',
-        'td_name'  => 'elements',
+        'td_name'  => 'elements'
     ],
     'lib_forms' => [
         'tp_id'   => 'lib',
-        'td_name' => 'forms',
+        'td_name' => 'forms'
     ],
     'lib_pages' => [
         'tp_id'   => 'lib',
-        'td_name' => 'pages',
+        'td_name' => 'pages'
     ],
     'lib_snippets' => [
         'tp_id'   => 'lib',
-        'td_name' => 'snippets',
+        'td_name' => 'snippets'
     ],
     'lib_tests'    => [
         'tp_id'     => 'lib',
@@ -1231,6 +1239,7 @@ $a_twig_tpls = [
 
 $a_twig_default_dir_names = [
     'default',
+    'themes',
     'elements',
     'forms',
     'pages',

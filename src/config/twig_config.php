@@ -5,7 +5,8 @@ $a_default_dirs = [
     'forms',
     'pages',
     'snippets',
-    'tests'
+    'tests',
+    'themes'
 ];
 
 $src_twig_prefix = 'site_';
