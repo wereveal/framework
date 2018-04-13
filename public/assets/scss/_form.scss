@@ -28,6 +28,9 @@ textarea {
     input[type=checkbox] {
         visibility: hidden;
     }
+    input[type=checkbox]:checked + label {
+        background: $blue-xlight;
+    }
     input[type=checkbox]:checked + label:after {
         opacity: 1;
     }
@@ -38,7 +41,7 @@ textarea {
         height: 15px;
         top: 0;
         left: 0;
-        background: $blue-xlight;
+        background: $white;
         border: 1px solid $blue-dark;
         border-radius: 3px;
         box-shadow: 1px 1px 1px $color-shadow;
