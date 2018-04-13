@@ -5,6 +5,9 @@ input, textarea {
     &.colorful:focus {
         @include makeColorfulFocused(true);
     }
+    &.flexible {
+        width: 95%;
+    }
 }
 
 textarea {
@@ -20,7 +23,14 @@ textarea {
     &.odd-row {
         @include oddRow($gray90);
     }
+    &.even {
+        @include evenRow($color-white);
+    }
+    &.odd {
+        @include oddRow($gray90);
+    }
 }
+
 .colorful-checkbox {
     width: 15px;
     margin: 0;
@@ -41,7 +51,7 @@ textarea {
         height: 15px;
         top: 0;
         left: 0;
-        background: $white;
+        background: $white-color;
         border: 1px solid $blue-dark;
         border-radius: 3px;
         box-shadow: 1px 1px 1px $color-shadow;
@@ -143,21 +153,74 @@ label {
     }
 }
 
-.constants-form {
+.btn-green {
+    @include button-variant($green, $green);
+}
+.btn-blue {
+    @include button-variant($blue, $blue);
+}
+.btn-red {
+    @include button-variant($red, $red);
+}
+.btn-white {
+    @include button-variant($white, $white);
+}
+.btn-black {
+    @include button-variant($black, $black);
+}
+.btn-gray {
+    @include button-variant($gray60, $gray60);
+}
+.btn-brown {
+    @include button-variant($brown-medium, $brown-medium);
+}
+.btn-orange {
+    @include button-variant($orange, $orange);
+}
+.btn-purple {
+    @include button-variant($purple, $purple);
+}
+.btn-outline-green {
+    @include button-outline-variant($green);
+}
+.btn-outline-blue {
+    @include button-outline-variant($blue);
+}
+.btn-outline-red {
+    @include button-outline-variant($red);
+}
+.btn-outline-white {
+    @include button-outline-variant($white, $black);
+}
+.btn-outline-black {
+    @include button-outline-variant($black);
+}
+.btn-outline-gray {
+    @include button-outline-variant($gray60);
+}
+.btn-outline-brown {
+    @include button-outline-variant($brown-medium);
+}
+.btn-outline-orange {
+    @include button-outline-variant($orange);
+}
+.btn-outline-purple {
+    @include button-outline-variant($purple);
+}
+
+#people-form {
+    fieldset {
+        border: 1px $color-black dotted;
+        padding: 1.5rem;
+        margin: 1rem;
+    }
     input {
         width: 200px;
-    }
-}
-
-.datepicker {
-    display: inline-block;
-    width: 50%;
-}
-
-form {
-    label, input[type=text] {
-        &.hobbit {
-            display: none;
+        &#description {
+            width: 600px;
+        }
+        &[type="checkbox"] {
+            width: auto;
         }
     }
 }
@@ -177,3 +240,27 @@ form {
     }
 }
 
+#import-form {
+    #delimiter, #enclosure {
+        width: 2rem;
+    }
+}
+
+.constants-form {
+    input {
+        width: 200px;
+    }
+}
+
+.datepicker {
+    display: inline-block;
+    width: 50%;
+}
+
+form {
+    label, input[type=text] {
+        &.hobbit {
+            display: none;
+        }
+    }
+}

@@ -3,8 +3,8 @@ html {
     height: 100%;
 }
 body {
-    background-color: $grey-light;
     height: 100%;
+    background-color: $gunmetal-xlight;
 }
 code {
     &.pre {
@@ -37,7 +37,7 @@ hr.item-card {
     font-weight: 700;
 }
 
-.xbold {
+.black {
     font-weight: 900;
 }
 
@@ -148,6 +148,18 @@ hr.item-card {
             padding: 0 .25rem;
             margin-top: .25rem;
             margin-bottom: .25rem;
+            &.border-left-1 {
+                border-left: black 1px solid;
+            }
+            &.border-right-1 {
+                border-right: black 1px solid;
+            }
+            &.border-top-1 {
+                border-top: black 1px solid;
+            }
+            &.border-bottom-1 {
+                border-bottom: black 1px solid;
+            }
         }
         &.boxed {
             [class*="col"] {
@@ -171,16 +183,16 @@ hr.item-card {
             }
         }
         &.normal-row {
-            @include evenRow($gray-dark, $color-white);
+            @include evenRow();
         }
         &.alt-row {
-            @include oddRow($gray-dark, $gray90);
+            @include oddRow();
         }
         &.odd {
-            @include evenRow($gray-dark, $color-white);
+            @include oddRow();
         }
         &.even {
-            @include oddRow($gray-dark, $gray90);
+            @include evenRow();
         }
         &.upper {
             border-radius: 0 2rem 0 0;
@@ -233,7 +245,7 @@ hr.item-card {
 }
 
 .purple {
-    color: $purple;
+    color: $purple-color;
 }
 
 .dark-grey {
@@ -241,7 +253,7 @@ hr.item-card {
 }
 
 .slate {
-    color: $color-slate;
+    color: $slate-medium;
 }
 
 .grey-lightest {
@@ -331,10 +343,10 @@ hr.item-card {
 
 .list-stripped {
     &.odd {
-        @include oddRow($gunmetal_dark, $gunmetal-xlight);
+        @include oddRow();
     }
     &.even {
-        @include evenRow($gunmetal-xlight, $gunmetal-dark);
+        @include evenRow();
     }
     a {
         display: inline-block;
@@ -342,12 +354,10 @@ hr.item-card {
         padding: .25rem;
         padding-left: .5rem;
         &.odd {
-            color: $gunmetal-dark;
-            background-color: $gunmetal-xlight;
+            @include oddRow();
         }
         &.even {
-            color: $gunmetal-xlight;
-            background-color: $gunmetal-dark;
+            @include evenRow();
 
         }
     }

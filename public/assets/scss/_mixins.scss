@@ -178,7 +178,6 @@
         padding: $size;
     }
 }
-
 @mixin setFont($size, $weight, $style, $variant) {
     @if $size != '' {
         font-size: $size;
@@ -348,6 +347,7 @@
     border-right: 1px solid $color-black$important;
     border-top: 1px solid $gray60$important;
     padding-left: .5rem$important;
+    border-radius: 3px$important
 }
 
 @mixin makeColorfulFocused($important: false) {
@@ -363,9 +363,10 @@
     border-right: 1px solid $blue-medium-dark$important;
     border-top: 1px solid $blue-dark$important;
     padding-left: .5rem$important;
+    border-radius: 3px$important
 }
 
-@mixin evenRow($color: $gray90, $bg-color: $color-white) {
+@mixin evenRow($color: $grey-darkest, $bg-color: $color-white) {
     color: $color;
     background-color: $bg-color;
     [class*="col"] {
@@ -383,7 +384,7 @@
     }
 }
 
-@mixin oddRow($color: $color-white, $bg-color: $gray90) {
+@mixin oddRow($color: $grey-darkest, $bg-color: $grey-lighter) {
     color: $color;
     background-color: $bg-color;
     [class*="col"] {
