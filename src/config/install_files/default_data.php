@@ -1056,10 +1056,6 @@ $a_twig_prefix = [
 ];
 
 $a_twig_dirs = [
-    'site_default' => [
-        'tp_id'   => 'site',
-        'td_name' => 'default'
-    ],
     'site_elements' => [
         'tp_id'   => 'site',
         'td_name' => 'elements'
@@ -1084,14 +1080,6 @@ $a_twig_dirs = [
         'tp_id'     => 'site',
         'td_name'   => 'themes'
     ],
-    'lib_default' => [
-        'tp_id'   => 'lib',
-        'td_name' => 'default'
-    ],
-    'lib_themes'  => [
-        'tp_id'    => 'lib',
-        'td_name'  => 'themes'
-    ],
     'lib_elements' => [
         'tp_id'    => 'lib',
         'td_name'  => 'elements'
@@ -1111,6 +1099,10 @@ $a_twig_dirs = [
     'lib_tests'    => [
         'tp_id'     => 'lib',
         'td_name'   => 'tests'
+    ],
+    'lib_themes'  => [
+        'tp_id'    => 'lib',
+        'td_name'  => 'themes'
     ]
 ];
 
@@ -1238,7 +1230,6 @@ $a_twig_tpls = [
 ];
 
 $a_twig_default_dir_names = [
-    'default',
     'themes',
     'elements',
     'forms',

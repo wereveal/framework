@@ -1,6 +1,5 @@
 <?php
 $a_default_dirs = [
-    'default',
     'elements',
     'forms',
     'pages',
