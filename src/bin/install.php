@@ -387,7 +387,7 @@ catch (ModelException $e) {
 print "\nCreating the directories for the new app\n";
 if ($o_new_app_helper->createDirectories()) {
     print "\nCreating default files.\n";
-    $o_new_app_helper->createDefaultFiles();
+    $o_new_app_helper->createDefaultFiles(true);
 }
 
 ### Regenerate Autoload Map files
