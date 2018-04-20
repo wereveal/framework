@@ -43,3 +43,19 @@
         padding-left: 2rem;
     }
 }
+
+span.no-link {
+    position: relative;
+    display: block;
+    padding: $pagination-padding-y $pagination-padding-x;
+    margin-left: -$pagination-border-width;
+    line-height: $pagination-line-height;
+    color: $green-medium;
+    background-color: $pagination-bg;
+    border: $pagination-border-width solid $pagination-border-color;
+    &.no-link-sm {
+        padding: $pagination-padding-y-sm $pagination-padding-x-sm;
+        font-size: $font-size-sm;
+        line-height: $line-height-sm;
+    }
+}
