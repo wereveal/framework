@@ -1,9 +1,15 @@
 /** Color variables - if intended to override any bootstrap variables, must be included before **/
+/* True overrides */
+$red:             #c00;
+$yellow:          #ff0;
+$teal:            #008080;
+$red-bs4:         #dc3545;
+
 $black-color:     #000;
-$blue-color:      #006;
+$blue-color:      #00c;
 $brown-color:     #68472e;
 $cyan-color:      #17a2b8;
-$gray-color:      #808080; // also gray50 - gray-medium
+$gray-color:      #adb5bd; // gray-medium
 $green-color:     #006400;
 $magenta-color:   #f0f;
 $off-white-color: #f5f5f5;
@@ -30,27 +36,27 @@ $gray35: #595959;
 $gray40: #666;
 $gray50: #808080;
 $gray60: #999;
-$gray65: #A6A6A6;
+$gray65: #a6a6a6;
 $gray75: #bfbfbf;
 $gray80: #ccc;
 $gray90: #e6e6e6;
 $gray95: #f2f2f2;
 
-$gray-dark:        $gray20;
-$gray-medium-dark: $gray35;
-$gray-medium:      $gray50;
-$gray-med-light:   $gray65;
-$gray-light:       $gray80;
-$gray-xlight:      $gray90;
-$gray-barely:      $gray95;
+$gray-dark:        #343a40;
+$gray-medium-dark: #495057;
+$gray-medium:      $gray-color;
+$gray-med-light:   #ced4da;
+$gray-light:       #dee2e6;
+$gray-xlight:      #e9ecef;
+$gray-barely:      #f8f9fa;
 $gray-complement:  #276998;
 
-$grey-lightest: #f7f7f9;
+$grey: $gray-color;
+$grey-lightest: $gray-barely;
 $grey-lighter: darken($grey-lightest, 10%);
 $grey-light: darken($grey-lighter, 10%);
 $grey-med-light: darken($grey-light, 10%);
 $grey-medium: darken($grey-med-light, 10%);
-$grey: $grey-medium;
 $grey-med-dark: darken($grey-medium, 10%);
 $grey-dark: darken($grey-med-dark, 10%);
 $grey-darker: darken($grey-dark, 10%);
@@ -74,17 +80,17 @@ $gunmetal-light:      #829ca8;
 $gunmetal-xlight:     #94b2bf;
 $gunmetal-complement: #382f2b;
 
-$green-darkest:     #003300;
-$green-darker:      #004000;
-$green-dark:        #005100;
-$green-medium-dark: #006400;
-$green-medium:      #007700;
-$green-medium:      #28a745;
-$green-light:       #9afa9c;
-$green-lighter:     #ccffcc;
-$green-xlight:      #e9ffe9;
-$green-lightest:    $green-xlight;
-$green-complement:  #640032;
+$green-darkest:      #003300;
+$green-darker:       #004000;
+$green-dark:         #005100;
+$green-medium-dark:  #006400;
+$green-medium:       #007700;
+$green-medium-light: #28a745;
+$green-light:        #9afa9c;
+$green-lighter:      #ccffcc;
+$green-xlight:       #e9ffe9;
+$green-lightest:     $green-xlight;
+$green-complement:   #640032;
 
 $red-dark:   #760000;
 $red-medium: #ff0000;
@@ -93,7 +99,7 @@ $red-light:  #ffcccc;
 $orange-darker:       #e34234;
 $orange-dark:         #fc4a1a;
 $orange-pantone:      #ff5800;
-$orange-medium:       #fd7314;
+$orange-medium:       #fd7e14;
 $orange-medium-light: #ffa500;
 $orange-light:        #f7b733;
 $orange-xlight:       #ffefd5;
@@ -130,3 +136,13 @@ $color-shadow-alt:  transparentize($color-complement, .35);
 $color-span:        $off-white-color;
 $color-heading:     $grey-darkest;
 $color-heading-alt: $gray-complement;
+
+/* More Boostrap Pure Overrides for semantic colors */
+$primary:         $blue-medium;
+$secondary:       $gray-color;
+$success:         $green;
+$info:            $cyan;
+$warning:         $yellow;
+$danger:          $red;
+$light:           $grey-lightest;
+$dark:            $grey-dark;
