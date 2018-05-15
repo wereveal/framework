@@ -7,6 +7,7 @@ $a_u = [
     'tests'            => '/manager/tests/',
     'test_results'     => '/manager/tests/results/',
     'library'          => '/manager/config/',
+    'lib_ajax'         => '/manager/config/ajax/',
     'lib_login'        => '/manager/config/login/',
     'lib_logout'       => '/manager/config/logout/',
     'constants'        => '/manager/config/constants/',
@@ -369,6 +370,13 @@ $a_routes = [
         'route_action'    => '',
         'route_immutable' => 'true'
 	],
+    'lib_ajax' => [
+        'url_id'          => 'lib_ajax',
+        'route_class'     => 'LibraryController',
+        'route_method'    => 'route',
+        'route_action'    => 'ajax',
+        'route_immutable' => 'true'
+    ],
 	'constants' => [
 	    'url_id'          => 'constants',
         'route_class'     => 'LibraryController',
@@ -464,6 +472,7 @@ $a_route_group_map = [
     ['route_id' => 'tests',            'group_id' => 'manager'],
     ['route_id' => 'test_results',     'group_id' => 'manager'],
 	['route_id' => 'library',          'group_id' => 'admin'],
+    ['route_id' => 'lib_ajax',         'group_id' => 'admin'],
     ['route_id' => 'lib_login',        'group_id' => 'admin'],
     ['route_id' => 'lib_logout',       'group_id' => 'admin'],
 	['route_id' => 'constants',        'group_id' => 'admin'],

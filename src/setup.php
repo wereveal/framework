@@ -21,6 +21,7 @@ namespace Ritc;
 use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ModelException;
 use Ritc\Library\Exceptions\ServiceException;
+use Ritc\Library\Factories\CacheFactory;
 use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Factories\TwigFactory;
 use Ritc\Library\Models\ConstantsCreator;
