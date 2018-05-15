@@ -1,3 +1,7 @@
+.idea/workspace.xml
+*.log
+/cache/**
+!/cache/README
 composer.lock
 /src/config/autoload_classmap.php
 /src/config/autoload_namespaces.php
@@ -24,6 +28,3 @@ composer.lock
 /public/index.php
 /public/setup.php
 /vendor
-.idea
-*.log
-*.codekit3

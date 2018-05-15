@@ -195,3 +195,16 @@ else {
     die("Unable to set the Twig instance");
 }
 $o_di->setVar('twigConfig', $twig_config);
+
+if (USE_CACHE && ini_get('opcache.enable')) {
+    $cache_type = defined(CACHE_TYPE)
+        ? CACHE_TYPE
+        : 'SimplePhpFiles';
+    $o_cache = CacheFactory::start(['cache_type' => $cache_type]);
+    if (is_object($o_cache)) {
+        $o_di->set('cache', $o_cache);
+    }
+    else {
+        die("Unable to create the Cache instance.");
+    }
+}

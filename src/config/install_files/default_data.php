@@ -33,6 +33,11 @@ $a_constants = [
         'const_value'     => 'assets',
         'const_immutable' => 'true'
     ],
+    'cache_type' => [
+        'const_name'      => 'CACHE_TYPE',
+        'const_value'     => 'SimplePhpFiles',
+        'const_immutable' => 'true'
+    ],
     'copyright_date' => [
         'const_name'      => 'COPYRIGHT_DATE',
         'const_value'     => '2018',
@@ -121,6 +126,11 @@ $a_constants = [
     'tmp_dir_name' => [
         'const_name'      => 'TMP_DIR_NAME',
         'const_value'     => 'tmp',
+        'const_immutable' => 'true'
+    ],
+    'use_cache' => [
+        'const_name'      => 'USE_CACHE',
+        'const_value'     => 'true',
         'const_immutable' => 'true'
     ],
     'vendor_dir_name' => [
