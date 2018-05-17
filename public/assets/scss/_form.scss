@@ -16,6 +16,16 @@ textarea {
     }
 }
 
+select {
+    margin-top: .25rem;
+    &.colorful {
+        @include makeColorful(true);
+    }
+    &.colorful:focus {
+        @include makeColorfulFocused(true);
+    }
+}
+
 .form-inline {
     &.even-row {
         @include evenRow($color-white);
@@ -77,6 +87,7 @@ textarea {
         position: absolute;
         top: -5px;
         left: 20px;
+        @include fontBold();
     }
 }
 
