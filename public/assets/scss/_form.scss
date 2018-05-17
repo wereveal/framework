@@ -10,6 +10,16 @@ input, textarea {
     }
 }
 
+select {
+    margin-top: .25rem;
+    &.colorful {
+        @include makeColorful(true);
+    }
+    &.colorful:focus {
+        @include makeColorfulFocused(true);
+    }
+}
+
 textarea {
     &.colorful {
         height: 6rem !important;
@@ -77,6 +87,7 @@ textarea {
         position: absolute;
         top: -5px;
         left: 20px;
+        @include fontBold();
     }
 }
 
