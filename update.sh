@@ -1,4 +1,5 @@
 #!/bin/bash
+git pull
 if [ ! -f composer.json ]
 then
     echo "The composer.json file must exist at the base of the site."

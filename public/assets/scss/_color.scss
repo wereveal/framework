@@ -138,11 +138,32 @@ $color-heading:     $grey-darkest;
 $color-heading-alt: $gray-complement;
 
 /* More Boostrap Pure Overrides for semantic colors */
-$primary:         $blue-medium;
-$secondary:       $gray-color;
-$success:         $green;
-$info:            $cyan;
-$warning:         $yellow;
-$danger:          $red;
-$light:           $grey-lightest;
-$dark:            $grey-dark;
+$primary:   $blue-medium;
+$secondary: $gray-color;
+$light:     $grey-lightest;
+$dark:      $grey-dark;
+
+@if variable_exists('green')  {
+  $success: $green;
+}
+@else {
+  $success: $green-medium;
+}
+@if variable-exists('cyan') {
+  $info: $cyan;
+}
+@else {
+  $info: $cyan-color;
+}
+@if variable-exists('yellow') {
+  $warning: $yellow;
+}
+@else {
+  $warning: $yellow-color;
+}
+@if variable-exists('red') {
+  $danger: $red;
+}
+@else {
+  $danger: $red-color;
+}
