@@ -1,4 +1,5 @@
 #!/bin/bash
+git pull
 if [ ! -f composer.json ]
 then
     echo "The composer.json file must exist at the base of the site."
@@ -16,6 +17,7 @@ then
     cd public/assets
     yarn install --modules-folder vendor
     sass --update -t compressed scss:css
+    bash doJqueryUi.sh
     cd ../../
 else
     echo "The package.json file must exist in the public/assets directory."
