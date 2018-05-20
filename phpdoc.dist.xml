@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <parser>
+        <target>public/tools/phpdoc</target>
+        <encoding>utf8</encoding>
+        <markers>
+            <item>fixme</item>
+            <item>FIXME</item>
+            <item>todo</item>
+            <item>TODO</item>
+        </markers>
+        <extensions>
+            <extension>php</extension>
+            <extension>phtml</extension>
+            <extension>inc</extension>
+        </extensions>
+    </parser>
+    <transformer>
+        <target>public/tools/phpdoc</target>
+    </transformer>
+    <files>
+        <file>src/setup.php</file>
+        <directory>src/apps</directory>
+    </files>
+</phpdoc>

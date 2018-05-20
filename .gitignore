@@ -27,5 +27,6 @@ composer.lock
 /public/doxy
 /public/index.php
 /public/setup.php
+/public/tools/phpdoc
 /vendor
 wereveal.iml

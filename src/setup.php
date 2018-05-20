@@ -1,17 +1,16 @@
 <?php
 /**
- * @brief     This file sets up the site.
- * @details   Required to get the entire site to work.
- * @file      setup.php
- * @namespace Ritc
+ * This file sets up the site.
+ * Required to get the entire site to work.
+ *
  * @author    William E Reveal <bill@revealitconsulting.com>
  * @date      2018-04-03 16:29:01
  * @version   2.1.0
- * @note <b>Change Log</b>
- * v2.1.0 - Modification to ConstantsCreator reflected here     - 2018-04-03 wer
- * v2.0.0 - Next gen start script                               - 2017-05-12 wer
+ * ## Change Log
+ * - v2.1.0 - Modification to ConstantsCreator reflected here     - 2018-04-03 wer
+ * - v2.0.0 - Next gen start script                               - 2017-05-12 wer
  *
- * @note NOTE:
+ * ## NOTE
  * - _path and _PATH indicates a full server path
  * - _dir and _DIR indicates the path in the site (URI)
  * - Both path and dir do not end with a slash
