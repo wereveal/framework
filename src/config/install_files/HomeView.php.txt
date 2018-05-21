@@ -1,15 +1,7 @@
 <?php
 /**
- * @brief     Home View.
- * @ingroup   {app_name}_views
- * @file      {NAMESPACE}/{APPNAME}/Views/HomeView.php
- * @namespace {NAMESPACE}\{APPNAME}\Views
- * @author    {author} {email}
- * @version   1.0.0-alpha.0
- * @date      {idate}
- * @note Change Log
- * - v1.0.0-alpha.0 - Initial version        - {sdate} {sauthor}
- * @todo {NAMESPACE}/{APPNAME}/Views/HomeView .php - Everything
+ * Class HomeView
+ * @package {NAMESPACE}_{APPNAME}
  */
 namespace {NAMESPACE}\{APPNAME}\Views;
 
@@ -19,9 +11,14 @@ use Ritc\Library\Traits\LogitTraits;
 use Ritc\Library\Traits\ViewTraits;
 
 /**
- * Class HomeView
- * @class   HomeView
- * @package {NAMESPACE}\{APPNAME}\Views
+ * Home View.
+ *
+ * @author  {author} {email}
+ * @version 1.0.0-alpha.0
+ * @date    {idate}
+ * ## Change Log
+ * - v1.0.0-alpha.0 - Initial version        - {sdate} {sauthor}
+ * @todo {NAMESPACE}/{APPNAME}/Views/HomeView .php - Everything
  */
 class HomeView implements ViewInterface
 {

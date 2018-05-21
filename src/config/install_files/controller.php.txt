@@ -1,15 +1,7 @@
 <?php
 /**
- * @brief     {controller_name} Controller for {APPNAME}.
- * @ingroup   {app_name}_controllers
- * @file      {NAMESPACE}/{APPNAME}/Controllers/{controller_name}Controller.php
- * @namespace {NAMESPACE}\{APPNAME}\Controllers
- * @author    {author} <{email}>
- * @version   1.0.0-alpha.0
- * @date      {idate}
- * @note Change Log
- * - v1.0.0-alpha.0 - Initial version        - {sdate} {sauthor}
- * @todo {NAMESPACE}/{APPNAME}/Controllers/{controller_name}Controller.php - Everything
+ * Class {controller_name}Controller.
+ * @package {NAMESPACE}_{APPNAME}
  */
 namespace {NAMESPACE}\{APPNAME}\Controllers;
 
@@ -19,15 +11,20 @@ use Ritc\Library\Traits\ControllerTraits;
 use Ritc\Library\Traits\LogitTraits;
 
 /**
- * Class {controller_name}Controller.
- * @class   {controller_name}Controller
- * @package {NAMESPACE}\{APPNAME}
+ * {controller_name} Controller for {APPNAME}.
+ *
+ * @author    {author} <{email}>
+ * @version   1.0.0-alpha.0
+ * @date      {idate}
+ * ## Change Log
+ * - v1.0.0-alpha.0 - Initial version        - {sdate} {sauthor}
+ * @todo {NAMESPACE}/{APPNAME}/Controllers/{controller_name}Controller.php - Everything
  */
 class {controller_name}Controller implements ControllerInterface
 {
     use ControllerTraits, LogitTraits;
 
-    /** @var {controller_name}View $o_view */
+    /** @var {controller_name}View $o_view the view object for the controller */
     private $o_view;
 
     /**

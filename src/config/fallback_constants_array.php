@@ -22,5 +22,6 @@ return [
     ['SESSION_IDLE_TIME', 1800, 'true'],
     ['TMP_DIR_NAME', 'tmp', 'true'],
     ['VENDOR_DIR_NAME', 'vendor', 'true'],
+    ['USE_CACHE', 'true', 'true'],
     ['DEVELOPER_MODE', false, 'true'],
 ];

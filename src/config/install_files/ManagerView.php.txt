@@ -1,15 +1,7 @@
 <?php
 /**
- * @brief     View for the Manager page.
- * @details   This is specific for managing the entries in the guide.
- * @ingroup   {app_name}_views
- * @file      {NAMESPACE}/{APPNAME}/Views/ManagerView.php
- * @namespace {NAMESPACE}\{APPNAME}\Views
- * @author    {author} <{email}>
- * @version   1.0.0-alpha.0
- * @date      {idate}
- * @note <b>Change Log</b>
- * - v1.0.0-alpha.0 - Initial version                             - {sdate} {sauthor}
+ * Class ManagerView
+ * @package {NAMESPACE}_{APPNAME}
  */
 namespace {NAMESPACE}\{APPNAME}\Views;
 
@@ -20,9 +12,13 @@ use Ritc\Library\Traits\LogitTraits;
 use Ritc\Library\Traits\ViewTraits;
 
 /**
- * Class ManagerView
- * @class   ManagerView
- * @package {NAMESPACE}\{APPNAME}\Views
+ * View for the Manager page.
+ *
+ * @author  {author} <{email}>
+ * @version v1.0.0-alpha.0
+ * @date    {idate}
+ * ## Change Log
+ * - v1.0.0-alpha.0 - Initial version                             - {sdate} {sauthor}
  */
 class ManagerView implements ViewInterface
 {

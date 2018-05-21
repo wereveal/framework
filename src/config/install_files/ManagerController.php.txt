@@ -1,15 +1,8 @@
 <?php
 /**
- * @brief Manager Controller for {APPNAME}.
- * @ingroup {app_name}_controllers
- * @file {NAMESPACE}/{APPNAME}/Controllers/ManagerController.php
- * @namespace {NAMESPACE}\{APPNAME}\Controllers
- * @author {author} <{email}>
- * @version 1.0.0-alpha.0
- * @date {idate}
- * @note <b>Change Log</b>
- * - v1.0.0-alpha.0 - Initial version                    - {sdate} {sauthor}
-**/
+ * Class ManagerController
+ * @package {NAMESPACE}_{APPNAME}
+ */
 namespace {NAMESPACE}\{APPNAME}\Controllers;
 
 use Ritc\Library\Helper\ViewHelper;
@@ -20,14 +13,19 @@ use Ritc\Library\Traits\ManagerControllerTraits;
 use {NAMESPACE}\{APPNAME}\Views\ManagerView;
 
 /**
- * Class ManagerController
- * @class ManagerController
- * @package {NAMESPACE}\{APPNAME}\Controllers
+ * Manager Controller for {APPNAME}.
+ *
+ * @author  {author} <{email}>
+ * @version v1.0.0-alpha.0
+ * @date    {idate}
+ * ## Change Log
+ * - v1.0.0-alpha.0 - Initial version                    - {sdate} {sauthor}
  */
 class ManagerController implements ControllerInterface
 {
     use ManagerControllerTraits, LogitTraits;
 
+    /** var ManagerView view object */
     protected $o_view;
 
     /**

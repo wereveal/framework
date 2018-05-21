@@ -31,6 +31,9 @@ define('SESSION_IDLE_TIME', 1800);
 define('SCSS', 'scss');
 define('TMP_DIR_NAME', 'tmp');
 define('VENDOR_DIR_NAME', 'vendor');
+if (!defined('USE_CACHE')) {
+    define('USE_CACHE', true);
+}
 if (!defined('DEVELOPER_MODE')) {
     define('DEVELOPER_MODE', false);
 }
