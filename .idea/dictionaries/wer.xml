@@ -2,6 +2,7 @@
   <dictionary name="wer">
     <words>
       <w>elog</w>
+      <w>navgroup</w>
       <w>pgsql</w>
       <w>ritc</w>
     </words>
