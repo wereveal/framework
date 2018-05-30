@@ -2,7 +2,7 @@
 *.log
 /cache/**
 !/cache/README
-composer.lock
+*.lock
 /src/config/autoload_classmap.php
 /src/config/autoload_namespaces.php
 /src/config/app_config*.php
