@@ -173,6 +173,15 @@ if ($twig_config == 'db') {
             ? false
             : true;
     }
+    $o_md = new \Parsedown();
+    $o_di->set('md', $o_md);
+    try {
+        $o_mde = new \ParsedownExtra();
+        $o_di->set('mde', $o_mde);
+    }
+    catch (\Exception $e) {
+        $o_di->set('mde', '');
+    }
     try {
         $o_twig = TwigFactory::getTwig($o_di, $twig_use_cache);
     }
