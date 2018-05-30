@@ -34,9 +34,9 @@ class HomeController implements ControllerInterface
      */
     public function __construct(Di $o_di)
     {
-        $o_di->set('MasterController', $this);
         $this->setupController($o_di);
         $this->setupElog($o_di);
+        $o_di->set('MasterController', $this);
         $this->o_view = new HomeView($o_di);
     }
 

@@ -1,4 +1,11 @@
 {% extends '@' ~ page_prefix ~ 'themes/base.twig' %}
+{% block stylesheets %}
+    {% if css_dir ~ '/min/styles.css' is ondisk %}
+        <link rel="stylesheet" href="{{ css_dir }}/min/styles.css" media="screen">
+    {% else %}
+        <link rel="stylesheet" href="{{ css_dir }}/styles.css" media="screen">
+    {% endif %}
+{% endblock %}
 {% block body %}
             <div class="container">
                 <ul class="clean-ul">
