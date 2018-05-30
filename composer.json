@@ -3,6 +3,7 @@
     "version": "3.0.0",
     "require": {
         "php": ">=7.1.0",
+        "erusev/parsedown-extra": "^0.7.1",
 		"psr/cache": "^1.0",
 		"psr/http-message": "^1.0",
 		"psr/log": "^1.0",
