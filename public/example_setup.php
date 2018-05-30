@@ -10,6 +10,7 @@ switch ($_SERVER['HTTP_HOST']) { // Allows for different development and product
         define('PUBLIC_DIR', '');                         // optional, this is the default, see in.a.subdirectory.example below for when it would be used.
         define('DEVELOPER_MODE', true);                   // optional, defaults to false, see /src/config/constants.php
         $db_config_file = 'db_config_local.php';          // optional, defaults to db_config.php
+        $psr_loader     = 'psr4';                         // optional, defaults to psr4. can be psr4 or psr0
         $twig_config    = 'db';                           // optional, defaults to db (which specifies a db config).
         $twig_use_cache = false;                          // optional, defaults to the opposite of DEVELOPER_MODE
         /* If twig_config.php files are to be used instead of database based configuration it should look like this

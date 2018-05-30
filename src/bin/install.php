@@ -2,7 +2,7 @@
 /**
  * @brief     This file sets up standard stuff for the Framework.
  * @details   This creates the database config, some standard directories,
- *            and some standard files needed, e.g. index.php and MainController.
+ *            and some standard files needed, e.g. index.php and MasterController.
  *            This should be run from the cli in the /src/bin directory of the site.
  *            Copy /src/config/install_files/install_config.php.txt to /src/config/install_config.php.
  *            The copied file may have any name as long as it is in /src/config directory but then it needs to be
@@ -372,6 +372,7 @@ $o_new_app_helper = new NewAppHelper($o_di);
 print "Creating twig db records";
 $results = $o_new_app_helper->createTwigDbRecords();
 if (is_string($results)) {
+    failIt($o_db, $results);
     failIt($o_db, $results);
 }
 print "success\n";

@@ -2,6 +2,7 @@
 return [
     ['ADMIN_DIR_NAME', 'manager', 'true'],
     ['ASSETS_DIR_NAME', 'assets', 'true'],
+    ['CACHE_TYPE', 'SimplePhpFiles', 'true'],
     ['COPYRIGHT_DATE', '2018', 'true'],
     ['CSS_DIR_NAME', 'css', 'true'],
     ['DISPLAY_DATE_FORMAT', 'm/d/Y', 'true'],
@@ -18,7 +19,7 @@ return [
     ['PAGE_TEMPLATE', 'index.twig', 'true'],
     ['PRIVATE_DIR_NAME', 'private', 'true'],
     ['RIGHTS_HOLDER', 'Reveal IT Consulting', 'true'],
-    ['SCSS', 'scss', 'true'],
+    ['SCSS_DIR_NAME', 'scss', 'true'],
     ['SESSION_IDLE_TIME', 1800, 'true'],
     ['TMP_DIR_NAME', 'tmp', 'true'],
     ['VENDOR_DIR_NAME', 'vendor', 'true'],

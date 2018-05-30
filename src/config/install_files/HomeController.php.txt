@@ -1,0 +1,65 @@
+<?php
+/**
+ * Class HomeController.
+ * @package {NAMESPACE}_{APPNAME}
+ */
+namespace {NAMESPACE}\{APPNAME}\Controllers;
+
+use Ritc\Library\Interfaces\ControllerInterface;
+use Ritc\Library\Services\Di;
+use Ritc\Library\Traits\ControllerTraits;
+use Ritc\Library\Traits\LogitTraits;
+use {NAMESPACE}\{APPNAME}\Views\HomeView;
+
+/**
+ * Home page controller for {APPNAME}.
+ *
+ * @author  {author} <{email}>
+ * @version v1.0.0-alpha.0
+ * @date    {idate}
+ * ## Change Log
+ * - v1.0.0-alpha.0 - Initial version                               - {sdate} {sauthor}
+ * @todo {NAMESPACE}/{APPNAME}/Controllers/HomeController.php - Everything
+ */
+class HomeController implements ControllerInterface
+{
+    use ControllerTraits, LogitTraits;
+
+    /** @var HomeView $o_view view for the controller */
+    private $o_view;
+
+    /**
+     * HomeController constructor.
+     * @param \Ritc\Library\Services\Di $o_di
+     */
+    public function __construct(Di $o_di)
+    {
+        $o_di->set('MasterController', $this);
+        $this->setupController($o_di);
+        $this->setupElog($o_di);
+        $this->o_view = new HomeView($o_di);
+    }
+
+    /**
+     * Main Router and Puker outer (more descriptive method name).
+     * Turns over the hard work to the specific methods and views.
+     * @param array $a_message optional
+     * @return string
+     */
+    public function route(array $a_message = [])
+    {
+        // TODO: Implement route() method.
+        return $this->o_view->render($a_message);
+    }
+
+    /**
+     * Routes to the error page.
+     * @param array $a_message optional
+     * @return string
+     */
+    public function routeError(array $a_message = [])
+    {
+        // TODO: Implement routeError() method.
+        return $this->o_view->renderError($a_message);
+    }
+}

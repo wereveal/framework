@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief     This file sets up standard stuff for the Framework.
+ * @brief     This file sets up standard stuff for a single app.
  * @details   This creates the database config, some standard directories,
  *            and some standard files needed, e.g. index.php and MainController.
  *            This should be run from the cli in the /src/bin directory of the site.
- *            Copy /src/config/install_files/install_config.php.txt to /src/config/install_config.php.
+ *            Copy /src/config/install_files/app_config.php.txt to /src/config/app_config.php.
  *            The copied file may have any name as long as it is in /src/config directory but then it needs to be
- *            called on the cli, e.g. php install.php my_install_config.php
- * @file      /src/bin/install.php
+ *            called on the cli, e.g. php makeApp.php my_install_config.php
+ * @file      /src/bin/makeApp.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
  * @date      2017-05-25 15:28:28
@@ -50,7 +50,7 @@ if (!file_exists(APPS_PATH . '/Ritc/Library')) {
 $install_files_path = SRC_CONFIG_PATH . '/install_files';
 
 /* allows a custom file to be created. Still must be in src/config dir */
-$install_config = SRC_CONFIG_PATH . '/install_config.php';
+$install_config = SRC_CONFIG_PATH . '/app_config.php';
 if (isset($argv[1])) {
     $install_config = SRC_CONFIG_PATH . '/' . $argv[1];
 }
@@ -82,24 +82,16 @@ $a_needed_keys = [
     'author',
     'short_author',
     'email',
-    'loader',
-    'superadmin',
-    'admin',
-    'manager',
-    'developer_mode',
-    'public_path',
-    'base_path',
-    'http_host',
     'domain',
     'tld',
-    'specific_host'
+    'master_app'
 ];
 foreach ($a_needed_keys as $key) {
     if (!isset($a_install[$key])) {
         $a_install[$key] = '';
     }
 }
-
+$master_app = $a_install['master_app'] === 'true' ? true : false;
 ### generate files for autoloader ###
 require APPS_PATH . '/Ritc/Library/Helper/AutoloadMapper.php';
 $a_dirs = [
@@ -207,7 +199,8 @@ print "\nSetting up the app\n";
 $o_new_app_helper = new NewAppHelper($o_di);
 print "Creating twig db records";
 $results = $o_new_app_helper->createTwigDbRecords();
-if ($results !== true) {
+var_dump($results);
+if ($results === false) {
     die("\n". $results);
 }
 print "success\n";
@@ -215,7 +208,7 @@ print "success\n";
 print "\nCreating the directories for the new app\n";
 if ($o_new_app_helper->createDirectories()) {
     print "\nCreating default files.\n";
-    $o_new_app_helper->createDefaultFiles();
+    $o_new_app_helper->createDefaultFiles($master_app);
 }
 
 ### Regenerate Autoload Map files

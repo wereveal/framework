@@ -18,6 +18,7 @@ return [
 
 "DROP TYPE IF EXISTS url_protocol CASCADE",
 "DROP TYPE IF EXISTS truthy CASCADE",
+"DROP TYPE IF EXISTS content_type CASCADE",
 'CREATE OR REPLACE FUNCTION change_updated_on() RETURNS trigger AS
 $BODY$
 BEGIN
@@ -27,6 +28,7 @@ END;
 $BODY$ language \'plpgsql\'',
 "CREATE TYPE url_protocol as ENUM ('http', 'https', 'ftp', 'gopher', 'mailto', 'file')",
 "CREATE TYPE truthy as ENUM ('true', 'false')",
+"CREATE TYPE content_type as ENUM ('text','html','md','xml')",
 
 "CREATE TABLE {dbPrefix}constants (
   const_id serial NOT NULL,
@@ -94,6 +96,7 @@ $BODY$ language \'plpgsql\'',
   c_id serial NOT NULL,
   c_page_id integer NOT NULL,
   c_content text NOT NULL,
+  c_type content_type NOT NULL DEFAULT 'text'::content_type,
   c_block character varying(128) NOT NULL DEFAULT 'body',
   c_created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   c_version integer NOT NULL DEFAULT '1',

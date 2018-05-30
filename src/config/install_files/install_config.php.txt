@@ -1,6 +1,7 @@
 <?php
 return [
     'app_name'        => 'Main',                          // specify the primary app to which generates the home page
+    'master_app'      => 'true',                          // specifies if this is the app called by /index.php
     'namespace'       => 'Ritc',                          // specify the root namespace the app will be in
     'author'          => 'William E Reveal',              // specify the author of the app
     'short_author'    => 'wer',                           // abbreviation for the author

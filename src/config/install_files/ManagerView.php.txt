@@ -44,7 +44,7 @@ class ManagerView implements ViewInterface
         $this->setAdmLevel($_SESSION['login_id']);
         $a_twig_values = $this->createDefaultTwigValues($a_message);
         $tpl = $this->createTplString($a_twig_values);
-        return $this->o_twig->render($tpl, $a_twig_values);
+        return $this->renderIt($tpl, $a_twig_values);
     }
 
     /**
@@ -67,7 +67,7 @@ class ManagerView implements ViewInterface
         $a_twig_values['a_menus'] = [];
         $tpl = $this->createTplString($a_twig_values);
         $this->o_session->unsetVar('login_id');
-        return $this->o_twig->render($tpl, $a_twig_values);
+        return $this->renderIt($tpl, $a_twig_values);
     }
 
 }

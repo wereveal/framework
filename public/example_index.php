@@ -22,8 +22,8 @@ ob_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/setup.php';
 require_once BASE_PATH . '/src/setup.php';
 
-$o_main_controller = new Example\App\Controllers\MainController($o_di);
-$html     = $o_main_controller->renderPage();
+$o_master_controller = new Example\App\Controllers\MasterController($o_di);
+$html     = $o_master_controller->renderPage();
 $flotsam = ob_get_clean();
 ob_start();
     print $html;

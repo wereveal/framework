@@ -9,6 +9,7 @@ use Ritc\Library\Interfaces\ControllerInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;
 use Ritc\Library\Traits\LogitTraits;
+use {NAMESPACE}\{APPNAME}\Views\{controller_name}View
 
 /**
  * {controller_name} Controller for {APPNAME}.
@@ -33,7 +34,7 @@ class {controller_name}Controller implements ControllerInterface
      */
     public function __construct(Di $o_di)
     {
-        $o_di->set('mainController', $this);
+        $o_di->set('MasterController', $this);
         $this->setupController($o_di);
         $this->setupElog($o_di);
         $this->o_view = new {controller_name}View($o_di);
