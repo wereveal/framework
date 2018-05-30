@@ -359,9 +359,16 @@ if (!$o_installer_model->insertTwigTemplates()) {
 }
 print "success\n";
 
-### Enter 'page',
+### Enter 'page' ###
 print "Creating Page: ";
 if (!$o_installer_model->insertPage()) {
+    failIt($o_db, $o_installer_model->getErrorMessage());
+}
+print "success\n";
+
+### Enter 'content' ###
+print 'Creating Content: ';
+if (!$o_installer_model->insertContent()) {
     failIt($o_db, $o_installer_model->getErrorMessage());
 }
 print "success\n";

@@ -28,7 +28,7 @@ END;
 $BODY$ language \'plpgsql\'',
 "CREATE TYPE url_protocol as ENUM ('http', 'https', 'ftp', 'gopher', 'mailto', 'file')",
 "CREATE TYPE truthy as ENUM ('true', 'false')",
-"CREATE TYPE content_type as ENUM ('text','html','md','xml')",
+"CREATE TYPE content_type as ENUM ('text','html','md','mde','xml','raw')",
 
 "CREATE TABLE {dbPrefix}constants (
   const_id serial NOT NULL,

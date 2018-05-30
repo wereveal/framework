@@ -1223,6 +1223,18 @@ $a_page = [
     ],
 ];
 
+$a_content = [
+   'home' => [
+        'c_page_id' => 'home',
+        'c_content' => 'Welcome. This is the home page',
+        'c_type'    => 'text',
+        'c_block'   => 'body',
+        'c_created' => '',
+        'c_version' => '1',
+        'c_current' => 'true'
+   ]
+];
+
 $a_twig_prefix = [
     'site' => [
         'tp_prefix'  => 'site_',
@@ -1448,6 +1460,7 @@ return [
     'navigation'        => $a_navigation,
     'nav_ng_map'        => $a_nav_ng_map,
     'page'              => $a_page,
+    'content'           => $a_content,
     'twig_prefix'       => $a_twig_prefix,
     'twig_dirs'         => $a_twig_dirs,
     'twig_templates'    => $a_twig_tpls,

@@ -83,7 +83,7 @@ return [
   `c_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `c_page_id` int(11) unsigned NOT NULL,
   `c_content` text NOT NULL,
-  `c_type` enum('text','html','md','xml') NOT NULL DEFAULT 'text',
+  `c_type` enum('text','html','md','mde','xml','raw') NOT NULL DEFAULT 'text',
   `c_block` varchar(128) NOT NULL DEFAULT 'body',
   `c_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `c_version` int(11) NOT NULL DEFAULT '1',
