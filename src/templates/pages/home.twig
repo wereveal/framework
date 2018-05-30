@@ -1,27 +1,7 @@
 {% extends '@' ~ page_prefix ~ 'themes/base.twig' %}
 {% block body %}
-    <ul>
-    {% for theBlock in a_content %}
-        <li>
-            {{ theBlock.c_content }}
-        </li>
-    {% endfor %}
-
-    </ul>
-            <div class="container">
-        {% if a_content.body %}
-            {% set ctype = a_content.body.c_type %}
-            {% set content = a_content.body.c_content %}
-            {% if ctype == 'html' %}
-                {{ content | raw }}
-            {% elseif ctype == 'xml' %}
-                {{ content | raw }}
-            {% else %}
-                {{ content }}
-            {% endif %}
-        {% endif %}
-               Content {{ a_content['body']['c_content'] }}
-            </div>
+        <div class="container">
+        </div>
 {% endblock %}
 {#
 expected array [
