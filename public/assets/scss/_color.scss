@@ -1,10 +1,31 @@
-/** Color variables - if intended to override any bootstrap variables, must be included before **/
+/*!
+  Color variables - if intended to override any bootstrap variables,
+  must be included before
+**/
 /* True overrides */
-$red:             #c00;
-$yellow:          #ff0;
-$teal:            #008080;
-$red-bs4:         #dc3545;
+$blue:       #3f3fff;
+$indigo:     #6610f2;
+$purple:     #7b00c1;
+$pink:       #ff69b4;
+$red:        #c00;
+$orange:     #ffa500;
+$yellow:     #ff0;
+$green:      #006400;
+$teal:       #008080;
+$cyan:       #17a2b8;
+/* Original Bootstrap colors */
+$blue-bs4:   #007bff;
+$indigo-bs4: #6610f2;
+$purple-bs4: #6f42c1;
+$pink-bs4:   #e83e8c;
+$red-bs4:    #dc3545;
+$orange-bs4: #fd7e14;
+$yellow-bs4: #ffc107;
+$green-bs4:  #28a745;
+$teal-bs4:   #20c997;
+$cyan-bs4:   #17a2b8;
 
+/* alts to bootstrap */
 $black-color:     #000;
 $blue-color:      #006;
 $brown-color:     #68472e;
@@ -22,13 +43,15 @@ $violet-color:    #6d52ab;
 $white-color:     #fff;
 $yellow-color:    #ff0;
 
-$blue-pure:        #00f;
-$blue-dark:        #006;
-$blue-medium-dark: #00c;
-$blue-medium:      #3f3fff;
-$blue-light:       #7fffff;
-$blue-xlight:      #e5ffff;
-$blue-complement:  #9fc8e6;
+$blue-pure:         #00f;
+$blue-dark:         #006;
+$blue-medium-dark:  #00c;
+$blue-medium:       #3f3fff;
+$blue-medium-light: #007bff;
+$blue-light:        #7fffff;
+$blue-lighter:      #dceaff;
+$blue-xlight:       #e5ffff;
+$blue-complement:   #9fc8e6;
 
 $gray20: #333;
 $gray25: #404040;
@@ -138,11 +161,18 @@ $color-heading:     $grey-darkest;
 $color-heading-alt: $gray-complement;
 
 /* More Boostrap Pure Overrides for semantic colors */
-$primary:   $blue-medium;
-$secondary: $gray-color;
-$light:     $grey-lightest;
-$dark:      $grey-dark;
-
+@if variable_exists('blue')  {
+  $primary: $blue;
+}
+@else {
+  $primary: $blue-medium;
+}
+@if variable_exists('gray-600')  {
+  $secondary: $gray-600;
+}
+@else {
+  $secondary: $gray-color;
+}
 @if variable_exists('green')  {
   $success: $green;
 }
@@ -166,4 +196,16 @@ $dark:      $grey-dark;
 }
 @else {
   $danger: $red-color;
+}
+@if variable_exists('gray-100')  {
+  $light: $gray-100;
+}
+@else {
+  $light: $grey-lightest;
+}
+@if variable_exists('gray-800')  {
+  $dark: $gray-800;
+}
+@else {
+  $dark: $gray-dark;
 }
