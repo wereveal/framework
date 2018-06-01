@@ -45,14 +45,13 @@ class ManagerController implements ControllerInterface
      */
     public function route()
     {
-        $meth = __METHOD__ . '.';
         if ($this->loginValid()) {
             switch ($this->route_action) {
                 case '':
                     return $this->o_view->render();
                 case 'logout':
                     $people_id = $_SESSION['login_id'];
-                    $this->o_auth->logout($a_results['people_id']);
+                    $this->o_auth->logout($people_id);
                     $a_message = ViewHelper::successMessage('You are now logged out.');
                     return $this->login($people_id, $a_message);
                 default:

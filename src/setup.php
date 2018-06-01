@@ -152,10 +152,9 @@ catch (\Error $e) {
 }
 unset($o_const_creator); // probably unneeded but just in case something gets heavy along the way
                          // php garbage collection will take care of it.
-/*
-$a_constants = get_defined_constants(true);
-$o_elog->write(var_export($a_constants['user'], true), LOG_ON);
-*/
+
+// $a_constants = get_defined_constants(true);
+// $o_elog->write(var_export($a_constants['user'], true), LOG_ON);
 
 $o_session->setIdleTime(SESSION_IDLE_TIME); // has to be here since it relies on the constant being set.
 try {
@@ -168,19 +167,10 @@ catch (\Error $e) {
 $o_di->set('router',  $o_router);
 
 if ($twig_config == 'db') {
-    if (!isset($twig_use_cache)) {
+    if (empty($twig_use_cache)) {
         $twig_use_cache = defined('DEVELOPER_MODE') && DEVELOPER_MODE
             ? false
             : true;
-    }
-    $o_md = new \Parsedown();
-    $o_di->set('md', $o_md);
-    try {
-        $o_mde = new \ParsedownExtra();
-        $o_di->set('mde', $o_mde);
-    }
-    catch (\Exception $e) {
-        $o_di->set('mde', '');
     }
     try {
         $o_twig = TwigFactory::getTwig($o_di, $twig_use_cache);
@@ -211,6 +201,7 @@ if (USE_CACHE && ini_get('opcache.enable')) {
         : 'SimplePhpFiles';
     $o_cache = CacheFactory::start(['cache_type' => $cache_type]);
     if (is_object($o_cache)) {
+        $o_cache->prune();
         $o_di->set('cache', $o_cache);
     }
     else {

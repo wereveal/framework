@@ -5,6 +5,7 @@
  */
 namespace {NAMESPACE}\{APPNAME}\Controllers;
 
+use Ritc\Library\Controllers\LibraryController;
 use Ritc\Library\Interfaces\ControllerInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;
@@ -53,6 +54,9 @@ class MasterController implements ControllerInterface
         switch ($route_class) {
             case 'ManagerController':
                 $o_controller = new ManagerController($this->o_di);
+                break;
+            case 'LibraryController':
+                $o_controller = new LibraryController($this->o_di);
                 break;
             case 'HomeController':
             default:

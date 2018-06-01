@@ -135,7 +135,7 @@ $a_constants = [
     ],
     'use_cache' => [
         'const_name'      => 'USE_CACHE',
-        'const_value'     => 'true',
+        'const_value'     => 'false',
         'const_immutable' => 'true'
     ],
     'vendor_dir_name' => [
