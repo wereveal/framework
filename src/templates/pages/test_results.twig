@@ -1,0 +1,71 @@
+{% extends '@' ~ lib_prefix ~ 'themes/base.twig' %}
+{% block body %}
+    <div class="container">
+        <ul class="test-results">
+            <li class="green">Passed: {{ passed_tests }}</li>
+            <li class="red">Failed: {{ failed_tests }}</li>
+            <li>Skipped: {{ skipped_tests }}</li>
+            <li class="bold">Total Tests: {{ num_o_tests }}</li>
+        {% if passed_test_names %}
+            <li><span class="green">Passed Test Names <i class="far fa-thumbs-o-up"></i></span>
+                <ul>
+                    {% for passedTest in passed_test_names %}
+                        {% if passedTest.subtest_names %}
+                            <li>
+                                {{ passedTest.name }}
+                                <ul>
+                                    {% for subname in passedTest.subtest_names %}
+                                        <li>{{ subname }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li>{{ passedTest.name }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        {% else %}
+            <li>No Passed Tests <i class="far fa-thumbs-o-down"></i></li>
+        {% endif %}
+        {% if failed_test_names is not empty %}
+            <li><span class="red">Failed Test Names <i class=" far fa-thumbs-o-down"></i></span>
+                <ul>
+                {% for failedTest in failed_test_names %}
+                    {% if failedTest.subtest_failed %}
+                    <li>{{ failedTest.name }}<br />
+                        <p class="red m-0">Failed Subtests</p>
+                        <ul>
+                        {% for subname in failedTest.subtest_failed %}
+                            <li>{{ subname }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% if failedTest.subtest_success %}
+                        <p class="green m-0">Successful Subtests</p>
+                        <ul>
+                        {% for subname in failedTest.subtest_success %}
+                            <li>{{ subname }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                    </li>
+                    {% else %}
+                    <li>{{ failedTest.name }}</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </li>
+        {% endif %}
+        {% if skipped_test_names %}
+            <li>Skipped Test Names <i class="far fa-hand-peace-o"></i>
+                <ul>
+                {% for skipped in skipped_test_names %}
+                    <li>{{ skipped }}</li>
+                {% endfor %}
+                </ul>
+
+            </li>
+        {% endif %}
+        </ul>
+    </div>
+{% endblock %}

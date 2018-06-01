@@ -9,7 +9,7 @@ use Ritc\Library\Helper\ViewHelper;
 use Ritc\Library\Interfaces\ViewInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\LogitTraits;
-use Ritc\Library\Traits\ViewTraits;
+use Ritc\Library\Traits\ManagerViewTraits;
 
 /**
  * View for the Manager page.
@@ -22,7 +22,7 @@ use Ritc\Library\Traits\ViewTraits;
  */
 class ManagerView implements ViewInterface
 {
-    use ViewTraits, LogitTraits;
+    use ManagerViewTraits, LogitTraits;
 
     /**
      * ManagerView constructor.
@@ -46,28 +46,4 @@ class ManagerView implements ViewInterface
         $tpl = $this->createTplString($a_twig_values);
         return $this->renderIt($tpl, $a_twig_values);
     }
-
-    /**
-     * Creates the html that displays the login form to access the app.
-     * Sometimes this will have been handled already elsewhere.
-     * @param string $previous_login_id Optional, allows the user_login_id to be used over.
-     * @param array  $a_message         Optional, ['message' => 'text', 'type' => 'success'].
-     * @return string
-     */
-    public function renderLoginForm($previous_login_id = '', array $a_message = array())
-    {
-        if ($a_message != array()) {
-            $a_message = ViewHelper::fullMessage($a_message);
-        }
-        else {
-            $a_message = array();
-        }
-        $a_twig_values = $this->createDefaultTwigValues($a_message);
-        $a_twig_values['login_id'] = $previous_login_id;
-        $a_twig_values['a_menus'] = [];
-        $tpl = $this->createTplString($a_twig_values);
-        $this->o_session->unsetVar('login_id');
-        return $this->renderIt($tpl, $a_twig_values);
-    }
-
 }

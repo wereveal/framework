@@ -91,6 +91,6 @@ class ManagerController implements ControllerInterface
                 'location'  => '/manager/',
                 'login_id'  => $login_id
             ];
-            return $this->o_view->renderLoginForm($a_values);
+            return $this->o_view->renderLogin($a_values);
     }
 }

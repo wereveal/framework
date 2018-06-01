@@ -1530,6 +1530,23 @@
 		"oAP": "\/css\/styles_library.css.map",
 		"oF": 0
 		},
+	"\/css\/styles_manager.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 1,
+		"oA": 0,
+		"oAP": "\/css\/min\/styles_manager.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/css\/styles_manager.css.map": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/css\/styles_manager.css.map",
+		"oF": 0
+		},
 	"\/css\/test.css": {
 		"aP": 1,
 		"bl": 0,
@@ -3260,6 +3277,19 @@
 		"oS": 1,
 		"uL": 1
 		},
+	"\/scss\/apps\/manager\/_forms.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "\/scss\/apps\/css\/_forms.css",
+		"oF": 0,
+		"oS": 1,
+		"uL": 1
+		},
 	"\/scss\/index.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -3302,6 +3332,19 @@
 		"ma": 0,
 		"oA": 0,
 		"oAP": "\/css\/styles_library.css",
+		"oF": 0,
+		"oS": 1,
+		"uL": 1
+		},
+	"\/scss\/styles_manager.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 1,
+		"oA": 0,
+		"oAP": "\/css\/styles_manager.css",
 		"oF": 0,
 		"oS": 1,
 		"uL": 1
