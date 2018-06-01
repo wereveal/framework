@@ -31,8 +31,9 @@ class {controller_name}Controller implements ControllerInterface
     public function __construct(Di $o_di)
     {
         $this->setupController($o_di);
-        $this->setupElog($o_di);
+        $this->a_object_names = [];
         {controller_construct}
+        $this->setupElog($o_di);
     }
     {controller_method}
 }

@@ -31,6 +31,7 @@ class HomeView implements ViewInterface
     public function __construct(Di $o_di)
     {
         $this->setupView($o_di);
+        $this->a_object_names = [];
         $this->setupElog($o_di);
     }
 

@@ -31,6 +31,7 @@ class ManagerView implements ViewInterface
     public function __construct(Di $o_di)
     {
         $this->setupView($o_di);
+        $this->a_object_names = [];
         $this->setupElog($o_di);
     }
 
@@ -41,7 +42,6 @@ class ManagerView implements ViewInterface
      */
     public function render($a_message = array())
     {
-        $this->setAdmLevel($_SESSION['login_id']);
         $a_twig_values = $this->createDefaultTwigValues($a_message);
         $tpl = $this->createTplString($a_twig_values);
         return $this->renderIt($tpl, $a_twig_values);
@@ -50,8 +50,8 @@ class ManagerView implements ViewInterface
     /**
      * Creates the html that displays the login form to access the app.
      * Sometimes this will have been handled already elsewhere.
-     * @param string $previous_login_id optional, allows the user_login_id to be used over.
-     * @param array $a_message array with message and type of message.
+     * @param string $previous_login_id Optional, allows the user_login_id to be used over.
+     * @param array  $a_message         Optional, ['message' => 'text', 'type' => 'success'].
      * @return string
      */
     public function renderLoginForm($previous_login_id = '', array $a_message = array())
