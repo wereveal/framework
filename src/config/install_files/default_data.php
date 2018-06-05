@@ -8,6 +8,7 @@ $a_u = [
     'test_results'     => '/manager/tests/results/',
     'library'          => '/manager/config/',
     'lib_ajax'         => '/manager/config/ajax/',
+    'lib_blocks'       => '/manager/config/blocks/',
     'lib_cache'        => '/manager/config/cache/',
     'lib_constants'    => '/manager/config/constants/',
     'lib_content'      => '/manager/config/content',
@@ -24,7 +25,8 @@ $a_u = [
     'lib_login'        => '/manager/config/login/',
     'lib_logout'       => '/manager/config/logout/',
     'error'            => '/error/',
-    'sitemap'          => '/sitemap/'
+    'sitemap'          => '/sitemap/',
+    'shared'           => 'shared'
 ];
 
 $a_constants = [
@@ -190,7 +192,7 @@ $a_groups = [
 ];
 
 $a_urls = [
-	'home'             => ['url_host' => 'self', 'url_text' => $a_u['home'],             'url_scheme' => 'http',  'url_immutable' => 'true'],
+	'home'             => ['url_host' => 'self', 'url_text' => $a_u['home'],             'url_scheme' => 'https', 'url_immutable' => 'true'],
 	'manager'          => ['url_host' => 'self', 'url_text' => $a_u['manager'],          'url_scheme' => 'https', 'url_immutable' => 'true'],
 	'man_login'        => ['url_host' => 'self', 'url_text' => $a_u['man_login'],        'url_scheme' => 'https', 'url_immutable' => 'true'],
 	'man_logout'       => ['url_host' => 'self', 'url_text' => $a_u['man_logout'],       'url_scheme' => 'https', 'url_immutable' => 'true'],
@@ -198,6 +200,7 @@ $a_urls = [
     'test_results'     => ['url_host' => 'self', 'url_text' => $a_u['test_results'],     'url_scheme' => 'https', 'url_immutable' => 'true'],
 	'library'          => ['url_host' => 'self', 'url_text' => $a_u['library'],          'url_scheme' => 'https', 'url_immutable' => 'true'],
     'lib_ajax'         => ['url_host' => 'self', 'url_text' => $a_u['lib_ajax'],         'url_scheme' => 'https', 'url_immutable' => 'true'],
+    'lib_blocks'       => ['url_host' => 'self', 'url_text' => $a_u['lib_blocks'],       'url_scheme' => 'https', 'url_immutable' => 'true'],
     'lib_cache'        => ['url_host' => 'self', 'url_text' => $a_u['lib_cache'],        'url_scheme' => 'https', 'url_immutable' => 'true'],
 	'lib_constants'    => ['url_host' => 'self', 'url_text' => $a_u['lib_constants'],    'url_scheme' => 'https', 'url_immutable' => 'true'],
     'lib_content'      => ['url_host' => 'self', 'url_text' => $a_u['lib_content'],      'url_scheme' => 'https', 'url_immutable' => 'true'],
@@ -214,7 +217,8 @@ $a_urls = [
     'lib_login'        => ['url_host' => 'self', 'url_text' => $a_u['lib_login'],        'url_scheme' => 'https', 'url_immutable' => 'true'],
     'lib_logout'       => ['url_host' => 'self', 'url_text' => $a_u['lib_logout'],       'url_scheme' => 'https', 'url_immutable' => 'true'],
     'sitemap'          => ['url_host' => 'self', 'url_text' => $a_u['sitemap'],          'url_scheme' => 'https', 'url_immutable' => 'true'],
-	'error'            => ['url_host' => 'self', 'url_text' => $a_u['error'],            'url_scheme' => 'https', 'url_immutable' => 'true']
+	'error'            => ['url_host' => 'self', 'url_text' => $a_u['error'],            'url_scheme' => 'https', 'url_immutable' => 'true'],
+    'shared'           => ['url_host' => 'self', 'url_text' => $a_u['shared'],           'url_scheme' => 'ritc',  'url_immutable' => 'true']
 ];
 
 $a_people = [
@@ -393,6 +397,13 @@ $a_routes = [
         'route_action'    => 'ajax',
         'route_immutable' => 'true'
     ],
+    'lib_blocks' => [
+        'url_id'          => 'lib_blocks',
+        'route_class'     => 'LibraryController',
+        'route_method'    => 'route',
+        'route_action'    => 'blocks',
+        'route_immutable' => 'true'
+    ],
     'lib_cache' => [
         'url_id'          => 'lib_cache',
         'route_class'     => 'LibraryController',
@@ -510,6 +521,7 @@ $a_route_group_map = [
     ['route_id' => 'test_results',     'group_id' => 'manager'],
 	['route_id' => 'library',          'group_id' => 'admin'],
     ['route_id' => 'lib_ajax',         'group_id' => 'admin'],
+    ['route_id' => 'lib_blocks',       'group_id' => 'admin'],
     ['route_id' => 'lib_cache',        'group_id' => 'admin'],
     ['route_id' => 'lib_constants',    'group_id' => 'admin'],
     ['route_id' => 'lib_content',      'group_id' => 'admin'],
@@ -524,7 +536,7 @@ $a_route_group_map = [
     ['route_id' => 'lib_twig',         'group_id' => 'admin'],
     ['route_id' => 'lib_urls',         'group_id' => 'admin'],
     ['route_id' => 'lib_login',        'group_id' => 'admin'],
-    ['route_id' => 'lib_logout',       'group_id' => 'admin'],
+    ['route_id' => 'lib_logout',       'group_id' => 'admin']
 ];
 
 $a_navigation = [
@@ -597,6 +609,18 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 3,
+        'nav_active'      => 'true',
+        'nav_immutable'   => 'true'
+    ],
+    'lib_blocks'  => [
+        'url_id'          => 'lib_blocks',
+        'nav_parent_id'   => 'library',
+        'nav_name'        => 'blocks',
+        'nav_text'        => 'Blocks',
+        'nav_description' => 'Manage blocks used throughout app.',
+        'nav_css'         => '',
+        'nav_level'       => 2,
+        'nav_order'       => 8,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -869,6 +893,7 @@ $a_nav_ng_map = [
     ['ng_id' => 'manager',      'nav_id' => 'man_login'],
     ['ng_id' => 'manager',      'nav_id' => 'man_logout'],
     ['ng_id' => 'manager',      'nav_id' => 'library'],
+    ['ng_id' => 'manager',      'nav_id' => 'lib_blocks'],
     ['ng_id' => 'manager',      'nav_id' => 'lib_cache'],
     ['ng_id' => 'manager',      'nav_id' => 'lib_constants'],
     ['ng_id' => 'manager',      'nav_id' => 'lib_content'],
@@ -887,6 +912,7 @@ $a_nav_ng_map = [
     ['ng_id' => 'configlinks',  'nav_id' => 'home'],
     ['ng_id' => 'configlinks',  'nav_id' => 'manager'],
     ['ng_id' => 'configlinks',  'nav_id' => 'library'],
+    ['ng_id' => 'configlinks',  'nav_id' => 'lib_blocks'],
     ['ng_id' => 'configlinks',  'nav_id' => 'lib_cache'],
     ['ng_id' => 'configlinks',  'nav_id' => 'lib_constants'],
     ['ng_id' => 'configlinks',  'nav_id' => 'lib_content'],
@@ -918,6 +944,22 @@ $a_page = [
         'page_type'        => 'text/html',
         'page_title'       => 'Home Page',
         'page_description' => 'Home Page',
+        'page_up'          => '1000-01-01 00:00:00',
+        'page_down'        => '9999-12-31 23:59:59',
+        'created_on'       => date('Y-m-d H:i:s'),
+        'updated_on'       => date('Y-m-d H:i:s'),
+        'page_base_url'    => '/',
+        'page_lang'        => 'en',
+        'page_charset'     => 'utf-8',
+        'page_immutable'   => 'true'
+    ],
+    'shared' => [
+        'url_id'           => 'shared',
+        'ng_id'            => '1',
+        'tpl_id'           => 'lib_shared',
+        'page_type'        => 'text/html',
+        'page_title'       => 'shared content',
+        'page_description' => 'shared content on multiple pages',
         'page_up'          => '1000-01-01 00:00:00',
         'page_down'        => '9999-12-31 23:59:59',
         'created_on'       => date('Y-m-d H:i:s'),
@@ -1071,6 +1113,22 @@ $a_page = [
         'page_charset'     => 'utf-8',
         'page_immutable'   => 'true'
     ],
+    'lib_blocks' => [
+        'url_id'           => 'lib_blocks',
+        'ng_id'            => '2',
+        'tpl_id'           => 'lib_blocks',
+        'page_type'        => 'text/html',
+        'page_title'       => 'Manages the Blocks',
+        'page_description' => 'Manages the Blocks',
+        'page_up'          => '1000-01-01 00:00:00',
+        'page_down'        => '9999-12-31 23:59:59',
+        'created_on'       => date('Y-m-d H:i:s'),
+        'updated_on'       => date('Y-m-d H:i:s'),
+        'page_base_url'    => '/',
+        'page_lang'        => 'en',
+        'page_charset'     => 'utf-8',
+        'page_immutable'   => 'true'
+    ],
     'lib_cache' => [
         'url_id'           => 'lib_cache',
         'ng_id'            => '2',
@@ -1108,8 +1166,8 @@ $a_page = [
         'ng_id'            => '2',
         'tpl_id'           => 'lib_content',
         'page_type'        => 'text/html',
-        'page_title'       => 'Configuration for Constants',
-        'page_description' => 'Configuration for Constants',
+        'page_title'       => 'Configuration for Content',
+        'page_description' => 'Configuration for Content',
         'page_up'          => '1000-01-01 00:00:00',
         'page_down'        => '9999-12-31 23:59:59',
         'created_on'       => date('Y-m-d H:i:s'),
@@ -1220,8 +1278,8 @@ $a_page = [
         'ng_id'            => '2',
         'tpl_id'           => 'lib_sitemap',
         'page_type'        => 'text/html',
-        'page_title'       => 'Manager Tests',
-        'page_description' => 'Runs tests for the code.',
+        'page_title'       => 'Sitemap Manager',
+        'page_description' => 'Sitemap Manager.',
         'page_up'          => '1000-01-01 00:00:00',
         'page_down'        => '9999-12-31 23:59:59',
         'created_on'       => date('Y-m-d H:i:s'),
@@ -1313,15 +1371,308 @@ $a_page = [
     ],
 ];
 
+$a_blocks = [
+    'body' => [
+        'b_name'   => 'body',
+        'b_type'   => 'solo',
+        'b_active' => 'true',
+        'b_immutable' => 'true'
+    ],
+    'instructions' => [
+        'b_name'   => 'instructions',
+        'b_type'   => 'solo',
+        'b_active' => 'true',
+        'b_immutable' => 'true'
+    ],
+    'sidebar' => [
+        'b_name'   => 'sidebar',
+        'b_type'   => 'shared',
+        'b_active' => 'true',
+        'b_immutable' => 'true'
+    ],
+    'header' => [
+        'b_name'   => 'header',
+        'b_type'   => 'shared',
+        'b_active' => 'true',
+        'b_immutable' => 'true'
+    ],
+    'footer' => [
+        'b_name'   => 'footer',
+        'b_type'   => 'shared',
+        'b_active' => 'true',
+        'b_immutable' => 'true'
+    ],
+    'header_left' => [
+        'b_name'   => 'header_left',
+        'b_type'   => 'shared',
+        'b_active' => 'false',
+        'b_immutable' => 'true'
+    ],
+    'header_middle' => [
+        'b_name'   => 'header_middle',
+        'b_type'   => 'shared',
+        'b_active' => 'false',
+        'b_immutable' => 'true'
+    ],
+    'header_right' => [
+        'b_name'   => 'header_right',
+        'b_type'   => 'shared',
+        'b_active' => 'false',
+        'b_immutable' => 'true'
+    ],
+    'footer_left' => [
+        'b_name'   => 'footer_left',
+        'b_type'   => 'shared',
+        'b_active' => 'false',
+        'b_immutable' => 'true'
+    ],
+    'footer_middle' => [
+        'b_name'   => 'footer_middle',
+        'b_type'   => 'shared',
+        'b_active' => 'false',
+        'b_immutable' => 'true'
+    ],
+    'footer_right' => [
+        'b_name'   => 'footer_right',
+        'b_type'   => 'shared',
+        'b_active' => 'false',
+        'b_immutable' => 'true'
+    ]
+];
+
+$a_pbm = [
+    'home_body' => [
+        'pbm_page_id'  => 'home',
+        'pbm_block_id' => 'body'
+    ],
+    'lib_blocks_instructions' => [
+        'pbm_page_id'  => 'lib_blocks',
+        'pbm_block_id' => 'instructions'
+    ],
+    'lib_cache_instructions' => [
+        'pbm_page_id'  => 'lib_cache',
+        'pbm_block_id' => 'instructions'
+    ],
+    'lib_constants_instructions' => [
+        'pbm_page_id'  => 'lib_constants',
+        'pbm_block_id' => 'instructions'
+    ],
+    'lib_content_instructions' => [
+        'pbm_page_id'  => 'lib_content',
+        'pbm_block_id' => 'instructions'
+    ],
+    'lib_groups_instructions' => [
+        'pbm_page_id'  => 'lib_groups',
+        'pbm_block_id' => 'instructions'
+    ],
+    'lib_nav_instructions' => [
+        'pbm_page_id'  => 'lib_nav',
+        'pbm_block_id' => 'instructions'
+    ],
+    'lib_pages_instructions' => [
+        'pbm_page_id'  => 'lib_pages',
+        'pbm_block_id' => 'instructions'
+    ],
+    'lib_peeps_instructions' => [
+        'pbm_page_id'  => 'lib_peeps',
+        'pbm_block_id' => 'instructions'
+    ],
+    'lib_routes_instructions' => [
+        'pbm_page_id'  => 'lib_routes',
+        'pbm_block_id' => 'instructions'
+    ],
+    'lib_sitemap_instructions' => [
+        'pbm_page_id'  => 'lib_sitemap',
+        'pbm_block_id' => 'instructions'
+    ],
+    'lib_tests_instructions' => [
+        'pbm_page_id'  => 'lib_tests',
+        'pbm_block_id' => 'instructions'
+    ],
+    'lib_twig_instructions' => [
+        'pbm_page_id'  => 'lib_twig',
+        'pbm_block_id' => 'instructions'
+    ],
+    'lib_urls_instructions' => [
+        'pbm_page_id'  => 'lib_urls',
+        'pbm_block_id' => 'instructions'
+    ],
+    'shared_sidebar' => [
+        'pbm_page_id'  => 'shared',
+        'pbm_block_id' => 'sidebar'
+    ],
+    'shared_header' => [
+        'pbm_page_id'  => 'shared',
+        'pbm_block_id' => 'header'
+    ],
+    'shared_footer' => [
+        'pbm_page_id'  => 'shared',
+        'pbm_block_id' => 'footer'
+    ],
+];
+
 $a_content = [
    'home' => [
-        'c_page_id' => 'home',
-        'c_content' => "###Welcome.\nThis is the home page.\nThis gives example using _Marrkdown_ which provides easy **html**.",
+        'c_pbm_id' => 'home_body',
+        'c_content' => "###Welcome.\nThis is the home page.\nThis gives example using _Markdown_ which provides easy **html**.",
         'c_type'    => 'md',
-        'c_block'   => 'body',
         'c_created' => '',
         'c_version' => '1',
         'c_current' => 'true'
+   ],
+   'lib_blocks' => [
+       'c_pbm_id'  => 'lib_blocks_instructions',
+       'c_content' => "",
+       'c_type'    => 'md',
+       'c_created' => '',
+       'c_version' => '1',
+       'c_current' => 'true'
+   ],
+   'lib_cache' => [
+       'c_pbm_id'  => 'lib_cache_instructions',
+       'c_content' => "",
+       'c_type'    => 'md',
+       'c_created' => '',
+       'c_version' => '1',
+       'c_current' => 'true'
+   ],
+   'lib_constants' => [
+       'c_pbm_id'  => 'lib_constants_instructions',
+       'c_content' => "### Instructions
+- Constant Name must be letters only. The constant name will be converted to all caps, spaces to underscores, and all other characters removed, e.g., 'my 2nd config!' will become 'MY_ND_CONFIG'.
+- Constant values will be sanitized (hacker prevention) but otherwise remain as typed. Values are limited to 64 characters.</li>
+- Immutable means you can't change the Constant Name or delete it. <span class=\"red bold\">So be careful!</span> If you set something immutable, it can't go back.
+        ",
+        'c_type'    => 'md',
+        'c_created' => '',
+        'c_version' => '1',
+        'c_current' => 'true'
+    ],
+   'lib_content' => [
+       'c_pbm_id'  => 'lib_content_instructions',
+       'c_content' => "",
+       'c_type'    => 'md',
+       'c_created' => '',
+       'c_version' => '1',
+       'c_current' => 'true'
+   ],
+   'lib_groups' => [
+       'c_pbm_id'  => 'lib_groups_instructions',
+       'c_content' => "### Instructions
+- Certain groups are fixed so that the app will work. They are not visible.</li>
+- Group Name is a single word, alpha characters only. The app will change the group name to camelCase, then capitalizing the first letter, removing any other characters.
+- Group Description can be anything that is meaningful. Text will be sanitized.
+- Group Auth Level sets a general authorization level for the group, 0-9, 9 having the highest authorization level.
+- Immutable means the name cannot be changed and the group can not be deleted. <span class=\"red bold\">Be careful!</span>
+        ",
+       'c_type'    => 'md',
+       'c_created' => '',
+       'c_version' => '1',
+       'c_current' => 'true'
+   ],
+   'lib_peeps' => [
+       'c_pbm_id'  => 'lib_peeps_instructions',
+       'c_content' => "### Instructions:
+- Login ID is required. It is what is used for authentication and access. Immutable Login IDs are locked and should never be changed.
+- Name is required. It can be anything. It is used for display. If left blank it will be set to the Login ID.
+- Alias can be anything that is 8 characters or less and may be used in some views. Can be blank, it will be automagically created from Name.
+- Password:
+  - Is required
+  - Is Encrypted and cannot be recovered, only replaced.
+  - Must be at least 8 characters long.
+  - Recommendation: It be at least 12 random or psuedo-random characters, upper and lower alpha, numeric and characters such as @% etc.
+  - Recommendation: It not be a single dictionary word, name, or personal information.
+  - Optionally a good practice would be to use 3 or 4 non-associated words of at least 4 characters long, e.g., 'Television river Banana' which allows one to remember the password while being difficult for a malicious attacker guess.
+  - password and 12345678 are not good passwords. Come on! You don't want to be responsible for someone maliciously accessing this site and deface it.          
+- Description can be anything and is optional.
+- Active determines if the person is allowed to log in. Allows for historical data, keeping the person in the database but preventing one from logging in again.
+- Groups allow the person to access the materials that group can access. A person can be assigned to multiple groups. Some groups are inclusive of other groups.
+        ",
+       'c_type'    => 'md',
+       'c_created' => '',
+       'c_version' => '1',
+       'c_current' => 'true'
+   ],
+   'lib_urls' => [
+       'c_pbm_id'  => 'lib_urls_instructions',
+       'c_content' => "### Instructions
+- Urls may be in one of two formats
+  - In proper (standards based) url format, e.g. https://my.fred.com/
+  - Without protocol and server defaulting to the current site, e.g., /manager/config/urls/
+- Immutable/Cannot Be Deleted means you can't delete it, pretty clear eh? <span class=\"red bold\">So be careful!</span> If you set it that way, it can't go back.
+        ",
+       'c_type'    => 'md',
+       'c_created' => '',
+       'c_version' => '1',
+       'c_current' => 'true'
+   ],
+   'lib_routes' => [
+       'c_pbm_id'  => 'lib_routes_instructions',
+       'c_content' => "### Instructions
+- Routes maps the url to a class, method, and action. Certain routes are fixed so that the app will work. They are not visible.
+- Route Path is what appears in the browser address bar, e.g., '/about/charlie/' and is taken from the URL manager.
+- Route Class is the name of the class associated with the path, e.g., MasterController.
+  - The class is required and must match the class name exactly.
+  - The class is normally a controller.
+- The method is the name of the method to be used. 
+  - The method is required.
+  - The method must match the method name exactly.
+- The action is normally an argument that is used in the method. This is optional.
+        ",
+       'c_type'    => 'md',
+       'c_created' => '',
+       'c_version' => '1',
+       'c_current' => 'true'
+   ],
+   'lib_nav' => [
+       'c_pbm_id'  => 'lib_nav_instructions',
+       'c_content' => "",
+       'c_type'    => 'md',
+       'c_created' => '',
+       'c_version' => '1',
+       'c_current' => 'true'
+   ],
+   'lib_pages' => [
+       'c_pbm_id'  => 'lib_pages_instructions',
+       'c_content' => "### Instructions
+- Most values are used in the HTML meta tags, used in the head.
+- The Page Url is unique per page. Only unused URLs are available. If you need a new url, you need to create it first [Here](/manager/config/urls/) and normally then a new route [here](/manager/config/routes/)
+- Page Title is used in the meta data but may also be used in a &lt;h1&gt;. If not specified, a default value may be used.
+- Page Description can be pretty much any text. Can be blank. If not specified, a default value may be used. Per SEO, the descriptions should be no more than 150 characters.
+- Base URL is a meta tag value. The default '/' is normally fine - the base site url will be used then.
+- Mime Type is a meta tag value. The default 'text/html' is used for most web pages.
+- Language is a meta tag value. The default is 'en' (English).
+- Character Set is a meta tag value. The default is 'utf8' and should normally be used.
+- Immutable means the page cannot be deleted nor the URL changed. _**Be careful!**_
+        ",
+       'c_type'    => 'md',
+       'c_created' => '',
+       'c_version' => '1',
+       'c_current' => 'true'
+   ],
+   'lib_sitemap' => [
+       'c_pbm_id'  => 'lib_sitemap_instructions',
+       'c_content' => "",
+       'c_type'    => 'md',
+       'c_created' => '',
+       'c_version' => '1',
+       'c_current' => 'true'
+   ],
+   'lib_twig' => [
+       'c_pbm_id'  => 'lib_twig_instructions',
+       'c_content' => "",
+       'c_type'    => 'md',
+       'c_created' => '',
+       'c_version' => '1',
+       'c_current' => 'true'
+   ],
+   'lib_tests' => [
+       'c_pbm_id'  => 'lib_tests_instructions',
+       'c_content' => "",
+       'c_type'    => 'md',
+       'c_created' => '',
+       'c_version' => '1',
+       'c_current' => 'true'
    ]
 ];
 
@@ -1437,6 +1788,11 @@ $a_twig_tpls = [
         'tpl_name'      => 'index',
         'tpl_immutable' => 'true'
     ],
+    'lib_blocks' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'blocks',
+        'tpl_immutable' => 'true'
+    ],
     'lib_cache' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'cache',
@@ -1502,6 +1858,11 @@ $a_twig_tpls = [
         'tpl_name'      => 'routes',
         'tpl_immutable' => 'true'
     ],
+    'lib_shared' => [
+        'td_id'         => 'lib_snippets',
+        'tpl_name'      => 'shared',
+        'tpl_immutable' => 'true'
+    ],
     'lib_sitemap' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'sitemap',
@@ -1565,6 +1926,8 @@ return [
     'navigation'        => $a_navigation,
     'nav_ng_map'        => $a_nav_ng_map,
     'page'              => $a_page,
+    'blocks'            => $a_blocks,
+    'page_block_map'    => $a_pbm,
     'content'           => $a_content,
     'twig_prefix'       => $a_twig_prefix,
     'twig_dirs'         => $a_twig_dirs,

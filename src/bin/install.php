@@ -165,6 +165,10 @@ $o_di->set('elog', $o_elog);
 try {
     /** @var \PDO $o_pdo */
     $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+    if (! $o_pdo instanceof \PDO) {
+        die("Unable to create the Pdo instance.");
+    }
+    $o_di->set('pdo', $o_pdo);
 }
 catch (FactoryException $e) {
     die("Unable to start the PdoFactory. " . $e->errorMessage());
@@ -362,6 +366,20 @@ print "success\n";
 ### Enter 'page' ###
 print "Creating Page: ";
 if (!$o_installer_model->insertPage()) {
+    failIt($o_db, $o_installer_model->getErrorMessage());
+}
+print "success\n";
+
+### Enter 'blocks' ###
+print "Creating Blocks: ";
+if (!$o_installer_model->insertBlocks()) {
+    failIt($o_db, $o_installer_model->getErrorMessage());
+}
+print "success\n";
+
+### Enter 'Page blocks' ###
+print "Creating Page Blocks Map: ";
+if (!$o_installer_model->insertPBM()) {
     failIt($o_db, $o_installer_model->getErrorMessage());
 }
 print "success\n";

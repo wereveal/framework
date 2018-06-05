@@ -1,20 +1,6 @@
 {% extends '@' ~ page_prefix ~ 'themes/base.twig' %}
 {% block body %}
-    <div class="container">
-        {% if a_content.body %}
-            {% set ctype = a_content.body.c_type %}
-            {% set content = a_content.body.c_content %}
-            {% if ctype == 'html' or ctype == 'xml' or ctype == 'raw' %}
-                {{ content | raw }}
-            {% elseif ctype == 'md' %}
-                {{ content | md }}
-            {% elseif ctype == 'mde' %}
-                {{ content | mde }}
-            {% else %}
-                {{ content | nl2br }}
-            {% endif %}
-        {% endif %}
-    </div>
+    {{ parent() }}
 {% endblock %}
 {#
 expected array [
@@ -28,7 +14,7 @@ expected array [
     'page_prefix',
     'a_menus',
     'a_message',
-    'body_text',
+    'a_content',
     'debug_text',
     'copyright_date',
     'site_url',

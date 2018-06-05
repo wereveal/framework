@@ -4,6 +4,8 @@ return [
 "DROP TABLE IF EXISTS {dbPrefix}people_group_map",
 "DROP TABLE IF EXISTS {dbPrefix}routes_group_map",
 "DROP TABLE IF EXISTS {dbPrefix}constants",
+"DROP TABLE IF EXISTS {dbPrefix}page_blocks_map",
+"DROP TABLE IF EXISTS {dbPrefix}blocks",
 "DROP TABLE IF EXISTS {dbPrefix}content",
 "DROP TABLE IF EXISTS {dbPrefix}groups",
 "DROP TABLE IF EXISTS {dbPrefix}page",
@@ -19,6 +21,7 @@ return [
 "DROP TYPE IF EXISTS url_protocol CASCADE",
 "DROP TYPE IF EXISTS truthy CASCADE",
 "DROP TYPE IF EXISTS content_type CASCADE",
+"DROP TYPE IF EXISTS block_type CASCADE",
 'CREATE OR REPLACE FUNCTION change_updated_on() RETURNS trigger AS
 $BODY$
 BEGIN
@@ -26,9 +29,10 @@ BEGIN
  RETURN NEW;
 END;
 $BODY$ language \'plpgsql\'',
-"CREATE TYPE url_protocol as ENUM ('http', 'https', 'ftp', 'gopher', 'mailto', 'file')",
+"CREATE TYPE url_protocol as ENUM ('http', 'https', 'ftp', 'gopher', 'mailto', 'file', 'ritc')",
 "CREATE TYPE truthy as ENUM ('true', 'false')",
 "CREATE TYPE content_type as ENUM ('text','html','md','mde','xml','raw')",
+"CREATE TYPE block_type as ENUM ('shared', 'solo')",
 
 "CREATE TABLE {dbPrefix}constants (
   const_id serial NOT NULL,
@@ -91,6 +95,26 @@ $BODY$ language \'plpgsql\'',
   ON {dbPrefix}page
   FOR EACH ROW
   EXECUTE PROCEDURE change_updated_on()",
+
+"CREATE TABLE {dbPrefix}blocks (
+  b_id serial NOT NULL,
+  b_name character varying(64) NOT NULL DEFAULT 'body'::character varying,
+  b_type block_type NOT NULL DEFAULT 'shared'::block_type,
+  b_active truthy NOT NULL DEFAULT 'true'::truthy,
+  b_immutable truthy NOT NULL DEFAULT 'false'::truthy,
+  PRIMARY KEY (b_id)
+  UNIQUE (b_name)
+)",
+
+"CREATE TABLE {dbPrefix}page_blocks_map (
+  pbm_id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  pbm_page_id int(11) unsigned NOT NULL,
+  pbm_block_id int(10) unsigned NOT NULL,
+  PRIMARY KEY (pbm_id),
+  UNIQUE (pbm_page_id,pbm_block_id)
+)",
+"CREATE INDEX pbm_page_id_idx on {dbPrefix}page_blocks_map USING btree (pbm_page_id)",
+"CREATE INDEX pbm_block_id_idx on {dbPrefix}page_blocks_map USING btree (pbm_block_id)",
 
 "CREATE TABLE {dbPrefix}content (
   c_id serial NOT NULL,
@@ -214,6 +238,24 @@ $BODY$ language \'plpgsql\'',
 "ALTER TABLE {dbPrefix}page 
     ADD CONSTRAINT {dbPrefix}page_ibfk_1 
     FOREIGN KEY (url_id) REFERENCES {dbPrefix}urls (url_id) 
+      ON DELETE CASCADE
+      ON UPDATE CASCADE",
+
+"ALTER TABLE {dbPrefix}page 
+    ADD CONSTRAINT {dbPrefix}page_ibfk_2 
+    FOREIGN KEY (tpl_id) REFERENCES {dbPrefix}twig_templates (tpl_id) 
+      ON DELETE CASCADE
+      ON UPDATE CASCADE",
+
+"ALTER TABLE {dbPrefix}page_blocks_map 
+    ADD CONSTRAINT {dbPrefix}page_blocks_map_ibfk_1 
+    FOREIGN KEY (pbm_page_id) REFERENCES {dbPrefix}page (page_id) 
+      ON DELETE CASCADE
+      ON UPDATE CASCADE",
+
+"ALTER TABLE {dbPrefix}page_blocks_map 
+    ADD CONSTRAINT {dbPrefix}page_blocks_map_ibfk_2 
+    FOREIGN KEY (pbm_block_id) REFERENCES {dbPrefix}blocks (b_id) 
       ON DELETE CASCADE
       ON UPDATE CASCADE",
 

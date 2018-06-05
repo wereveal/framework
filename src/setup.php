@@ -98,6 +98,7 @@ try {
     if (!$o_pdo instanceof \PDO) {
         die("PDO instance was not created");
     }
+    $o_di->set('pdo', $o_pdo);
 }
 catch (FactoryException $e) {
     die($e->errorMessage());
@@ -118,6 +119,7 @@ if (RODB) {
         if (!$o_pdo_ro instanceof \PDO) {
             die("Could not start the RO PDOFactory.");
         }
+        $o_di->set('pdo_ro', $o_pdo_ro);
     }
     catch (FactoryException $e) {
         die("Could not start the RO PDOFactory: " . $e->errorMessage());
@@ -154,6 +156,10 @@ unset($o_const_creator); // probably unneeded but just in case something gets he
                          // php garbage collection will take care of it.
 
 // $a_constants = get_defined_constants(true);
+// print '<pre>';
+// print_r($a_constants['user']);
+// print '<pre>';
+// die();
 // $o_elog->write(var_export($a_constants['user'], true), LOG_ON);
 
 $o_session->setIdleTime(SESSION_IDLE_TIME); // has to be here since it relies on the constant being set.

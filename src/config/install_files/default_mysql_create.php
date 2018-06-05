@@ -5,6 +5,8 @@ return [
 "DROP TABLE IF EXISTS `{dbPrefix}people_group_map`",
 "DROP TABLE IF EXISTS `{dbPrefix}routes_group_map`",
 "DROP TABLE IF EXISTS `{dbPrefix}constants`",
+"DROP TABLE IF EXISTS `{dbPrefix}page_blocks_map`",
+"DROP TABLE IF EXISTS `{dbPrefix}blocks`",
 "DROP TABLE IF EXISTS `{dbPrefix}content`",
 "DROP TABLE IF EXISTS `{dbPrefix}groups`",
 "DROP TABLE IF EXISTS `{dbPrefix}page`",
@@ -42,7 +44,7 @@ return [
   `url_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `url_host` varchar(150) NOT NULL DEFAULT 'self',
   `url_text` varchar(150) NOT NULL DEFAULT '',
-  `url_scheme` enum('http','https','ftp','gopher','mailto', 'file') NOT NULL DEFAULT 'https',
+  `url_scheme` enum('http','https','ftp','gopher','mailto', 'file', 'ritc') NOT NULL DEFAULT 'https',
   `url_immutable` enum('true','false') NOT NULL DEFAULT 'false',
   PRIMARY KEY (`url_id`),
   UNIQUE KEY `urls_url` (`url_scheme`,`url_host`,`url_text`)
@@ -79,18 +81,37 @@ return [
   KEY (`url_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
+"CREATE TABLE `{dbPrefix}blocks` (
+  `b_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `b_name` varchar(64) NOT NULL DEFAULT 'body',
+  `b_type` enum('shared','solo') NOT NULL DEFAULT 'shared',
+  `b_active` enum('true','false') NOT NULL DEFAULT 'true',
+  `b_immutable` enum('true','false') NOT NULL DEFAULT 'false',
+  PRIMARY KEY (`b_id`),
+  UNIQUE KEY `b_name` (`b_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
+
+"CREATE TABLE `{dbPrefix}page_blocks_map` (
+  `pbm_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pbm_page_id` int(11) unsigned NOT NULL,
+  `pbm_block_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`pbm_id`),
+  UNIQUE KEY `pbm_page_id_2` (`pbm_page_id`,`pbm_block_id`),
+  KEY `pbm_page_id` (`pbm_page_id`),
+  KEY `pbm_block_id` (`pbm_block_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
+
 "CREATE TABLE `{dbPrefix}content` (
   `c_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `c_page_id` int(11) unsigned NOT NULL,
+  `c_pbm_id` int(11) unsigned NOT NULL,
   `c_content` text NOT NULL,
   `c_type` enum('text','html','md','mde','xml','raw') NOT NULL DEFAULT 'text',
-  `c_block` varchar(128) NOT NULL DEFAULT 'body',
   `c_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `c_version` int(11) NOT NULL DEFAULT '1',
   `c_current` enum('true','false') NOT NULL DEFAULT 'true',
   PRIMARY KEY (`c_id`),
-  KEY `c_page_id` (`c_page_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
+  KEY `c_pbm_id` (`c_pbm_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}people` (
   `people_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -145,7 +166,7 @@ return [
   UNIQUE KEY `ng_id_2` (`ng_id`,`nav_id`),
   KEY `ng_id` (`ng_id`),
   KEY `nav_id` (`nav_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;",
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;",
 
 "CREATE TABLE `{dbPrefix}people_group_map` (
   `pgm_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -197,7 +218,9 @@ return [
 "ALTER TABLE `{dbPrefix}routes` ADD CONSTRAINT `{dbPrefix}routes_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE `{dbPrefix}page` ADD CONSTRAINT `{dbPrefix}page_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE `{dbPrefix}page` ADD CONSTRAINT `{dbPrefix}page_ibfk_2` FOREIGN KEY (`tpl_id`) REFERENCES `{dbPrefix}twig_templates` (`tpl_id`) ON DELETE CASCADE ON UPDATE CASCADE",
-"ALTER TABLE `{dbPrefix}content` ADD CONSTRAINT `{dbPrefix}content_ibfk_1` FOREIGN KEY (`c_page_id`) REFERENCES `{dbPrefix}page` (`page_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE `{dbPrefix}page_blocks_map` ADD CONSTRAINT `{dbPrefix}page_blocks_map_ibfk_1` FOREIGN KEY (`pbm_page_id`) REFERENCES `{dbPrefix}page` (`page_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE `{dbPrefix}page_blocks_map` ADD CONSTRAINT `{dbPrefix}page_blocks_map_ibfk_2` FOREIGN KEY (`pbm_block_id`) REFERENCES `{dbPrefix}blocks` (`b_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE `{dbPrefix}content` ADD CONSTRAINT `{dbPrefix}content_ibfk_1` FOREIGN KEY (`c_pbm_id`) REFERENCES `{dbPrefix}page_blocks_map` (`pbm_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE `{dbPrefix}navigation` ADD CONSTRAINT `{dbPrefix}navigation_ibfk_1` FOREIGN KEY (`url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE `{dbPrefix}nav_ng_map` ADD CONSTRAINT `{dbPrefix}nnm_ibfk_1` FOREIGN KEY (`ng_id`) REFERENCES `{dbPrefix}navgroups` (`ng_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE `{dbPrefix}nav_ng_map` ADD CONSTRAINT `{dbPrefix}nnm_ibfk_2` FOREIGN KEY (`nav_id`) REFERENCES `{dbPrefix}navigation` (`nav_id`) ON DELETE CASCADE ON UPDATE CASCADE",
