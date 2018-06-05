@@ -52,6 +52,60 @@
   }
 }
 
+@mixin contentBlockHead($colorText, $colorBg) {
+  color: $colorText;
+  background-color: $colorBg;
+  font-variant: small-caps;
+  padding-left: 1rem;
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+@mixin contentBlock($colorScheme: 'gray') {
+  $borderSize: 0;
+  $borderRadius: .25rem;
+  $colorBg: $gray-medium-dark;
+  $colorText: $color-xlight;
+
+  @if $colorScheme == 'gray' {
+    $borderSize: 1px;
+    $colorBg: $gray-medium-dark;
+    $colorText: $color-xlight;
+  } @else if $colorScheme == 'green' {
+    $borderSize: 1px;
+    $colorBg: $green-dark;
+    $colorText: $green-xlight;
+  } @else if $colorScheme == 'blue' {
+    $borderSize: 1px;
+    $colorBg: $blue-dark;
+    $colorText: $blue-xlight;
+  } @else if $colorScheme == 'red' {
+    $borderSize: 1px;
+    $colorBg: $red-dark;
+    $colorText: $red-xlight;
+  } @else if $colorScheme == 'orange' {
+    $borderSize: 1px;
+    $colorBg: $orange-darker;
+    $colorText: $orange-xlight;
+  } @else if $colorScheme == 'light' {
+    $borderSize: 1px;
+    $colorBg: $color-xlight;
+    $colorText: $gray-medium-dark;
+  } @else if $colorScheme == 'dark' {
+    $borderSize: 1px;
+    $colorBg: $gray-medium-dark;
+    $colorText: $color-xlight;
+  }
+  border: $borderSize solid $colorBg;
+  border-radius: $borderRadius;
+  padding: 0;
+  h1, h2, h3, h4, h5, h6 {
+    @include contentBlockHead($colorText, $colorBg);
+  }
+}
+
 @mixin marginSize($size, $where, $when) {
   $size: 1rem * $size;
   @if $when != '' {
@@ -334,6 +388,15 @@
   border-radius: 3px $important;
   @include paddingSize(.375, 'tb', 'true');
   @include paddingSize(.5, 'left', 'true');
+}
+
+@mixin headerRowColors($color: $color-white, $bg-color: $gray-medium-dark, $force: true) {
+  $important: '';
+  @if $force {
+    $important: !important;
+  }
+  color: $color $important;
+  background-color: $bg-color $important;
 }
 
 @mixin evenRow($color: $grey-darkest, $bg-color: $color-white) {

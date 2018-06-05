@@ -18,9 +18,9 @@ $h2-font-size: $default-body-font-size * 1.75;
 $h3-font-size: $default-body-font-size * 1.5;
 $h4-font-size: $default-body-font-size * 1.25;
 $h5-font-size: $default-body-font-size;
-$h6-font-size: $default-body-font-size;
+$h6-font-size: $default-body-font-size * .85;
 
-/* legacy sizes */
+/* legacy size variables */
 $font-size-h1: $h1-font-size;
 $font-size-h2: $h2-font-size;
 $font-size-h3: $h3-font-size;

@@ -3,7 +3,7 @@
   must be included before
 **/
 /* True overrides */
-$blue:       #3f3fff;
+$blue:       #007bff;
 $indigo:     #6610f2;
 $purple:     #7b00c1;
 $pink:       #ff69b4;
@@ -118,6 +118,7 @@ $green-complement:   #640032;
 $red-dark:   #760000;
 $red-medium: #ff0000;
 $red-light:  #ffcccc;
+$red-xlight: #ffecec;
 
 $orange-darker:       #e34234;
 $orange-dark:         #fc4a1a;
@@ -185,11 +186,11 @@ $color-heading-alt: $gray-complement;
 @else {
   $info: $cyan-color;
 }
-@if variable-exists('yellow') {
-  $warning: $yellow;
+@if variable-exists('orange') {
+  $warning: $orange;
 }
 @else {
-  $warning: $yellow-color;
+  $warning: $orange-color;
 }
 @if variable-exists('red') {
   $danger: $red;
