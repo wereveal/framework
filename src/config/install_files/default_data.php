@@ -273,26 +273,8 @@ $a_navgroups = [
         'ng_default'   => 'true',
         'ng_immutable' => 'true'
     ],
-    'manager' => [
-        'ng_name'      => 'Manager',
-        'ng_active'    => 'true',
-        'ng_default'   => 'false',
-        'ng_immutable' => 'true'
-    ],
-    'managerlinks' => [
-        'ng_name'      => 'ManagerLinks',
-        'ng_active'    => 'true',
-        'ng_default'   => 'false',
-        'ng_immutable' => 'true'
-    ],
-	'sitemap' => [
-        'ng_name'      => 'SiteMap',
-        'ng_active'    => 'true',
-        'ng_default'   => 'false',
-        'ng_immutable' => 'true'
-    ],
-	'pagelinks' => [
-        'ng_name'      => 'PageLinks',
+    'config' => [
+        'ng_name'      => 'Config',
         'ng_active'    => 'true',
         'ng_default'   => 'false',
         'ng_immutable' => 'true'
@@ -309,6 +291,42 @@ $a_navgroups = [
         'ng_default'   => 'false',
         'ng_immutable' => 'true'
     ],
+    'editor' => [
+        'ng_name'      => 'Editor',
+        'ng_active'    => 'true',
+        'ng_default'   => 'false',
+        'ng_immutable' => 'true'
+    ],
+    'editorlinks' => [
+        'ng_name'      => 'EditorLinks',
+        'ng_active'    => 'true',
+        'ng_default'   => 'false',
+        'ng_immutable' => 'true'
+    ],
+    'manager' => [
+        'ng_name'      => 'Manager',
+        'ng_active'    => 'true',
+        'ng_default'   => 'false',
+        'ng_immutable' => 'true'
+    ],
+    'managerlinks' => [
+        'ng_name'      => 'ManagerLinks',
+        'ng_active'    => 'true',
+        'ng_default'   => 'false',
+        'ng_immutable' => 'true'
+    ],
+    'pagelinks' => [
+        'ng_name'      => 'PageLinks',
+        'ng_active'    => 'true',
+        'ng_default'   => 'false',
+        'ng_immutable' => 'true'
+    ],
+	'sitemap' => [
+        'ng_name'      => 'Sitemap',
+        'ng_active'    => 'true',
+        'ng_default'   => 'false',
+        'ng_immutable' => 'true'
+    ]
 ];
 
 $a_people_group = [
@@ -344,7 +362,7 @@ $a_routes = [
     'sitemap' => [
         'url_id'          => 'sitemap',
         'route_class'     => 'SitemapController',
-        'route_method'    => 'router',
+        'route_method'    => 'route',
         'route_action'    => '',
         'route_immutable' => 'true'
     ],
@@ -552,54 +570,6 @@ $a_navigation = [
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
-    'manager' => [
-        'url_id'          => 'manager',
-        'nav_parent_id'   => 'manager',
-        'nav_name'        => 'manager',
-        'nav_text'        => 'Manager',
-        'nav_description' => 'Manager Page',
-        'nav_css'         => '',
-        'nav_level'       => 1,
-        'nav_order'       => 2,
-        'nav_active'      => 'true',
-        'nav_immutable'   => 'true'
-    ],
-    'man_tests' => [
-        'url_id'          => 'man_tests',
-        'nav_parent_id'   => 'manager',
-        'nav_name'        => 'manager_tests',
-        'nav_text'        => 'Manager Tests',
-        'nav_description' => 'Manager Tests',
-        'nav_css'         => '',
-        'nav_level'       => 1,
-        'nav_order'       => 5,
-        'nav_active'      => 'true',
-        'nav_immutable'   => 'true'
-    ],
-    'man_login' => [
-        'url_id'          => 'man_login',
-        'nav_parent_id'   => 'manager',
-        'nav_name'        => 'manager_login',
-        'nav_text'        => 'Manager Login',
-        'nav_description' => 'Manager Login',
-        'nav_css'         => '',
-        'nav_level'       => 1,
-        'nav_order'       => 4,
-        'nav_active'      => 'false',
-        'nav_immutable'   => 'true'
-    ],
-    'man_logout' => [
-        'url_id'          => 'man_logout',
-        'nav_parent_id'   => 'manager',
-        'nav_name'        => 'manager_logout',
-        'nav_text'        => 'Manager Logout',
-        'nav_description' => 'Manager Logout',
-        'nav_css'         => '',
-        'nav_level'       => 1,
-        'nav_order'       => 4,
-        'nav_active'      => 'true',
-        'nav_immutable'   => 'true'
-    ],
     'library' => [
         'url_id'          => 'library',
         'nav_parent_id'   => 'library',
@@ -620,7 +590,7 @@ $a_navigation = [
         'nav_description' => 'Manage blocks used throughout app.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 8,
+        'nav_order'       => 1,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -632,7 +602,7 @@ $a_navigation = [
         'nav_description' => 'Manage cache used throughout app.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 8,
+        'nav_order'       => 2,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -643,8 +613,8 @@ $a_navigation = [
         'nav_text'        => 'Constants',
         'nav_description' => 'Define constants used throughout app.',
         'nav_css'         => '',
-        'nav_level'       => 2,
-        'nav_order'       => 8,
+        'nav_level'       => 3,
+        'nav_order'       => 1,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -656,7 +626,7 @@ $a_navigation = [
         'nav_description' => 'Content Manager',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 7,
+        'nav_order'       => 4,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -668,7 +638,31 @@ $a_navigation = [
         'nav_description' => 'Define Groups used for accessing app.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 1,
+        'nav_order'       => 5,
+        'nav_active'      => 'true',
+        'nav_immutable'   => 'true'
+    ],
+    'lib_login' => [
+        'url_id'          => 'lib_login',
+        'nav_parent_id'   => 'library',
+        'nav_name'        => 'lib_login',
+        'nav_text'        => 'Config Login',
+        'nav_description' => 'Config Login',
+        'nav_css'         => '',
+        'nav_level'       => 2,
+        'nav_order'       => 13,
+        'nav_active'      => 'false',
+        'nav_immutable'   => 'true'
+    ],
+    'lib_logout' => [
+        'url_id'          => 'lib_logout',
+        'nav_parent_id'   => 'library',
+        'nav_name'        => 'lib_logout',
+        'nav_text'        => 'Config Logout',
+        'nav_description' => 'Config Logout',
+        'nav_css'         => '',
+        'nav_level'       => 1,
+        'nav_order'       => 5,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -680,7 +674,7 @@ $a_navigation = [
         'nav_description' => 'Define Navigation Groups and Items',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 5,
+        'nav_order'       => 6,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -692,7 +686,7 @@ $a_navigation = [
         'nav_description' => 'Define Page values.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 6,
+        'nav_order'       => 7,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -704,7 +698,7 @@ $a_navigation = [
         'nav_description' => 'Setup people allowed to access app.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 2,
+        'nav_order'       => 8,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -716,7 +710,7 @@ $a_navigation = [
         'nav_description' => 'Define routes used for where to go.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 4,
+        'nav_order'       => 9,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -739,9 +733,9 @@ $a_navigation = [
         'nav_text'        => 'Configuration Tests',
         'nav_description' => 'Run Configuration Tests',
         'nav_css'         => '',
-        'nav_level'       => 2,
+        'nav_level'       => 1,
         'nav_order'       => 11,
-        'nav_active'      => 'true',
+        'nav_active'      => 'false',
         'nav_immutable'   => 'true'
     ],
     'lib_twig' => [
@@ -752,7 +746,7 @@ $a_navigation = [
         'nav_description' => 'Define Twig prefix, directories, and templates',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 9,
+        'nav_order'       => 11,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -764,7 +758,55 @@ $a_navigation = [
         'nav_description' => 'Define the URLs used in the app',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 3,
+        'nav_order'       => 12,
+        'nav_active'      => 'true',
+        'nav_immutable'   => 'true'
+    ],
+    'manager' => [
+        'url_id'          => 'manager',
+        'nav_parent_id'   => 'manager',
+        'nav_name'        => 'manager',
+        'nav_text'        => 'Manager',
+        'nav_description' => 'Manager Page',
+        'nav_css'         => '',
+        'nav_level'       => 1,
+        'nav_order'       => 2,
+        'nav_active'      => 'true',
+        'nav_immutable'   => 'true'
+    ],
+    'man_tests' => [
+        'url_id'          => 'man_tests',
+        'nav_parent_id'   => 'manager',
+        'nav_name'        => 'manager_tests',
+        'nav_text'        => 'Manager Tests',
+        'nav_description' => 'Manager Tests',
+        'nav_css'         => '',
+        'nav_level'       => 2,
+        'nav_order'       => 5,
+        'nav_active'      => 'true',
+        'nav_immutable'   => 'true'
+    ],
+    'man_login' => [
+        'url_id'          => 'man_login',
+        'nav_parent_id'   => 'manager',
+        'nav_name'        => 'manager_login',
+        'nav_text'        => 'Manager Login',
+        'nav_description' => 'Manager Login',
+        'nav_css'         => '',
+        'nav_level'       => 2,
+        'nav_order'       => 9,
+        'nav_active'      => 'false',
+        'nav_immutable'   => 'true'
+    ],
+    'man_logout' => [
+        'url_id'          => 'man_logout',
+        'nav_parent_id'   => 'manager',
+        'nav_name'        => 'manager_logout',
+        'nav_text'        => 'Manager Logout',
+        'nav_description' => 'Manager Logout',
+        'nav_css'         => '',
+        'nav_level'       => 1,
+        'nav_order'       => 4,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -777,7 +819,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 'true',
+        'nav_active'      => 'false',
         'nav_immutable'   => 'true'
     ],
     'pagemodel_test' => [
@@ -789,7 +831,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 'true',
+        'nav_active'      => 'false',
         'nav_immutable'   => 'true'
     ],
     'peoplemodel_test' => [
@@ -801,7 +843,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 'true',
+        'nav_active'      => 'false',
         'nav_immutable'   => 'true'
     ],
     'urlsmodel_test' => [
@@ -813,7 +855,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 'true',
+        'nav_active'      => 'false',
         'nav_immutable'   => 'true'
     ],
     'navgroupsmodel_test' => [
@@ -825,7 +867,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 'true',
+        'nav_active'      => 'false',
         'nav_immutable'   => 'true'
     ],
     'navigationmodel_test' => [
@@ -837,7 +879,7 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 'true',
+        'nav_active'      => 'false',
         'nav_immutable'   => 'true'
     ],
     'navngmapmodel_test' => [
@@ -849,66 +891,30 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 3,
         'nav_order'       => 1,
-        'nav_active'      => 'true',
-        'nav_immutable'   => 'true'
-    ],
-    'lib_login' => [
-        'url_id'          => 'lib_login',
-        'nav_parent_id'   => 'library',
-        'nav_name'        => 'lib_login',
-        'nav_text'        => 'Config Login',
-        'nav_description' => 'Config Login',
-        'nav_css'         => '',
-        'nav_level'       => 2,
-        'nav_order'       => 12,
         'nav_active'      => 'false',
         'nav_immutable'   => 'true'
-    ],
-    'lib_logout' => [
-        'url_id'          => 'lib_logout',
-        'nav_parent_id'   => 'library',
-        'nav_name'        => 'lib_logout',
-        'nav_text'        => 'Config Logout',
-        'nav_description' => 'Config Logout',
-        'nav_css'         => '',
-        'nav_level'       => 2,
-        'nav_order'       => 12,
-        'nav_active'      => 'true',
-        'nav_immutable'   => 'true'
-    ],
+    ]
 ];
 
 $a_nav_ng_map = [
-    ['ng_id' => 'main',         'nav_id' => 'home'],
-    ['ng_id' => 'sitemap',      'nav_id' => 'home'],
-    ['ng_id' => 'pagelinks',    'nav_id' => 'home'],
-    ['ng_id' => 'managerlinks', 'nav_id' => 'home'],
-    ['ng_id' => 'managerlinks', 'nav_id' => 'manager'],
-    ['ng_id' => 'managerlinks', 'nav_id' => 'man_login'],
-    ['ng_id' => 'managerlinks', 'nav_id' => 'man_logout'],
-    ['ng_id' => 'managerlinks', 'nav_id' => 'library'],
-    ['ng_id' => 'managerlinks', 'nav_id' => 'man_tests'],
-    ['ng_id' => 'manager',      'nav_id' => 'home'],
-    ['ng_id' => 'manager',      'nav_id' => 'manager'],
-    ['ng_id' => 'manager',      'nav_id' => 'man_login'],
-    ['ng_id' => 'manager',      'nav_id' => 'man_logout'],
-    ['ng_id' => 'manager',      'nav_id' => 'library'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_blocks'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_cache'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_constants'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_content'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_groups'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_nav'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_pages'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_peeps'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_routes'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_sitemap'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_tests'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_twig'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_urls'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_login'],
-    ['ng_id' => 'manager',      'nav_id' => 'lib_logout'],
-    ['ng_id' => 'manager',      'nav_id' => 'man_tests'],
+    ['ng_id' => 'config',       'nav_id' => 'home'],
+    ['ng_id' => 'config',       'nav_id' => 'manager'],
+    ['ng_id' => 'config',       'nav_id' => 'library'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_blocks'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_cache'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_constants'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_content'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_groups'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_nav'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_pages'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_peeps'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_routes'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_sitemap'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_tests'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_twig'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_urls'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_login'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_logout'],
     ['ng_id' => 'configlinks',  'nav_id' => 'home'],
     ['ng_id' => 'configlinks',  'nav_id' => 'manager'],
     ['ng_id' => 'configlinks',  'nav_id' => 'library'],
@@ -934,12 +940,26 @@ $a_nav_ng_map = [
     ['ng_id' => 'configtestlinks', 'nav_id' => 'navgroupsmodel_test'],
     ['ng_id' => 'configtestlinks', 'nav_id' => 'navigationmodel_test'],
     ['ng_id' => 'configtestlinks', 'nav_id' => 'navngmapmodel_test'],
+    ['ng_id' => 'main',         'nav_id' => 'home'],
+    ['ng_id' => 'manager',      'nav_id' => 'home'],
+    ['ng_id' => 'manager',      'nav_id' => 'manager'],
+    ['ng_id' => 'manager',      'nav_id' => 'library'],
+    ['ng_id' => 'manager',      'nav_id' => 'man_tests'],
+    ['ng_id' => 'manager',      'nav_id' => 'man_login'],
+    ['ng_id' => 'manager',      'nav_id' => 'man_logout'],
+    ['ng_id' => 'managerlinks', 'nav_id' => 'home'],
+    ['ng_id' => 'managerlinks', 'nav_id' => 'manager'],
+    ['ng_id' => 'managerlinks', 'nav_id' => 'man_tests'],
+    ['ng_id' => 'managerlinks', 'nav_id' => 'man_login'],
+    ['ng_id' => 'managerlinks', 'nav_id' => 'man_logout'],
+    ['ng_id' => 'sitemap',      'nav_id' => 'home'],
+    ['ng_id' => 'pagelinks',    'nav_id' => 'home']
 ];
 
 $a_page = [
     'home' => [
         'url_id'           => 'home',
-        'ng_id'            => '1',
+        'ng_id'            => 'main',
         'tpl_id'           => 'index',
         'page_type'        => 'text/html',
         'page_title'       => 'Home Page',
@@ -955,7 +975,7 @@ $a_page = [
     ],
     'shared' => [
         'url_id'           => 'shared',
-        'ng_id'            => '1',
+        'ng_id'            => 'main',
         'tpl_id'           => 'lib_shared',
         'page_type'        => 'text/html',
         'page_title'       => 'shared content',
@@ -971,7 +991,7 @@ $a_page = [
     ],
     'sitemap' => [
         'url_id'           => 'sitemap',
-        'ng_id'            => '1',
+        'ng_id'            => 'main',
         'tpl_id'           => 'sitemap',
         'page_type'        => 'text/html',
         'page_title'       => 'Sitemap',
@@ -987,7 +1007,7 @@ $a_page = [
     ],
     'error' => [
         'url_id'           => 'error',
-        'ng_id'            => '1',
+        'ng_id'            => 'main',
         'tpl_id'           => 'error',
         'page_type'        => 'text/html',
         'page_title'       => 'Error Page',
@@ -1003,7 +1023,7 @@ $a_page = [
     ],
     'manager' => [
         'url_id'           => 'manager',
-        'ng_id'            => '2',
+        'ng_id'            => 'manager',
         'tpl_id'           => 'manager',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager',
@@ -1019,7 +1039,7 @@ $a_page = [
     ],
     'manager_tests' => [
         'url_id'           => 'man_tests',
-        'ng_id'            => '2',
+        'ng_id'            => 'manager',
         'tpl_id'           => 'test',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager Tests',
@@ -1035,7 +1055,7 @@ $a_page = [
     ],
     'manager_test_results' => [
         'url_id'           => 'test_results',
-        'ng_id'            => '2',
+        'ng_id'            => 'manager',
         'tpl_id'           => 'test_results',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager Test Results',
@@ -1051,7 +1071,7 @@ $a_page = [
     ],
     'man_login' => [
         'url_id'           => 'man_login',
-        'ng_id'            => '2',
+        'ng_id'            => 'manager',
         'tpl_id'           => 'man_login',
         'page_type'        => 'text/html',
         'page_title'       => 'Please Login',
@@ -1067,7 +1087,7 @@ $a_page = [
     ],
     'man_logout' => [
         'url_id'           => 'man_logout',
-        'ng_id'            => '2',
+        'ng_id'            => 'manager',
         'tpl_id'           => 'man_login',
         'page_type'        => 'text/html',
         'page_title'       => 'Logout',
@@ -1083,7 +1103,7 @@ $a_page = [
     ],
     'verify_delete' => [
         'url_id'           => 'manager',
-        'ng_id'            => '2',
+        'ng_id'            => 'manager',
         'tpl_id'           => 'verify_delete',
         'page_type'        => 'text/html',
         'page_title'       => 'Logout',
@@ -1099,7 +1119,7 @@ $a_page = [
     ],
     'library' => [
         'url_id'           => 'library',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'library',
         'page_type'        => 'text/html',
         'page_title'       => 'Advanced Config',
@@ -1115,7 +1135,7 @@ $a_page = [
     ],
     'lib_blocks' => [
         'url_id'           => 'lib_blocks',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_blocks',
         'page_type'        => 'text/html',
         'page_title'       => 'Manages the Blocks',
@@ -1131,7 +1151,7 @@ $a_page = [
     ],
     'lib_cache' => [
         'url_id'           => 'lib_cache',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_cache',
         'page_type'        => 'text/html',
         'page_title'       => 'Manages the Cache',
@@ -1147,7 +1167,7 @@ $a_page = [
     ],
     'lib_constants' => [
         'url_id'           => 'lib_constants',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_constants',
         'page_type'        => 'text/html',
         'page_title'       => 'Configuration for Constants',
@@ -1163,7 +1183,7 @@ $a_page = [
     ],
     'lib_content' => [
         'url_id'           => 'lib_content',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_content',
         'page_type'        => 'text/html',
         'page_title'       => 'Configuration for Content',
@@ -1179,7 +1199,7 @@ $a_page = [
     ],
     'lib_groups' => [
         'url_id'           => 'lib_groups',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_groups',
         'page_type'        => 'text/html',
         'page_title'       => 'Configuration for Groups',
@@ -1195,7 +1215,7 @@ $a_page = [
     ],
     'lib_peeps' => [
         'url_id'           => 'lib_peeps',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_peeps',
         'page_type'        => 'text/html',
         'page_title'       => 'Configuration for People',
@@ -1211,7 +1231,7 @@ $a_page = [
     ],
     'lib_urls' => [
         'url_id'           => 'lib_urls',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_urls',
         'page_type'        => 'text/html',
         'page_title'       => 'Configuration for Urls',
@@ -1227,7 +1247,7 @@ $a_page = [
     ],
     'lib_routes' => [
         'url_id'           => 'lib_routes',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_routes',
         'page_type'        => 'text/html',
         'page_title'       => 'Configuration for Routes',
@@ -1243,7 +1263,7 @@ $a_page = [
     ],
     'lib_nav' => [
         'url_id'           => 'lib_nav',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_nav',
         'page_type'        => 'text/html',
         'page_title'       => 'Configuration for Navigation tools',
@@ -1259,7 +1279,7 @@ $a_page = [
     ],
     'lib_pages' => [
         'url_id'           => 'lib_pages',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_pages',
         'page_type'        => 'text/html',
         'page_title'       => 'Configuration for Pages',
@@ -1275,7 +1295,7 @@ $a_page = [
     ],
     'lib_sitemap' => [
         'url_id'           => 'lib_sitemap',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_sitemap',
         'page_type'        => 'text/html',
         'page_title'       => 'Sitemap Manager',
@@ -1291,7 +1311,7 @@ $a_page = [
     ],
     'lib_twig' => [
         'url_id'           => 'lib_twig',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_twig',
         'page_type'        => 'text/html',
         'page_title'       => 'Configuration for Twig',
@@ -1307,7 +1327,7 @@ $a_page = [
     ],
     'lib_tests' => [
         'url_id'           => 'lib_tests',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_test',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager Tests',
@@ -1323,7 +1343,7 @@ $a_page = [
     ],
     'lib_test_results' => [
         'url_id'           => 'lib_test_results',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_test_results',
         'page_type'        => 'text/html',
         'page_title'       => 'Manager Tests Results',
@@ -1339,7 +1359,7 @@ $a_page = [
     ],
     'lib_login' => [
         'url_id'           => 'lib_login',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_login',
         'page_type'        => 'text/html',
         'page_title'       => 'Please Login',
@@ -1355,7 +1375,7 @@ $a_page = [
     ],
     'lib_logout' => [
         'url_id'           => 'lib_logout',
-        'ng_id'            => '2',
+        'ng_id'            => 'config',
         'tpl_id'           => 'lib_login',
         'page_type'        => 'text/html',
         'page_title'       => 'Logout',
@@ -1559,7 +1579,7 @@ $a_content = [
    'lib_groups' => [
        'c_pbm_id'  => 'lib_groups_instructions',
        'c_content' => "### Instructions
-- Certain groups are fixed so that the app will work. They are not visible.</li>
+- Certain groups are fixed so that the app will work. They may not be visible based on auth level.</li>
 - Group Name is a single word, alpha characters only. The app will change the group name to camelCase, then capitalizing the first letter, removing any other characters.
 - Group Description can be anything that is meaningful. Text will be sanitized.
 - Group Auth Level sets a general authorization level for the group, 0-9, 9 having the highest authorization level.

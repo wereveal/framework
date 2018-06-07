@@ -6,6 +6,7 @@
 namespace {NAMESPACE}\{APPNAME}\Controllers;
 
 use Ritc\Library\Controllers\LibraryController;
+use Ritc\Library\Controllers\SitemapController;
 use Ritc\Library\Interfaces\ControllerInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;
@@ -57,6 +58,9 @@ class MasterController implements ControllerInterface
                 break;
             case 'LibraryController':
                 $o_controller = new LibraryController($this->o_di);
+                break;
+            case 'SitemapController':
+                $o_controller = new SitemapController($this->o_di);
                 break;
             case 'HomeController':
             default:
