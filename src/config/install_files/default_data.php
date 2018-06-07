@@ -317,7 +317,19 @@ $a_navgroups = [
     ],
     'pagelinks' => [
         'ng_name'      => 'PageLinks',
-        'ng_active'    => 'true',
+        'ng_active'    => 'false',
+        'ng_default'   => 'false',
+        'ng_immutable' => 'true'
+    ],
+    'registered' => [
+        'ng_name'      => 'Registered',
+        'ng_active'    => 'false',
+        'ng_default'   => 'false',
+        'ng_immutable' => 'true'
+    ],
+    'registeredlinks' => [
+        'ng_name'      => 'RegisteredLinks',
+        'ng_active'    => 'false',
         'ng_default'   => 'false',
         'ng_immutable' => 'true'
     ],
@@ -532,7 +544,7 @@ $a_routes = [
 $a_route_group_map = [
     ['route_id' => 'home',             'group_id' => 'anonymous'],
     ['route_id' => 'error',            'group_id' => 'anonymous'],
-	['route_id' => 'manager',          'group_id' => 'anonymous'],
+	['route_id' => 'manager',          'group_id' => 'manager'],
 	['route_id' => 'man_login',        'group_id' => 'anonymous'],
 	['route_id' => 'man_logout',       'group_id' => 'manager'],
     ['route_id' => 'man_tests',        'group_id' => 'manager'],
@@ -553,7 +565,7 @@ $a_route_group_map = [
     ['route_id' => 'lib_test_results', 'group_id' => 'admin'],
     ['route_id' => 'lib_twig',         'group_id' => 'admin'],
     ['route_id' => 'lib_urls',         'group_id' => 'admin'],
-    ['route_id' => 'lib_login',        'group_id' => 'admin'],
+    ['route_id' => 'lib_login',        'group_id' => 'anonymous'],
     ['route_id' => 'lib_logout',       'group_id' => 'admin']
 ];
 
@@ -952,8 +964,7 @@ $a_nav_ng_map = [
     ['ng_id' => 'managerlinks', 'nav_id' => 'man_tests'],
     ['ng_id' => 'managerlinks', 'nav_id' => 'man_login'],
     ['ng_id' => 'managerlinks', 'nav_id' => 'man_logout'],
-    ['ng_id' => 'sitemap',      'nav_id' => 'home'],
-    ['ng_id' => 'pagelinks',    'nav_id' => 'home']
+    ['ng_id' => 'sitemap',      'nav_id' => 'home']
 ];
 
 $a_page = [
@@ -1884,11 +1895,6 @@ $a_twig_tpls = [
         'tpl_immutable' => 'true'
     ],
     'lib_sitemap' => [
-        'td_id'         => 'lib_pages',
-        'tpl_name'      => 'sitemap',
-        'tpl_immutable' => 'true'
-    ],
-    'lib_sitemap_manager' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'lib_sitemap',
         'tpl_immutable' => 'true'
