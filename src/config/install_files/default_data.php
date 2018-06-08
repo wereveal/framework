@@ -155,37 +155,37 @@ $a_constants = [
 $a_groups = [
 	'superadmin' => [
         'group_name'        => 'SuperAdmin',
-        'group_description' => 'The group for super administrators. There should be only a couple of these.',
+        'group_description' => 'The group for super administrators',
         'group_auth_level'  => 10,
         'group_immutable'   => 'true'
     ],
     'admin' =>  [
         'group_name'        => 'Admins',
-        'group_description' => 'The group for managing the advanced configuration of the site.',
+        'group_description' => 'Manages the advanced configuration of the site.',
         'group_auth_level'  => 9,
         'group_immutable'   => 'true'
     ],
 	'manager' => [
         'group_name'        => 'Managers',
-        'group_description' => 'Managers for the app should be in this group.',
+        'group_description' => 'Managers for the app.',
         'group_auth_level'  => 8,
         'group_immutable'   => 'true'
     ],
 	'editor' => [
         'group_name'        => 'Editor',
-        'group_description' => 'Editor for the CMS which does not exist in the Manager',
+        'group_description' => 'Content Editors',
         'group_auth_level'  => 5,
         'group_immutable'   => 'true'
     ],
 	'registered' => [
         'group_name'        => 'Registered',
-        'group_description' => 'The group for people that should not have access to the manager.',
+        'group_description' => 'Allows access to non-anonymous pages.',
         'group_auth_level'  => 1,
         'group_immutable'   => 'true'
     ],
 	'anonymous' => [
         'group_name'        => 'Anonymous',
-        'group_description' => 'Not logged in or possibly unregistered',
+        'group_description' => 'Not logged in or possibly unregistered.',
         'group_auth_level'  => 0,
         'group_immutable'   => 'true'
     ]
@@ -1544,28 +1544,34 @@ $a_pbm = [
 
 $a_content = [
    'home' => [
-        'c_pbm_id' => 'home_body',
-        'c_content' => "###Welcome.\nThis is the home page.\nThis gives example using _Markdown_ which provides easy **html**.",
-        'c_type'    => 'md',
-        'c_created' => '',
-        'c_version' => '1',
-        'c_current' => 'true'
+        'c_pbm_id'   => 'home_body',
+        'c_content'  => "### Welcome.\nThis is the home page.\nThis example uses _Markdown_ which provides an _**easy**_ way to create basic **html**.",
+        'c_type'     => 'md',
+        'c_created'  => '',
+        'c_version'  => '1',
+        'c_current'  => 'true',
+        'c_location' => 'page'
    ],
    'lib_blocks' => [
        'c_pbm_id'  => 'lib_blocks_instructions',
-       'c_content' => "",
+       'c_content' => "### Instructions
+- Block corresponds loosely to the blocks in a Twig template.
+- Immutable prevents the record being deleted or renamed.      
+       ",
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
-       'c_current' => 'true'
+       'c_current' => 'true',
+       'c_location' => 'block'
    ],
    'lib_cache' => [
        'c_pbm_id'  => 'lib_cache_instructions',
-       'c_content' => "",
+       'c_content' => "### Instuctions",
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
-       'c_current' => 'true'
+       'c_current' => 'true',
+       'c_location' => 'block'
    ],
    'lib_constants' => [
        'c_pbm_id'  => 'lib_constants_instructions',
@@ -1577,15 +1583,17 @@ $a_content = [
         'c_type'    => 'md',
         'c_created' => '',
         'c_version' => '1',
-        'c_current' => 'true'
+        'c_current' => 'true',
+       'c_location' => 'block'
     ],
    'lib_content' => [
        'c_pbm_id'  => 'lib_content_instructions',
-       'c_content' => "",
+       'c_content' => "### Instruction",
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
-       'c_current' => 'true'
+       'c_current' => 'true',
+       'c_location' => 'block'
    ],
    'lib_groups' => [
        'c_pbm_id'  => 'lib_groups_instructions',
@@ -1599,7 +1607,8 @@ $a_content = [
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
-       'c_current' => 'true'
+       'c_current' => 'true',
+       'c_location' => 'block'
    ],
    'lib_peeps' => [
        'c_pbm_id'  => 'lib_peeps_instructions',
@@ -1622,7 +1631,8 @@ $a_content = [
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
-       'c_current' => 'true'
+       'c_current' => 'true',
+       'c_location' => 'block'
    ],
    'lib_urls' => [
        'c_pbm_id'  => 'lib_urls_instructions',
@@ -1635,7 +1645,8 @@ $a_content = [
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
-       'c_current' => 'true'
+       'c_current' => 'true',
+       'c_location' => 'block'
    ],
    'lib_routes' => [
        'c_pbm_id'  => 'lib_routes_instructions',
@@ -1653,15 +1664,17 @@ $a_content = [
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
-       'c_current' => 'true'
+       'c_current' => 'true',
+       'c_location' => 'block'
    ],
    'lib_nav' => [
        'c_pbm_id'  => 'lib_nav_instructions',
-       'c_content' => "",
+       'c_content' => "### Instructions",
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
-       'c_current' => 'true'
+       'c_current' => 'true',
+       'c_location' => 'block'
    ],
    'lib_pages' => [
        'c_pbm_id'  => 'lib_pages_instructions',
@@ -1679,31 +1692,35 @@ $a_content = [
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
-       'c_current' => 'true'
+       'c_current' => 'true',
+       'c_location' => 'block'
    ],
    'lib_sitemap' => [
        'c_pbm_id'  => 'lib_sitemap_instructions',
-       'c_content' => "",
+       'c_content' => "### Instructions",
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
-       'c_current' => 'true'
+       'c_current' => 'true',
+       'c_location' => 'block'
    ],
    'lib_twig' => [
        'c_pbm_id'  => 'lib_twig_instructions',
-       'c_content' => "",
+       'c_content' => "### Instructions",
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
-       'c_current' => 'true'
+       'c_current' => 'true',
+       'c_location' => 'block'
    ],
    'lib_tests' => [
        'c_pbm_id'  => 'lib_tests_instructions',
-       'c_content' => "",
+       'c_content' => "### Instructions",
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
-       'c_current' => 'true'
+       'c_current' => 'true',
+       'c_location' => 'block'
    ]
 ];
 

@@ -105,10 +105,12 @@ return [
   `c_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `c_pbm_id` int(11) unsigned NOT NULL,
   `c_content` text NOT NULL,
+  `c_short_content` varchar(250) NOT NULL DEFAULT '',
   `c_type` enum('text','html','md','mde','xml','raw') NOT NULL DEFAULT 'text',
   `c_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `c_version` int(11) NOT NULL DEFAULT '1',
   `c_current` enum('true','false') NOT NULL DEFAULT 'true',
+  `c_location` enum('page','article','featured','shared','block') NOT NULL DEFAULT 'page', 
   PRIMARY KEY (`c_id`),
   KEY `c_pbm_id` (`c_pbm_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
