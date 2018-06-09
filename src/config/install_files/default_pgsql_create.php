@@ -136,7 +136,7 @@ $BODY$ language \'plpgsql\'',
 "CREATE TABLE {dbPrefix}people (
   people_id serial NOT NULL,
   login_id character varying(60) NOT NULL,
-  real_name character varying(50) NOT NULL,
+  real_name character varying(64) NOT NULL,
   short_name character varying(8) NOT NULL,
   password character varying(128) NOT NULL,
   description character varying(250) NOT NULL DEFAULT ''::character varying,

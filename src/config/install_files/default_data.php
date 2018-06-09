@@ -1630,8 +1630,12 @@ $a_content = [
   - Optionally a good practice would be to use 3 or 4 non-associated words of at least 4 characters long, e.g., 'Television river Banana' which allows one to remember the password while being difficult for a malicious attacker guess.
   - password and 12345678 are not good passwords. Come on! You don't want to be responsible for someone maliciously accessing this site and deface it.          
 - Description can be anything and is optional.
+- Immutable prevents the person from being deleted as well as changing the Login ID.
 - Active determines if the person is allowed to log in. Allows for historical data, keeping the person in the database but preventing one from logging in again.
-- Groups allow the person to access the materials that group can access. A person can be assigned to multiple groups. Some groups are inclusive of other groups.
+- A group is required. 
+  - Groups allow the person to access the materials that group can access. 
+  - A person can be assigned to multiple groups but not necessarily needed - see next point. 
+  - Some groups are inclusive of other groups, e.g., Manager includes Editor and Registered. Anonymous is included in all groups and doesn't need to be selected ever.
         ",
        'c_type'    => 'md',
        'c_created' => '',

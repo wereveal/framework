@@ -118,7 +118,7 @@ return [
 "CREATE TABLE `{dbPrefix}people` (
   `people_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `login_id` varchar(60) NOT NULL,
-  `real_name` varchar(50) NOT NULL,
+  `real_name` varchar(64) NOT NULL,
   `short_name` varchar(8) NOT NULL,
   `password` varchar(128) NOT NULL,
   `description` varchar(250) NOT NULL DEFAULT '',
