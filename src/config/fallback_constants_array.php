@@ -3,6 +3,7 @@ return [
     ['ADMIN_DIR_NAME', 'manager', 'true'],
     ['ASSETS_DIR_NAME', 'assets', 'true'],
     ['CACHE_TYPE', 'SimplePhpFiles', 'true'],
+    ['CACHE_TLL', 604800, 'true'],
     ['COPYRIGHT_DATE', '2018', 'true'],
     ['CSS_DIR_NAME', 'css', 'true'],
     ['DISPLAY_DATE_FORMAT', 'm/d/Y', 'true'],

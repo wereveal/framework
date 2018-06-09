@@ -40,6 +40,11 @@ $a_constants = [
         'const_value'     => 'assets',
         'const_immutable' => 'true'
     ],
+    'cache_ttl' => [
+        'const_name'      => 'CACHE_TTL',
+        'const_value'     => '604800', // 7 days
+        'const_immutable' => 'true'
+    ],
     'cache_type' => [
         'const_name'      => 'CACHE_TYPE',
         'const_value'     => 'SimplePhpFiles',
@@ -1556,7 +1561,7 @@ $a_content = [
        'c_pbm_id'  => 'lib_blocks_instructions',
        'c_content' => "### Instructions
 - Block corresponds loosely to the blocks in a Twig template.
-- Immutable prevents the record being deleted or renamed.      
+- Immutable prevents the record being deleted, renamed, or type changed _**so be careful**_.      
        ",
        'c_type'    => 'md',
        'c_created' => '',
@@ -1602,7 +1607,7 @@ $a_content = [
 - Group Name is a single word, alpha characters only. The app will change the group name to camelCase, then capitalizing the first letter, removing any other characters.
 - Group Description can be anything that is meaningful. Text will be sanitized.
 - Group Auth Level sets a general authorization level for the group, 0-9, 9 having the highest authorization level.
-- Immutable means the name cannot be changed and the group can not be deleted. <span class=\"red bold\">Be careful!</span>
+- Immutable means the name and auth level cannot be changed and the group can not be deleted. <span class=\"red bold\">Be careful at what auth level you set!</span> Set it higher than your level and you can not unset immutable.
         ",
        'c_type'    => 'md',
        'c_created' => '',
@@ -1640,7 +1645,8 @@ $a_content = [
 - Urls may be in one of two formats
   - In proper (standards based) url format, e.g. https://my.fred.com/
   - Without protocol and server defaulting to the current site, e.g., /manager/config/urls/
-- Immutable/Cannot Be Deleted means you can't delete it, pretty clear eh? <span class=\"red bold\">So be careful!</span> If you set it that way, it can't go back.
+- Immutable means you can't delete it. You also cannot change the url.<span class=\"red bold\">So be careful!</span>
+- If you have permission you can change immutable to off and make those changes.
         ",
        'c_type'    => 'md',
        'c_created' => '',

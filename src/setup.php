@@ -162,13 +162,39 @@ unset($o_const_creator); // probably unneeded but just in case something gets he
 // die();
 // $o_elog->write(var_export($a_constants['user'], true), LOG_ON);
 
+if (USE_CACHE && ini_get('opcache.enable')) {
+    $cache_type = defined('CACHE_TYPE')
+        ? CACHE_TYPE
+        : 'SimplePhpFiles';
+    $cache_ttl = defined('CACHE_TTL')
+        ? CACHE_TTL
+        : 604800; // 7 days
+    $cache_namespace = 'RITC';
+    $cache_directory = BASE_PATH . '/cache';
+    $a_cache_config = [
+        'cache_type' => $cache_type,
+        'lifetime'   => $cache_ttl,
+        'namespace'  => $cache_namespace,
+        'directory'  => $cache_directory
+    ];
+    $o_cache = CacheFactory::start($a_cache_config);
+    if (is_object($o_cache)) {
+        $o_cache->prune();
+        $o_di->set('cache', $o_cache);
+    }
+    else {
+        die("Unable to create the Cache instance.");
+    }
+}
+
 $o_session->setIdleTime(SESSION_IDLE_TIME); // has to be here since it relies on the constant being set.
 try {
     $o_router = new Router($o_di);
 }
 catch (\Error $e) {
-    $o_elog->write("Could not create new instance of Router: " . $e->getMessage());
-    die("A fatal error has occurred. Please try again");
+    $message = "Could not create new instance of Router: " . $e->getMessage();
+    $o_elog->write($message);
+    die($message);
 }
 $o_di->set('router',  $o_router);
 
@@ -201,16 +227,3 @@ else {
 }
 $o_di->setVar('twigConfig', $twig_config);
 
-if (USE_CACHE && ini_get('opcache.enable')) {
-    $cache_type = defined(CACHE_TYPE)
-        ? CACHE_TYPE
-        : 'SimplePhpFiles';
-    $o_cache = CacheFactory::start(['cache_type' => $cache_type]);
-    if (is_object($o_cache)) {
-        $o_cache->prune();
-        $o_di->set('cache', $o_cache);
-    }
-    else {
-        die("Unable to create the Cache instance.");
-    }
-}

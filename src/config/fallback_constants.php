@@ -19,6 +19,9 @@ if (!defined('ASSETS_DIR_NAME')) {
 if (!defined('CACHE_TYPE')) {
     define('CACHE_TYPE', 'SimplePhpFiles');
 }
+if (!defined('CACHE_TTL')) {
+    define('CACHE_TTL', 604800);
+}
 if (!defined('COPYRIGHT_DATE')) {
     define('COPYRIGHT_DATE', '2001-2017');
 }
