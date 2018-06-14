@@ -26,7 +26,7 @@ $a_u = [
     'lib_logout'       => '/manager/config/logout/',
     'error'            => '/error/',
     'sitemap'          => '/sitemap/',
-    'shared'           => 'shared'
+    'shared'           => '/shared/'
 ];
 
 $a_constants = [
