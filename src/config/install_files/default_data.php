@@ -1649,6 +1649,7 @@ $a_content = [
 - Urls may be in one of two formats
   - In proper (standards based) url format, e.g. https://my.fred.com/
   - Without protocol and server defaulting to the current site, e.g., /manager/config/urls/
+  - Some filtering of the url will be made to try to make valid url format, e.g., spaces converted to underscores.
 - Immutable means you can't delete it. You also cannot change the url.<span class=\"red bold\">So be careful!</span>
 - If you have permission you can change immutable to off and make those changes.
         ",
@@ -1661,8 +1662,10 @@ $a_content = [
    'lib_routes' => [
        'c_pbm_id'  => 'lib_routes_instructions',
        'c_content' => "### Instructions
-- Routes maps the url to a class, method, and action. Certain routes are fixed so that the app will work. They are not visible.
-- Route Path is what appears in the browser address bar, e.g., '/about/charlie/' and is taken from the URL manager.
+- Routes map the url to a class, method, and action. Certain routes are fixed so that the app will work. They are not visible.
+- Route Path is what appears in the browser address bar, e.g., '/about/charlie/' 
+  - Is taken from the URL manager.
+  - The URL must be created first [Here](/manager/config/urls/)
 - Route Class is the name of the class associated with the path, e.g., MasterController.
   - The class is required and must match the class name exactly.
   - The class is normally a controller.
