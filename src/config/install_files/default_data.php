@@ -549,6 +549,7 @@ $a_routes = [
 $a_route_group_map = [
     ['route_id' => 'home',             'group_id' => 'anonymous'],
     ['route_id' => 'error',            'group_id' => 'anonymous'],
+    ['route_id' => 'sitemap',          'group_id' => 'anonymous'],
 	['route_id' => 'manager',          'group_id' => 'manager'],
 	['route_id' => 'man_login',        'group_id' => 'anonymous'],
 	['route_id' => 'man_logout',       'group_id' => 'manager'],
@@ -584,6 +585,18 @@ $a_navigation = [
         'nav_css'         => '',
         'nav_level'       => 1,
         'nav_order'       => 1,
+        'nav_active'      => 'true',
+        'nav_immutable'   => 'true'
+    ],
+    'sitemap' => [
+        'url_id'          => 'sitemap',
+        'nav_parent_id'   => 'sitemap',
+        'nav_name'        => 'sitemap',
+        'nav_text'        => 'Sitemap',
+        'nav_description' => 'Sitemap.',
+        'nav_css'         => '',
+        'nav_level'       => 1,
+        'nav_order'       => 2,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -969,7 +982,8 @@ $a_nav_ng_map = [
     ['ng_id' => 'managerlinks', 'nav_id' => 'man_tests'],
     ['ng_id' => 'managerlinks', 'nav_id' => 'man_login'],
     ['ng_id' => 'managerlinks', 'nav_id' => 'man_logout'],
-    ['ng_id' => 'sitemap',      'nav_id' => 'home']
+    ['ng_id' => 'sitemap',      'nav_id' => 'home'],
+    ['ng_id' => 'sitemap',      'nav_id' => 'sitemap']
 ];
 
 $a_page = [

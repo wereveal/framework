@@ -151,7 +151,7 @@ return [
   `nav_name` varchar(128) NOT NULL DEFAULT 'Fred',
   `nav_text` varchar(128) NOT NULL DEFAULT '',
   `nav_description` varchar(255) NOT NULL DEFAULT '',
-  `nav_css` varchar(64) NOT NULL DEFAULT 'menu-item',
+  `nav_css` varchar(64) NOT NULL DEFAULT '',
   `nav_level` int(11) NOT NULL DEFAULT '1',
   `nav_order` int(11) NOT NULL DEFAULT '0',
   `nav_active` enum('true','false') NOT NULL DEFAULT 'true',

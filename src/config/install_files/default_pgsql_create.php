@@ -169,7 +169,7 @@ $BODY$ language \'plpgsql\'',
   nav_name character varying(128) NOT NULL DEFAULT 'Fred'::character varying,
   nav_text character varying(128) NOT NULL DEFAULT ''::character varying,
   nav_description character varying(255) NOT NULL DEFAULT ''::character varying,
-  nav_css character varying(64) NOT NULL DEFAULT 'menu-item'::character varying,
+  nav_css character varying(64) NOT NULL DEFAULT ''::character varying,
   nav_level integer NOT NULL DEFAULT 1,
   nav_order integer NOT NULL DEFAULT 0,
   nav_active truthy NOT NULL DEFAULT 'true'::truthy
