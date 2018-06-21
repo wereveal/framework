@@ -179,7 +179,6 @@ if (USE_CACHE && ini_get('opcache.enable')) {
     ];
     $o_cache = CacheFactory::start($a_cache_config);
     if (is_object($o_cache)) {
-        $o_cache->prune();
         $o_di->set('cache', $o_cache);
     }
     else {
