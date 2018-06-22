@@ -399,7 +399,7 @@
   background-color: $bg-color $important;
 }
 
-@mixin evenRow($color: $grey-darkest, $bg-color: $color-white) {
+@mixin colorRow($color: $color-black, $bg-color: $color-white) {
   color: $color;
   background-color: $bg-color;
   [class*="col"] {
@@ -417,20 +417,10 @@
   }
 }
 
+@mixin evenRow($color: $grey-darkest, $bg-color: $color-white) {
+  @include colorRow($color, $bg-color)
+}
+
 @mixin oddRow($color: $grey-darkest, $bg-color: $grey-lighter) {
-  color: $color;
-  background-color: $bg-color;
-  [class*="col"] {
-    border: 0;
-    padding: 0 .25rem;
-    margin-top: .25rem;
-    margin-bottom: .25rem;
-    border-radius: 0;
-    background-color: $bg-color;
-    &.form-label {
-      text-align: right;
-      padding-right: 1rem;
-      font-weight: 700;
-    }
-  }
+  @include colorRow($color, $bg-color)
 }

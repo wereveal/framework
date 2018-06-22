@@ -203,11 +203,23 @@ hr.item-card {
     &.alt-row {
       @include oddRow();
     }
-    &.odd {
-      @include oddRow();
-    }
     &.even {
-      @include evenRow();
+      @include colorRow($gray-darkest, $gray-med-light);
+    }
+    &.even-inner-odd {
+      @include colorRow($gray-darkest, $gray-xlight);
+    }
+    &.even-inner-even {
+      @include colorRow($gray-darkest, $gray-light);
+    }
+    &.odd {
+      @include colorRow($gray-darkest, $off-white-color);
+    }
+    &.odd-inner-odd {
+      @include colorRow($gray-darkest, $gray-barely);
+    }
+    &.odd-inner-even {
+      @include colorRow($grey-darkest, $gray-xlight);
     }
     &.upper {
       border-radius: 0 2rem 0 0;
