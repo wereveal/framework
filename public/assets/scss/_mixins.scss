@@ -154,9 +154,9 @@
   }
 }
 
-@mixin paddingSize($size, $where, $when) {
+@mixin paddingSize($size: 1, $where: 'top', $important: '') {
   $size: 1rem * $size;
-  @if $when != '' {
+  @if $important != '' {
     $size: $size !important;
   }
   @if $where == 'top' {

@@ -107,6 +107,10 @@ label {
     @include fontBold;
     text-align: right;
   }
+  &.col-form-label {
+    @include fontBold;
+    @include paddingSize(.5, 'top', 'true');
+  }
 }
 
 .nice-fieldset {
