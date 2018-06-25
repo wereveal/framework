@@ -2707,12 +2707,12 @@
 		"oAP": "\/images\/touch\/index.php",
 		"oF": 0
 		},
-	"\/js\/changer.js": {
+	"\/js\/color_changer.js": {
 		"ft": 64,
 		"ma": 0,
 		"mi": 1,
 		"oA": 0,
-		"oAP": "\/js\/min\/changer.js",
+		"oAP": "\/js\/min\/color_changer.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
@@ -2733,6 +2733,16 @@
 		"oA": 2,
 		"oAP": "\/js\/index.php",
 		"oF": 0
+		},
+	"\/js\/is_unicode_letter.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/min\/is_unicode_letter.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
 		},
 	"\/js\/lang\/ca.js": {
 		"ft": 64,
@@ -2904,22 +2914,19 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"\/js\/min\/index.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/js\/min\/index.php",
+		"oF": 0
+		},
 	"\/js\/now.js": {
 		"ft": 64,
 		"ma": 0,
 		"mi": 1,
 		"oA": 0,
 		"oAP": "\/js\/min\/now.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 0
-		},
-	"\/js\/unicode-letter.js": {
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/js\/min\/unicode-letter.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
