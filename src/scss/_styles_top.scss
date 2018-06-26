@@ -1,7 +1,7 @@
 @import "variables"; // overrides bootstrap variables and must come before bootstrap include
 @import "color"; // overrides bootstrap color variables and must come before bootstrap include
 @import "mixins";
-@import "../vendor/bootstrap/scss/bootstrap";
+@import "../../public/assets/vendor/bootstrap/scss/bootstrap";
 @import "fonts";
 @import "mods_to_bootstrap";
 @import "main_common";

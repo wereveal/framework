@@ -1,26 +1,45 @@
 #!/bin/bash
-if [ -f src/config/install_config.php ];
-then
+if [ ! -x $(command -v composer) ]; then
+    if [ ! -x $(command -v composer.phar) ]; then
+        echo "composer must be installed"
+        exit 1
+    fi
+fi
+if [ ! -x $(command -v npm) ]; then
+    echo "npm and yarn must be installed"
+    exit 1
+fi
+if [ ! -x $(command -v yarn) ]; then
+    echo "yarn must be installed"
+    exit 1
+fi
+if [ ! -x $(command -v git) ]; then
+    echo "git must be installed"
+    exit 1
+fi
+if [ ! -x $(command -v php) ]; then
+    echo "php must be installed"
+    exit 1
+fi
+if [ -f src/config/install_config.php ]; then
     if [ ! -d ./vendor ]
     then
-        if [ ! -f composer.json ]
-        then
+        if [ ! -f composer.json ]; then
             echo "The composer.json file must exist at the base of the site."
+            exit 1
         else
-            if [ -x composer.phar ]
-            then
+            if [ -x composer.phar ]; then
                 composer.phar install
             else
                 composer install
             fi
         fi
     else
-        if [ ! -f composer.json ]
-        then
+        if [ ! -f composer.json ]; then
             echo "The composer.json file must exist at the base of the site."
+            exit 1
         else
-            if [ -x composer.phar ]
-            then
+            if [ -x composer.phar ]; then
                 composer.phar update
             else
                 composer update
@@ -28,33 +47,12 @@ then
         fi
     fi
 
-    if [ ! -d public/assets/vendor ]
-    then
-        if [ -f public/assets/package.json ]
-        then
-            cd public/assets
-            yarn install --modules-folder vendor
-            yarn config set modules-folder vendor
-            sass --update -t compressed scss:css
-            cd ../../
-        else
-            echo "The package.json file must exist in the public/assets directory."
-        fi
-    else
-        if [ -f public/assets/package.json ]
-        then
-            cd public/assets
-            yarn install --modules-folder vendor
-            yarn config set modules-folder vendor
-            sass --update -t compressed scss:css
-            cd ../../
-        else
-            echo "The package.json file must exist in the public/assets directory."
-        fi
-    fi
+    bash src/bin/doYarn.sh
+    bash src/bin/doJqueryUi.sh
+    bash src/bin/doSass.sh
+    bash src/bin/doUglifyJS.sh
 
-    if [ ! -d src/apps/Ritc/Library ]
-    then
+    if [ ! -d src/apps/Ritc/Library ]; then
         echo "Installing the Library."
         git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
     else

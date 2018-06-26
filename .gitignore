@@ -21,8 +21,8 @@
 /public/assets/images/touch/*.png
 /public/assets/images/touch/*.svg
 /public/assets/images/touch/*.xml
-/public/assets/js/min/*.js
-/public/assets/build
+/public/assets/js/*.js
+/public/assets/js/*.js.map
 /public/assets/vendor
 /public/doxy
 /public/index.php
