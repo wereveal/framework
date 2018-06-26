@@ -2914,12 +2914,52 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"\/js\/min\/color_changer.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/min\/min\/color_changer.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/js\/min\/config.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/min\/min\/config.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"\/js\/min\/index.php": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/js\/min\/index.php",
 		"oF": 0
+		},
+	"\/js\/min\/is_unicode_letter.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/min\/min\/is_unicode_letter.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/js\/min\/now.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/min\/min\/now.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
 		},
 	"\/js\/now.js": {
 		"ft": 64,
@@ -25797,6 +25837,49 @@
 		"ft": 4096,
 		"oA": 0,
 		"oAP": "\/vendor\/popper.js\/README.html",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
+	"\/vendor\/whatwg-fetch\/fetch.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/vendor\/whatwg-fetch\/min\/fetch.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/vendor\/whatwg-fetch\/LICENSE": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/vendor\/whatwg-fetch\/LICENSE",
+		"oF": 0
+		},
+	"\/vendor\/whatwg-fetch\/package.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/vendor\/whatwg-fetch\/package-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/vendor\/whatwg-fetch\/README.md": {
+		"cB": 0,
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 0,
+		"oAP": "\/vendor\/whatwg-fetch\/README.html",
 		"oF": 0,
 		"oFM": 0,
 		"oS": 0,

@@ -11,14 +11,15 @@ function changeTwigDirs(selectedPrefix) {
         $(resp).each(function(k, v) {
             dirSelect
                 .append($("<option></option>")
-                .attr("value", v.td_id).text(v.td_name))
-            ;
+                   .attr("value", v.td_id)
+                   .text(v.td_name)
+                );
         });
     });
 }
 
 function displayDirectories(selectedPrefix) {
-    var goTo = location.origin+'/manager/config/ajax/forDirectories/';
+    var goTo = location.origin+'/manager/config/ajax/for_directories/';
     var posted = {"prefix_id":selectedPrefix.value};
     $.post(goTo, posted, function(response) {
         var resp = JSON.parse(response);
@@ -54,4 +55,20 @@ function displayDirectories(selectedPrefix) {
             theDiv.append(theStuff);
         });
     });
+}
+
+function urlsForNavgroup(navgroup) {
+    var goTo = location.origin+'/manager/config/ajax/urls_available/';
+    var posted = {'navgroup_id':navgroup.value};
+    $.post(goTo, posted, function(jsonStr) {
+        if (jsonStr.includes("<pre>")) {
+            jsonStr = jsonStr.replace('<pre></pre>','');
+            console.error("jsonStr includes the pre tag.");
+        }
+        var parsedJson = JSON.parse(jsonStr);
+        $("#url_id").empty();
+        $(parsedJson).each(function(k, v) {
+            $("#url_id").append($("<option></option>").attr("value", v.url_id).text(v.url_text));
+        });
+    })
 }
