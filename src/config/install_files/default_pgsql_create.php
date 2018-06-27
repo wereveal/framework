@@ -165,7 +165,7 @@ $BODY$ language \'plpgsql\'',
 "CREATE TABLE {dbPrefix}navigation (
   nav_id serial NOT NULL,
   url_id integer NOT NULL DEFAULT 0,
-  nav_parent_id integer NOT NULL DEFAULT 0,
+  parent_id integer NOT NULL DEFAULT 0,
   nav_name character varying(128) NOT NULL DEFAULT 'Fred'::character varying,
   nav_text character varying(128) NOT NULL DEFAULT ''::character varying,
   nav_description character varying(255) NOT NULL DEFAULT ''::character varying,

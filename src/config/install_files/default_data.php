@@ -588,7 +588,7 @@ $a_route_group_map = [
 $a_navigation = [
     'home' => [
         'url_id'          => 'home',
-        'nav_parent_id'   => 'home',
+        'parent_id'       => 'home',
         'nav_name'        => 'home',
         'nav_text'        => 'Home',
         'nav_description' => 'Home page.',
@@ -600,7 +600,7 @@ $a_navigation = [
     ],
     'sitemap' => [
         'url_id'          => 'sitemap',
-        'nav_parent_id'   => 'sitemap',
+        'parent_id'       => 'sitemap',
         'nav_name'        => 'sitemap',
         'nav_text'        => 'Sitemap',
         'nav_description' => 'Sitemap.',
@@ -612,7 +612,7 @@ $a_navigation = [
     ],
     'library' => [
         'url_id'          => 'library',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'library',
         'nav_text'        => 'Advanced Config',
         'nav_description' => 'Backend Manager Page',
@@ -624,7 +624,7 @@ $a_navigation = [
     ],
     'lib_blocks'  => [
         'url_id'          => 'lib_blocks',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'blocks',
         'nav_text'        => 'Blocks',
         'nav_description' => 'Manage blocks used throughout app.',
@@ -636,7 +636,7 @@ $a_navigation = [
     ],
     'lib_cache'  => [
         'url_id'          => 'lib_cache',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'cache',
         'nav_text'        => 'Cache',
         'nav_description' => 'Manage cache used throughout app.',
@@ -648,7 +648,7 @@ $a_navigation = [
     ],
     'lib_constants'  => [
         'url_id'          => 'lib_constants',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'constants',
         'nav_text'        => 'Constants',
         'nav_description' => 'Define constants used throughout app.',
@@ -660,7 +660,7 @@ $a_navigation = [
     ],
     'lib_content' => [
         'url_id'          => 'lib_content',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'content',
         'nav_text'        => 'Content Manager',
         'nav_description' => 'Content Manager',
@@ -672,7 +672,7 @@ $a_navigation = [
     ],
     'lib_groups' => [
         'url_id'          => 'lib_groups',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'groups',
         'nav_text'        => 'Groups',
         'nav_description' => 'Define Groups used for accessing app.',
@@ -684,7 +684,7 @@ $a_navigation = [
     ],
     'lib_login' => [
         'url_id'          => 'lib_login',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'lib_login',
         'nav_text'        => 'Config Login',
         'nav_description' => 'Config Login',
@@ -696,7 +696,7 @@ $a_navigation = [
     ],
     'lib_logout' => [
         'url_id'          => 'lib_logout',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'lib_logout',
         'nav_text'        => 'Config Logout',
         'nav_description' => 'Config Logout',
@@ -708,7 +708,7 @@ $a_navigation = [
     ],
     'lib_nav' => [
         'url_id'          => 'lib_nav',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'navigation',
         'nav_text'        => 'Navigation',
         'nav_description' => 'Define Navigation Links',
@@ -720,7 +720,7 @@ $a_navigation = [
     ],
     'lib_navgroups' => [
         'url_id'          => 'lib_navgroups',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'navgroups',
         'nav_text'        => 'Navgroups',
         'nav_description' => 'Define Navigation Groups',
@@ -732,7 +732,7 @@ $a_navigation = [
     ],
     'lib_pages' => [
         'url_id'          => 'lib_pages',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'pages',
         'nav_text'        => 'Pages',
         'nav_description' => 'Define Page values.',
@@ -744,7 +744,7 @@ $a_navigation = [
     ],
     'lib_peeps' => [
         'url_id'          => 'lib_peeps',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'people',
         'nav_text'        => 'People',
         'nav_description' => 'Setup people allowed to access app.',
@@ -756,7 +756,7 @@ $a_navigation = [
     ],
     'lib_routes' => [
         'url_id'          => 'lib_routes',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'routes',
         'nav_text'        => 'Routes',
         'nav_description' => 'Define routes used for where to go.',
@@ -768,7 +768,7 @@ $a_navigation = [
     ],
     'lib_sitemap' => [
         'url_id'          => 'lib_sitemap',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'lib_sitemap',
         'nav_text'        => 'Sitemap Manager',
         'nav_description' => 'Sitemap Manager',
@@ -780,7 +780,7 @@ $a_navigation = [
     ],
     'lib_tests' => [
         'url_id'          => 'lib_tests',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'lib_tests',
         'nav_text'        => 'Configuration Tests',
         'nav_description' => 'Run Configuration Tests',
@@ -792,7 +792,7 @@ $a_navigation = [
     ],
     'lib_twig' => [
         'url_id'          => 'lib_twig',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'twig',
         'nav_text'        => 'Twig',
         'nav_description' => 'Define Twig prefix, directories, and templates',
@@ -804,7 +804,7 @@ $a_navigation = [
     ],
     'lib_urls' => [
         'url_id'          => 'lib_urls',
-        'nav_parent_id'   => 'library',
+        'parent_id'       => 'library',
         'nav_name'        => 'urls',
         'nav_text'        => 'Urls',
         'nav_description' => 'Define the URLs used in the app',
@@ -816,7 +816,7 @@ $a_navigation = [
     ],
     'manager' => [
         'url_id'          => 'manager',
-        'nav_parent_id'   => 'manager',
+        'parent_id'       => 'manager',
         'nav_name'        => 'manager',
         'nav_text'        => 'Manager',
         'nav_description' => 'Manager Page',
@@ -828,7 +828,7 @@ $a_navigation = [
     ],
     'man_tests' => [
         'url_id'          => 'man_tests',
-        'nav_parent_id'   => 'manager',
+        'parent_id'       => 'manager',
         'nav_name'        => 'manager_tests',
         'nav_text'        => 'Manager Tests',
         'nav_description' => 'Manager Tests',
@@ -840,7 +840,7 @@ $a_navigation = [
     ],
     'man_login' => [
         'url_id'          => 'man_login',
-        'nav_parent_id'   => 'manager',
+        'parent_id'       => 'manager',
         'nav_name'        => 'manager_login',
         'nav_text'        => 'Manager Login',
         'nav_description' => 'Manager Login',
@@ -852,7 +852,7 @@ $a_navigation = [
     ],
     'man_logout' => [
         'url_id'          => 'man_logout',
-        'nav_parent_id'   => 'manager',
+        'parent_id'       => 'manager',
         'nav_name'        => 'manager_logout',
         'nav_text'        => 'Manager Logout',
         'nav_description' => 'Manager Logout',
@@ -864,7 +864,7 @@ $a_navigation = [
     ],
     'constantsmodel_test' => [
         'url_id'          => 'lib_tests',
-        'nav_parent_id'   => 'lib_tests',
+        'parent_id'       => 'lib_tests',
         'nav_name'        => 'constantsmodel_test',
         'nav_text'        => 'ConstantsModelTest',
         'nav_description' => 'Constants Model Test',
@@ -876,7 +876,7 @@ $a_navigation = [
     ],
     'pagemodel_test' => [
         'url_id'          => 'lib_tests',
-        'nav_parent_id'   => 'lib_tests',
+        'parent_id'       => 'lib_tests',
         'nav_name'        => 'pagemodel_test',
         'nav_text'        => 'PageModelTest',
         'nav_description' => 'Page Model Test',
@@ -888,7 +888,7 @@ $a_navigation = [
     ],
     'peoplemodel_test' => [
         'url_id'          => 'lib_tests',
-        'nav_parent_id'   => 'lib_tests',
+        'parent_id'       => 'lib_tests',
         'nav_name'        => 'peoplemodel_test',
         'nav_text'        => 'PeopleModelTest',
         'nav_description' => 'People Model Test',
@@ -900,7 +900,7 @@ $a_navigation = [
     ],
     'urlsmodel_test' => [
         'url_id'          => 'lib_tests',
-        'nav_parent_id'   => 'lib_tests',
+        'parent_id'       => 'lib_tests',
         'nav_name'        => 'urlsmodel_test',
         'nav_text'        => 'UrlsModelTest',
         'nav_description' => 'Urls Model Test',
@@ -912,7 +912,7 @@ $a_navigation = [
     ],
     'navgroupsmodel_test' => [
         'url_id'          => 'lib_tests',
-        'nav_parent_id'   => 'lib_tests',
+        'parent_id'       => 'lib_tests',
         'nav_name'        => 'navgroupsmodel_test',
         'nav_text'        => 'NavgroupsModelTest',
         'nav_description' => 'Navgroups Model Test',
@@ -924,7 +924,7 @@ $a_navigation = [
     ],
     'navigationmodel_test' => [
         'url_id'          => 'lib_tests',
-        'nav_parent_id'   => 'lib_tests',
+        'parent_id'       => 'lib_tests',
         'nav_name'        => 'navigationmodel_test',
         'nav_text'        => 'NavigationModelTest',
         'nav_description' => 'Navigation Model Test',
@@ -936,7 +936,7 @@ $a_navigation = [
     ],
     'navngmapmodel_test' => [
         'url_id'          => 'lib_tests',
-        'nav_parent_id'   => 'lib_tests',
+        'parent_id'       => 'lib_tests',
         'nav_name'        => 'navngmapmodel_test',
         'nav_text'        => 'NavNgMapModelTest',
         'nav_description' => 'NavNgMap Model Test',

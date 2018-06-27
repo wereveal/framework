@@ -147,7 +147,7 @@ return [
 "CREATE TABLE `{dbPrefix}navigation` (
   `nav_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `url_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `nav_parent_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `parent_id` int(11) unsigned NOT NULL DEFAULT '0',
   `nav_name` varchar(128) NOT NULL DEFAULT 'Fred',
   `nav_text` varchar(128) NOT NULL DEFAULT '',
   `nav_description` varchar(255) NOT NULL DEFAULT '',

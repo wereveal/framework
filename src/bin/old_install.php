@@ -546,7 +546,7 @@ SQL;
 
 $update_sql =<<<SQL
 UPDATE {$a_install['lib_db_prefix']}navigation
-SET nav_parent_id = :nav_parent_id
+SET parent_id = :parent_id
 WHERE nav_id = :nav_id
 SQL;
 
@@ -557,7 +557,7 @@ $a_table_info = [
 
 foreach ($a_navigation as $key => $a_record) {
     $a_record['url_id'] = $a_urls[$a_record['url_id']]['url_id'];
-    $a_record['nav_parent_id'] = 0;
+    $a_record['parent_id'] = 0;
     try {
         $results = $o_db->insert($nav_sql, $a_record, $a_table_info);
         if (empty($results)) {
@@ -566,7 +566,7 @@ foreach ($a_navigation as $key => $a_record) {
         else {
             $ids = $o_db->getNewIds();
             $a_navigation[$key]['nav_id'] = $ids[0];
-            $a_navigation[$key]['nav_parent_name'] = $a_navigation[$key]['nav_parent_id'];
+            $a_navigation[$key]['nav_parent_name'] = $a_navigation[$key]['parent_id'];
             print "+";
         }
     }
@@ -584,7 +584,7 @@ foreach ($a_navigation as $key => $a_record) {
         if (empty($results)) {
             failIt($o_db, 'Could not retrieve parent navigation data.');
         }
-        $update_values = [':nav_id' => $a_record['nav_id'], ':nav_parent_id' => $results[0]['nav_id']];
+        $update_values = [':nav_id' => $a_record['nav_id'], ':parent_id' => $results[0]['nav_id']];
     }
     catch (ModelException $e) {
         failIt($o_db, 'Could not retrieve parent navigation data. ' . $e->errorMessage());

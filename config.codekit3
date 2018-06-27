@@ -1215,14 +1215,14 @@
 	"\/public\/example_index.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/public\/example_index.php",
 		"oF": 0
 		},
 	"\/public\/example_setup.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/public\/example_setup.php",
 		"oF": 0
 		},
@@ -1250,21 +1250,21 @@
 	"\/public\/index.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/public\/index.php",
 		"oF": 0
 		},
 	"\/public\/robots.txt": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/public\/robots.txt",
 		"oF": 0
 		},
 	"\/public\/setup.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/public\/setup.php",
 		"oF": 0
 		},
@@ -1322,672 +1322,672 @@
 	"\/src\/apps\/Ritc\/Library\/Abstracts\/CustomErrorAbstract.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Abstracts\/CustomErrorAbstract.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Abstracts\/CustomExceptionAbstract.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Abstracts\/CustomExceptionAbstract.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Abstracts\/ModelAbstract.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Abstracts\/ModelAbstract.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Basic\/Tester.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Basic\/Tester.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/AjaxController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/AjaxController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/BlocksController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/BlocksController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/CacheManagerController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/CacheManagerController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/ConstantsController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/ConstantsController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/ContentController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/ContentController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/GroupsController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/GroupsController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/LibraryController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/LibraryController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/LibSitemapController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/LibSitemapController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/NavgroupsController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/NavgroupsController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/NavigationController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/NavigationController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/PageController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/PageController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/PeopleController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/PeopleController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/RoutesController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/RoutesController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/RoutesGroupController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/RoutesGroupController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/SitemapController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/SitemapController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/TestsController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/TestsController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/TwigController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/TwigController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Controllers\/UrlsController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Controllers\/UrlsController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Entities\/ConstantsEntity.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Entities\/ConstantsEntity.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Entities\/GroupsEntity.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Entities\/GroupsEntity.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Entities\/MenusEntity.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Entities\/MenusEntity.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Entities\/PagesEntity.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Entities\/PagesEntity.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Entities\/PeopleEntity.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Entities\/PeopleEntity.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Entities\/PeopleGroupMapEntity.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Entities\/PeopleGroupMapEntity.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Entities\/RoutesEntity.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Entities\/RoutesEntity.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Entities\/RoutesGroupMapEntity.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Entities\/RoutesGroupMapEntity.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Exceptions\/CustomErrorException.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Exceptions\/CustomErrorException.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Exceptions\/CustomException.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Exceptions\/CustomException.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Exceptions\/FactoryException.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Exceptions\/FactoryException.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Exceptions\/HelperException.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Exceptions\/HelperException.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Exceptions\/ModelException.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Exceptions\/ModelException.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Exceptions\/ServiceException.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Exceptions\/ServiceException.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Factories\/CacheFactory.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Factories\/CacheFactory.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Factories\/PdoFactory.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Factories\/PdoFactory.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Factories\/TwigFactory.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Factories\/TwigFactory.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/Actions.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/Actions.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/Arrays.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/Arrays.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/AuthHelper.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/AuthHelper.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/AutoloadMapper.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/AutoloadMapper.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/CacheHelper.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/CacheHelper.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/DatesTimes.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/DatesTimes.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/ExceptionHelper.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/ExceptionHelper.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/Files.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/Files.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/FormHelper.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/FormHelper.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/Html.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/Html.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/LocateFile.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/LocateFile.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/MimeTypeHelper.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/MimeTypeHelper.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/NewAppHelper.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/NewAppHelper.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/OopHelper.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/OopHelper.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/RoutesHelper.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/RoutesHelper.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/Strings.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/Strings.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/UploadHelper.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/UploadHelper.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Helper\/ViewHelper.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Helper\/ViewHelper.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/ConfigControllerInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/ConfigControllerInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/ControllerInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/ControllerInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/CustomExceptionInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/CustomExceptionInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/DbAdminInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/DbAdminInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/DbSuAdminInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/DbSuAdminInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/EntityInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/EntityInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/LocationInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/LocationInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/MainControllerInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/MainControllerInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/ManagerControllerInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/ManagerControllerInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/ModelInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/ModelInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/ModelTesterInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/ModelTesterInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/PageControllerInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/PageControllerInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Interfaces\/ViewInterface.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Interfaces\/ViewInterface.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/BlocksModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/BlocksModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/ConstantsCreator.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/ConstantsCreator.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/ConstantsModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/ConstantsModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/ContentComplexModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/ContentComplexModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/ContentModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/ContentModel.php",
 		"oF": 0
 		},
-	"\/src\/apps\/Ritc\/Library\/Models\/DbInstallerModel.php": {
+	"\/src\/apps\/Ritc\/Library\/Models\/DbCreator.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/DbInstallerModel.php",
+		"oA": 1,
+		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/DbCreator.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/GroupsModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/GroupsModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/NavComplexModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/NavComplexModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/NavgroupsComplexModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/NavgroupsComplexModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/NavgroupsModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/NavgroupsModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/NavigationModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/NavigationModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/NavNgMapModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/NavNgMapModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/PageBlocksMapModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/PageBlocksMapModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/PageComplexModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/PageComplexModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/PageModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/PageModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/PeopleComplexModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/PeopleComplexModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/PeopleGroupMapModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/PeopleGroupMapModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/PeopleModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/PeopleModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/RoutesComplexModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/RoutesComplexModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/RoutesGroupMapModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/RoutesGroupMapModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/RoutesModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/RoutesModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/TwigComplexModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/TwigComplexModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/TwigDirsModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/TwigDirsModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/TwigPrefixModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/TwigPrefixModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/TwigTemplatesModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/TwigTemplatesModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Models\/UrlsModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Models\/UrlsModel.php",
 		"oF": 0
 		},
@@ -2124,329 +2124,329 @@
 	"\/src\/apps\/Ritc\/Library\/Services\/DbModel.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Services\/DbModel.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Services\/Di.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Services\/Di.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Services\/Elog.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Services\/Elog.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Services\/Router.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Services\/Router.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Services\/Session.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Services\/Session.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Services\/Tail.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Services\/Tail.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Services\/Tpl.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Services\/Tpl.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Tests\/ConstantsModelTester.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Tests\/ConstantsModelTester.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Tests\/GroupsModelTester.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Tests\/GroupsModelTester.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Tests\/NavgroupsModelTester.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Tests\/NavgroupsModelTester.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Tests\/NavigationModelTester.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Tests\/NavigationModelTester.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Tests\/NavNgMapModelTester.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Tests\/NavNgMapModelTester.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Tests\/PageModelTester.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Tests\/PageModelTester.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Tests\/PeopleGroupMapModelTester.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Tests\/PeopleGroupMapModelTester.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Tests\/PeopleModelTester.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Tests\/PeopleModelTester.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Tests\/UrlsModelTester.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Tests\/UrlsModelTester.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/todo.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/todo.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/ConfigControllerTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/ConfigControllerTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/ConfigViewTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/ConfigViewTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/ControllerTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/ControllerTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/DbCommonTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/DbCommonTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/DbTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/DbTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/DbUtilityTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/DbUtilityTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/LogitTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/LogitTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/ManagerControllerTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/ManagerControllerTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/ManagerViewTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/ManagerViewTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/PeopleTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/PeopleTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/TesterTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/TesterTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/ViewTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/ViewTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Traits\/VisibilityTraits.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Traits\/VisibilityTraits.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/BlocksView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/BlocksView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/CacheManagerView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/CacheManagerView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/ConstantsView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/ConstantsView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/ContentView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/ContentView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/GroupsView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/GroupsView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/LibraryView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/LibraryView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/LibSitemapView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/LibSitemapView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/NavgroupsView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/NavgroupsView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/NavigationView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/NavigationView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/PageView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/PageView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/PeopleView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/PeopleView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/RoutesGroupView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/RoutesGroupView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/RoutesView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/RoutesView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/SitemapView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/SitemapView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/TestsView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/TestsView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/TwigView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/TwigView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/Views\/UrlsView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Library\/Views\/UrlsView.php",
 		"oF": 0
 		},
@@ -2474,21 +2474,21 @@
 	"\/src\/apps\/Ritc\/Main\/Controllers\/HomeController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/Controllers\/HomeController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/Controllers\/ManagerController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/Controllers\/ManagerController.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/Controllers\/MasterController.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/Controllers\/MasterController.php",
 		"oF": 0
 		},
@@ -2530,14 +2530,14 @@
 	"\/src\/apps\/Ritc\/Main\/resources\/config\/doxygen_config.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/config\/doxygen_config.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/config\/twig_config.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/config\/twig_config.php",
 		"oF": 0
 		},
@@ -2551,119 +2551,119 @@
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/elements\/no_file.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/elements\/no_file.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/forms\/no_file.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/forms\/no_file.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/no_file.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/no_file.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/error.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/error.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/home.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/home.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/index.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/index.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/login.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/login.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/manager.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/manager.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/no_file.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/no_file.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/sitemap.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/sitemap.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/test.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/test.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/test_results.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/test_results.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/verify_delete.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/pages\/verify_delete.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/snippets\/no_file.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/snippets\/no_file.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/tests\/no_file.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/tests\/no_file.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/themes\/base.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/themes\/base.twig",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/resources\/templates\/themes\/no_file.twig": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/resources\/templates\/themes\/no_file.twig",
 		"oF": 0
 		},
@@ -2691,14 +2691,14 @@
 	"\/src\/apps\/Ritc\/Main\/Views\/HomeView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/Views\/HomeView.php",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Main\/Views\/ManagerView.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/apps\/Ritc\/Main\/Views\/ManagerView.php",
 		"oF": 0
 		},
@@ -2711,7 +2711,7 @@
 	"\/src\/cli_setup.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/cli_setup.php",
 		"oF": 0
 		},
@@ -2724,7 +2724,7 @@
 	"\/src\/images\/index.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/images\/index.php",
 		"oF": 0
 		},
@@ -3204,7 +3204,7 @@
 	"\/src\/scss\/index.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/scss\/index.php",
 		"oF": 0
 		},
@@ -3250,14 +3250,14 @@
 	"\/src\/setup.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/setup.php",
 		"oF": 0
 		},
 	"\/src\/svg\/index.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/src\/svg\/index.php",
 		"oF": 0
 		},
@@ -3283,7 +3283,7 @@
 	"\/todo.php": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/todo.php",
 		"oF": 0
 		},
@@ -5167,7 +5167,7 @@
 		"strictUnits": 0
 		},
 	"languageDefaultsMARKDOWN": {
-		"autoOutputAction": 1,
+		"autoOutputAction": 0,
 		"autoOutputPathFilenamePattern": "*.html",
 		"autoOutputPathRelativePath": "",
 		"autoOutputPathReplace1": "",
@@ -5301,22 +5301,22 @@
 			},
 		{
 			"autoOutputAction": 1,
-			"autoOutputPathFilenamePattern": "*.twig",
-			"autoOutputPathRelativePath": "",
-			"autoOutputPathReplace1": "",
-			"autoOutputPathReplace2": "",
-			"autoOutputPathStyle": 0,
-			"fileExtension": "twig",
-			"shouldRunCacheBuster": 0
-			},
-		{
-			"autoOutputAction": 1,
 			"autoOutputPathFilenamePattern": "*.txt",
 			"autoOutputPathRelativePath": "",
 			"autoOutputPathReplace1": "",
 			"autoOutputPathReplace2": "",
 			"autoOutputPathStyle": 0,
 			"fileExtension": "txt",
+			"shouldRunCacheBuster": 0
+			},
+		{
+			"autoOutputAction": 1,
+			"autoOutputPathFilenamePattern": "*.twig",
+			"autoOutputPathRelativePath": "",
+			"autoOutputPathReplace1": "",
+			"autoOutputPathReplace2": "",
+			"autoOutputPathStyle": 0,
+			"fileExtension": "twig",
 			"shouldRunCacheBuster": 0
 			}
 		],

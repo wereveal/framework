@@ -13,7 +13,7 @@
  * @date      2017-05-25 15:28:28
  * @version   2.5.0
  * @note   <b>Change Log</b>
- * - v3.0.0 - Changed to use DbInstallerModel and NewAppHelper     - 2017-12-15 wer
+ * - v3.0.0 - Changed to use DbCreator and NewAppHelper     - 2017-12-15 wer
  * - v2.5.0 - Added several files to be created in app.            - 2017-05-25 wer
  * - v2.4.0 - changed several settings, defaults, and actions      - 2017-05-11 wer
  * - v2.3.0 - fix to install_files setup.php in public dir         - 2017-05-08 wer

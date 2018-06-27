@@ -13,7 +13,7 @@
  * @date      2017-05-25 15:28:28
  * @version   2.5.0
  * @note   <b>Change Log</b>
- * - v3.0.0 - Changed to use DbInstallerModel and NewAppHelper     - 2017-12-15 wer
+ * - v3.0.0 - Changed to use DbCreator and NewAppHelper     - 2017-12-15 wer
  * - v2.5.0 - Added several files to be created in app.            - 2017-05-25 wer
  * - v2.4.0 - changed several settings, defaults, and actions      - 2017-05-11 wer
  * - v2.3.0 - fix to install_files setup.php in public dir         - 2017-05-08 wer
@@ -30,7 +30,7 @@ use Ritc\Library\Exceptions\ServiceException;
 use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Helper\AutoloadMapper;
 use Ritc\Library\Helper\NewAppHelper;
-use Ritc\Library\Models\DbInstallerModel;
+use Ritc\Library\Models\DbCreator;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
@@ -39,8 +39,23 @@ if (strpos(__DIR__, 'Library') !== false) {
     die("Please Run this script from the src/bin directory");
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
+/**
+ * Switch to use the elog
+ *
+ * @var bool DEVELOPER_MODE
+ */
 define('DEVELOPER_MODE', true);
+/**
+ * Server path to the base of the code.
+ *
+ * @var string BASE_PATH
+ */
 define('BASE_PATH', $base_path);
+/**
+ * Server path to the root of the public website files.
+ *
+ * @var string PUBLIC_PATH
+ */
 define('PUBLIC_PATH', $base_path . '/public');
 
 require_once BASE_PATH . '/src/config/constants.php';
@@ -260,134 +275,134 @@ try {
 catch (ModelException $e) {
     print "Could not start transaction: " . $e->errorMessage() . "\n";
 }
-$o_installer_model = new DbInstallerModel($o_di);
+$o_db_creator = new DbCreator($o_di);
 print "Creating Databases: ";
-if (!$o_installer_model->createTables()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->createTables()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter Constants
 print "Entering Constants Data: ";
-if (!$o_installer_model->insertConstants()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertConstants()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter Groups
 print "Create Groups: ";
-if (!$o_installer_model->insertGroups()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertGroups()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'urls'
 print "Create URLs: ";
-if (!$o_installer_model->insertUrls()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertUrls()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'people'
 print "Creating People: ";
-if (!$o_installer_model->insertPeople()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertPeople()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'navgroups',
 print "Creating NavGroups: ";
-if (!$o_installer_model->insertNavgroups()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertNavgroups()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'people_group_map',
 print "Creating people_group_map: ";
-if (!$o_installer_model->insertPGM()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertPGM()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'routes'
 print "Creating Routes: ";
-if (!$o_installer_model->insertRoutes()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertRoutes()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'routes_group_map'
 print "Creating routes_group_map: ";
-if (!$o_installer_model->insertRGM()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertRGM()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'navigation',
 print "Creating Navigation: ";
-if (!$o_installer_model->insertNavigation()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertNavigation()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'nav_ng_map'
 print "Creating nav_ng_map: ";
-if (!$o_installer_model->insertNNM()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertNNM()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Twig tables data ###
 print "Starting the Twig db stuff. \n";
 print "Updating data for app specific\n";
-$o_installer_model->createTwigAppConfig();
+$o_db_creator->createTwigAppConfig();
 
 ### Enter twig prefixes into database ###
 print "Creating Twig Prefixes: ";
-if (!$o_installer_model->insertTwigPrefixes()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertTwigPrefixes()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter twig directories into database ###
 print "Creating twig directories: ";
-if (!$o_installer_model->insertTwigDirs()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertTwigDirs()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter twig templates into database ###
 print "Creating twig templates: ";
-if (!$o_installer_model->insertTwigTemplates()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertTwigTemplates()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'page' ###
 print "Creating Page: ";
-if (!$o_installer_model->insertPage()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertPage()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'blocks' ###
 print "Creating Blocks: ";
-if (!$o_installer_model->insertBlocks()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertBlocks()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'Page blocks' ###
 print "Creating Page Blocks Map: ";
-if (!$o_installer_model->insertPBM()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertPBM()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'content' ###
 print 'Creating Content: ';
-if (!$o_installer_model->insertContent()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+if (!$o_db_creator->insertContent()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
