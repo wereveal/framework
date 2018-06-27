@@ -2009,6 +2009,38 @@
 		"rFN": 0,
 		"uCM": 0
 		},
+	"\/src\/apps\/Ritc\/Library\/resources\/assets\/images\/fred_flinstone.jpeg": {
+		"ft": 16384,
+		"iS": 11765,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "\/public\/assets\/images\/fred_flinstone.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 85
+		},
+	"\/src\/apps\/Ritc\/Library\/resources\/assets\/images\/icons\/index.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/src\/apps\/Ritc\/Library\/resources\/assets\/images\/icons\/index.php",
+		"oF": 0
+		},
+	"\/src\/apps\/Ritc\/Library\/resources\/assets\/images\/index.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/src\/apps\/Ritc\/Library\/resources\/assets\/images\/index.php",
+		"oF": 0
+		},
+	"\/src\/apps\/Ritc\/Library\/resources\/assets\/images\/thumbs\/index.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/src\/apps\/Ritc\/Library\/resources\/assets\/images\/thumbs\/index.php",
+		"oF": 0
+		},
 	"\/src\/apps\/Ritc\/Library\/resources\/assets\/js\/config.js": {
 		"ft": 64,
 		"ma": 1,
@@ -2018,32 +2050,6 @@
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
-		},
-	"\/src\/apps\/Ritc\/Library\/resources\/assets\/scss\/_forms.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 1,
-		"oAP": "\/public\/assets\/css\/_forms.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
-		},
-	"\/src\/apps\/Ritc\/Library\/resources\/assets\/scss\/_library.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 1,
-		"oAP": "\/public\/assets\/css\/_library.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
 		},
 	"\/src\/apps\/Ritc\/Library\/resources\/assets\/scss\/_media_queries.scss": {
 		"aP": 1,
@@ -2084,6 +2090,13 @@
 		"oS": 3,
 		"uL": 1
 		},
+	"\/src\/apps\/Ritc\/Library\/resources\/assets\/txt\/lorem.txt": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/src\/apps\/Ritc\/Library\/resources\/assets\/txt\/lorem.txt",
+		"oF": 0
+		},
 	"\/src\/apps\/Ritc\/Library\/resources\/bin": {
 		"ft": 65536,
 		"oA": 1,
@@ -2100,12 +2113,6 @@
 		"ft": 65536,
 		"oA": 1,
 		"oAP": "\/public\/assets\/apps\/Ritc\/Library\/resources\/docs",
-		"oF": 0
-		},
-	"\/src\/apps\/Ritc\/Library\/resources\/reference": {
-		"ft": 65536,
-		"oA": 1,
-		"oAP": "\/public\/assets\/apps\/Ritc\/Library\/resources\/reference",
 		"oF": 0
 		},
 	"\/src\/apps\/Ritc\/Library\/resources\/templates": {
@@ -2973,6 +2980,19 @@
 		"oS": 3,
 		"uL": 1
 		},
+	"\/src\/scss\/_forms.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "\/public\/assets\/css\/_forms.css",
+		"oF": 0,
+		"oS": 3,
+		"uL": 1
+		},
 	"\/src\/scss\/_functions.scss": {
 		"aP": 1,
 		"bl": 0,
@@ -3181,97 +3201,6 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"\/src\/scss\/apps\/ftp\/_ftpadmin.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 1,
-		"oAP": "\/public\/assets\/css\/_ftpadmin.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
-		},
-	"\/src\/scss\/apps\/ftp\/_media_queries.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 1,
-		"oAP": "\/public\/assets\/css\/_media_queries.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
-		},
-	"\/src\/scss\/apps\/library\/_forms.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 1,
-		"oAP": "\/public\/assets\/css\/_forms.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
-		},
-	"\/src\/scss\/apps\/library\/_library.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 1,
-		"oAP": "\/public\/assets\/css\/_library.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
-		},
-	"\/src\/scss\/apps\/library\/_media_queries.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 1,
-		"oAP": "\/public\/assets\/css\/_media_queries.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
-		},
-	"\/src\/scss\/apps\/library\/_tests.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 1,
-		"oAP": "\/public\/assets\/css\/_tests.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
-		},
-	"\/src\/scss\/apps\/manager\/_forms.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 1,
-		"oAP": "\/public\/assets\/css\/_forms.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
-		},
 	"\/src\/scss\/index.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -3288,32 +3217,6 @@
 		"ma": 1,
 		"oA": 0,
 		"oAP": "\/public\/assets\/css\/styles.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
-		},
-	"\/src\/scss\/styles_ftpadmin.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 0,
-		"oAP": "\/public\/assets\/css\/styles_ftpadmin.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
-		},
-	"\/src\/scss\/styles_library.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 0,
-		"oAP": "\/public\/assets\/css\/styles_library.css",
 		"oF": 0,
 		"oS": 3,
 		"uL": 1
@@ -5157,10 +5060,10 @@
 	"languageDefaultsCOFFEE": {
 		"autoOutputAction": 0,
 		"autoOutputPathFilenamePattern": "*.js",
-		"autoOutputPathRelativePath": "",
+		"autoOutputPathRelativePath": "\/public\/assets\/js",
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
-		"autoOutputPathStyle": 0,
+		"autoOutputPathStyle": 1,
 		"createSourceMap": 0,
 		"minifyOutput": 1,
 		"outputStyle": 0,
@@ -5168,7 +5071,7 @@
 		"transpilerStyle": 1
 		},
 	"languageDefaultsCSS": {
-		"autoOutputAction": 0,
+		"autoOutputAction": 1,
 		"autoOutputPathFilenamePattern": "*-min.css",
 		"autoOutputPathRelativePath": "",
 		"autoOutputPathReplace1": "",
@@ -5264,7 +5167,7 @@
 		"strictUnits": 0
 		},
 	"languageDefaultsMARKDOWN": {
-		"autoOutputAction": 0,
+		"autoOutputAction": 1,
 		"autoOutputPathFilenamePattern": "*.html",
 		"autoOutputPathRelativePath": "",
 		"autoOutputPathReplace1": "",
@@ -5369,23 +5272,53 @@
 	"languageDefaultsTS": {
 		"autoOutputAction": 0,
 		"autoOutputPathFilenamePattern": "*.js",
-		"autoOutputPathRelativePath": "\/js",
+		"autoOutputPathRelativePath": "\/public\/assets\/js",
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
-		"autoOutputPathStyle": 0,
+		"autoOutputPathStyle": 1,
 		"createDeclarationFile": 0,
-		"createSourceMap": 0,
+		"createSourceMap": 1,
 		"jsxMode": 0,
-		"minifyOutput": 0,
+		"minifyOutput": 1,
 		"moduleResolutionType": 0,
 		"moduleType": 2,
 		"noImplicitAny": 0,
 		"preserveConstEnums": 0,
-		"removeComments": 0,
+		"removeComments": 1,
 		"suppressImplicitAnyIndexErrors": 0,
-		"targetECMAVersion": 0
+		"targetECMAVersion": 1
 		},
 	"languageDefaultsUserDefined": [
+		{
+			"autoOutputAction": 1,
+			"autoOutputPathFilenamePattern": "*.php",
+			"autoOutputPathRelativePath": "",
+			"autoOutputPathReplace1": "",
+			"autoOutputPathReplace2": "",
+			"autoOutputPathStyle": 0,
+			"fileExtension": "php",
+			"shouldRunCacheBuster": 0
+			},
+		{
+			"autoOutputAction": 1,
+			"autoOutputPathFilenamePattern": "*.twig",
+			"autoOutputPathRelativePath": "",
+			"autoOutputPathReplace1": "",
+			"autoOutputPathReplace2": "",
+			"autoOutputPathStyle": 0,
+			"fileExtension": "twig",
+			"shouldRunCacheBuster": 0
+			},
+		{
+			"autoOutputAction": 1,
+			"autoOutputPathFilenamePattern": "*.txt",
+			"autoOutputPathRelativePath": "",
+			"autoOutputPathReplace1": "",
+			"autoOutputPathReplace2": "",
+			"autoOutputPathStyle": 0,
+			"fileExtension": "txt",
+			"shouldRunCacheBuster": 0
+			}
 		],
 	"overrideExternalServerCSS": 0,
 	"previewPathAddition": "",
