@@ -5291,12 +5291,12 @@
 	"languageDefaultsUserDefined": [
 		{
 			"autoOutputAction": 1,
-			"autoOutputPathFilenamePattern": "*.php",
+			"autoOutputPathFilenamePattern": "*.twig",
 			"autoOutputPathRelativePath": "",
 			"autoOutputPathReplace1": "",
 			"autoOutputPathReplace2": "",
 			"autoOutputPathStyle": 0,
-			"fileExtension": "php",
+			"fileExtension": "twig",
 			"shouldRunCacheBuster": 0
 			},
 		{
@@ -5311,12 +5311,12 @@
 			},
 		{
 			"autoOutputAction": 1,
-			"autoOutputPathFilenamePattern": "*.twig",
+			"autoOutputPathFilenamePattern": "*.php",
 			"autoOutputPathRelativePath": "",
 			"autoOutputPathReplace1": "",
 			"autoOutputPathReplace2": "",
 			"autoOutputPathStyle": 0,
-			"fileExtension": "twig",
+			"fileExtension": "php",
 			"shouldRunCacheBuster": 0
 			}
 		],

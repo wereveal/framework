@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpIncludeInspection */
 /**
  * This file sets up the site.
  * Required to get the entire site to work.
@@ -30,13 +30,22 @@ use Ritc\Library\Services\Elog;
 use Ritc\Library\Services\Router;
 use Ritc\Library\Services\Session;
 
-if (!defined('PUBLIC_PATH')) {
-    define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
+if (!\defined('PUBLIC_PATH')) {
+    /**
+     * Server document root
+     *
+     * @var string PUBLIC_PATH
+     */
+    \define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
 }
-if (!defined('BASE_PATH')) {
-    define('BASE_PATH', dirname(dirname(__FILE__)));
+if (!\defined('BASE_PATH')) {
+    /**
+     * Path to the root of the code.
+     *
+     * @var string BASE_PATH
+     */
+    \define('BASE_PATH', \dirname(__FILE__, 2));
 }
-
 require_once BASE_PATH . '/src/config/constants.php';
 
 if (!isset($db_config_file)) {
@@ -49,16 +58,16 @@ if (!isset($psr_loader)) {
     $psr_loader = 'psr4';
 }
 
-$o_loader = require_once VENDOR_PATH . '/autoload.php';
+$o_loader = require VENDOR_PATH . '/autoload.php';
 
-if ($psr_loader == 'psr0') {
+if ($psr_loader === 'psr0') {
     ### PSR-0 autoload method
-    $my_classmap = require_once SRC_CONFIG_PATH . '/autoload_classmap.php';
+    $my_classmap = require SRC_CONFIG_PATH . '/autoload_classmap.php';
     $o_loader->addClassMap($my_classmap);
 }
 else {
     ### PSR-4 autoload method
-    $my_namespaces = require_once SRC_CONFIG_PATH . '/autoload_namespaces.php';
+    $my_namespaces = require SRC_CONFIG_PATH . '/autoload_namespaces.php';
     foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
         $o_loader->addPsr4($psr4_prefix, $psr0_paths);
     }
@@ -96,7 +105,7 @@ $o_di->setVar('dbConfig', $db_config_file);
 try {
     $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
     if (!$o_pdo instanceof \PDO) {
-        die("PDO instance was not created");
+        die('PDO instance was not created');
     }
     $o_di->set('pdo', $o_pdo);
 }
@@ -108,7 +117,7 @@ try {
     $o_db = new DbModel($o_pdo, $db_config_file);
 }
 catch (\Error $e) {
-    die("Could not get the database to work: " . $e->getMessage());
+    die('Could not get the database to work: ' . $e->getMessage());
 }
 
 $o_db->setElog($o_elog);
@@ -117,18 +126,18 @@ if (RODB) {
     try {
         $o_pdo_ro = PdoFactory::start($db_config_file, 'ro', $o_di);
         if (!$o_pdo_ro instanceof \PDO) {
-            die("Could not start the RO PDOFactory.");
+            die('Could not start the RO PDOFactory.');
         }
         $o_di->set('pdo_ro', $o_pdo_ro);
     }
     catch (FactoryException $e) {
-        die("Could not start the RO PDOFactory: " . $e->errorMessage());
+        die('Could not start the RO PDOFactory: ' . $e->errorMessage());
     }
     try {
         $o_db_ro = new DbModel($o_pdo_ro, $db_config_file);
     }
     catch (\Error $e) {
-        die("Could not get the ro database to work: " . $e->getMessage());
+        die('Could not get the ro database to work: ' . $e->getMessage());
     }
     $o_di->set('rodb', $o_db_ro);
 }
@@ -163,10 +172,10 @@ unset($o_const_creator); // probably unneeded but just in case something gets he
 // $o_elog->write(var_export($a_constants['user'], true), LOG_ON);
 
 if (USE_CACHE && ini_get('opcache.enable')) {
-    $cache_type = defined('CACHE_TYPE')
+    $cache_type = \defined('CACHE_TYPE')
         ? CACHE_TYPE
         : 'SimplePhpFiles';
-    $cache_ttl = defined('CACHE_TTL')
+    $cache_ttl = \defined('CACHE_TTL')
         ? CACHE_TTL
         : 604800; // 7 days
     $cache_namespace = 'RITC';
@@ -178,11 +187,11 @@ if (USE_CACHE && ini_get('opcache.enable')) {
         'directory'  => $cache_directory
     ];
     $o_cache = CacheFactory::start($a_cache_config);
-    if (is_object($o_cache)) {
+    if (\is_object($o_cache)) {
         $o_di->set('cache', $o_cache);
     }
     else {
-        die("Unable to create the Cache instance.");
+        die('Unable to create the Cache instance.');
     }
 }
 
@@ -191,17 +200,15 @@ try {
     $o_router = new Router($o_di);
 }
 catch (\Error $e) {
-    $message = "Could not create new instance of Router: " . $e->getMessage();
+    $message = 'Could not create new instance of Router: ' . $e->getMessage();
     $o_elog->write($message);
     die($message);
 }
 $o_di->set('router',  $o_router);
 
-if ($twig_config == 'db') {
+if ($twig_config === 'db') {
     if (empty($twig_use_cache)) {
-        $twig_use_cache = defined('DEVELOPER_MODE') && DEVELOPER_MODE
-            ? false
-            : true;
+        $twig_use_cache = !\defined('DEVELOPER_MODE') || !DEVELOPER_MODE;
     }
     try {
         $o_twig = TwigFactory::getTwig($o_di, $twig_use_cache);
@@ -222,7 +229,6 @@ if ($o_twig instanceof \Twig_Environment) {
     $o_di->set('twig', $o_twig);
 }
 else {
-    die("Unable to set the Twig instance");
+    die('Unable to set the Twig instance');
 }
 $o_di->setVar('twigConfig', $twig_config);
-
