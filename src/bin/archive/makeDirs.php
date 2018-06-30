@@ -1,19 +1,10 @@
 <?php
 namespace Ritc;
 
-use Ritc\Library\Factories\PdoFactory;
-use Ritc\Library\Factories\TwigFactory;
-use Ritc\Library\Helper\ConstantsCreator;
-use Ritc\Library\Services\DbModel;
-use Ritc\Library\Services\Di;
-use Ritc\Library\Services\Elog;
-use Ritc\Library\Services\Router;
-use Ritc\Library\Services\Session;
-
-$short_opts = "a:n:";
+$short_opts = 'a:n:';
 $long_opts  = [
-    "appname:",
-    "namespace:"
+    'appname:',
+    'namespace:'
 ];
 
 $a_options = getopt($short_opts, $long_opts);
@@ -23,12 +14,12 @@ $namespace = '';
 
 foreach ($a_options as $option => $value) {
     switch ($option) {
-        case "a":
-        case "appname":
+        case 'a':
+        case 'appname':
             $app_name = $value;
             break;
-        case "n":
-        case "namespace":
+        case 'n':
+        case 'namespace':
             $namespace = $value;
             break;
     }
@@ -37,18 +28,18 @@ foreach ($a_options as $option => $value) {
 $missing_params = '';
 
 if ($app_name == '') {
-    $missing_params .= $missing_params == '' ? "App Name (-a --appname)" : ", App Name (-a --appname)";
+    $missing_params .= $missing_params == '' ? 'App Name (-a --appname)' : ', App Name (-a --appname)';
 }
 if ($namespace == '') {
-    $missing_params .= $missing_params == '' ? "Namespace (-n --namespace)" : ", Namespace (-n --namespace)";
+    $missing_params .= $missing_params == '' ? 'Namespace (-n --namespace)' : ', Namespace (-n --namespace)';
 }
 
 if ($missing_params != '') {
     die("Missing argument(s): {$missing_params}\n");
 }
-define('DEVELOPER_MODE', true);
-define('BASE_PATH', dirname(dirname(__DIR__)));
-define('PUBLIC_PATH', BASE_PATH . '/public');
+\define('DEVELOPER_MODE', true);
+\define('BASE_PATH', \dirname(__DIR__, 2));
+\define('PUBLIC_PATH', BASE_PATH . '/public');
 
 require_once BASE_PATH . '/src/config/constants.php';
 $app_path = APPS_PATH . '/' . $namespace. '/' . $app_name;
@@ -77,13 +68,17 @@ $no_tpl_text =<<<EOF
 EOF;
 
 if (!file_exists($app_path)) {
-    mkdir($app_path, 0755, true);
+    if (!mkdir($app_path, 0755, true) && !is_dir($app_path)) {
+        throw new \RuntimeException(sprintf('Directory "%s" was not created', $app_path));
+    }
     file_put_contents($app_path . '/.htaccess', $htaccess_text);
     foreach($a_new_dirs as $dir) {
         $new_dir = $app_path . '/' . $dir;
         $new_file = $new_dir . '/.keepme';
         $new_tpl_file = $new_dir . '/no_file.twig';
-        mkdir($new_dir, 0755, true);
+        if (!mkdir($new_dir, 0755, true) && !is_dir($new_dir)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $new_dir));
+        }
         if (strpos($dir, 'templates') !== false) {
             file_put_contents($new_tpl_file, $no_tpl_text);
         }
@@ -92,4 +87,4 @@ if (!file_exists($app_path)) {
         }
     }
 }
-?>
+

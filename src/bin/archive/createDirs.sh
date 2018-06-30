@@ -13,7 +13,7 @@ mkdir -p resources/templates
 mkdir -p resources/templates/default
 mkdir -p resources/templates/elements
 mkdir -p resources/templates/pages
-mkdir -p resources/templates/snippets'
+mkdir -p resources/templates/snippets
 mkdir -p resources/templates/tests
 echo "Deny from all" > .htaccess
 echo "Place Holder" > Abstracts/.keep_me

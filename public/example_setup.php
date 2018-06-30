@@ -34,7 +34,7 @@ switch ($_SERVER['HTTP_HOST']) { // Allows for different development and product
     case 'in.a.subdirectory.example': // public dir is a subdirectory of a larger site but the rest is outside
         define('PUBLIC_DIR', '/the_subdirectory');
         define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT'] . PUBLIC_DIR);
-        define('BASE_PATH', dirname(dirname(PUBLIC_PATH)) . '/where.the.base.is'); // in this example, outside the public directory
+        define('BASE_PATH', dirname(PUBLIC_PATH, 2) . '/where.the.base.is'); // in this example, outside the public directory
         $db_config_file = 'db_config_silly.php'; // has a special db_config file
         break;
     case 'test.mysite.com': // test server

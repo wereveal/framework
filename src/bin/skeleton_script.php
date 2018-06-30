@@ -21,9 +21,9 @@ use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 
 $base_path = str_replace('/src/bin', '', __DIR__);
-define('DEVELOPER_MODE', true);
-define('BASE_PATH', $base_path);
-define('PUBLIC_PATH', $base_path . '/public');
+\define('DEVELOPER_MODE', true);
+\define('BASE_PATH', $base_path);
+\define('PUBLIC_PATH', $base_path . '/public');
 
 require_once BASE_PATH . '/src/config/constants.php';
 
@@ -39,15 +39,15 @@ if (!file_exists(SRC_CONFIG_PATH . '/autoload_namespaces.php')) {
         'apps_path'   => APPS_PATH
     ];
     $o_cm = new AutoloadMapper($a_dirs);
-    if (!is_object($o_cm)) {
-        die("Could not instance AutoloadMapper");
+    if (!\is_object($o_cm)) {
+        die('Could not instance AutoloadMapper');
     }
     $o_cm->generateMapFiles();
 
 }
-$o_loader = require_once VENDOR_PATH . '/autoload.php';
+$o_loader = require VENDOR_PATH . '/autoload.php';
 
-$my_namespaces = require_once SRC_CONFIG_PATH . '/autoload_namespaces.php';
+$my_namespaces = require SRC_CONFIG_PATH . '/autoload_namespaces.php';
 foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
     $o_loader->addPsr4($psr4_prefix, $psr0_paths);
 }
@@ -59,7 +59,7 @@ try {
     $o_elog->write("Test\n", LOG_OFF);
 }
 catch (ServiceException $e) {
-    die("Unable to start Elog" . $e->errorMessage());
+    die('Unable to start Elog' . $e->errorMessage());
 }
 
 $o_di = new Di();
@@ -70,22 +70,21 @@ try {
     $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
 }
 catch (FactoryException $e) {
-    die("Unable to start the PdoFactory. " . $e->errorMessage());
+    die('Unable to start the PdoFactory. ' . $e->errorMessage());
 }
 
 if ($o_pdo !== false) {
     $o_db = new DbModel($o_pdo, $db_config_file);
-    if (!is_object($o_db)) {
+    if (!\is_object($o_db)) {
         $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
         die("Could not get the database to work\n");
     }
-    else {
-        $o_di->set('db', $o_db);
-    }
+
+    $o_di->set('db', $o_db);
 }
 else {
     $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
     die("Could not connect to the database\n");
 }
 
-?>
+

@@ -76,7 +76,6 @@ try {
     $o_elog = Elog::start();
 }
 catch (ServiceException $e) {
-    error_log($e->errorMessage(), 0);
     die($e->errorMessage());
 }
 $o_elog->setIgnoreLogOff(false); // turns on logging globally ignoring LOG_OFF when set to true

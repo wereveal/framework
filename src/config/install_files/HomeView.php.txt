@@ -26,6 +26,7 @@ class HomeView implements ViewInterface
 
     /**
      * HomeView constructor.
+     *
      * @param \Ritc\Library\Services\Di $o_di
      */
     public function __construct(Di $o_di)
@@ -37,10 +38,11 @@ class HomeView implements ViewInterface
 
     /**
      * Main method required by interface.
+     *
      * @param array $a_message optional
      * @return string
      */
-    public function render(array $a_message = [])
+    public function render(array $a_message = []):string
     {
         $a_twig_values = $this->createDefaultTwigValues($a_message);
         $tpl = $this->createTplString($a_twig_values);

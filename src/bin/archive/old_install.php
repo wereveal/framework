@@ -31,12 +31,21 @@ use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 
 if (strpos(__DIR__, 'Library') !== false) {
-    die("Please Run this script from the src/bin directory");
+    die('Please Run this script from the src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
-define('DEVELOPER_MODE', true);
-define('BASE_PATH', $base_path);
-define('PUBLIC_PATH', $base_path . '/public');
+/**
+ *
+ */
+\define('DEVELOPER_MODE', true);
+/**
+ *
+ */
+\define('BASE_PATH', $base_path);
+/**
+ *
+ */
+\define('PUBLIC_PATH', $base_path . '/public');
 
 require_once BASE_PATH . '/src/config/constants.php';
 
@@ -52,7 +61,7 @@ if (isset($argv[1])) {
     $install_config = SRC_CONFIG_PATH . '/' . $argv[1];
 }
 if (!file_exists($install_config)) {
-    die("You must create the install_configs configuration file in " . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
+    die('You must create the install_configs configuration file in ' . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
 }
 $a_install = require_once $install_config;
 
@@ -64,8 +73,8 @@ $a_dirs = [
     'apps_path'   => APPS_PATH
 ];
 $o_cm = new AutoloadMapper($a_dirs);
-if (!is_object($o_cm)) {
-    die("Could not instance AutoloadMapper");
+if (!\is_object($o_cm)) {
+    die('Could not instance AutoloadMapper');
 }
 $o_cm->generateMapFiles();
 $app_path = APPS_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
@@ -94,7 +103,7 @@ file_put_contents(SRC_CONFIG_PATH . '/' . $db_config_file, $db_config_file_text)
 
 $o_loader = require_once VENDOR_PATH . '/autoload.php';
 
-if ($a_install['loader'] == 'psr0') {
+if ($a_install['loader'] === 'psr0') {
     $my_classmap = require_once SRC_CONFIG_PATH . '/autoload_classmap.php';
     $o_loader->addClassMap($my_classmap);
 }
@@ -105,23 +114,30 @@ else {
     }
 }
 
-$o_elog = Elog::start();
+try {
+    $o_elog = Elog::start();
+}
+catch (Library\Exceptions\ServiceException $e) {
+}
 $o_elog->write("Test\n", LOG_OFF);
 $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
 /** @var \PDO $o_pdo */
-$o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+try {
+    $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+}
+catch (Library\Exceptions\FactoryException $e) {
+}
 
 if ($o_pdo !== false) {
     $o_db = new DbModel($o_pdo, $db_config_file);
-    if (!is_object($o_db)) {
+    if (!\is_object($o_db)) {
         $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
         die("Could not get the database to work\n");
     }
-    else {
-        $o_di->set('db', $o_db);
-    }
+
+    $o_di->set('db', $o_db);
 }
 else {
     $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
@@ -145,7 +161,7 @@ switch ($a_install['db_type']) {
  * @param array $a_records
  * @return array
  */
-function createStrings($a_records = []) {
+function createStrings(array $a_records = []) {
     $a_record = array_shift($a_records);
     $fields = '';
     $values = '';
@@ -164,7 +180,7 @@ function createStrings($a_records = []) {
  * @param array $a_org_values
  * @return array
  */
-function reorgArray($a_org_values = []) {
+function reorgArray(array $a_org_values = []) {
     $a_values = [];
     foreach ($a_org_values as $a_value) {
         $a_values[] = $a_value;
@@ -182,15 +198,19 @@ function failIt(DbModel $o_db, $message = '') {
         $o_db->rollbackTransaction();
     }
     catch (ModelException $e) {
-        print "Could not rollback transaction: " . var_export($e->errorMessage()) . "\n";
+        print 'Could not rollback transaction: ' . var_export($e->errorMessage()) . "\n";
     }
     die("\n{$message}\n");
 }
 
 $a_data = require $install_files_path .  '/default_data.php';
 
-$o_db->startTransaction();
-print "Creating Databases: ";
+try {
+    $o_db->startTransaction();
+}
+catch (ModelException $e) {
+}
+print 'Creating Databases: ';
 foreach ($a_sql as $sql) {
     $sql = str_replace('{dbPrefix}', $a_install['lib_db_prefix'], $sql);
     try {
@@ -201,12 +221,12 @@ foreach ($a_sql as $sql) {
         $error_message = "Database failure\n" . var_export($o_pdo->errorInfo(), true) . " \nother: " . $error_message . "\n" . $sql . "\n";
         failIt($o_db, $error_message);
     }
-    print "+";
+    print '+';
 }
 print "\n";
 
 ### Enter Constants
-print "Entering Constants Data: ";
+print 'Entering Constants Data: ';
 $a_constants = $a_data['constants'];
 $a_strings   = createStrings($a_constants);
 $sql =<<<SQL
@@ -261,18 +281,18 @@ foreach ($a_constants as $key => $a_values) {
             failIt($o_db, 'Could not insert constants: insert did not return valid values');
         }
         else {
-            print "c";
+            print 'c';
         }
     }
     catch (ModelException $e) {
         print "\n";
-        failIt($o_db, "Could not insert contants data. " . $o_db->retrieveFormatedSqlErrorMessage() . ' ' . $e->errorMessage());
+        failIt($o_db, 'Could not insert contants data. ' . $o_db->retrieveFormatedSqlErrorMessage() . ' ' . $e->errorMessage());
     }
 }
 print "\n";
 
 ### Enter Groups
-print "Create Groups: ";
+print 'Create Groups: ';
 $a_groups  = $a_data['groups'];
 $a_strings = createStrings($a_groups);
 
@@ -290,23 +310,23 @@ foreach ($a_groups as $key => $a_values) {
     try {
         $results = $o_db->insert($sql, $a_values, $a_table_info);
         if (empty($results)) {
-            failIt($o_db, "Could not insert groups data: insert returned empty values.");
+            failIt($o_db, 'Could not insert groups data: insert returned empty values.');
         }
         else {
             $ids = $o_db->getNewIds();
             $a_groups[$key]['group_id'] = $ids[0];
-            print "g";
+            print 'g';
         }
     }
     catch (ModelException $e) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
-        failIt($o_db, "Could not insert groups data: " . $e->errorMessage());
+        failIt($o_db, 'Could not insert groups data: ' . $e->errorMessage());
     }
 }
 print "\n";
 
 ### Enter 'urls'
-print "Create URLs: ";
+print 'Create URLs: ';
 $a_urls    = $a_data['urls'];
 $a_strings = createStrings($a_urls);
 
@@ -325,23 +345,23 @@ foreach ($a_urls as $key => $a_record) {
     try {
         $results = $o_db->insert($sql, $a_record, $a_table_info);
         if (empty($results)) {
-            failIt($o_db, "Could not insert url data: insert returned empty values.");
+            failIt($o_db, 'Could not insert url data: insert returned empty values.');
         }
         else {
             $ids = $o_db->getNewIds();
             $a_urls[$key]['url_id'] = $ids[0];
-            print "u";
+            print 'u';
         }
     }
     catch (ModelException $e) {
         print "\n" . $o_db->retrieveFormatedSqlErrorMessage() . "\n";
-        failIt($o_db, "Could not insert url data: " . $e->errorMessage());
+        failIt($o_db, 'Could not insert url data: ' . $e->errorMessage());
     }
 }
 print "\n";
 
 ### Enter 'people'
-print "Creating People: ";
+print 'Creating People: ';
 $a_people  = $a_data['people'];
 $a_strings = createStrings($a_people);
 
@@ -370,7 +390,7 @@ foreach ($a_people as $key => $a_person) {
         else {
             $ids = $o_db->getNewIds();
             $a_people[$key]['people_id'] = $ids[0];
-            print "p";
+            print 'p';
         }
     }
     catch (ModelException $e) {
@@ -382,7 +402,7 @@ foreach ($a_people as $key => $a_person) {
 print "\n";
 
 ### Enter 'navgroups',
-print "Creating NavGroups: ";
+print 'Creating NavGroups: ';
 $a_navgroups = $a_data['navgroups'];
 $a_strings   = createStrings($a_navgroups);
 
@@ -406,7 +426,7 @@ foreach ($a_navgroups as $key => $a_nav_group) {
         else {
             $ids = $o_db->getNewIds();
             $a_navgroups[$key]['ng_id'] = $ids[0];
-            print "n";
+            print 'n';
         }
     }
     catch (ModelException $e) {
@@ -416,7 +436,7 @@ foreach ($a_navgroups as $key => $a_nav_group) {
 print "\n";
 
 ### Enter 'people_group_map',
-print "Creating people_group_map: ";
+print 'Creating people_group_map: ';
 $a_pgm = $a_data['people_group_map'];
 $a_strings = createStrings($a_pgm);
 
@@ -438,7 +458,7 @@ foreach ($a_pgm as $key => $a_raw_data) {
     try {
         $results = $o_db->insert($pgm_sql, $a_values, $a_table_info);
         if (empty($results)) {
-            failIt($o_db, "Could not insert people_group_map data, insert returned empty values.");
+            failIt($o_db, 'Could not insert people_group_map data, insert returned empty values.');
         }
         else {
             $ids = $o_db->getNewIds();
@@ -447,13 +467,13 @@ foreach ($a_pgm as $key => $a_raw_data) {
         }
     }
     catch (ModelException $e) {
-        failIt($o_db, "Could not insert people_group_map data. " . $e->errorMessage());
+        failIt($o_db, 'Could not insert people_group_map data. ' . $e->errorMessage());
     }
 }
 print "\n";
 
 ### Enter 'routes'
-print "Creating Routes: ";
+print 'Creating Routes: ';
 $a_routes  = $a_data['routes'];
 $a_strings = createStrings($a_routes);
 
@@ -479,7 +499,7 @@ foreach ($a_routes as $key => $a_record) {
         else {
             $ids = $o_db->getNewIds();
             $a_routes[$key]['route_id'] = $ids[0];
-            print "r";
+            print 'r';
         }
     }
     catch (ModelException $e) {
@@ -489,7 +509,7 @@ foreach ($a_routes as $key => $a_record) {
 print "\n";
 
 ### Enter 'routes_group_map'
-print "Creating routes_group_map: ";
+print 'Creating routes_group_map: ';
 $a_rgm     = $a_data['routes_group_map'];
 $a_strings = createStrings($a_rgm);
 
@@ -511,23 +531,23 @@ foreach ($a_rgm as $key => $a_record) {
     try {
         $results = $o_db->insert($rgm_sql, $a_record, $a_table_info);
         if (empty($results)) {
-            failIt($o_db, "Could not insert route_group_map data, insert returned empty values.");
+            failIt($o_db, 'Could not insert route_group_map data, insert returned empty values.');
         }
         else {
             $ids = $o_db->getNewIds();
             $a_rrgm[$key]['rgm_id'] = $ids[0];
-            print "+";
+            print '+';
         }
 
     }
     catch (ModelException $e) {
-        failIt($o_db, "Could not insert route_group_map data. " . $e->errorMessage());
+        failIt($o_db, 'Could not insert route_group_map data. ' . $e->errorMessage());
     }
 }
 print "\n";
 
 ### Enter 'navigation',
-print "Creating Navigation: ";
+print 'Creating Navigation: ';
 $a_navigation = $a_data['navigation'];
 $a_strings    = createStrings($a_navigation);
 
@@ -567,7 +587,7 @@ foreach ($a_navigation as $key => $a_record) {
             $ids = $o_db->getNewIds();
             $a_navigation[$key]['nav_id'] = $ids[0];
             $a_navigation[$key]['nav_parent_name'] = $a_navigation[$key]['parent_id'];
-            print "+";
+            print '+';
         }
     }
     catch (ModelException $e) {
@@ -575,7 +595,7 @@ foreach ($a_navigation as $key => $a_record) {
     }
 }
 print "\n";
-print "  Updating nav records with parent ids: ";
+print '  Updating nav records with parent ids: ';
 foreach ($a_navigation as $key => $a_record) {
     $search_values = [':nav_name' => $a_record['nav_parent_name']];
     $update_values = [];
@@ -591,11 +611,11 @@ foreach ($a_navigation as $key => $a_record) {
     }
     try {
         $results = $o_db->update($update_sql, $update_values);
-        if (empty($results)) {
+        if (null === $results) {
             failIt($o_db, 'Could not update navigation with parent id.');
         }
         else {
-            print ".";
+            print '.';
         }
     }
     catch (ModelException $e) {
@@ -606,7 +626,7 @@ foreach ($a_navigation as $key => $a_record) {
 print "\n";
 
 ### Enter 'nav_ng_map'
-print "Creating nav_ng_map: ";
+print 'Creating nav_ng_map: ';
 $a_nnm     = $a_data['nav_ng_map'];
 $a_strings = createStrings($a_nnm);
 
@@ -633,7 +653,7 @@ foreach ($a_nnm as $key => $a_record) {
         else {
             $ids = $o_db->getNewIds();
             $a_nnm[$key]['nnm_id'] = $ids[0];
-            print "+";
+            print '+';
         }
     }
     catch (ModelException $e) {
@@ -687,7 +707,7 @@ if (!empty($a_values['app_twig_prefix'])) {
 }
 
 ### Enter twig prefixes into database ###
-print "Creating Twig Prefixes: ";
+print 'Creating Twig Prefixes: ';
 $a_strings = createStrings($a_tp_prefix);
 $twig_prefix_sql =<<<SQL
 INSERT INTO {$a_install['lib_db_prefix']}twig_prefix
@@ -719,7 +739,7 @@ foreach ($a_tp_prefix as $key => $a_record) {
 print "\n";
 
 ### Enter twig directories into database ###
-print "Creating twig directories: ";
+print 'Creating twig directories: ';
 $a_strings = createStrings($a_tp_dirs);
 $twig_dirs_sql =<<<SQL
 INSERT INTO {$a_install['lib_db_prefix']}twig_dirs
@@ -739,7 +759,7 @@ foreach ($a_tp_dirs as $key => $a_record) {
     try {
         $results = $o_db->insert($twig_dirs_sql, $a_record, $a_table_info);
         if ($results === false) {
-            failIt($o_db, "Could not insert twig dirs data. Insert returned empty results.");
+            failIt($o_db, 'Could not insert twig dirs data. Insert returned empty results.');
         }
         else {
             $ids = $o_db->getNewIds();
@@ -754,7 +774,7 @@ foreach ($a_tp_dirs as $key => $a_record) {
 print "\n";
 
 ### Enter twig templates into database ###
-print "Creating twig templates: ";
+print 'Creating twig templates: ';
 $a_strings = createStrings($a_tp_tpls);
 $twig_tpls_sql =<<<SQL
 INSERT INTO {$a_install['lib_db_prefix']}twig_templates
@@ -789,7 +809,7 @@ foreach ($a_tp_tpls as $key => $a_record) {
 print "\n";
 
 ### Enter 'page',
-print "Creating Page: ";
+print 'Creating Page: ';
 $a_page    = $a_data['page'];
 $a_strings = createStrings($a_page);
 
@@ -816,7 +836,7 @@ foreach ($a_page as $key => $a_record) {
         else {
             $ids = $o_db->getNewIds();
             $a_page[$key]['page_id'] = $ids[0];
-            print "+";
+            print '+';
         }
     }
     catch (ModelException $e) {
@@ -830,7 +850,7 @@ try {
     print "Data Insert Complete.\n";
 }
 catch (ModelException $e) {
-    failIt($o_db, "Could not commit the transaction.");
+    failIt($o_db, 'Could not commit the transaction.');
 }
 
 ### Create the directories for the new app ###
@@ -871,7 +891,7 @@ EOF;
 Place Holder
 EOF;
 
-    $tpl_text = "<h3>An Error Has Occurred</h3>";
+    $tpl_text = '<h3>An Error Has Occurred</h3>';
 
     mkdir($app_path, 0755, true);
     file_put_contents($app_path . '/.htaccess', $htaccess_text);
@@ -922,7 +942,7 @@ EOF;
     $a_replace[5] = file_get_contents(SRC_CONFIG_PATH . '/install_files/main_controller.snippet');
     $controller_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/controller.php.txt');
     $controller_text = str_replace($a_find, $a_replace, $controller_text);
-    file_put_contents($app_path . "/Controllers/MasterController.php", $controller_text);
+    file_put_contents($app_path . '/Controllers/MasterController.php', $controller_text);
 
 ### Create the home controller for the app ###
     print "Creating the home controller for the app\n";
@@ -930,7 +950,7 @@ EOF;
     $a_replace[5] = file_get_contents(SRC_CONFIG_PATH . '/install_files/home_controller.snippet');
     $controller_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/controller.php.txt');
     $controller_text = str_replace($a_find, $a_replace, $controller_text);
-    file_put_contents($app_path . "/Controllers/HomeController.php", $controller_text);
+    file_put_contents($app_path . '/Controllers/HomeController.php', $controller_text);
 
 ### Create the manager controller for the app ###
     print "Creating the manager controller for the app\n";
@@ -938,19 +958,19 @@ EOF;
     $a_replace[5] = '';
     $controller_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/ManagerController.php.txt');
     $controller_text = str_replace($a_find, $a_replace, $controller_text);
-    file_put_contents($app_path . "/Controllers/ManagerController.php", $controller_text);
+    file_put_contents($app_path . '/Controllers/ManagerController.php', $controller_text);
 
 ### Create the home view for the app ###
     print "Creating the home view for the app\n";
     $view_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/HomeView.php.txt');
     $view_text = str_replace($a_find, $a_replace, $view_text);
-    file_put_contents($app_path . "/Views/HomeView.php", $view_text);
+    file_put_contents($app_path . '/Views/HomeView.php', $view_text);
 
 ### Create the manager view for the app ###
     print "Creating the manager view for the app\n";
     $view_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/ManagerView.php.txt');
     $view_text = str_replace($a_find, $a_replace, $view_text);
-    file_put_contents($app_path . "/Views/ManagerView.php", $view_text);
+    file_put_contents($app_path . '/Views/ManagerView.php', $view_text);
 
 ### Create the doxygen config for the app ###
     print "Creating the doxy config for the app\n";
@@ -974,7 +994,7 @@ EOF;
     $a_default_files = scandir($default_templates_path);
     $pages_path = $resource_path . '/templates/pages/';
     foreach ($a_default_files as $this_file) {
-        if ($this_file != '.' && $this_file != '..') {
+        if ($this_file !== '.' && $this_file !== '..') {
             $twig_text = file_get_contents($default_templates_path . $this_file);
             file_put_contents($pages_path . $this_file, $twig_text);
         }
@@ -1005,7 +1025,7 @@ $public_path = empty($a_install['public_path'])
 $base_path = empty($a_install['base_path'])
 	? 'dirname(PUBLIC_PATH)'
 	: $a_install['base_path'];
-$developer_mode = $a_install['developer_mode'] == 'true'
+$developer_mode = $a_install['developer_mode'] === 'true'
 	? 'true'
 	: 'false';
 $http_host = $a_install['http_host'];
@@ -1047,4 +1067,4 @@ file_put_contents(PUBLIC_PATH . '/setup.php', $setup_text);
 
 ### Regenerate Autoload Map files
 $o_cm->generateMapFiles();
-?>
+

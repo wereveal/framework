@@ -26,6 +26,7 @@ class ManagerView implements ViewInterface
 
     /**
      * ManagerView constructor.
+     *
      * @param \Ritc\Library\Services\Di $o_di
      */
     public function __construct(Di $o_di)
@@ -37,10 +38,11 @@ class ManagerView implements ViewInterface
 
    /**
      * Creates the home page of the Manager.
+     *
      * @param array $a_message A message, optional.
      * @return string
      */
-    public function render($a_message = array())
+    public function render($a_message = array()):string
     {
         $a_twig_values = $this->createDefaultTwigValues($a_message);
         $tpl = $this->createTplString($a_twig_values);

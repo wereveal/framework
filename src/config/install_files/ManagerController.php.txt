@@ -30,6 +30,7 @@ class ManagerController implements ControllerInterface
 
     /**
      * LibraryController constructor.
+     *
      * @param Di $o_di
      */
     public function __construct(Di $o_di)
@@ -42,9 +43,10 @@ class ManagerController implements ControllerInterface
 
     /**
      * Default router for the manager.
+     *
      * @return string
      */
-    public function route()
+    public function route():string
     {
         if ($this->loginValid()) {
             switch ($this->route_action) {
@@ -79,11 +81,12 @@ class ManagerController implements ControllerInterface
 
     /**
      * Does the login stuff.
+     *
      * @param string $login_id
      * @param array  $a_message
      * @return string
      */
-    protected function login($login_id = '', array $a_message = [])
+    protected function login($login_id = '', array $a_message = []):string
     {
             $this->o_session->resetSession();
             $a_values = [

@@ -28,6 +28,7 @@ class MasterController implements ControllerInterface
 
     /**
      * MasterController constructor.
+     *
      * @param \Ritc\Library\Services\Di $o_di
      */
     public function __construct(Di $o_di)
@@ -40,10 +41,11 @@ class MasterController implements ControllerInterface
     /**
      * Master Router and Puker outer.
      * Turns over the hard work to the specific controllers specified by the router.
+     *
      * @return string
      * @TODO: Round out method.
      */
-    public function route()
+    public function route():string
     {
         $route_class = !empty($this->a_router_parts['route_class'])
             ? $this->a_router_parts['route_class']

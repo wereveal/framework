@@ -26,6 +26,7 @@ class {controller_name}Controller implements ControllerInterface
     {controller_vars}
     /**
      * {controller_name}Controller constructor.
+     *
      * @param \Ritc\Library\Services\Di $o_di
      */
     public function __construct(Di $o_di)

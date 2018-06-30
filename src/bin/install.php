@@ -36,7 +36,7 @@ use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 
 if (strpos(__DIR__, 'Library') !== false) {
-    die("Please Run this script from the src/bin directory");
+    die('Please Run this script from the src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
 /**
@@ -44,19 +44,19 @@ $base_path = str_replace('/src/bin', '', __DIR__);
  *
  * @var bool DEVELOPER_MODE
  */
-define('DEVELOPER_MODE', true);
+\define('DEVELOPER_MODE', true);
 /**
  * Server path to the base of the code.
  *
  * @var string BASE_PATH
  */
-define('BASE_PATH', $base_path);
+\define('BASE_PATH', $base_path);
 /**
  * Server path to the root of the public website files.
  *
  * @var string PUBLIC_PATH
  */
-define('PUBLIC_PATH', $base_path . '/public');
+\define('PUBLIC_PATH', $base_path . '/public');
 
 require_once BASE_PATH . '/src/config/constants.php';
 
@@ -72,9 +72,9 @@ if (isset($argv[1])) {
     $install_config = SRC_CONFIG_PATH . '/' . $argv[1];
 }
 if (!file_exists($install_config)) {
-    die("You must create the install_configs configuration file in " . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
+    die('You must create the install_configs configuration file in ' . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
 }
-$a_install = require_once $install_config;
+$a_install = require $install_config;
 $a_required_keys = [
     'app_name',
     'namespace',
@@ -92,7 +92,7 @@ $a_required_keys = [
 ];
 foreach ($a_required_keys as $key) {
     if (empty($a_install[$key])) {
-        die("The install config file does not have required values");
+        die('The install config file does not have required values');
     }
 }
 $a_needed_keys = [
@@ -125,8 +125,8 @@ $a_dirs = [
     'apps_path'   => APPS_PATH
 ];
 $o_cm = new AutoloadMapper($a_dirs);
-if (!is_object($o_cm)) {
-    die("Could not instance AutoloadMapper");
+if (!\is_object($o_cm)) {
+    die('Could not instance AutoloadMapper');
 }
 $o_cm->generateMapFiles();
 $app_path = APPS_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
@@ -153,14 +153,14 @@ EOT;
 
 file_put_contents(SRC_CONFIG_PATH . '/' . $db_config_file, $db_config_file_text);
 
-$o_loader = require_once VENDOR_PATH . '/autoload.php';
+$o_loader = require VENDOR_PATH . '/autoload.php';
 
-if ($a_install['loader'] == 'psr0') {
-    $my_classmap = require_once SRC_CONFIG_PATH . '/autoload_classmap.php';
+if ($a_install['loader'] === 'psr0') {
+    $my_classmap = require SRC_CONFIG_PATH . '/autoload_classmap.php';
     $o_loader->addClassMap($my_classmap);
 }
 else {
-    $my_namespaces = require_once SRC_CONFIG_PATH . '/autoload_namespaces.php';
+    $my_namespaces = require SRC_CONFIG_PATH . '/autoload_namespaces.php';
     foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
         $o_loader->addPsr4($psr4_prefix, $psr0_paths);
     }
@@ -172,7 +172,7 @@ try {
     $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
 }
 catch (ServiceException $e) {
-    die("Unable to start Elog" . $e->errorMessage());
+    die('Unable to start Elog' . $e->errorMessage());
 }
 
 $o_di = new Di();
@@ -181,12 +181,12 @@ try {
     /** @var \PDO $o_pdo */
     $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
     if (! $o_pdo instanceof \PDO) {
-        die("Unable to create the Pdo instance.");
+        die('Unable to create the Pdo instance.');
     }
     $o_di->set('pdo', $o_pdo);
 }
 catch (FactoryException $e) {
-    die("Unable to start the PdoFactory. " . $e->errorMessage());
+    die('Unable to start the PdoFactory. ' . $e->errorMessage());
 }
 
 if ($o_pdo !== false) {
@@ -195,9 +195,8 @@ if ($o_pdo !== false) {
         $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
         die("Could not get the database to work\n");
     }
-    else {
-        $o_di->set('db', $o_db);
-    }
+
+    $o_di->set('db', $o_db);
 }
 else {
     $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
@@ -224,16 +223,17 @@ $o_di->setVar('app_path', $app_path);
 
 /**
  * Creates the strings needed for sql.
+ *
  * @param array $a_records
  * @return array
  */
-function createStrings($a_records = []) {
+function createStrings(array $a_records = []) {
     $a_record = array_shift($a_records);
     $fields = '';
     $values = '';
     foreach ($a_record as $key => $a_value) {
-        $fields .= $fields == '' ? $key : ', ' . $key;
-        $values .= $values == '' ? ':' . $key : ', :' . $key;
+        $fields .= empty($fields) ? $key : ', ' . $key;
+        $values .= empty($values) ? ':' . $key : ', :' . $key;
     }
     return [
         'fields' => $fields,
@@ -246,7 +246,7 @@ function createStrings($a_records = []) {
  * @param array $a_org_values
  * @return array
  */
-function reorgArray($a_org_values = []) {
+function reorgArray(array $a_org_values = []) {
     $a_values = [];
     foreach ($a_org_values as $a_value) {
         $a_values[] = $a_value;
@@ -264,7 +264,7 @@ function failIt(DbModel $o_db, $message = '') {
         $o_db->rollbackTransaction();
     }
     catch (ModelException $e) {
-        print "Could not rollback transaction: " . $e->errorMessage() . "\n";
+        print 'Could not rollback transaction: ' . $e->errorMessage() . "\n";
     }
     die("\n{$message}\n");
 }
@@ -273,80 +273,80 @@ try {
     $o_db->startTransaction();
 }
 catch (ModelException $e) {
-    print "Could not start transaction: " . $e->errorMessage() . "\n";
+    print 'Could not start transaction: ' . $e->errorMessage() . "\n";
 }
 $o_db_creator = new DbCreator($o_di);
-print "Creating Databases: ";
+print 'Creating Databases: ';
 if (!$o_db_creator->createTables()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter Constants
-print "Entering Constants Data: ";
+print 'Entering Constants Data: ';
 if (!$o_db_creator->insertConstants()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter Groups
-print "Create Groups: ";
+print 'Create Groups: ';
 if (!$o_db_creator->insertGroups()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'urls'
-print "Create URLs: ";
+print 'Create URLs: ';
 if (!$o_db_creator->insertUrls()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'people'
-print "Creating People: ";
+print 'Creating People: ';
 if (!$o_db_creator->insertPeople()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'navgroups',
-print "Creating NavGroups: ";
+print 'Creating NavGroups: ';
 if (!$o_db_creator->insertNavgroups()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'people_group_map',
-print "Creating people_group_map: ";
+print 'Creating people_group_map: ';
 if (!$o_db_creator->insertPGM()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'routes'
-print "Creating Routes: ";
+print 'Creating Routes: ';
 if (!$o_db_creator->insertRoutes()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'routes_group_map'
-print "Creating routes_group_map: ";
+print 'Creating routes_group_map: ';
 if (!$o_db_creator->insertRGM()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'navigation',
-print "Creating Navigation: ";
+print 'Creating Navigation: ';
 if (!$o_db_creator->insertNavigation()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'nav_ng_map'
-print "Creating nav_ng_map: ";
+print 'Creating nav_ng_map: ';
 if (!$o_db_creator->insertNNM()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
@@ -358,42 +358,42 @@ print "Updating data for app specific\n";
 $o_db_creator->createTwigAppConfig();
 
 ### Enter twig prefixes into database ###
-print "Creating Twig Prefixes: ";
+print 'Creating Twig Prefixes: ';
 if (!$o_db_creator->insertTwigPrefixes()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter twig directories into database ###
-print "Creating twig directories: ";
+print 'Creating twig directories: ';
 if (!$o_db_creator->insertTwigDirs()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter twig templates into database ###
-print "Creating twig templates: ";
+print 'Creating twig templates: ';
 if (!$o_db_creator->insertTwigTemplates()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'page' ###
-print "Creating Page: ";
+print 'Creating Page: ';
 if (!$o_db_creator->insertPage()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'blocks' ###
-print "Creating Blocks: ";
+print 'Creating Blocks: ';
 if (!$o_db_creator->insertBlocks()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'Page blocks' ###
-print "Creating Page Blocks Map: ";
+print 'Creating Page Blocks Map: ';
 if (!$o_db_creator->insertPBM()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
@@ -409,9 +409,9 @@ print "success\n";
 ### New App Stuff
 print "\nSetting up the app\n";
 $o_new_app_helper = new NewAppHelper($o_di);
-print "Creating twig db records";
+print 'Creating twig db records';
 $results = $o_new_app_helper->createTwigDbRecords();
-if (is_string($results)) {
+if (\is_string($results)) {
     failIt($o_db, $results);
     failIt($o_db, $results);
 }
@@ -422,7 +422,7 @@ try {
     print "Data Insert Complete.\n";
 }
 catch (ModelException $e) {
-    failIt($o_db, "Could not commit the transaction.");
+    failIt($o_db, 'Could not commit the transaction.');
 }
 
 print "\nCreating the directories for the new app\n";
