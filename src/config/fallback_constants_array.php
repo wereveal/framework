@@ -6,7 +6,7 @@ return [
     ['CACHE_TLL', 604800, 'true'],
     ['COPYRIGHT_DATE', '2018', 'true'],
     ['CSS_DIR_NAME', 'css', 'true'],
-    ['DISPLAY_DATE_FORMAT', 'm/d/Y', 'true'],
+    ['DISPLAY_DATE_FORMAT', 'D, M j, Y', 'true'],
     ['DISPLAY_PHONE_FORMAT', 'XXX-XXX-XXXX', 'true'],
     ['EMAIL_DOMAIN', 'replaceme.com', 'true'],
     ['EMAIL_FORM_TO', 'me@replaceme.com', 'true'],

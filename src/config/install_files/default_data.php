@@ -63,7 +63,7 @@ $a_constants = [
     ],
 	'display_date_format' => [
         'const_name'      => 'DISPLAY_DATE_FORMAT',
-        'const_value'     => 'm/d/Y',
+        'const_value'     => 'D, M j, Y',
         'const_immutable' => 'true'
     ],
     'display_phone_format' => [

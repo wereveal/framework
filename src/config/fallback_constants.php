@@ -29,7 +29,7 @@ if (!defined('CSS_DIR_NAME')) {
     define('CSS_DIR_NAME', 'css');
 }
 if (!defined('DISPLAY_DATE_FORMAT')) {
-    define('DISPLAY_DATE_FORMAT', 'm/d/Y');
+    define('DISPLAY_DATE_FORMAT', 'D, M j, Y');
 }
 if (!defined('DISPLAY_PHONE_FORMAT')) {
     define('DISPLAY_PHONE_FORMAT', 'XXX-XXX-XXXX');
