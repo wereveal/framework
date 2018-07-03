@@ -5291,22 +5291,22 @@
 	"languageDefaultsUserDefined": [
 		{
 			"autoOutputAction": 1,
-			"autoOutputPathFilenamePattern": "*.php",
-			"autoOutputPathRelativePath": "",
-			"autoOutputPathReplace1": "",
-			"autoOutputPathReplace2": "",
-			"autoOutputPathStyle": 0,
-			"fileExtension": "php",
-			"shouldRunCacheBuster": 0
-			},
-		{
-			"autoOutputAction": 1,
 			"autoOutputPathFilenamePattern": "*.twig",
 			"autoOutputPathRelativePath": "",
 			"autoOutputPathReplace1": "",
 			"autoOutputPathReplace2": "",
 			"autoOutputPathStyle": 0,
 			"fileExtension": "twig",
+			"shouldRunCacheBuster": 0
+			},
+		{
+			"autoOutputAction": 1,
+			"autoOutputPathFilenamePattern": "*.php",
+			"autoOutputPathRelativePath": "",
+			"autoOutputPathReplace1": "",
+			"autoOutputPathReplace2": "",
+			"autoOutputPathStyle": 0,
+			"fileExtension": "php",
 			"shouldRunCacheBuster": 0
 			},
 		{
