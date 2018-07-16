@@ -138,6 +138,10 @@
   @include marginSize(.25, 'all', 'yes');
 }
 
+.pad-all-0, .pad-0 {
+  @include paddingSize(1, 'all', 'yes')
+}
+
 .pad-right-0 {
   @include paddingSize(0, 'right', 'yes');
 }
@@ -160,6 +164,10 @@
 
 .pad-lr-0 {
   @include paddingSize(0, 'lr', 'yes');
+}
+
+.pad-all, .pad-1 {
+  @include paddingSize(1, 'all', 'yes')
 }
 
 .pad-right {
@@ -186,60 +194,64 @@
   @include paddingSize(1, 'lr', 'yes');
 }
 
-.pad-right-half {
-  @include paddingSize(.5, 'right', 'yes');
-}
-
-.pad-right-quarter {
-  @include paddingSize(.25, 'right', 'yes');
-}
-
-.pad-left-half {
-  @include paddingSize(.5, 'left', 'yes');
-}
-
-.pad-left-quarter {
-  @include paddingSize(.25, 'left', 'yes');
+.pad-half {
+  @include paddingSize(.5, 'all', 'yes');
 }
 
 .pad-top-half {
   @include paddingSize(.5, 'top', 'yes');
 }
 
-.pad-top-quarter {
-  @include paddingSize(.25, 'top', 'yes');
-}
-
 .pad-bottom-half {
   @include paddingSize(.5, 'bottom', 'yes');
-}
-
-.pad-bottom-quarter {
-  @include paddingSize(.25, 'bottom', 'yes');
 }
 
 .pad-tb-half {
   @include paddingSize(.5, 'tb', 'yes');
 }
 
-.pad-tb-quarter {
-  @include paddingSize(.25, 'tb', 'yes');
+.pad-left-half {
+  @include paddingSize(.5, 'left', 'yes');
 }
 
 .pad-lr-half {
   @include paddingSize(.5, 'lr', 'yes');
 }
 
+.pad-right-half {
+  @include paddingSize(.5, 'right', 'yes');
+}
+
+.pad-quarter {
+  @include paddingSize(.25, 'all', 'yes');
+}
+
+.pad-top-quarter {
+  @include paddingSize(.25, 'top', 'yes');
+}
+
+.pad-tb-quarter {
+  @include paddingSize(.25, 'tb', 'yes');
+}
+
 .pad-lr-quarter {
   @include paddingSize(.25, 'lr', 'yes');
 }
 
-.pad-2 {
-  @include paddingSize(2, 'all', 'yes');
+.pad-bottom-quarter {
+  @include paddingSize(.25, 'bottom', 'yes');
 }
 
-.pad-top-2 {
-  @include paddingSize(2, 'top', 'yes');
+.pad-right-quarter {
+  @include paddingSize(.25, 'right', 'yes');
+}
+
+.pad-left-quarter {
+  @include paddingSize(.25, 'left', 'yes');
+}
+
+.pad-2 {
+  @include paddingSize(2, 'all', 'yes');
 }
 
 .pad-top-2 {
@@ -250,20 +262,8 @@
   @include paddingSize(2, 'right', 'yes');
 }
 
-.pad-right-2 {
-  @include paddingSize(2, 'right', 'yes');
-}
-
 .pad-bottom-2 {
   @include paddingSize(2, 'bottom', 'yes');
-}
-
-.pad-bottom-2 {
-  @include paddingSize(2, 'bottom', 'yes');
-}
-
-.pad-left-2 {
-  @include paddingSize(2, 'left', 'yes');
 }
 
 .pad-left-2 {
@@ -274,24 +274,12 @@
   @include paddingSize(2, 'tb', 'yes');
 }
 
-.pad-tb-2 {
-  @include paddingSize(2, 'tb', 'yes');
-}
-
 .pad-lr-2 {
   @include paddingSize(2, 'lr', 'yes');
 }
 
-.pad-lr-2 {
-  @include paddingSize(2, 'lr', 'yes');
-}
-
-.pad-2 {
-  @include paddingSize(2, 'all', 'yes');
-}
-
-.pad-top-3 {
-  @include paddingSize(3, 'top', 'yes');
+.pad-3 {
+  @include paddingSize(3, 'all', 'yes');
 }
 
 .pad-top-3 {
@@ -302,14 +290,6 @@
   @include paddingSize(3, 'right', 'yes');
 }
 
-.pad-right-3 {
-  @include paddingSize(3, 'right', 'yes');
-}
-
-.pad-bottom-3 {
-  @include paddingSize(3, 'bottom', 'yes');
-}
-
 .pad-bottom-3 {
   @include paddingSize(3, 'bottom', 'yes');
 }
@@ -318,20 +298,8 @@
   @include paddingSize(3, 'left', 'yes');
 }
 
-.pad-left-3 {
-  @include paddingSize(3, 'left', 'yes');
-}
-
 .pad-tb-3 {
   @include paddingSize(3, 'tb', 'yes');
-}
-
-.pad-tb-3 {
-  @include paddingSize(3, 'tb', 'yes');
-}
-
-.pad-lr-3 {
-  @include paddingSize(3, 'lr', 'yes');
 }
 
 .pad-lr-3 {
@@ -346,20 +314,8 @@
   @include paddingSize(4, 'top', 'yes');
 }
 
-.pad-top-4 {
-  @include paddingSize(4, 'top', 'yes');
-}
-
 .pad-right-4 {
   @include paddingSize(4, 'right', 'yes');
-}
-
-.pad-right-4 {
-  @include paddingSize(4, 'right', 'yes');
-}
-
-.pad-bottom-4 {
-  @include paddingSize(4, 'bottom', 'yes');
 }
 
 .pad-bottom-4 {
@@ -370,20 +326,8 @@
   @include paddingSize(4, 'left', 'yes');
 }
 
-.pad-left-4 {
-  @include paddingSize(4, 'left', 'yes');
-}
-
 .pad-tb-4 {
   @include paddingSize(4, 'tb', 'yes');
-}
-
-.pad-tb-4 {
-  @include paddingSize(4, 'tb', 'yes');
-}
-
-.pad-lr-4 {
-  @include paddingSize(4, 'lr', 'yes');
 }
 
 .pad-lr-4 {

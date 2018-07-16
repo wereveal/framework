@@ -170,6 +170,10 @@ label {
 }
 
 .btn-green {
+  @include button-variant($green-bs4, $green-bs4);
+}
+
+.btn-dark-green {
   @include button-variant($green, $green);
 }
 
