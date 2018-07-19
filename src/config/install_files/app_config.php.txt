@@ -18,5 +18,7 @@ return [
     'db_errmode'      => 'exception',                     // normally leave this alone
     'db_prefix'       => 'main_',                         // change to be desired prefix or make it empty
     'lib_db_prefix'   => 'lib_',
-    'master_app'      => 'false'                          // specifies if this is the app called by /index.php
+    'master_app'      => 'false',                         // specifies if this is the app called by /index.php
+    'master_twig'     => 'false',                         // specifies if this app's twig prefix is the default (if false, site_ is default)
+    'app_twig_prefix' => ''                               // specifies the twig prefix, defaults to strtolower(app_name) . '_'
 ];

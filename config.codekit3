@@ -5291,12 +5291,12 @@
 	"languageDefaultsUserDefined": [
 		{
 			"autoOutputAction": 1,
-			"autoOutputPathFilenamePattern": "*.twig",
+			"autoOutputPathFilenamePattern": "*.txt",
 			"autoOutputPathRelativePath": "",
 			"autoOutputPathReplace1": "",
 			"autoOutputPathReplace2": "",
 			"autoOutputPathStyle": 0,
-			"fileExtension": "twig",
+			"fileExtension": "txt",
 			"shouldRunCacheBuster": 0
 			},
 		{
@@ -5311,12 +5311,12 @@
 			},
 		{
 			"autoOutputAction": 1,
-			"autoOutputPathFilenamePattern": "*.txt",
+			"autoOutputPathFilenamePattern": "*.twig",
 			"autoOutputPathRelativePath": "",
 			"autoOutputPathReplace1": "",
 			"autoOutputPathReplace2": "",
 			"autoOutputPathStyle": 0,
-			"fileExtension": "txt",
+			"fileExtension": "twig",
 			"shouldRunCacheBuster": 0
 			}
 		],

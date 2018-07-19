@@ -27,5 +27,7 @@ return [
     'http_host'       => '',                              // $_SERVER['HTTP_HOST'] results or leave blank for default
 	'domain'          => 'domain',                        // domain name of site
 	'tld'             => 'tld',                           // top level domain, e.g., com, net, org
-	'specific_host'   => ''                               // e.g. www, test, etc
+	'specific_host'   => '',                              // e.g. www, test, etc
+    'master_twig'     => 'false',                         // specifies if this app's twig prefix is the default (if false, site_ is default)
+    'app_twig_prefix' => ''                               // specifies the twig prefix, defaults to strtolower(app_name) . '_'
 ];
