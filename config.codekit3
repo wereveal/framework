@@ -2177,6 +2177,13 @@
 		"oAP": "\/src\/apps\/Ritc\/Library\/Tests\/ConstantsModelTester.php",
 		"oF": 0
 		},
+	"\/src\/apps\/Ritc\/Library\/Tests\/ContentModelTester.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/src\/apps\/Ritc\/Library\/Tests\/ContentModelTester.php",
+		"oF": 0
+		},
 	"\/src\/apps\/Ritc\/Library\/Tests\/GroupsModelTester.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -5291,6 +5298,16 @@
 	"languageDefaultsUserDefined": [
 		{
 			"autoOutputAction": 1,
+			"autoOutputPathFilenamePattern": "*.twig",
+			"autoOutputPathRelativePath": "",
+			"autoOutputPathReplace1": "",
+			"autoOutputPathReplace2": "",
+			"autoOutputPathStyle": 0,
+			"fileExtension": "twig",
+			"shouldRunCacheBuster": 0
+			},
+		{
+			"autoOutputAction": 1,
 			"autoOutputPathFilenamePattern": "*.txt",
 			"autoOutputPathRelativePath": "",
 			"autoOutputPathReplace1": "",
@@ -5307,16 +5324,6 @@
 			"autoOutputPathReplace2": "",
 			"autoOutputPathStyle": 0,
 			"fileExtension": "php",
-			"shouldRunCacheBuster": 0
-			},
-		{
-			"autoOutputAction": 1,
-			"autoOutputPathFilenamePattern": "*.twig",
-			"autoOutputPathRelativePath": "",
-			"autoOutputPathReplace1": "",
-			"autoOutputPathReplace2": "",
-			"autoOutputPathStyle": 0,
-			"fileExtension": "twig",
 			"shouldRunCacheBuster": 0
 			}
 		],

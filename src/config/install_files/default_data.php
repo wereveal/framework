@@ -1460,28 +1460,40 @@ $a_page = [
 ];
 
 $a_blocks = [
+    'article' => [
+        'b_name'      => 'article',
+        'b_type'      => 'solo',
+        'b_active'    => 'true',
+        'b_immutable' => 'true'
+    ],
     'body' => [
-        'b_name'   => 'body',
-        'b_type'   => 'solo',
-        'b_active' => 'true',
+        'b_name'      => 'body',
+        'b_type'      => 'solo',
+        'b_active'    => 'true',
+        'b_immutable' => 'true'
+    ],
+    'featured' => [
+        'b_name'      => 'featured',
+        'b_type'      => 'solo',
+        'b_active'    => 'true',
         'b_immutable' => 'true'
     ],
     'instructions' => [
-        'b_name'   => 'instructions',
-        'b_type'   => 'solo',
-        'b_active' => 'true',
+        'b_name'      => 'instructions',
+        'b_type'      => 'solo',
+        'b_active'    => 'true',
         'b_immutable' => 'true'
     ],
     'sidebar' => [
-        'b_name'   => 'sidebar',
-        'b_type'   => 'shared',
-        'b_active' => 'true',
+        'b_name'      => 'sidebar',
+        'b_type'      => 'shared',
+        'b_active'    => 'true',
         'b_immutable' => 'true'
     ],
     'header' => [
-        'b_name'   => 'header',
-        'b_type'   => 'shared',
-        'b_active' => 'true',
+        'b_name'      => 'header',
+        'b_type'      => 'shared',
+        'b_active'    => 'true',
         'b_immutable' => 'true'
     ],
     'footer' => [
