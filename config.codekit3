@@ -1571,6 +1571,13 @@
 		"oAP": "\/src\/apps\/Ritc\/Library\/Exceptions\/ServiceException.php",
 		"oF": 0
 		},
+	"\/src\/apps\/Ritc\/Library\/Exceptions\/ViewException.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/src\/apps\/Ritc\/Library\/Exceptions\/ViewException.php",
+		"oF": 0
+		},
 	"\/src\/apps\/Ritc\/Library\/Factories\/CacheFactory.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -5298,6 +5305,16 @@
 	"languageDefaultsUserDefined": [
 		{
 			"autoOutputAction": 1,
+			"autoOutputPathFilenamePattern": "*.php",
+			"autoOutputPathRelativePath": "",
+			"autoOutputPathReplace1": "",
+			"autoOutputPathReplace2": "",
+			"autoOutputPathStyle": 0,
+			"fileExtension": "php",
+			"shouldRunCacheBuster": 0
+			},
+		{
+			"autoOutputAction": 1,
 			"autoOutputPathFilenamePattern": "*.twig",
 			"autoOutputPathRelativePath": "",
 			"autoOutputPathReplace1": "",
@@ -5314,16 +5331,6 @@
 			"autoOutputPathReplace2": "",
 			"autoOutputPathStyle": 0,
 			"fileExtension": "txt",
-			"shouldRunCacheBuster": 0
-			},
-		{
-			"autoOutputAction": 1,
-			"autoOutputPathFilenamePattern": "*.php",
-			"autoOutputPathRelativePath": "",
-			"autoOutputPathReplace1": "",
-			"autoOutputPathReplace2": "",
-			"autoOutputPathStyle": 0,
-			"fileExtension": "php",
 			"shouldRunCacheBuster": 0
 			}
 		],
