@@ -111,7 +111,7 @@ return [
   `c_version` int(11) NOT NULL DEFAULT '1',
   `c_current` enum('true','false') NOT NULL DEFAULT 'true',
   `c_featured` enum('true','false') NOT NULL DEFAULT 'false',
-  `c_location` enum('page','shared','block') NOT NULL DEFAULT 'block', 
+  `c_shared` enum('true','false') NOT NULL DEFAULT 'false', 
   PRIMARY KEY (`c_id`),
   KEY `c_pbm_id` (`c_pbm_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",

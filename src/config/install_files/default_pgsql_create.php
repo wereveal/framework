@@ -21,7 +21,6 @@ return [
 "DROP TYPE IF EXISTS url_protocol CASCADE",
 "DROP TYPE IF EXISTS truthy CASCADE",
 "DROP TYPE IF EXISTS content_type CASCADE",
-"DROP TYPE IF EXISTS content_location CASCADE",
 "DROP TYPE IF EXISTS block_type CASCADE",
 'CREATE OR REPLACE FUNCTION change_updated_on() RETURNS trigger AS
 $BODY$
@@ -33,7 +32,6 @@ $BODY$ language \'plpgsql\'',
 "CREATE TYPE url_protocol as ENUM ('http', 'https', 'ftp', 'gopher', 'mailto', 'file', 'ritc')",
 "CREATE TYPE truthy as ENUM ('true', 'false')",
 "CREATE TYPE content_type as ENUM ('text','html','md','mde','xml','raw')",
-"CREATE TYPE content_location as ENUM ('page','shared','block')",
 "CREATE TYPE block_type as ENUM ('shared', 'solo')",
 
 "CREATE TABLE {dbPrefix}constants (
@@ -129,7 +127,7 @@ $BODY$ language \'plpgsql\'',
   c_version integer NOT NULL DEFAULT '1',
   c_current truthy NOT NULL DEFAULT 'true'::truthy,
   c_featured truthy NOT NULL DEFAULT 'false'::truthy,
-  c_current content_location NOT NULL DEFAULT 'block'::content_location,
+  c_shared truthy NOT NULL DEFAULT 'false'::truthy,
   PRIMARY KEY (c_id)
 )",
 "CREATE INDEX content_page_id_idx on {dbPrefix}content USING btree (c_page_id)",

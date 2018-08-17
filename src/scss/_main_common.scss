@@ -55,6 +55,30 @@ hr.item-card {
   border-radius: .2rem;
 }
 
+.btn-xl {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+.btn-2xl, .btn-xxl {
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+}
+
+.btn-xlt {
+  font-size: 1.75rem;
+  line-height: 2rem;
+}
+
+.btn-big {
+  font-size: 2.25rem;
+  font-weight: 300;
+  text-shadow: 1px 1px 1px $gray-500;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
 .header-small-caps {
   @include fontSmallCapsExtraBold;
 }

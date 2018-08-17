@@ -230,46 +230,46 @@ $a_urls = [
 
 $a_people = [
 	'superadmin' => [
-	    'login_id'        => "SuperAdmin",
-	    'real_name'       => "Super Admin",
-	    'short_name'      => "GSA",
-	    'password'        => "letGSAin",
-	    'description'     => "The all powerful Admin",
-	    'is_logged_in'    => 'false',
-        'last_logged_in'  => '1001-01-01',
-	    'bad_login_count' => 0,
-	    'bad_login_ts'    => 0,
-	    'is_active'       => 'true',
-	    'is_immutable'    => 'true',
-	    'created_on'      => "2012-08-12 02:55:28"
-	],
-	'admin' => [
-	    'login_id'        => "Admin",
-	    'real_name'       => "Admin",
-	    'short_name'      => "ADM",
-	    'password'        => "letADMin",
-	    'description'     => "Allowed to admin to site",
-	    'is_logged_in'    => 'false',
-        'last_logged_in'  => '1001-01-01',
-	    'bad_login_count' => 0,
-	    'bad_login_ts'    => 0,
-	    'is_active'       => 'true',
-	    'is_immutable'    => 'true',
-	    'created_on'      => "2012-08-12 02:55:28"
-	],
-	'manager' => [
-        'login_id'        => "Manager",
-        'real_name'       => "Manager",
-        'short_name'      => "MAN",
-        'password'        => "letMANin",
-        'description'     => "Allowed to manage non-critical aspects of site",
+        'login_id'        => 'SuperAdmin',
+        'real_name'       => 'Super Admin',
+        'short_name'      => 'GSA',
+        'password'        => 'letGSAin',
+        'description'     => 'The all powerful Admin',
         'is_logged_in'    => 'false',
         'last_logged_in'  => '1001-01-01',
         'bad_login_count' => 0,
         'bad_login_ts'    => 0,
         'is_active'       => 'true',
         'is_immutable'    => 'true',
-        'created_on'      => "2012-08-12 02:55:28"
+        'created_on'      => '2012-08-12 02:55:28'
+	],
+	'admin' => [
+        'login_id'        => 'Admin',
+        'real_name'       => 'Admin',
+        'short_name'      => 'ADM',
+        'password'        => 'letADMin',
+        'description'     => 'Allowed to admin to site',
+        'is_logged_in'    => 'false',
+        'last_logged_in'  => '1001-01-01',
+        'bad_login_count' => 0,
+        'bad_login_ts'    => 0,
+        'is_active'       => 'true',
+        'is_immutable'    => 'true',
+        'created_on'      => '2012-08-12 02:55:28'
+	],
+	'manager' => [
+        'login_id'        => 'Manager',
+        'real_name'       => 'Manager',
+        'short_name'      => 'MAN',
+        'password'        => 'letMANin',
+        'description'     => 'Allowed to manage non-critical aspects of site',
+        'is_logged_in'    => 'false',
+        'last_logged_in'  => '1001-01-01',
+        'bad_login_count' => 0,
+        'bad_login_ts'    => 0,
+        'is_active'       => 'true',
+        'is_immutable'    => 'true',
+        'created_on'      => '2012-08-12 02:55:28'
     ]
 ];
 
@@ -1617,34 +1617,34 @@ $a_pbm = [
 
 $a_content = [
    'home' => [
-        'c_pbm_id'   => 'home_body',
-        'c_content'  => "### Welcome.\nThis is the home page.\nThis example uses _Markdown_ which provides an _**easy**_ way to create basic **html**.",
-        'c_type'     => 'md',
-        'c_created'  => '',
-        'c_version'  => '1',
-        'c_current'  => 'true',
-        'c_location' => 'page'
+        'c_pbm_id'  => 'home_body',
+        'c_content' => "### Welcome.\nThis is the home page.\nThis example uses _Markdown_ which provides an _**easy**_ way to create basic **html**.",
+        'c_type'    => 'md',
+        'c_created' => '',
+        'c_version' => '1',
+        'c_current' => 'true',
+        'c_shared'  => 'false'
    ],
    'lib_blocks' => [
        'c_pbm_id'  => 'lib_blocks_instructions',
-       'c_content' => "### Instructions
+       'c_content' => '### Instructions
 - Block corresponds loosely to the blocks in a Twig template.
 - Immutable prevents the record being deleted, renamed, or type changed _**so be careful**_.      
-       ",
+       ',
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
        'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
    ],
    'lib_cache' => [
        'c_pbm_id'  => 'lib_cache_instructions',
-       'c_content' => "### Instuctions",
+       'c_content' => '### Instuctions',
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
        'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
    ],
    'lib_constants' => [
        'c_pbm_id'  => 'lib_constants_instructions',
@@ -1657,31 +1657,31 @@ $a_content = [
         'c_created' => '',
         'c_version' => '1',
         'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
     ],
    'lib_content' => [
        'c_pbm_id'  => 'lib_content_instructions',
-       'c_content' => "### Instruction",
+       'c_content' => '### Instruction',
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
        'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
    ],
    'lib_groups' => [
        'c_pbm_id'  => 'lib_groups_instructions',
-       'c_content' => "### Instructions
+       'c_content' => '### Instructions
 - Certain groups are fixed so that the app will work. They may not be visible based on auth level.</li>
 - Group Name is a single word, alpha characters only. The app will change the group name to camelCase, then capitalizing the first letter, removing any other characters.
 - Group Description can be anything that is meaningful. Text will be sanitized.
 - Group Auth Level sets a general authorization level for the group, 0-9, 9 having the highest authorization level.
-- Immutable means the name and auth level cannot be changed and the group can not be deleted. <span class=\"red bold\">Be careful at what auth level you set!</span> Set it higher than your level and you can not unset immutable.
-        ",
+- Immutable means the name and auth level cannot be changed and the group can not be deleted. <span class="red bold">Be careful at what auth level you set!</span> Set it higher than your level and you can not unset immutable.
+        ',
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
        'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
    ],
    'lib_peeps' => [
        'c_pbm_id'  => 'lib_peeps_instructions',
@@ -1709,7 +1709,7 @@ $a_content = [
        'c_created' => '',
        'c_version' => '1',
        'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
    ],
    'lib_urls' => [
        'c_pbm_id'  => 'lib_urls_instructions',
@@ -1725,7 +1725,7 @@ $a_content = [
        'c_created' => '',
        'c_version' => '1',
        'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
    ],
    'lib_routes' => [
        'c_pbm_id'  => 'lib_routes_instructions',
@@ -1746,16 +1746,16 @@ $a_content = [
        'c_created' => '',
        'c_version' => '1',
        'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
    ],
    'lib_nav' => [
        'c_pbm_id'  => 'lib_nav_instructions',
-       'c_content' => "### Instructions",
+       'c_content' => '### Instructions',
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
        'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
    ],
    'lib_pages' => [
        'c_pbm_id'  => 'lib_pages_instructions',
@@ -1774,34 +1774,34 @@ $a_content = [
        'c_created' => '',
        'c_version' => '1',
        'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
    ],
    'lib_sitemap' => [
        'c_pbm_id'  => 'lib_sitemap_instructions',
-       'c_content' => "### Instructions",
+       'c_content' => '### Instructions',
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
        'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
    ],
    'lib_twig' => [
        'c_pbm_id'  => 'lib_twig_instructions',
-       'c_content' => "### Instructions",
+       'c_content' => '### Instructions',
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
        'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
    ],
    'lib_tests' => [
        'c_pbm_id'  => 'lib_tests_instructions',
-       'c_content' => "### Instructions",
+       'c_content' => '### Instructions',
        'c_type'    => 'md',
        'c_created' => '',
        'c_version' => '1',
        'c_current' => 'true',
-       'c_location' => 'block'
+       'c_shared'  => 'false'
    ]
 ];
 
