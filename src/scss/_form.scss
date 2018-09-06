@@ -24,6 +24,9 @@ select {
 textarea {
   &.colorful {
     height: 6rem !important;
+    &.colorful-tall {
+      height: 12rem !important;
+    }
   }
 }
 
