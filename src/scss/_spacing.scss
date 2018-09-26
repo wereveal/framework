@@ -174,23 +174,23 @@
   @include paddingSize(1, 'right', 'yes');
 }
 
-.pad-bottom {
+.pad-bottom, .pad-bottom-1 {
   @include paddingSize(1, 'bottom', 'yes');
 }
 
-.pad-left {
+.pad-left, .pad-left-1 {
   @include paddingSize(1, 'left', 'yes');
 }
 
-.pad-top {
+.pad-top, .pad-top-1 {
   @include paddingSize(1, 'top', 'yes');
 }
 
-.pad-tb {
+.pad-tb, .pad-tb-1 {
   @include paddingSize(1, 'tb', 'yes');
 }
 
-.pad-lr {
+.pad-lr, .pad-lr-1 {
   @include paddingSize(1, 'lr', 'yes');
 }
 

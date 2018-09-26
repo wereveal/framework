@@ -28,7 +28,7 @@ $html     = $o_master_controller->renderPage();
 $flotsam = ob_get_clean();
 ob_start();
     print $html;
-    if (DEVELOPER_MODE) {
+    if (DEVELOPER_MODE && !empty(trim($flotsam))) {
         print '<pre>';
         print $flotsam;
         print '</pre>';

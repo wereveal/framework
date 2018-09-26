@@ -1545,6 +1545,14 @@ $a_pbm = [
         'pbm_page_id'  => 'home',
         'pbm_block_id' => 'body'
     ],
+    'home_featured' => [
+        'pbm_page_id'  => 'home',
+        'pbm_block_id' => 'featured'
+    ],
+    'home_article' => [
+        'pbm_page_id'  => 'home',
+        'pbm_block_id' => 'article'
+    ],
     'lib_blocks_instructions' => [
         'pbm_page_id'  => 'lib_blocks',
         'pbm_block_id' => 'instructions'

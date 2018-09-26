@@ -13,6 +13,7 @@ return [
 "DROP TABLE IF EXISTS {dbPrefix}routes",
 "DROP TABLE IF EXISTS {dbPrefix}navgroups",
 "DROP TABLE IF EXISTS {dbPrefix}navigation",
+"DROP TABLE IF EXISTS {dbPrefix}aliases",
 "DROP TABLE IF EXISTS {dbPrefix}urls",
 "DROP TABLE IF EXISTS {dbPrefix}twig_templates",
 "DROP TABLE IF EXISTS {dbPrefix}twig_dirs",
@@ -205,6 +206,13 @@ $BODY$ language \'plpgsql\'',
 "CREATE INDEX group_id_idx on {dbPrefix}routes_group_map USING btree (group_id)",
 "CREATE UNIQUE INDEX route_group_idx on {dbPrefix}routes_group_map USING btree (route_id,group_id)",
 
+"CREATE TABLE {dbPrefix}aliases (
+  a_id serial NOT NULL,
+  a_url_id integer NOT NULL DEFAULT 0,
+  a_alias character varying(150) NOT NULL DEFAULT ''::character varying
+)",
+"CREATE INDEX a_url_id_idx on {dbPrefix}aliases USING btree (a_url_id)",
+
 "CREATE TABLE {dbPrefix}twig_prefix (
   tp_id serial NOT NULL,
   tp_prefix character varying(32) NOT NULL,
@@ -304,6 +312,12 @@ $BODY$ language \'plpgsql\'',
 "ALTER TABLE {dbPrefix}nav_ng_map
   ADD CONSTRAINT {dbPrefix}nav_ng_map_ibfk_2 
   FOREIGN KEY (nav_id) REFERENCES {dbPrefix}navigation (nav_id) 
+    ON DELETE CASCADE
+    ON UPDATE CASCADE",
+
+"ALTER TABLE {dbPrefix}aliases
+  ADD CONSTRAINT {dbPrefix}aliases_ibfk_1 
+  FOREIGN KEY (a_url_id) REFERENCES {dbPrefix}urls (url_id) 
     ON DELETE CASCADE
     ON UPDATE CASCADE",
 
