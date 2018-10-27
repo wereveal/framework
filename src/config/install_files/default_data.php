@@ -7,6 +7,7 @@ $a_u = [
     'man_tests'        => '/manager/tests/',
     'man_test_results' => '/manager/tests/results/',
     'library'          => '/manager/config/',
+    'lib_alias'        => '/manager/config/alias/',
     'lib_ajax'         => '/manager/config/ajax/',
     'lib_blocks'       => '/manager/config/blocks/',
     'lib_cache'        => '/manager/config/cache/',
@@ -208,6 +209,7 @@ $a_urls = [
     'man_tests'        => ['url_host' => 'self', 'url_text' => $a_u['man_tests'],        'url_scheme' => 'https', 'url_immutable' => 'true'],
     'man_test_results' => ['url_host' => 'self', 'url_text' => $a_u['man_test_results'], 'url_scheme' => 'https', 'url_immutable' => 'true'],
 	'library'          => ['url_host' => 'self', 'url_text' => $a_u['library'],          'url_scheme' => 'https', 'url_immutable' => 'true'],
+    'lib_alias'        => ['url_host' => 'self', 'url_text' => $a_u['lib_alias'],        'url_scheme' => 'https', 'url_immutable' => 'true'],
     'lib_ajax'         => ['url_host' => 'self', 'url_text' => $a_u['lib_ajax'],         'url_scheme' => 'https', 'url_immutable' => 'true'],
     'lib_blocks'       => ['url_host' => 'self', 'url_text' => $a_u['lib_blocks'],       'url_scheme' => 'https', 'url_immutable' => 'true'],
     'lib_cache'        => ['url_host' => 'self', 'url_text' => $a_u['lib_cache'],        'url_scheme' => 'https', 'url_immutable' => 'true'],
@@ -427,6 +429,13 @@ $a_routes = [
         'route_action'    => '',
         'route_immutable' => 'true'
 	],
+    'lib_alias' => [
+        'url_id'          => 'lib_alias',
+        'route_class'     => 'LibraryController',
+        'route_method'    => 'route',
+        'route_action'    => 'alias',
+        'route_immutable' => 'true'
+    ],
     'lib_ajax' => [
         'url_id'          => 'lib_ajax',
         'route_class'     => 'LibraryController',
@@ -565,6 +574,7 @@ $a_route_group_map = [
     ['route_id' => 'man_tests',        'group_id' => 'manager'],
     ['route_id' => 'man_test_results', 'group_id' => 'manager'],
 	['route_id' => 'library',          'group_id' => 'admin'],
+    ['route_id' => 'lib_alias',        'group_id' => 'admin'],
     ['route_id' => 'lib_ajax',         'group_id' => 'admin'],
     ['route_id' => 'lib_blocks',       'group_id' => 'admin'],
     ['route_id' => 'lib_cache',        'group_id' => 'admin'],
@@ -622,6 +632,18 @@ $a_navigation = [
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
+    'lib_alias'  => [
+        'url_id'          => 'lib_alias',
+        'parent_id'       => 'library',
+        'nav_name'        => 'alias',
+        'nav_text'        => 'URL Aliases',
+        'nav_description' => 'Manage alias used throughout app.',
+        'nav_css'         => '',
+        'nav_level'       => 2,
+        'nav_order'       => 1,
+        'nav_active'      => 'true',
+        'nav_immutable'   => 'true'
+    ],
     'lib_blocks'  => [
         'url_id'          => 'lib_blocks',
         'parent_id'       => 'library',
@@ -630,7 +652,7 @@ $a_navigation = [
         'nav_description' => 'Manage blocks used throughout app.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 1,
+        'nav_order'       => 2,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -642,7 +664,7 @@ $a_navigation = [
         'nav_description' => 'Manage cache used throughout app.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 2,
+        'nav_order'       => 3,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -654,7 +676,7 @@ $a_navigation = [
         'nav_description' => 'Define constants used throughout app.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 3,
+        'nav_order'       => 4,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -666,7 +688,7 @@ $a_navigation = [
         'nav_description' => 'Content Manager',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 4,
+        'nav_order'       => 5,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -678,7 +700,7 @@ $a_navigation = [
         'nav_description' => 'Define Groups used for accessing app.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 5,
+        'nav_order'       => 6,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -690,7 +712,7 @@ $a_navigation = [
         'nav_description' => 'Config Login',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 16,
+        'nav_order'       => 17,
         'nav_active'      => 'false',
         'nav_immutable'   => 'true'
     ],
@@ -702,7 +724,7 @@ $a_navigation = [
         'nav_description' => 'Config Logout',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 15,
+        'nav_order'       => 16,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -714,7 +736,7 @@ $a_navigation = [
         'nav_description' => 'Define Navigation Links',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 6,
+        'nav_order'       => 7,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -726,7 +748,7 @@ $a_navigation = [
         'nav_description' => 'Define Navigation Groups',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 7,
+        'nav_order'       => 8,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -738,7 +760,7 @@ $a_navigation = [
         'nav_description' => 'Define Page values.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 8,
+        'nav_order'       => 9,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -750,7 +772,7 @@ $a_navigation = [
         'nav_description' => 'Setup people allowed to access app.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 9,
+        'nav_order'       => 10,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -762,7 +784,7 @@ $a_navigation = [
         'nav_description' => 'Define routes used for where to go.',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 10,
+        'nav_order'       => 11,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -774,7 +796,7 @@ $a_navigation = [
         'nav_description' => 'Sitemap Manager',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 11,
+        'nav_order'       => 12,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -786,7 +808,7 @@ $a_navigation = [
         'nav_description' => 'Run Configuration Tests',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 14,
+        'nav_order'       => 15,
         'nav_active'      => 'false',
         'nav_immutable'   => 'true'
     ],
@@ -798,7 +820,7 @@ $a_navigation = [
         'nav_description' => 'Define Twig prefix, directories, and templates',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 12,
+        'nav_order'       => 13,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -810,7 +832,7 @@ $a_navigation = [
         'nav_description' => 'Define the URLs used in the app',
         'nav_css'         => '',
         'nav_level'       => 2,
-        'nav_order'       => 13,
+        'nav_order'       => 14,
         'nav_active'      => 'true',
         'nav_immutable'   => 'true'
     ],
@@ -952,6 +974,7 @@ $a_nav_ng_map = [
     ['ng_id' => 'config',       'nav_id' => 'home'],
     ['ng_id' => 'config',       'nav_id' => 'manager'],
     ['ng_id' => 'config',       'nav_id' => 'library'],
+    ['ng_id' => 'config',       'nav_id' => 'lib_alias'],
     ['ng_id' => 'config',       'nav_id' => 'lib_blocks'],
     ['ng_id' => 'config',       'nav_id' => 'lib_cache'],
     ['ng_id' => 'config',       'nav_id' => 'lib_constants'],
@@ -970,6 +993,7 @@ $a_nav_ng_map = [
     ['ng_id' => 'configlinks',  'nav_id' => 'home'],
     ['ng_id' => 'configlinks',  'nav_id' => 'manager'],
     ['ng_id' => 'configlinks',  'nav_id' => 'library'],
+    ['ng_id' => 'configlinks',  'nav_id' => 'lib_alias'],
     ['ng_id' => 'configlinks',  'nav_id' => 'lib_blocks'],
     ['ng_id' => 'configlinks',  'nav_id' => 'lib_cache'],
     ['ng_id' => 'configlinks',  'nav_id' => 'lib_constants'],
@@ -1176,6 +1200,22 @@ $a_page = [
         'page_type'        => 'text/html',
         'page_title'       => 'Advanced Config',
         'page_description' => 'Manages People, Places and Things',
+        'page_up'          => '1000-01-01 00:00:00',
+        'page_down'        => '9999-12-31 23:59:59',
+        'created_on'       => date('Y-m-d H:i:s'),
+        'updated_on'       => date('Y-m-d H:i:s'),
+        'page_base_url'    => '/',
+        'page_lang'        => 'en',
+        'page_charset'     => 'utf-8',
+        'page_immutable'   => 'true'
+    ],
+    'lib_alias' => [
+        'url_id'           => 'lib_alias',
+        'ng_id'            => 'config',
+        'tpl_id'           => 'lib_alias',
+        'page_type'        => 'text/html',
+        'page_title'       => 'Manages the URL aliases',
+        'page_description' => 'Manages the URL aliases',
         'page_up'          => '1000-01-01 00:00:00',
         'page_down'        => '9999-12-31 23:59:59',
         'created_on'       => date('Y-m-d H:i:s'),
@@ -1553,6 +1593,10 @@ $a_pbm = [
         'pbm_page_id'  => 'home',
         'pbm_block_id' => 'article'
     ],
+    'lib_alias_instructions' => [
+        'pbm_page_id'  => 'lib_alias',
+        'pbm_block_id' => 'instructions'
+    ],
     'lib_blocks_instructions' => [
         'pbm_page_id'  => 'lib_blocks',
         'pbm_block_id' => 'instructions'
@@ -1627,6 +1671,15 @@ $a_content = [
    'home' => [
         'c_pbm_id'  => 'home_body',
         'c_content' => "### Welcome.\nThis is the home page.\nThis example uses _Markdown_ which provides an _**easy**_ way to create basic **html**.",
+        'c_type'    => 'md',
+        'c_created' => '',
+        'c_version' => '1',
+        'c_current' => 'true',
+        'c_shared'  => 'false'
+   ],
+   'lib_alias' => [
+        'c_pbm_id'  => 'lib_alias_instructions',
+        'c_content' => '### Instuctions',
         'c_type'    => 'md',
         'c_created' => '',
         'c_version' => '1',
@@ -1769,7 +1822,7 @@ $a_content = [
        'c_pbm_id'  => 'lib_pages_instructions',
        'c_content' => "### Instructions
 - Most values are used in the HTML meta tags, used in the head.
-- The Page Url is unique per page. Only unused URLs are available. If you need a new url, you need to create it first [Here](/manager/config/urls/) and normally then a new route [here](/manager/config/routes/)
+- The Page Url is unique per page. Only unused URLs are available. If you need a new url, you need to create it first [here](/manager/config/urls/) and normally then a new route [here](/manager/config/routes/)
 - Page Title is used in the meta data but may also be used in a &lt;h1&gt;. If not specified, a default value may be used.
 - Page Description can be pretty much any text. Can be blank. If not specified, a default value may be used. Per SEO, the descriptions should be no more than 150 characters.
 - Base URL is a meta tag value. The default '/' is normally fine - the base site url will be used then.
@@ -1777,6 +1830,14 @@ $a_content = [
 - Language is a meta tag value. The default is 'en' (English).
 - Character Set is a meta tag value. The default is 'utf8' and should normally be used.
 - Immutable means the page cannot be deleted nor the URL changed. _**Be careful!**_
+- Twig Values - Choose a prefix first, then a directory, then the template. These values are created/managed [here](/manager/config/twig/).
+  - Prefix refers to the grouping to which the template is assigned. Choosing a prefix will reset both directory and template.
+  - Directory refers to the directory in the prefix grouping where the template physically resides. Changing a directory will reset the template.
+  - Template is the actual template to be used for the page. A template is required for each page.
+- Blocks specify which blocks are on the template and will be used for content. If you specify a block not on
+  the template, it won't hurt anything but content created for it won't be displayed. If you don't specify a block that is on the template
+  it won't hurt anything but content can't be created for the page. Blocks are created/managed [here](/manager/config/blocks/).
+- Navgroup specifies the primary navigation group to be displayed if used on the template. Navgroups are created/managed [here](/manager/config/navigation/)
         ",
        'c_type'    => 'md',
        'c_created' => '',
@@ -1923,6 +1984,11 @@ $a_twig_tpls = [
     'library' => [
         'td_id'         => 'lib_pages',
         'tpl_name'      => 'index',
+        'tpl_immutable' => 'true'
+    ],
+    'lib_alias' => [
+        'td_id'         => 'lib_pages',
+        'tpl_name'      => 'alias',
         'tpl_immutable' => 'true'
     ],
     'lib_blocks' => [
