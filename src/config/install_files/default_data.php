@@ -1821,6 +1821,7 @@ $a_content = [
    'lib_pages' => [
        'c_pbm_id'  => 'lib_pages_instructions',
        'c_content' => "### Instructions
+- <span class=\"text-danger\">*</span> indicates a required field.       
 - Most values are used in the HTML meta tags, used in the head.
 - The Page Url is unique per page. Only unused URLs are available. If you need a new url, you need to create it first [here](/manager/config/urls/) and normally then a new route [here](/manager/config/routes/)
 - Page Title is used in the meta data but may also be used in a &lt;h1&gt;. If not specified, a default value may be used.
@@ -1836,8 +1837,10 @@ $a_content = [
   - Template is the actual template to be used for the page. A template is required for each page.
 - Blocks specify which blocks are on the template and will be used for content. If you specify a block not on
   the template, it won't hurt anything but content created for it won't be displayed. If you don't specify a block that is on the template
-  it won't hurt anything but content can't be created for the page. Blocks are created/managed [here](/manager/config/blocks/).
+  it won't hurt anything but content can't be created for the page. At least one block is required so if you do not 
+  specify one, the body block will used. Blocks are created/managed [here](/manager/config/blocks/).
 - Navgroup specifies the primary navigation group to be displayed if used on the template. Navgroups are created/managed [here](/manager/config/navigation/)
+- Publish On and Unpublish On allow one to have a page only appear between certain dates/times. If not specified page is always shown - defaults to 1000-01-01 00:00:00 and 9999-12-31 23:59:59
         ",
        'c_type'    => 'md',
        'c_created' => '',

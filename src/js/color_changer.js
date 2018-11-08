@@ -80,8 +80,8 @@ function setBlue() {
     $('#example ul li.header').css('color', '#FFF');
     $('#example ul li.header div').css('background-color', '#1B72B1');
     $('#example ul li.header div').css('color', '#FFF');
-    $('#example ul li.normal-row').css('background-color', '#FFF');
-    $('#example ul li.alt-row').css('background-color', '#F3F7FB');
+    $('#example ul li.row-light').css('background-color', '#FFF');
+    $('#example ul li.row-dark').css('background-color', '#F3F7FB');
     $('#example ul li div.col2').css('border-right', '1px solid #1B72B1');
     $('#example ul li div.col3').css('border-right', '1px solid #1B72B1');
     setNormal();
@@ -97,8 +97,8 @@ function setGray() {
     $('#example ul li.header').css('color', '#fcfcfc');
     $('#example ul li.header div').css('background-color', '#5c5c5c');
     $('#example ul li.header div').css('color', '#fcfcfc');
-    $('#example ul li.normal-row').css('background-color', '#fcfcfc');
-    $('#example ul li.alt-row').css('background-color', '#e7e7e7');
+    $('#example ul li.row-light').css('background-color', '#fcfcfc');
+    $('#example ul li.row-dark').css('background-color', '#e7e7e7');
     $('#example ul li div.col2').css('border-right', '1px solid #5c5c5c');
     $('#example ul li div.col3').css('border-right', '1px solid #5c5c5c');
 }
@@ -113,8 +113,8 @@ function setGunmetal() {
     $('#example ul li.header').css('color', '#FFF');
     $('#example ul li.header div').css('background-color', '#427498');
     $('#example ul li.header div').css('color', '#FFF');
-    $('#example ul li.normal-row').css('background-color', '#FFF');
-    $('#example ul li.alt-row').css('background-color', '#e4ebf0');
+    $('#example ul li.row-light').css('background-color', '#FFF');
+    $('#example ul li.row-dark').css('background-color', '#e4ebf0');
     $('#example ul li div.col2').css('border-right', '1px solid #427498');
     $('#example ul li div.col3').css('border-right', '1px solid #427498');
 }
@@ -129,8 +129,8 @@ function setGreen() {
     $('#example ul li.header').css('color', '#FFF');
     $('#example ul li.header div').css('background-color', '#4d7f7b');
     $('#example ul li.header div').css('color', '#FFF');
-    $('#example ul li.normal-row').css('background-color', '#FFF');
-    $('#example ul li.alt-row').css('background-color', '#e3eeed');
+    $('#example ul li.row-light').css('background-color', '#FFF');
+    $('#example ul li.row-dark').css('background-color', '#e3eeed');
     $('#example ul li div.col2').css('border-right', '1px solid #4d7f7b');
     $('#example ul li div.col3').css('border-right', '1px solid #4d7f7b');
 }
@@ -145,8 +145,8 @@ function setBrown() {
     $('#example ul li.header').css('color', '#FFF');
     $('#example ul li.header div').css('background-color', '#684343');
     $('#example ul li.header div').css('color', '#FFF');
-    $('#example ul li.normal-row').css('background-color', '#FFF');
-    $('#example ul li.alt-row').css('background-color', '#DBDDF0');
+    $('#example ul li.row-light').css('background-color', '#FFF');
+    $('#example ul li.row-dark').css('background-color', '#DBDDF0');
     $('#example ul li div.col2').css('border-right', '1px solid #684343');
     $('#example ul li div.col3').css('border-right', '1px solid #684343');
 }

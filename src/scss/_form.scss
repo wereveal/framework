@@ -31,17 +31,17 @@ textarea {
 }
 
 .form-inline {
-  &.even-row {
-    @include evenRow($color-white);
+  &.dark-row {
+    @include colorRow($gray-darkest, $gray-med-light);
   }
-  &.odd-row {
-    @include oddRow($gray90);
+  &.light-row {
+    @include colorRow($gray-darkest, $gray-barely);
   }
   &.even {
-    @include evenRow($color-white);
+    @include colorRow($gray-darkest, $gray-med-light);
   }
   &.odd {
-    @include oddRow($gray90);
+    @include colorRow($gray-darkest, $gray-barely);
   }
 }
 
@@ -263,5 +263,25 @@ form {
     margin-bottom: 0 !important;
     padding-bottom: .5rem !important;
     padding-top: .5rem !important;
+  }
+  .form-group {
+    &.row-dark {
+      @include colorRow($gray-darkest, $gray-med-light);
+    }
+    &.row-darker {
+      @include colorRow($gray-barely, $gray-color);
+    }
+    &.row-darkest {
+      @include colorRow($gray-xlight, $gray-dark);
+    }
+    &.row-light {
+      @include colorRow($gray-darkest, $gray-barely);
+    }
+    &.row-medium {
+      @include colorRow($gray-darkest, $gray-light);
+    }
+    &.row-med-light {
+      @include colorRow($gray-darkest, $gray-xlight);
+    }
   }
 }

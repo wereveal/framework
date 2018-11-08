@@ -221,29 +221,23 @@ hr.item-card {
         }
       }
     }
-    &.normal-row {
-      @include evenRow();
-    }
-    &.alt-row {
-      @include oddRow();
-    }
-    &.even {
+    &.row-dark, &.even {
       @include colorRow($gray-darkest, $gray-med-light);
     }
-    &.even-inner-odd {
-      @include colorRow($gray-darkest, $gray-xlight);
+    &.row-darker {
+      @include colorRow($gray-barely, $gray-color);
     }
-    &.even-inner-even {
-      @include colorRow($gray-darkest, $gray-light);
+    &.row-darkest {
+      @include colorRow($gray-xlight, $gray-dark);
     }
-    &.odd {
-      @include colorRow($gray-darkest, $off-white-color);
-    }
-    &.odd-inner-odd {
+    &.row-light, &.odd, &.odd-inner-odd, &.even-inner-odd {
       @include colorRow($gray-darkest, $gray-barely);
     }
-    &.odd-inner-even {
-      @include colorRow($grey-darkest, $gray-xlight);
+    &.row-medium, &.even-inner-even {
+      @include colorRow($gray-darkest, $gray-light);
+    }
+    &.row-med-light, &.odd-inner-even {
+      @include colorRow($gray-darkest, $gray-xlight);
     }
     &.upper {
       border-radius: 0 2rem 0 0;
@@ -484,11 +478,14 @@ hr.item-card {
 }
 
 .list-stripped {
-  &.odd {
-    @include oddRow();
+  &.odd, &.row-light {
+    @include colorRow($gray-darkest, $gray-barely);
   }
-  &.even {
-    @include evenRow();
+  &.even, &.row-dark {
+    @include colorRow($gray-darkest, $gray-med-light);;
+  }
+  &.row-med {
+    @include colorRow($gray-darkest, $gray-light)
   }
   a {
     display: inline-block;
@@ -496,10 +493,10 @@ hr.item-card {
     padding: .25rem;
     padding-left: .5rem;
     &.odd {
-      @include oddRow();
+      @include colorRow($gray-darkest, $gray-barely);
     }
     &.even {
-      @include evenRow();
+      @include colorRow($gray-darkest, $gray-med-light);;
 
     }
   }

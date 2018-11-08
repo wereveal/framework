@@ -417,11 +417,3 @@
     }
   }
 }
-
-@mixin evenRow($color: $grey-darkest, $bg-color: $color-white) {
-  @include colorRow($color, $bg-color)
-}
-
-@mixin oddRow($color: $grey-darkest, $bg-color: $grey-lighter) {
-  @include colorRow($color, $bg-color)
-}
