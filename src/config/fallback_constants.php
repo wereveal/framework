@@ -22,6 +22,9 @@ if (!defined('CACHE_TYPE')) {
 if (!defined('CACHE_TTL')) {
     define('CACHE_TTL', 604800);
 }
+if (!defined('CONTENT_VCS')) {
+    define('CONTENT_VCS', true);
+}
 if (!defined('COPYRIGHT_DATE')) {
     define('COPYRIGHT_DATE', '2001-2017');
 }

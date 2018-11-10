@@ -128,7 +128,6 @@ $BODY$ language \'plpgsql\'',
   c_version integer NOT NULL DEFAULT '1',
   c_current truthy NOT NULL DEFAULT 'true'::truthy,
   c_featured truthy NOT NULL DEFAULT 'false'::truthy,
-  c_shared truthy NOT NULL DEFAULT 'false'::truthy,
   PRIMARY KEY (c_id)
 )",
 "CREATE INDEX content_page_id_idx on {dbPrefix}content USING btree (c_page_id)",
