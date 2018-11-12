@@ -251,9 +251,6 @@ hr.item-card {
       padding-right: 0;
     }
   }
-  &.instructions {
-    @include contentBlock('gray');
-  }
   &.header {
     @include contentBlock('none');
   }

@@ -110,6 +110,7 @@ return [
   `c_short_content` varchar(250) NOT NULL DEFAULT '',
   `c_type` enum('text','html','md','mde','xml','raw') NOT NULL DEFAULT 'text',
   `c_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `c_updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `c_version` int(11) NOT NULL DEFAULT '1',
   `c_current` enum('true','false') NOT NULL DEFAULT 'true',
   `c_featured` enum('true','false') NOT NULL DEFAULT 'false',

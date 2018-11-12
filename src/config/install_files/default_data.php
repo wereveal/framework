@@ -1674,84 +1674,91 @@ $a_pbm = [
 
 $a_content = [
    'home' => [
-        'c_pbm_id'  => 'home_body',
-        'c_content' => "### Welcome.\nThis is the home page.\nThis example uses _Markdown_ which provides an _**easy**_ way to create basic **html**.",
-        'c_type'    => 'md',
-        'c_created' => '',
-        'c_version' => '1',
-        'c_current' => 'true',
-        'c_shared'  => 'false'
+        'c_pbm_id'   => 'home_body',
+        'c_content'  => "### Welcome.\nThis is the home page.\nThis example uses _Markdown_ which provides an _**easy**_ way to create basic **html**.",
+        'c_type'     => 'md',
+        'c_created'  => '',
+        'c_updated'  => '',
+        'c_version'  => '1',
+        'c_current'  => 'true',
+        'c_featured' => 'false'
    ],
    'lib_alias' => [
-        'c_pbm_id'  => 'lib_alias_instructions',
-        'c_content' => '### Instuctions',
-        'c_type'    => 'md',
-        'c_created' => '',
-        'c_version' => '1',
-        'c_current' => 'true',
-        'c_shared'  => 'false'
+        'c_pbm_id'   => 'lib_alias_instructions',
+        'c_content'  => '### Instuctions',
+        'c_type'     => 'md',
+        'c_created'  => '',
+        'c_updated'  => '',
+        'c_version'  => '1',
+        'c_current'  => 'true',
+        'c_featured' => 'false'
    ],
    'lib_blocks' => [
-       'c_pbm_id'  => 'lib_blocks_instructions',
-       'c_content' => '### Instructions
+       'c_pbm_id'   => 'lib_blocks_instructions',
+       'c_content'  => '### Instructions
 - Block corresponds loosely to the blocks in a Twig template.
-- Immutable prevents the record being deleted, renamed, or type changed _**so be careful**_.      
+- Immutable prevents the record being deleted, renamed, or type changed _**so be careful**_.
        ',
-       'c_type'    => 'md',
-       'c_created' => '',
-       'c_version' => '1',
-       'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
    ],
    'lib_cache' => [
-       'c_pbm_id'  => 'lib_cache_instructions',
-       'c_content' => '### Instuctions',
-       'c_type'    => 'md',
-       'c_created' => '',
-       'c_version' => '1',
-       'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_pbm_id'   => 'lib_cache_instructions',
+       'c_content'  => '### Instuctions',
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
    ],
    'lib_constants' => [
-       'c_pbm_id'  => 'lib_constants_instructions',
-       'c_content' => "### Instructions
+       'c_pbm_id'   => 'lib_constants_instructions',
+       'c_content'  => "### Instructions
 - Constant Name must be letters only. The constant name will be converted to all caps, spaces to underscores, and all other characters removed, e.g., 'my 2nd config!' will become 'MY_ND_CONFIG'.
 - Constant values will be sanitized (hacker prevention) but otherwise remain as typed. Values are limited to 64 characters.</li>
 - Immutable means you can't change the Constant Name or delete it. <span class=\"red bold\">So be careful!</span> If you set something immutable, it can't go back.
         ",
-        'c_type'    => 'md',
-        'c_created' => '',
-        'c_version' => '1',
-        'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
     ],
    'lib_content' => [
-       'c_pbm_id'  => 'lib_content_instructions',
-       'c_content' => '### Instruction',
-       'c_type'    => 'md',
-       'c_created' => '',
-       'c_version' => '1',
-       'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_pbm_id'   => 'lib_content_instructions',
+       'c_content'  => '### Instruction',
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
    ],
    'lib_groups' => [
-       'c_pbm_id'  => 'lib_groups_instructions',
-       'c_content' => '### Instructions
+       'c_pbm_id'   => 'lib_groups_instructions',
+       'c_content'  => '### Instructions
 - Certain groups are fixed so that the app will work. They may not be visible based on auth level.</li>
 - Group Name is a single word, alpha characters only. The app will change the group name to camelCase, then capitalizing the first letter, removing any other characters.
 - Group Description can be anything that is meaningful. Text will be sanitized.
 - Group Auth Level sets a general authorization level for the group, 0-9, 9 having the highest authorization level.
 - Immutable means the name and auth level cannot be changed and the group can not be deleted. <span class="red bold">Be careful at what auth level you set!</span> Set it higher than your level and you can not unset immutable.
         ',
-       'c_type'    => 'md',
-       'c_created' => '',
-       'c_version' => '1',
-       'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
    ],
    'lib_peeps' => [
-       'c_pbm_id'  => 'lib_peeps_instructions',
-       'c_content' => "### Instructions:
+       'c_pbm_id'   => 'lib_peeps_instructions',
+       'c_content'  => "### Instructions:
 - Login ID is required. It is what is used for authentication and access. Immutable Login IDs are locked and should never be changed.
 - Name is required. It can be anything. It is used for display. If left blank it will be set to the Login ID.
 - Alias can be anything that is 8 characters or less and may be used in some views. Can be blank, it will be automagically created from Name.
@@ -1762,24 +1769,25 @@ $a_content = [
   - Recommendation: It be at least 12 random or psuedo-random characters, upper and lower alpha, numeric and characters such as @% etc.
   - Recommendation: It not be a single dictionary word, name, or personal information.
   - Optionally a good practice would be to use 3 or 4 non-associated words of at least 4 characters long, e.g., 'Television river Banana' which allows one to remember the password while being difficult for a malicious attacker guess.
-  - password and 12345678 are not good passwords. Come on! You don't want to be responsible for someone maliciously accessing this site and deface it.          
+  - password and 12345678 are not good passwords. Come on! You don't want to be responsible for someone maliciously accessing this site and deface it.
 - Description can be anything and is optional.
 - Immutable prevents the person from being deleted as well as changing the Login ID.
 - Active determines if the person is allowed to log in. Allows for historical data, keeping the person in the database but preventing one from logging in again.
-- A group is required. 
-  - Groups allow the person to access the materials that group can access. 
-  - A person can be assigned to multiple groups but not necessarily needed - see next point. 
+- A group is required.
+  - Groups allow the person to access the materials that group can access.
+  - A person can be assigned to multiple groups but not necessarily needed - see next point.
   - Some groups are inclusive of other groups, e.g., Manager includes Editor and Registered. Anonymous is included in all groups and doesn't need to be selected ever.
         ",
-       'c_type'    => 'md',
-       'c_created' => '',
-       'c_version' => '1',
-       'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
    ],
    'lib_urls' => [
-       'c_pbm_id'  => 'lib_urls_instructions',
-       'c_content' => "### Instructions
+       'c_pbm_id'   => 'lib_urls_instructions',
+       'c_content'  => "### Instructions
 - Urls may be in one of two formats
   - In proper (standards based) url format, e.g. https://my.fred.com/
   - Without protocol and server defaulting to the current site, e.g., /manager/config/urls/
@@ -1787,46 +1795,49 @@ $a_content = [
 - Immutable means you can't delete it. You also cannot change the url.<span class=\"red bold\">So be careful!</span>
 - If you have permission you can change immutable to off and make those changes.
         ",
-       'c_type'    => 'md',
-       'c_created' => '',
-       'c_version' => '1',
-       'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
    ],
    'lib_routes' => [
-       'c_pbm_id'  => 'lib_routes_instructions',
-       'c_content' => "### Instructions
+       'c_pbm_id'   => 'lib_routes_instructions',
+       'c_content'  => "### Instructions
 - Routes map the url to a class, method, and action. Certain routes are fixed so that the app will work. They are not visible.
-- Route Path is what appears in the browser address bar, e.g., '/about/charlie/' 
+- Route Path is what appears in the browser address bar, e.g., '/about/charlie/'
   - Is taken from the URL manager.
   - The URL must be created first [Here](/manager/config/urls/)
 - Route Class is the name of the class associated with the path, e.g., MasterController.
   - The class is required and must match the class name exactly.
   - The class is normally a controller.
-- The method is the name of the method to be used. 
+- The method is the name of the method to be used.
   - The method is required.
   - The method must match the method name exactly.
 - The action is normally an argument that is used in the method. This is optional.
         ",
-       'c_type'    => 'md',
-       'c_created' => '',
-       'c_version' => '1',
-       'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
    ],
    'lib_nav' => [
-       'c_pbm_id'  => 'lib_nav_instructions',
-       'c_content' => '### Instructions',
-       'c_type'    => 'md',
-       'c_created' => '',
-       'c_version' => '1',
-       'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_pbm_id'   => 'lib_nav_instructions',
+       'c_content'  => '### Instructions',
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
    ],
    'lib_pages' => [
-       'c_pbm_id'  => 'lib_pages_instructions',
-       'c_content' => "### Instructions
-- <span class=\"text-danger\">*</span> indicates a required field.       
+       'c_pbm_id'   => 'lib_pages_instructions',
+       'c_content'  => "### Instructions
+- <span class=\"text-danger\">*</span> indicates a required field.
 - Most values are used in the HTML meta tags, used in the head.
 - The Page Url is unique per page. Only unused URLs are available. If you need a new url, you need to create it first [here](/manager/config/urls/) and normally then a new route [here](/manager/config/routes/)
 - Page Title is used in the meta data but may also be used in a &lt;h1&gt;. If not specified, a default value may be used.
@@ -1842,43 +1853,47 @@ $a_content = [
   - Template is the actual template to be used for the page. A template is required for each page.
 - Blocks specify which blocks are on the template and will be used for content. If you specify a block not on
   the template, it won't hurt anything but content created for it won't be displayed. If you don't specify a block that is on the template
-  it won't hurt anything but content can't be created for the page. At least one block is required so if you do not 
+  it won't hurt anything but content can't be created for the page. At least one block is required so if you do not
   specify one, the body block will used. Blocks are created/managed [here](/manager/config/blocks/).
 - Navgroup specifies the primary navigation group to be displayed if used on the template. Navgroups are created/managed [here](/manager/config/navigation/)
 - Publish On and Unpublish On allow one to have a page only appear between certain dates/times. If not specified page is always shown - defaults to 1000-01-01 00:00:00 and 9999-12-31 23:59:59
         ",
-       'c_type'    => 'md',
-       'c_created' => '',
-       'c_version' => '1',
-       'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
    ],
    'lib_sitemap' => [
-       'c_pbm_id'  => 'lib_sitemap_instructions',
-       'c_content' => '### Instructions',
-       'c_type'    => 'md',
-       'c_created' => '',
-       'c_version' => '1',
-       'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_pbm_id'   => 'lib_sitemap_instructions',
+       'c_content'  => '### Instructions',
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
    ],
    'lib_twig' => [
-       'c_pbm_id'  => 'lib_twig_instructions',
-       'c_content' => '### Instructions',
-       'c_type'    => 'md',
-       'c_created' => '',
-       'c_version' => '1',
-       'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_pbm_id'   => 'lib_twig_instructions',
+       'c_content'  => '### Instructions',
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
    ],
    'lib_tests' => [
-       'c_pbm_id'  => 'lib_tests_instructions',
-       'c_content' => '### Instructions',
-       'c_type'    => 'md',
-       'c_created' => '',
-       'c_version' => '1',
-       'c_current' => 'true',
-       'c_shared'  => 'false'
+       'c_pbm_id'   => 'lib_tests_instructions',
+       'c_content'  => '### Instructions',
+       'c_type'     => 'md',
+       'c_created'  => '',
+       'c_updated'  => '',
+       'c_version'  => '1',
+       'c_current'  => 'true',
+       'c_featured' => 'false'
    ]
 ];
 
