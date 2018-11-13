@@ -241,7 +241,7 @@ return [
 "ALTER TABLE `{dbPrefix}people_group_map` ADD CONSTRAINT `{dbPrefix}pgm_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `{dbPrefix}groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE `{dbPrefix}routes_group_map` ADD CONSTRAINT `{dbPrefix}rgm_ibfk_1` FOREIGN KEY (`route_id`) REFERENCES `{dbPrefix}routes` (`route_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE `{dbPrefix}routes_group_map` ADD CONSTRAINT `{dbPrefix}rgm_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `{dbPrefix}groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE",
-"ALTER TABLE `{dbPrefix}aliases` ADD CONSTRAINT `{dbPrefix}aliases_ibfk_1` FOREIGN KEY (`a_url_id`) REFERENCES `{dbPrefix}urls` (`ulr_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE `{dbPrefix}aliases` ADD CONSTRAINT `{dbPrefix}aliases_ibfk_1` FOREIGN KEY (`a_url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE `{dbPrefix}twig_dirs` ADD CONSTRAINT `lib_twig_dirs_ibfk_1` FOREIGN KEY (`tp_id`) REFERENCES `{dbPrefix}twig_prefix` (`tp_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE `{dbPrefix}twig_templates` ADD CONSTRAINT `{dbPrefix}twig_templates_ibfk_1` FOREIGN KEY (`td_id`) REFERENCES `{dbPrefix}twig_dirs` (`td_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 ];
