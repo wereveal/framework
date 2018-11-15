@@ -221,7 +221,19 @@ hr.item-card {
         }
       }
     }
-    &.row-dark, &.even {
+    &.row-black {
+      @include colorRow($gray-barely, $black-color);
+    }
+    &.row-blue {
+      @include colorRow($blue-xlight, $blue-medium);
+    }
+    &.row-blue-dark {
+      @include colorRow($blue-xlight, $blue-color);
+    }
+    &.row-blue-light {
+      @include colorRow($blue-dark, $blue-xlight);
+    }
+    &.row-dark {
       @include colorRow($gray-darkest, $gray-med-light);
     }
     &.row-darker {
@@ -230,14 +242,26 @@ hr.item-card {
     &.row-darkest {
       @include colorRow($gray-xlight, $gray-dark);
     }
+    &.row-green {
+      @include colorRow($green-xlight, $green-medium-light);
+    }
+    &.row-green-dark {
+      @include colorRow($green-xlight, $green-dark);
+    }
+    &.row-green-light {
+      @include colorRow($green-darker, $green-lighter);
+    }
     &.row-light, &.odd, &.odd-inner-odd, &.even-inner-odd {
       @include colorRow($gray-darkest, $gray-barely);
     }
-    &.row-medium, &.even-inner-even {
+    &.row-medium, &.even, &.even-inner-even {
       @include colorRow($gray-darkest, $gray-light);
     }
     &.row-med-light, &.odd-inner-even {
       @include colorRow($gray-darkest, $gray-xlight);
+    }
+    &.row-white {
+      @include colorRow($gray-darkest, $white-color);
     }
     &.upper {
       border-radius: 0 2rem 0 0;
