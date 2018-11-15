@@ -1,30 +1,34 @@
 #!/bin/bash
+if [ -d public/assets/css ]; then
+  thePublicDir='public/assets/css/'
+elif [ -d ../../public/assets/css ]; then
+  thePublicDir='../../public/assets/css/'
+else
+  exit 1
+fi
+
 if [ -d src/scss/ ]; then
   theDir='src/scss/'
-  theOtherDir='public/assets/css/'
+elif [ -d ../scss/ ]; then
+  theDir='../scss/'
 else
-  if [ -d ../scss/ ]; then
-    theDir='../scss/'
-    theOtherDir='../../public/assets/css/'
-  else
-    theDir='scss'
-    theOtherDir='css'
-  fi
+  exit 1
 fi
-sass --update -s compressed ${theDir}:${theOtherDir}
+sass --update -s compressed ${theDir}:${thePublicDir}
 
-if [ -d src/apps/Ritc/Library/resources/assets/scss/ ]; then
-  theDir='src/apps/Ritc/Library/resources/assets/scss/'
-  theOtherDir='public/assets/css/'
-else
-  if [ -d ../apps/Ritc/Library/resources/assets/scss/ ]; then
-    theDir='../apps/Ritc/Library/resources/assets/scss/'
-    theOtherDir='../../public/assets/css/'
-  else
-    theDir=''
-    theOtherDir=''
-  fi
+if [ -d src/apps/ ]; then
+ appsDir='src/apps'
+elif [ -d ../apps/ ]; then
+ appsDir='../apps'
 fi
-if [[ ${theDir} != "" ]]; then
-  sass --update -s compressed ${theDir}:${theOtherDir}
-fi
+
+for dir in $(ls $appsDir)
+do
+  for inner_dir in $(ls $appsDir/$dir/)
+  do
+    theScssDir=$appsDir/$dir/$inner_dir/resources/assets/scss
+    if [ -d $theScssDir ]; then
+      sass --update -s compressed ${theScssDir}:${thePublicDir}
+    fi
+  done
+done
