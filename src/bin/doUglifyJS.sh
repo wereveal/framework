@@ -1,39 +1,39 @@
 #!/usr/bin/env bash
-if [ -d src/js/ ]; then
-  theDir='src/js/'
-  theOtherDir='public/assets/js/'
+if [ -d public/assets/js/ ]; then
+  thePublicDir='public/assets/js/'
+  theSrcDir='src/js/'
+elif [ -d ../../public/assets/js/ ]; then
+  thePublicDir='../../public/assets/js/'
+  theSrcDir='../js/'
 else
-  if [ -d ../js/ ]; then
-    theDir='../js/'
-    theOtherDir='../../public/assets/js/'
-  else
-    theDir=''
-    theOtherDir='min/'
-  fi
+  exit 1
 fi
 
-for thing in $(ls ${theDir}*.js)
+for thing in $(ls ${theSrcDir}*.js)
 do
     shortThing=$(basename ${thing})
-    uglifyjs ${thing} --compress --mangle --output ${theOtherDir}${shortThing}
+    uglifyjs ${thing} --compress --mangle --source-map --output ${thePublicDir}${shortThing}
 done
 
-if [ -d src/apps/Ritc/Library/resources/assets/js/ ]; then
-  theDir='src/apps/Ritc/Library/resources/assets/js/'
-  theOtherDir='public/assets/js/'
-else
-  if [ -d ../apps/Ritc/Library/resources/assets/js/ ]; then
-    theDir='../apps/Ritc/Library/resources/assets/js/'
-    theOtherDir='../../public/assets/js/'
-  else
-    theDir=''
-    theOtherDir='min/'
-  fi
+
+if [ -d src/apps/ ]; then
+ appsDir='src/apps'
+elif [ -d ../apps/ ]; then
+ appsDir='../apps'
 fi
-if [[ ${theDir} != '' ]]; then
-for thing in $(ls ${theDir}*.js)
+
+for dir in $(ls $appsDir)
 do
-    shortThing=$(basename ${thing})
-    uglifyjs ${thing} --compress --mangle --output ${theOtherDir}${shortThing}
+  for inner_dir in $(ls $appsDir/$dir/)
+  do
+    theJsDir=$appsDir/$dir/$inner_dir/resources/assets/js
+    if [ -d $theJsDir ]; then
+      for thing in $(ls $theJsDir/*.js)
+      do
+        shortThing=$(basename ${thing})
+        uglifyjs $thing --compress --mangle --source-map --output $thePublicDir/$shortThing
+      done
+    fi
+
+  done
 done
-fi
