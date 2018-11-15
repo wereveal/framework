@@ -28,7 +28,7 @@ if [ -f src/config/install_config.php ]; then
             echo "The composer.json file must exist at the base of the site."
             exit 1
         else
-            if [ -x composer.phar ]; then
+            if [ -x $(command -v composer.phar) ]; then
                 composer.phar install
             else
                 composer install
@@ -39,7 +39,7 @@ if [ -f src/config/install_config.php ]; then
             echo "The composer.json file must exist at the base of the site."
             exit 1
         else
-            if [ -x composer.phar ]; then
+            if [ -x $(command -v composer.phar) ]; then
                 composer.phar update
             else
                 composer update
