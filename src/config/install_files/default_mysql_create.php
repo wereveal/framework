@@ -115,7 +115,7 @@ return [
   `c_current` enum('true','false') NOT NULL DEFAULT 'true',
   `c_featured` enum('true','false') NOT NULL DEFAULT 'false',
   PRIMARY KEY (`c_id`),
-  KEY `c_pbm_id` (`c_pbm_id`)
+  UNIQUE KEY `c_pbm_id` (`c_pbm_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}people` (

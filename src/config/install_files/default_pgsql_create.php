@@ -131,7 +131,7 @@ $BODY$ language \'plpgsql\'',
   c_featured truthy NOT NULL DEFAULT 'false'::truthy,
   PRIMARY KEY (c_id)
 )",
-"CREATE INDEX content_page_id_idx on {dbPrefix}content USING btree (c_page_id)",
+"CREATE UNIQUE INDEX content_page_id_idx on {dbPrefix}content USING btree (c_page_id)",
 
 "CREATE TABLE {dbPrefix}people (
   people_id serial NOT NULL,

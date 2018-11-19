@@ -1,5 +1,11 @@
 <?php
-print 'SuperAdmin: ' . password_hash('letGSAin', PASSWORD_DEFAULT) . "\n";
-print 'Admin: ' . password_hash('letADMin', PASSWORD_DEFAULT) . "\n";
-print 'Manager: ' . password_hash('letMANin', PASSWORD_DEFAULT) . "\n";
+$a_users = [
+    'SuperAdmin' => 'letGSAin',
+    'Admin'      => 'letADMin',
+    'Manager'    => 'letMANin'
+];
+$hash = \defined('PASSWORD_ARGON2I') ? PASSWORD_ARGON2I : PASSWORD_DEFAULT;
+foreach ($a_users as $user => $password) {
+    print $user . ': ' . password_hash($password, $hash) . "\n";
+}
 
