@@ -7,7 +7,7 @@ namespace {NAMESPACE}\{APPNAME}\Controllers;
 
 use Ritc\Library\Controllers\LibraryController;
 use Ritc\Library\Controllers\SitemapController;
-use Ritc\Library\Interfaces\ControllerInterface;
+use Ritc\Library\Interfaces\MasterControllerInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;
 use Ritc\Library\Traits\LogitTraits;
@@ -22,7 +22,7 @@ use Ritc\Library\Traits\LogitTraits;
  * - v1.0.0-alpha.0 - Initial version        - {sdate} {sauthor}
  * @todo {NAMESPACE}/{APPNAME}/Controllers/MasterController.php - Everything
  */
-class MasterController implements ControllerInterface
+class MasterController implements MasterControllerInterface
 {
     use ControllerTraits, LogitTraits;
 
@@ -70,5 +70,17 @@ class MasterController implements ControllerInterface
                 break;
         }
         return $o_controller->$route_method();
+    }
+
+    /**
+     * Resets the router parts and displays the home page.
+     *
+     * @return string
+     */
+    public function goHome():string
+    {
+        $this->o_router->setRouteParts('/');
+        $o_controller = new HomeController($this->o_di);
+        return $o_controller->route();
     }
 }
