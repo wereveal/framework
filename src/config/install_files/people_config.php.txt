@@ -1,0 +1,6 @@
+<?php
+return [
+    'SuperAdmin' => 'letGSAin',
+    'Admin'      => 'letADMin',
+    'Manager'    => 'letMANin'
+];
