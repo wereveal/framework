@@ -20,5 +20,26 @@ return [
     'lib_db_prefix'   => 'lib_',
     'master_app'      => 'false',                         // specifies if this is the app called by /index.php
     'master_twig'     => 'false',                         // specifies if this app's twig prefix is the default (if false, site_ is default)
-    'app_twig_prefix' => ''                               // specifies the twig prefix, defaults to strtolower(app_name) . '_'
+    'app_twig_prefix' => '',                              // specifies the twig prefix, defaults to strtolower(app_name) . '_'
+    'app_db_prefix'   => '',                              // specifies optional prefix for database tables, defaults to use db_prefix
+    'a_groups'        => [                                // optional, if provided, new group records will be created
+//        [
+//            'group_name'        => 'group_name',  // required
+//            'group_description' => 'description', // optional
+//            'group_auth_lvl'    => '0',           // optional
+//            'group_immutable'   => 'false'        // optional
+//        ]
+    ],
+    'a_users'         => [                               // Optional, users that get added with the app
+//        [
+//            'login_id'    => 'new_user',     // Required, person login id
+//            'real_name'   => 'Real Name',    // Required, Display name for person
+//            'password'    => 'new_password', // Required, password for user
+//            'short_name'  => 'RN',           // Optional, initials normally'
+//            'description' => 'description',  // Optional
+//            'active'      => 'true',         // Active user
+//            'immutable'   => 'false',        // Can't be deleted
+//            'group_name'  => 'group_name',   // Optional, name of group to be assigned, defaults to Registered, can also be an array
+//        ]
+    ]
 ];

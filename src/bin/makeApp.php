@@ -202,7 +202,12 @@ $results = $o_new_app_helper->createTwigDbRecords();
 if ($results === false) {
     die("\n". $results);
 }
-print "success\n";
+print "New Twig records: success\n";
+$a_results = $o_new_app_helper->createUsers();
+if ($a_results['type'] === 'error') {
+    die("\n". $results);
+}
+print "New User records: success\n";
 
 print "\nCreating the directories for the new app\n";
 if ($o_new_app_helper->createDirectories()) {

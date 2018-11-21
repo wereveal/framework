@@ -28,7 +28,9 @@
 /public/doxy
 /public/index.php
 /public/setup.php
+/public/tools/docs
 /public/tools/phpdoc
+/public/tools/tests/temp/*.php
 /vendor
 wereveal.iml
 sitemap.xml
