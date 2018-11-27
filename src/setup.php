@@ -30,6 +30,7 @@ use Ritc\Library\Services\Elog;
 use Ritc\Library\Services\Router;
 use Ritc\Library\Services\Session;
 
+## Define Various Constants and Variables
 if (!\defined('PUBLIC_PATH')) {
     /**
      * Server document root
@@ -54,24 +55,19 @@ if (!isset($db_config_file)) {
 if (!isset($twig_config)) {
     $twig_config = 'db';
 }
-if (!isset($psr_loader)) {
-    $psr_loader = 'psr4';
-}
 
+## Autoload Stuff
 $o_loader = require VENDOR_PATH . '/autoload.php';
 
-if ($psr_loader === 'psr0') {
-    ### PSR-0 autoload method
-    $my_classmap = require SRC_CONFIG_PATH . '/autoload_classmap.php';
-    $o_loader->addClassMap($my_classmap);
+### PSR-4 autoload method
+$my_namespaces = require SRC_CONFIG_PATH . '/autoload_namespaces.php';
+foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
+    $o_loader->addPsr4($psr4_prefix, $psr0_paths);
 }
-else {
-    ### PSR-4 autoload method
-    $my_namespaces = require SRC_CONFIG_PATH . '/autoload_namespaces.php';
-    foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
-        $o_loader->addPsr4($psr4_prefix, $psr0_paths);
-    }
-}
+### PSR-0 autoload method
+$my_classmap = require SRC_CONFIG_PATH . '/autoload_classmap.php';
+$o_loader->addClassMap($my_classmap);
+
 try {
     $o_elog = Elog::start();
 }
