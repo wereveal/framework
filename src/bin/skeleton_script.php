@@ -20,6 +20,11 @@ use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 
+ini_set('date.timezone', 'America/Chicago');
+
+if (strpos(__DIR__, '/src/bin') !== false) {
+    die('Please Run this script from the /src/bin directory');
+}
 $base_path = str_replace('/src/bin', '', __DIR__);
 \define('DEVELOPER_MODE', true);
 \define('BASE_PATH', $base_path);

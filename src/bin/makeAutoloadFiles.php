@@ -6,8 +6,11 @@
 namespace Ritc\Library\Helper;
 
 ini_set('date.timezone', 'America/Chicago');
-$bin_path    = getcwd();
-$src_path    = str_replace('/bin', '', $bin_path);
+if (strpos(__DIR__, '/src/bin') === false) {
+    die("Please Run this script from the /src/bin directory\n");
+}
+$base_path = str_replace('/src/bin', '', __DIR__);
+$src_path    = $base_path . '/src';
 $apps_path   = $src_path . '/apps';
 $config_path = $src_path . '/config';
 require $apps_path . '/Ritc/Library/Helper/AutoloadMapper.php';
