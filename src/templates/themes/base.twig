@@ -3,15 +3,17 @@
         <link rel="stylesheet" href="{{ css_dir }}/styles.css" media="screen">
 {% endblock %}
 {% block navbarBrand %}
-    <a class="navbar-brand" href="/"><span class="fal fa-feather fa-2x slate"></span></a>
+            <a class="navbar-brand" href="/"><span class="fal fa-feather fa-2x slate"></span></a>
 {% endblock %}
 {% block debug %}
-    {% if debug_text %}
-            <div class="container">
-                    <code class="pre">
-                        {{ debug_text }}
-                    </code>
-            </div>
-    {% endif %}
+    {% if debug_on %}
+        {% if debug_text %}
+        <div class="container">
+            <code class="pre">
+                {{ debug_text }}
+            </code>
+        </div>
+        {% endif %}
         <p class="font-tiny">Site Base Tpl</p>
+    {% endif %}
 {% endblock %}
