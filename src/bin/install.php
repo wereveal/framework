@@ -290,63 +290,63 @@ if (!$o_db_creator->insertConstants()) {
 print "success\n";
 
 ### Enter Groups
-print 'Create Groups: ';
+print 'Entering Groups Data; ';
 if (!$o_db_creator->insertGroups()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'urls'
-print 'Create URLs: ';
+print 'Entering URLs Data; ';
 if (!$o_db_creator->insertUrls()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'people'
-print 'Creating People: ';
+print 'Entering People Data; ';
 if (!$o_db_creator->insertPeople()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'navgroups',
-print 'Creating NavGroups: ';
+print 'Entering NavGroups Data; ';
 if (!$o_db_creator->insertNavgroups()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'people_group_map',
-print 'Creating people_group_map: ';
+print 'Entering people_group_map Data; ';
 if (!$o_db_creator->insertPGM()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'routes'
-print 'Creating Routes: ';
+print 'Entering Routes Data; ';
 if (!$o_db_creator->insertRoutes()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'routes_group_map'
-print 'Creating routes_group_map: ';
+print 'Entering routes_group_map Data; ';
 if (!$o_db_creator->insertRGM()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'navigation',
-print 'Creating Navigation: ';
+print 'Entering Navigation Data; ';
 if (!$o_db_creator->insertNavigation()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'nav_ng_map'
-print 'Creating nav_ng_map: ';
+print 'Entering nav_ng_map Data; ';
 if (!$o_db_creator->insertNNM()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
@@ -358,49 +358,49 @@ print "Updating data for app specific\n";
 $o_db_creator->createTwigAppConfig();
 
 ### Enter twig prefixes into database ###
-print 'Creating Twig Prefixes: ';
+print 'Entering Twig Prefixes Data; ';
 if (!$o_db_creator->insertTwigPrefixes()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter twig directories into database ###
-print 'Creating twig directories: ';
+print 'Entering twig directories Data; ';
 if (!$o_db_creator->insertTwigDirs()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter twig templates into database ###
-print 'Creating twig templates: ';
+print 'Entering twig templates Data; ';
 if (!$o_db_creator->insertTwigTemplates()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'page' ###
-print 'Creating Page: ';
+print 'Entering Page Data; ';
 if (!$o_db_creator->insertPage()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'blocks' ###
-print 'Creating Blocks: ';
+print 'Entering Blocks Data; ';
 if (!$o_db_creator->insertBlocks()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'Page blocks' ###
-print 'Creating Page Blocks Map: ';
+print 'Entering Page Blocks Map Data; ';
 if (!$o_db_creator->insertPBM()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'content' ###
-print 'Creating Content: ';
+print 'Entering Content Data; ';
 if (!$o_db_creator->insertContent()) {
     failIt($o_db, $o_db_creator->getErrorMessage());
 }
