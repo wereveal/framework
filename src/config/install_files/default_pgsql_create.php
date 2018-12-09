@@ -217,8 +217,8 @@ $BODY$ language \'plpgsql\'',
   tp_id serial NOT NULL,
   tp_prefix character varying(32) NOT NULL,
   tp_path character varying(150) NOT NULL,
-  tp_active integer DEFAULT 1 NOT NULL,
-  tp_default integer DEFAULT 0 NOT NULL 
+  tp_active truthy NOT NULL DEFAULT 'true'::truthy,
+  tp_default truthy NOT NULL DEFAULT 'false'::truthy 
 )",
 "CREATE UNIQUE INDEX tp_id_idx on {dbPrefix}twig_prefix USING btree (tp_id)",
 "CREATE UNIQUE INDEX tp_prefix_idx on {dbPrefix}twig_prefix USING btree (tp_prefix)",
