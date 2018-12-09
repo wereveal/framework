@@ -39,7 +39,7 @@ $BODY$ language \'plpgsql\'',
   const_id serial NOT NULL,
   const_name character varying(64) NOT NULL UNIQUE,
   const_value character varying(64) NOT NULL,
-  const_immutable truthy NOT NULL DEFAULT 'false'::truthy
+  const_immutable truthy NOT NULL DEFAULT 'false'::truthy,
   PRIMARY KEY (const_id)
 )",
 
@@ -48,7 +48,7 @@ $BODY$ language \'plpgsql\'',
   group_name character varying(40) NOT NULL UNIQUE,
   group_description character varying(128) NOT NULL,
   group_auth_level integer NOT NULL DEFAULT 0,
-  group_immutable truthy NOT NULL DEFAULT 'false'::truthy
+  group_immutable truthy NOT NULL DEFAULT 'false'::truthy,
   PRIMARY KEY (group_id)
 )",
 
@@ -57,7 +57,7 @@ $BODY$ language \'plpgsql\'',
   url_host character varying(255) NOT NULL DEFAULT 'self'::character varying,
   url_text character varying(255) NOT NULL DEFAULT ''::character varying,
   url_scheme url_protocol NOT NULL DEFAULT 'https'::url_protocol,
-  url_immutable truthy NOT NULL DEFAULT 'false'::truthy
+  url_immutable truthy NOT NULL DEFAULT 'false'::truthy,
   PRIMARY KEY (url_id)
 )",
 "CREATE UNIQUE INDEX urls_url_idx on {dbPrefix}urls USING btree (url_scheme, url_host, url_text)",
@@ -68,7 +68,7 @@ $BODY$ language \'plpgsql\'',
   route_class character varying(64) NOT NULL,
   route_method character varying(64) NOT NULL,
   route_action character varying(255) NOT NULL,
-  route_immutable truthy NOT NULL DEFAULT 'false'::truthy
+  route_immutable truthy NOT NULL DEFAULT 'false'::truthy,
   PRIMARY KEY (route_id)
 )",
 
@@ -103,14 +103,14 @@ $BODY$ language \'plpgsql\'',
   b_type block_type NOT NULL DEFAULT 'shared'::block_type,
   b_active truthy NOT NULL DEFAULT 'true'::truthy,
   b_immutable truthy NOT NULL DEFAULT 'false'::truthy,
-  PRIMARY KEY (b_id)
+  PRIMARY KEY (b_id),
   UNIQUE (b_name)
 )",
 
 "CREATE TABLE {dbPrefix}page_blocks_map (
-  pbm_id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  pbm_page_id int(11) unsigned NOT NULL,
-  pbm_block_id int(10) unsigned NOT NULL,
+  pbm_id serial NOT NULL,
+  pbm_page_id integer NOT NULL,
+  pbm_block_id integer NOT NULL,
   PRIMARY KEY (pbm_id),
   UNIQUE (pbm_page_id,pbm_block_id)
 )",
@@ -140,12 +140,12 @@ $BODY$ language \'plpgsql\'',
   short_name character varying(8) NOT NULL,
   password character varying(128) NOT NULL,
   description character varying(250) NOT NULL DEFAULT ''::character varying,
-  is_logged_in truthy NOT NULL DEFAULT 'false'::truthy
+  is_logged_in truthy NOT NULL DEFAULT 'false'::truthy,
   last_logged_in date NOT NULL DEFAULT '1000-01-01'::date,
   bad_login_count integer NOT NULL DEFAULT 0,
   bad_login_ts integer NOT NULL DEFAULT 0,
-  is_active truthy NOT NULL DEFAULT 'true'::truthy
-  is_immutable truthy NOT NULL DEFAULT 'false'::truthy
+  is_active truthy NOT NULL DEFAULT 'true'::truthy,
+  is_immutable truthy NOT NULL DEFAULT 'false'::truthy,
   created_on timestamp NOT NULL DEFAULT now(),
   PRIMARY KEY (people_id),
   UNIQUE (login_id),
@@ -155,9 +155,9 @@ $BODY$ language \'plpgsql\'',
 "CREATE TABLE {dbPrefix}navgroups (
   ng_id serial NOT NULL,
   ng_name character varying(128) NOT NULL DEFAULT 'Main'::character varying,
-  ng_active truthy NOT NULL DEFAULT 'true'::truthy
-  ng_default truthy NOT NULL DEFAULT 'false'::truthy
-  ng_immutable truthy NOT NULL DEFAULT 'false'::truthy
+  ng_active truthy NOT NULL DEFAULT 'true'::truthy,
+  ng_default truthy NOT NULL DEFAULT 'false'::truthy,
+  ng_immutable truthy NOT NULL DEFAULT 'false'::truthy,
   PRIMARY KEY (ng_id),
   UNIQUE (ng_name)
 )",
@@ -172,8 +172,8 @@ $BODY$ language \'plpgsql\'',
   nav_css character varying(64) NOT NULL DEFAULT ''::character varying,
   nav_level integer NOT NULL DEFAULT 1,
   nav_order integer NOT NULL DEFAULT 0,
-  nav_active truthy NOT NULL DEFAULT 'true'::truthy
-  nav_immutable truthy NOT NULL DEFAULT 'false'::truthy
+  nav_active truthy NOT NULL DEFAULT 'true'::truthy,
+  nav_immutable truthy NOT NULL DEFAULT 'false'::truthy,
   PRIMARY KEY (nav_id)
 )",
 "CREATE INDEX nav_url_id_idx on {dbPrefix}navigation USING btree (url_id)",
