@@ -131,7 +131,7 @@ $BODY$ language \'plpgsql\'',
   c_featured truthy NOT NULL DEFAULT 'false'::truthy,
   PRIMARY KEY (c_id)
 )",
-"CREATE UNIQUE INDEX content_page_id_idx on {dbPrefix}content USING btree (c_page_id)",
+"CREATE UNIQUE INDEX content_pbm_id_idx on {dbPrefix}content USING btree (c_pbm_id)",
 
 "CREATE TABLE {dbPrefix}people (
   people_id serial NOT NULL,
@@ -272,7 +272,7 @@ $BODY$ language \'plpgsql\'',
 
 "ALTER TABLE {dbPrefix}content 
     ADD CONSTRAINT {dbPrefix}content_ibfk_1 
-    FOREIGN KEY (c_page_id) REFERENCES {dbPrefix}page (page_id) 
+    FOREIGN KEY (c_pbm_id) REFERENCES {dbPrefix}page_blocks_map (pbm_id) 
       ON DELETE CASCADE
       ON UPDATE CASCADE",
 
