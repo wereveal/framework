@@ -1,4 +1,5 @@
 <?php
+/** @noinspection SqlNoDataSourceInspection */
 return [
 "DROP TABLE IF EXISTS {dbPrefix}nav_ng_map",
 "DROP TABLE IF EXISTS {dbPrefix}people_group_map",
@@ -119,11 +120,10 @@ $BODY$ language \'plpgsql\'',
 
 "CREATE TABLE {dbPrefix}content (
   c_id serial NOT NULL,
-  c_page_id integer NOT NULL,
-  c_content text NOT NULL,
+  c_pbm_id integer NOT NULL,
+  c_content NOT NULL,
   c_short_content character varying(250) NOT NULL DEFAULT '',
   c_type content_type NOT NULL DEFAULT 'text'::content_type,
-  c_block character varying(128) NOT NULL DEFAULT 'body',
   c_created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   c_updated timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   c_version integer NOT NULL DEFAULT '1',
