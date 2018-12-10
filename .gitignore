@@ -15,6 +15,7 @@
 /src/apps/Ritc/*
 /src/apps/Wer*
 /src/apps/Terramark*
+/public/assets/.npmrc
 /public/assets/.sass-cache
 /public/assets/css/*.css
 /public/assets/css/*.map
@@ -25,6 +26,7 @@
 /public/assets/images/touch/*.xml
 /public/assets/js/*.js
 /public/assets/js/*.js.map
+/public/assets/package.json
 /public/assets/vendor
 /public/doxy
 /public/index.php

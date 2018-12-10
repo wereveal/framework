@@ -1,4 +1,20 @@
 #!/bin/bash
+useJqueryUi="no"
+useFAPro="no"
+while getopts ":u:f" opt; do
+    case $opt in
+        u)
+            useJqueryUi="yes"
+            ;;
+        f)
+            useFAPro="yes"
+            ;;
+        \?)
+            echo "Valid options are -u" >&2
+            ;;
+    esac
+done
+
 if [ ! -x $(command -v composer) ]; then
     if [ ! -x $(command -v composer.phar) ]; then
         echo "composer must be installed"
@@ -21,6 +37,17 @@ if [ ! -x $(command -v php) ]; then
     echo "php must be installed"
     exit 1
 fi
+
+if [ ! -d src/apps/Ritc/Library ]; then
+    echo "Installing the Library."
+    git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
+else
+    echo "Updating the Library."
+    cd src/apps/Ritc/Library
+    git pull
+    cd ../../../../
+fi
+
 if [ -f src/config/install_config.php ]; then
     if [ ! -d ./vendor ]
     then
@@ -47,20 +74,31 @@ if [ -f src/config/install_config.php ]; then
         fi
     fi
 
+    echo "Installing public/assets/vendor files"
+    echo $useFAPro
+    if [ "$useFAPro" = "yes" ]; then
+        cp src/apps/Ritc/Library/resources/config/package.json.txt public/assets/package.json
+        cp src/apps/Ritc/Library/resources/config/npmrc.txt public/assets/.npmrc
+    else
+        cp src/config/install_files/package.json.txt public/assets/package.json
+        if [ -f public/assets/.npmrc ]; then
+            rm public/assets/.npmrc
+        fi
+    fi
     bash src/bin/doYarn.sh
-    bash src/bin/doJqueryUi.sh
+
+    if [ "$useJqueryUi" = "yes" ]; then
+        echo "Installing jQueryUi"
+        bash src/bin/doJqueryUi.sh
+    fi
+
+    echo "Running Sass"
     bash src/bin/doSass.sh
+
+    echo "Running uglifyJs"
     bash src/bin/doUglifyJS.sh
 
-    if [ ! -d src/apps/Ritc/Library ]; then
-        echo "Installing the Library."
-        git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
-    else
-        echo "Updating the Library."
-        cd src/apps/Ritc/Library
-        git pull
-        cd ../../../../
-    fi
+    echo "Running the php install script"
     php src/bin/install.php
 else
     echo "The src/config/install_config.php file must be created and configured first.\nSee src/config/install_files/install_config.php.txt"
