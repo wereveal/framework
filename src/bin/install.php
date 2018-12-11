@@ -137,14 +137,14 @@ $db_local_file  = $db_file_name . '_local.php';
 $db_host_file   = !empty($a_install['specific_host'])
     ? $db_file_name . '_' . $a_install['specific_host'] . '.php'
     : $db_file_name . '_test.php';
-if (empty($a_install['db_ro_pass'] || empty($a_install['db_ro_user'])) {
+if (empty($a_install['db_ro_pass']) || empty($a_install['db_ro_user'])) {
     $a_install['db_ro_user'] = $a_install['db_user'];
     $a_install['db_ro_pass'] = $a_install['db_pass'];
 }
 if (empty($a_install['db_local_name'])) {
     $a_install['db_local_name'] = 'localhost';
 }
-if (empty($a_install['db_local_pass'] || empty($a_install['db_local_user'])) {
+if (empty($a_install['db_local_pass']) || empty($a_install['db_local_user'])) {
     $a_install['db_local_user'] = $a_install['db_user'];
     $a_install['db_local_pass'] = $a_install['db_pass'];
 }
