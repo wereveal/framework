@@ -38,17 +38,17 @@ if [ ! -x $(command -v php) ]; then
     exit 1
 fi
 
-if [ ! -d src/apps/Ritc/Library ]; then
-    echo "Installing the Library."
-    git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
-else
-    echo "Updating the Library."
-    cd src/apps/Ritc/Library
-    git pull
-    cd ../../../../
-fi
-
 if [ -f src/config/install_config.php ]; then
+    if [ ! -d src/apps/Ritc/Library ]; then
+        echo "Installing the Library."
+        git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
+    else
+        echo "Updating the Library."
+        cd src/apps/Ritc/Library
+        git pull
+        cd ../../../../
+    fi
+
     if [ ! -d ./vendor ]
     then
         if [ ! -f composer.json ]; then
@@ -73,7 +73,7 @@ if [ -f src/config/install_config.php ]; then
             fi
         fi
     fi
-    
+
     echo "Running the php install script"
     php src/bin/install.php
 
