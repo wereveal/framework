@@ -36,6 +36,7 @@ return [
 	'domain'          => 'domain',                        // domain name of site
 	'tld'             => 'tld',                           // top level domain, e.g., com, net, org
 	'specific_host'   => '',                              // e.g. www, test, etc, used for some settings
+	'install_host'    => '',                              // which host this is being installed on, needed for knowing which {db_file} to use, defaults to {db_file}.php
     'master_twig'     => 'false',                         // specifies if this app's twig prefix is the default (if false, site_ is default)
     'app_twig_prefix' => '',                              // specifies the twig prefix, defaults to strtolower(app_name) . '_'
     'app_db_prefix'   => '',                              // specifies optional prefix for database tables, defaults to use db_prefix

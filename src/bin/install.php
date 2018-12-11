@@ -131,12 +131,18 @@ if (!\is_object($o_cm)) {
 $o_cm->generateMapFiles();
 $app_path = APPS_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
 ### Setup the database ###
+$install_host   = $a_install['install_host'] ?? 'default';
 $db_file_name   = $a_install['db_file'] ?? 'db_config';
 $db_config_file = $db_file_name . '.php';
 $db_local_file  = $db_file_name . '_local.php';
-$db_host_file   = !empty($a_install['specific_host'])
-    ? $db_file_name . '_' . $a_install['specific_host'] . '.php'
-    : $db_file_name . '_test.php';
+$specific_host  = '';
+if (!empty($a_install['specific_host'])) {
+    $db_host_file = $db_file_name . '_' . $a_install['specific_host'] . '.php';
+    $specific_host = $a_install['specific_host'];
+}
+else {
+    $db_host_file = $db_file_name . '_test.php';
+}
 if (empty($a_install['db_ro_pass']) || empty($a_install['db_ro_user'])) {
     $a_install['db_ro_user'] = $a_install['db_user'];
     $a_install['db_ro_pass'] = $a_install['db_pass'];
@@ -210,6 +216,17 @@ return [
 EOT;
 file_put_contents(SRC_CONFIG_PATH . '/' . $db_host_file, $db_config_file_text);
 
+switch ($install_host) {
+    case 'localhost':
+        $the_db_config_file = $db_local_file;
+        break;
+    case $specific_host:
+        $the_db_config_file = $db_host_file;
+        break;
+    default: // simple setup and this could be the only two lines needed in this file.
+        $the_db_config_file = $db_config_file;
+}
+
 $o_loader = require VENDOR_PATH . '/autoload.php';
 
 if ($a_install['loader'] === 'psr0') {
@@ -236,7 +253,7 @@ $o_di = new Di();
 $o_di->set('elog', $o_elog);
 try {
     /** @var \PDO $o_pdo */
-    $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+    $o_pdo = PdoFactory::start($the_db_config_file, 'rw', $o_di);
     if (! $o_pdo instanceof \PDO) {
         die('Unable to create the Pdo instance.');
     }
@@ -247,7 +264,7 @@ catch (FactoryException $e) {
 }
 
 if ($o_pdo !== false) {
-    $o_db = new DbModel($o_pdo, $db_config_file);
+    $o_db = new DbModel($o_pdo, $the_db_config_file);
     if (!$o_db instanceof DbModel) {
         $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
         die("Could not get the database to work\n");
