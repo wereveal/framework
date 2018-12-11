@@ -27,13 +27,12 @@ do
   for inner_dir in $(ls $appsDir/$dir/)
   do
     theJsDir=$appsDir/$dir/$inner_dir/resources/assets/js
-    if [ -d $theJsDir ]; then
+    if [ -f $theJsDir/*.js ]; then
       for thing in $(ls $theJsDir/*.js)
       do
         shortThing=$(basename ${thing})
         uglifyjs $thing --compress --mangle --source-map --output $thePublicDir/$shortThing
       done
     fi
-
   done
 done

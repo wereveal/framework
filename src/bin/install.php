@@ -131,7 +131,27 @@ if (!\is_object($o_cm)) {
 $o_cm->generateMapFiles();
 $app_path = APPS_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
 ### Setup the database ###
-$db_config_file = $a_install['db_file'];
+$db_file_name   = $a_install['db_file'] ?? 'db_config';
+$db_config_file = $db_file_name . '.php';
+$db_local_file  = $db_file_name . '_local.php';
+$db_host_file   = !empty($a_install['specific_host'])
+    ? $db_file_name . '_' . $a_install['specific_host'] . '.php'
+    : $db_file_name . '_test.php';
+if (empty($a_install['db_ro_pass'] || empty($a_install['db_ro_user'])) {
+    $a_install['db_ro_user'] = $a_install['db_user'];
+    $a_install['db_ro_pass'] = $a_install['db_pass'];
+}
+if (empty($a_install['db_local_name'])) {
+    $a_install['db_local_name'] = 'localhost';
+}
+if (empty($a_install['db_local_pass'] || empty($a_install['db_local_user'])) {
+    $a_install['db_local_user'] = $a_install['db_user'];
+    $a_install['db_local_pass'] = $a_install['db_pass'];
+}
+if (empty($a_install['db_host_pass']) || empty($a_install['db_host_user'])) {
+    $a_install['db_host_user'] = $a_install['db_user'];
+    $a_install['db_host_pass'] = $a_install['db_pass'];
+}
 $db_config_file_text =<<<EOT
 <?php
 return [
@@ -141,8 +161,8 @@ return [
     'name'       => '{$a_install['db_name']}',
     'user'       => '{$a_install['db_user']}',
     'password'   => '{$a_install['db_pass']}',
-    'userro'     => '{$a_install['db_user']}',
-    'passro'     => '{$a_install['db_pass']}',
+    'userro'     => '{$a_install['db_ro_user']}',
+    'passro'     => '{$a_install['db_ro_pass']}',
     'persist'    => {$a_install['db_persist']},
     'prefix'     => '{$a_install['db_prefix']}',
     'errmode'    => '{$a_install['db_errmode']}',
@@ -150,8 +170,45 @@ return [
     'lib_prefix' => '{$a_install['lib_db_prefix']}'
 ];
 EOT;
-
 file_put_contents(SRC_CONFIG_PATH . '/' . $db_config_file, $db_config_file_text);
+$db_config_file_text =<<<EOT
+<?php
+return [
+    'driver'     => '{$a_install['db_type']}',
+    'host'       => '{$a_install['db_host']}',
+    'port'       => '{$a_install['db_port']}',
+    'name'       => '{$a_install['db_local_name']}',
+    'user'       => '{$a_install['db_local_user']}',
+    'password'   => '{$a_install['db_local_pass']}',
+    'userro'     => '{$a_install['db_ro_user']}',
+    'passro'     => '{$a_install['db_ro_pass']}',
+    'persist'    => {$a_install['db_persist']},
+    'prefix'     => '{$a_install['db_prefix']}',
+    'errmode'    => '{$a_install['db_errmode']}',
+    'db_prefix'  => '{$a_install['db_prefix']}',
+    'lib_prefix' => '{$a_install['lib_db_prefix']}'
+];
+EOT;
+file_put_contents(SRC_CONFIG_PATH . '/' . $db_local_file, $db_config_file_text);
+$db_config_file_text =<<<EOT
+<?php
+return [
+    'driver'     => '{$a_install['db_type']}',
+    'host'       => '{$a_install['db_host']}',
+    'port'       => '{$a_install['db_port']}',
+    'name'       => '{$a_install['db_host_name']}',
+    'user'       => '{$a_install['db_host_user']}',
+    'password'   => '{$a_install['db_host_pass']}',
+    'userro'     => '{$a_install['db_ro_user']}',
+    'passro'     => '{$a_install['db_ro_pass']}',
+    'persist'    => {$a_install['db_persist']},
+    'prefix'     => '{$a_install['db_prefix']}',
+    'errmode'    => '{$a_install['db_errmode']}',
+    'db_prefix'  => '{$a_install['db_prefix']}',
+    'lib_prefix' => '{$a_install['lib_db_prefix']}'
+];
+EOT;
+file_put_contents(SRC_CONFIG_PATH . '/' . $db_host_file, $db_config_file_text);
 
 $o_loader = require VENDOR_PATH . '/autoload.php';
 

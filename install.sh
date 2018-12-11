@@ -73,6 +73,9 @@ if [ -f src/config/install_config.php ]; then
             fi
         fi
     fi
+    
+    echo "Running the php install script"
+    php src/bin/install.php
 
     echo "Installing public/assets/vendor files"
     echo $useFAPro
@@ -98,8 +101,6 @@ if [ -f src/config/install_config.php ]; then
     echo "Running uglifyJs"
     bash src/bin/doUglifyJS.sh
 
-    echo "Running the php install script"
-    php src/bin/install.php
 else
     echo "The src/config/install_config.php file must be created and configured first.\nSee src/config/install_files/install_config.php.txt"
 fi

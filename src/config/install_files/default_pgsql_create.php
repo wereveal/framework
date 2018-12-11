@@ -1,24 +1,24 @@
 <?php
 /** @noinspection SqlNoDataSourceInspection */
 return [
-"DROP TABLE IF EXISTS {dbPrefix}nav_ng_map",
-"DROP TABLE IF EXISTS {dbPrefix}people_group_map",
-"DROP TABLE IF EXISTS {dbPrefix}routes_group_map",
-"DROP TABLE IF EXISTS {dbPrefix}constants",
-"DROP TABLE IF EXISTS {dbPrefix}page_blocks_map",
-"DROP TABLE IF EXISTS {dbPrefix}blocks",
-"DROP TABLE IF EXISTS {dbPrefix}content",
-"DROP TABLE IF EXISTS {dbPrefix}groups",
-"DROP TABLE IF EXISTS {dbPrefix}page",
-"DROP TABLE IF EXISTS {dbPrefix}people",
-"DROP TABLE IF EXISTS {dbPrefix}routes",
-"DROP TABLE IF EXISTS {dbPrefix}navgroups",
-"DROP TABLE IF EXISTS {dbPrefix}navigation",
-"DROP TABLE IF EXISTS {dbPrefix}aliases",
-"DROP TABLE IF EXISTS {dbPrefix}urls",
-"DROP TABLE IF EXISTS {dbPrefix}twig_templates",
-"DROP TABLE IF EXISTS {dbPrefix}twig_dirs",
-"DROP TABLE IF EXISTS {dbPrefix}twig_prefix",
+"DROP TABLE IF EXISTS {dbPrefix}nav_ng_map CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}people_group_map CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}routes_group_map CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}constants CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}page_blocks_map CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}blocks CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}content CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}groups CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}page CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}people CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}routes CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}navgroups CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}navigation CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}aliases CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}urls CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}twig_templates CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}twig_dirs CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}twig_prefix CASCADE",
 
 "DROP TYPE IF EXISTS url_protocol CASCADE",
 "DROP TYPE IF EXISTS truthy CASCADE",
@@ -209,7 +209,8 @@ $BODY$ language \'plpgsql\'',
 "CREATE TABLE {dbPrefix}aliases (
   a_id serial NOT NULL,
   a_url_id integer NOT NULL DEFAULT 0,
-  a_alias character varying(150) NOT NULL DEFAULT ''::character varying
+  a_alias character varying(150) NOT NULL DEFAULT ''::character varying,
+  PRIMARY KEY (a_id)
 )",
 "CREATE INDEX a_url_id_idx on {dbPrefix}aliases USING btree (a_url_id)",
 
@@ -218,26 +219,26 @@ $BODY$ language \'plpgsql\'',
   tp_prefix character varying(32) NOT NULL,
   tp_path character varying(150) NOT NULL,
   tp_active truthy NOT NULL DEFAULT 'true'::truthy,
-  tp_default truthy NOT NULL DEFAULT 'false'::truthy 
+  tp_default truthy NOT NULL DEFAULT 'false'::truthy,
+  PRIMARY KEY (tp_id)
 )",
-"CREATE UNIQUE INDEX tp_id_idx on {dbPrefix}twig_prefix USING btree (tp_id)",
 "CREATE UNIQUE INDEX tp_prefix_idx on {dbPrefix}twig_prefix USING btree (tp_prefix)",
 
 "CREATE TABLE {dbPrefix}twig_dirs (
     td_id serial NOT NULL,
     tp_id integer NOT NULL,
-    td_name character varying(64) NOT NULL
+    td_name character varying(64) NOT NULL,
+    PRIMARY KEY (td_id)
 )",
-"CREATE UNIQUE INDEX td_id_idx on {dbPrefix}twig_dirs USING btree (td_id)",
 "CREATE UNIQUE INDEX td_combo_idx on {dbPrefix}twig_dirs USING btree (tp_id,td_name)",
 
 "CREATE TABLE {dbPrefix}twig_templates (
     tpl_id serial NOT NULL,
     td_id integer NOT NULL,
     tpl_name character varying(128) NOT NULL,
-    tpl_immutable character varying(10) NOT NULL DEFAULT 'false'::character varying 
+    tpl_immutable character varying(10) NOT NULL DEFAULT 'false'::character varying,
+    PRIMARY KEY (tpl_id)
 )",
-"CREATE UNIQUE INDEX tpl_id_idx on {dbPrefix}twig_templates USING btree (tpl_id)",
 "CREATE UNIQUE INDEX tpl_combo_idx on {dbPrefix}twig_templates USING btree (td_id, tpl_name)",
 
 "ALTER TABLE ONLY {dbPrefix}routes 

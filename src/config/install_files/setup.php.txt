@@ -10,12 +10,12 @@ switch ($_SERVER['HTTP_HOST']) {
         define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(PUBLIC_PATH));
         $db_config_file = 'db_config_local.php';
-        break;{specific_host}
-    case 'test.{domain}.{tld}': // test server
+        break;
+    case '{specific_host}.{domain}.{tld}': // {specific_host} server
         define('DEVELOPER_MODE', true);
         define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(PUBLIC_PATH));
-        $db_config_file = 'db_config_test.php';
+        $db_config_file = 'db_config_{specific_host}.php';
         break;
     default: // simple setup and this could be the only two lines needed in this file.
         define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
