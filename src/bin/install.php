@@ -39,6 +39,8 @@ if (strpos(__DIR__, 'Library') !== false) {
     die('Please Run this script from the src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
+print "Starting the php script.\n";
+
 /**
  * Switch to use the elog
  *
@@ -81,7 +83,6 @@ $a_required_keys = [
     'db_file',
     'db_host',
     'db_type',
-    'db_port',
     'db_name',
     'db_user',
     'db_pass',
@@ -135,6 +136,7 @@ $db_file_name   = $a_install['db_file'] ?? 'db_config';
 $db_config_file = $db_file_name . '.php';
 $db_local_file  = $db_file_name . '_local.php';
 $specific_host  = '';
+$a_install['db_port'] = $a_install['db_port'] ?? $a_install['db_type'] === 'mysql' ? '3306' : '5432';
 
 if (empty($a_install['db_ro_pass']) || empty($a_install['db_ro_user'])) {
     $a_install['db_ro_user'] = $a_install['db_user'];
@@ -143,7 +145,11 @@ if (empty($a_install['db_ro_pass']) || empty($a_install['db_ro_user'])) {
 
 $a_install['db_local_host'] = $a_install['db_local_host'] ?? $a_install['db_host'];
 $a_install['db_local_type'] = $a_install['db_local_type'] ?? $a_install['db_type'];
-$a_install['db_local_port'] = $a_install['db_local_port'] ?? $a_install['db_port'];
+if (empty($a_install['db_local_port'])) {
+    $a_install['db_local_port'] = $a_install['db_local_type'] === 'mysql'
+        ? '3306'
+        : '5432';
+}
 $a_install['db_local_name'] = $a_install['db_local_name'] ?? $a_install['db_name'];
 if (empty($a_install['db_local_pass']) || empty($a_install['db_local_user'])) {
     $a_install['db_local_user'] = $a_install['db_user'];
@@ -159,7 +165,11 @@ else {
 }
 $a_install['db_site_host'] = $a_install['db_site_host'] ?? $a_install['db_host'];
 $a_install['db_site_type'] = $a_install['db_site_type'] ?? $a_install['db_type'];
-$a_install['db_site_port'] = $a_install['db_site_port'] ?? $a_install['db_port'];
+if (empty($a_install['db_site_port'])) {
+    $a_install['db_site_port'] = $a_install['db_site_type'] === 'mysql'
+        ? '3306'
+        : '5432';
+}
 $a_install['db_site_name'] = $a_install['db_site_name'] ?? $a_install['db_name'];
 if (empty($a_install['db_site_pass']) || empty($a_install['db_site_user'])) {
     $a_install['db_site_user'] = $a_install['db_user'];
@@ -227,12 +237,15 @@ file_put_contents(SRC_CONFIG_PATH . '/' . $db_site_file, $db_config_file_text);
 switch ($install_host) {
     case 'localhost':
         $the_db_config_file = $db_local_file;
+        $db_type = $a_install['db_local_type'];
         break;
     case $specific_host:
         $the_db_config_file = $db_site_file;
+        $db_type = $a_install['db_site_type'];
         break;
-    default: // simple setup and this could be the only two lines needed in this file.
+    default:
         $the_db_config_file = $db_config_file;
+        $db_type = $a_install['db_type'];
 }
 
 $o_loader = require VENDOR_PATH . '/autoload.php';
@@ -280,7 +293,7 @@ else {
     die("Could not connect to the database\n");
 }
 
-switch ($a_install['db_type']) {
+switch ($db_type) {
     case 'pgsql':
         $a_sql = require $install_files_path .  '/default_pgsql_create.php';
         break;
