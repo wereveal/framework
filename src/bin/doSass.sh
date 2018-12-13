@@ -14,7 +14,7 @@ elif [ -d ../scss/ ]; then
 else
   exit 1
 fi
-sass --update -t compressed ${theDir}:${thePublicDir}
+sass --update --style=compressed ${theDir}:${thePublicDir}
 
 if [ -d src/apps/ ]; then
  appsDir='src/apps'
@@ -28,7 +28,7 @@ do
   do
     theScssDir=$appsDir/$dir/$inner_dir/resources/assets/scss
     if [ -d $theScssDir ]; then
-      sass --update -t compressed ${theScssDir}:${thePublicDir}
+      sass --update --style=compressed ${theScssDir}:${thePublicDir}
     fi
   done
 done
