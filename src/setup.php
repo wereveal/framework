@@ -23,6 +23,7 @@ use Ritc\Library\Exceptions\ServiceException;
 use Ritc\Library\Factories\CacheFactory;
 use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Factories\TwigFactory;
+use Ritc\Library\Helper\CacheHelper;
 use Ritc\Library\Models\ConstantsCreator;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
@@ -169,7 +170,7 @@ unset($o_const_creator); // probably unneeded but just in case something gets he
 if (USE_CACHE && ini_get('opcache.enable')) {
     $cache_type = \defined('CACHE_TYPE')
         ? CACHE_TYPE
-        : 'SimplePhpFiles';
+        : 'PhpFiles';
     $cache_ttl = \defined('CACHE_TTL')
         ? CACHE_TTL
         : 604800; // 7 days
@@ -183,7 +184,8 @@ if (USE_CACHE && ini_get('opcache.enable')) {
     ];
     $o_cache = CacheFactory::start($a_cache_config);
     if (\is_object($o_cache)) {
-        $o_di->set('cache', $o_cache);
+        $o_ch = new CacheHelper($o_cache);
+        $o_di->set('cache', $o_ch);
     }
     else {
         die('Unable to create the Cache instance.');
