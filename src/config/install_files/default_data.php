@@ -1034,8 +1034,7 @@ $a_nav_ng_map = [
     ['ng_id' => 'managerlinks', 'nav_id' => 'man_tests'],
     ['ng_id' => 'managerlinks', 'nav_id' => 'man_login'],
     ['ng_id' => 'managerlinks', 'nav_id' => 'man_logout'],
-    ['ng_id' => 'sitemap',      'nav_id' => 'home'],
-    ['ng_id' => 'sitemap',      'nav_id' => 'sitemap']
+    ['ng_id' => 'sitemap',      'nav_id' => 'home']
 ];
 
 $a_page = [
@@ -1053,7 +1052,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '1.0'
     ],
     'shared' => [
         'url_id'           => 'shared',
@@ -1069,7 +1070,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'never',
+        'page_priority'    => '0.0'
     ],
     'sitemap' => [
         'url_id'           => 'sitemap',
@@ -1085,7 +1088,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'weekly',
+        'page_priority'    => '8.0'
     ],
     'error' => [
         'url_id'           => 'error',
@@ -1101,7 +1106,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'never',
+        'page_priority'    => '0.1'
     ],
     'manager' => [
         'url_id'           => 'manager',
@@ -1117,7 +1124,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'manager_tests' => [
         'url_id'           => 'man_tests',
@@ -1133,7 +1142,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'manager_man_test_results' => [
         'url_id'           => 'man_test_results',
@@ -1149,7 +1160,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'man_login' => [
         'url_id'           => 'man_login',
@@ -1165,23 +1178,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
-    ],
-    'man_logout' => [
-        'url_id'           => 'man_logout',
-        'ng_id'            => 'manager',
-        'tpl_id'           => 'man_login',
-        'page_type'        => 'text/html',
-        'page_title'       => 'Logout',
-        'page_description' => 'Logout page.',
-        'page_up'          => '1000-01-01 00:00:00',
-        'page_down'        => '9999-12-31 23:59:59',
-        'created_on'       => $sql_date,
-        'updated_on'       => $sql_date,
-        'page_base_url'    => '/',
-        'page_lang'        => 'en',
-        'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'verify_delete' => [
         'url_id'           => 'manager',
@@ -1197,7 +1196,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'library' => [
         'url_id'           => 'library',
@@ -1213,7 +1214,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_alias' => [
         'url_id'           => 'lib_alias',
@@ -1229,7 +1232,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_blocks' => [
         'url_id'           => 'lib_blocks',
@@ -1245,7 +1250,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_cache' => [
         'url_id'           => 'lib_cache',
@@ -1261,7 +1268,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_constants' => [
         'url_id'           => 'lib_constants',
@@ -1277,7 +1286,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_content' => [
         'url_id'           => 'lib_content',
@@ -1293,7 +1304,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_groups' => [
         'url_id'           => 'lib_groups',
@@ -1309,7 +1322,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_peeps' => [
         'url_id'           => 'lib_peeps',
@@ -1325,7 +1340,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_urls' => [
         'url_id'           => 'lib_urls',
@@ -1341,7 +1358,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_routes' => [
         'url_id'           => 'lib_routes',
@@ -1357,7 +1376,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_nav' => [
         'url_id'           => 'lib_nav',
@@ -1373,7 +1394,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_navgroups' => [
         'url_id'           => 'lib_navgroups',
@@ -1389,7 +1412,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_pages' => [
         'url_id'           => 'lib_pages',
@@ -1405,7 +1430,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_sitemap' => [
         'url_id'           => 'lib_sitemap',
@@ -1421,7 +1448,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_twig' => [
         'url_id'           => 'lib_twig',
@@ -1437,7 +1466,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_tests' => [
         'url_id'           => 'lib_tests',
@@ -1453,7 +1484,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_test_results' => [
         'url_id'           => 'lib_test_results',
@@ -1469,7 +1502,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
     'lib_login' => [
         'url_id'           => 'lib_login',
@@ -1485,23 +1520,9 @@ $a_page = [
         'page_base_url'    => '/',
         'page_lang'        => 'en',
         'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
-    ],
-    'lib_logout' => [
-        'url_id'           => 'lib_logout',
-        'ng_id'            => 'config',
-        'tpl_id'           => 'lib_login',
-        'page_type'        => 'text/html',
-        'page_title'       => 'Logout',
-        'page_description' => 'Logout page.',
-        'page_up'          => '1000-01-01 00:00:00',
-        'page_down'        => '9999-12-31 23:59:59',
-        'created_on'       => $sql_date,
-        'updated_on'       => $sql_date,
-        'page_base_url'    => '/',
-        'page_lang'        => 'en',
-        'page_charset'     => 'utf-8',
-        'page_immutable'   => 'true'
+        'page_immutable'   => 'true',
+        'page_changefreq'  => 'yearly',
+        'page_priority'    => '0.5'
     ],
 ];
 
@@ -1856,8 +1877,10 @@ $a_content = [
   the template, it won't hurt anything but content created for it won't be displayed. If you don't specify a block that is on the template
   it won't hurt anything but content can't be created for the page. At least one block is required so if you do not
   specify one, the body block will used. Blocks are created/managed [here](/manager/config/blocks/).
-- Navgroup specifies the primary navigation group to be displayed if used on the template. Navgroups are created/managed [here](/manager/config/navigation/)
+- Navgroup specifies the primary navigation group to be displayed on the page if used on the template. Navgroups are created/managed [here](/manager/config/navigation/). If this page will be linked to in a navigation, you will need to go to the [navigation manager](/manager/config/navigation/)..
 - Publish On and Unpublish On allow one to have a page only appear between certain dates/times. If not specified page is always shown - defaults to 1000-01-01 00:00:00 and 9999-12-31 23:59:59
+- Sitemap Change Frequency indicates how often the page will be modified - may be used by some search engines.
+- Sitemap Priority indicates the importance of the page in relationship to other pages on the site - may be used by some search engines but normally doesn't affect search results.
         ",
        'c_type'     => 'md',
        'c_created'  => $sql_date,

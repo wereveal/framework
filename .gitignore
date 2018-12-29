@@ -33,6 +33,7 @@
 /public/setup.php
 /public/tools/docs
 /public/tools/phpdoc
+/public/tools/tests/temp/*.html
 /public/tools/tests/temp/*.php
 /private/*.crt
 /private/*.key

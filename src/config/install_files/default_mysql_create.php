@@ -1,4 +1,5 @@
 <?php
+/** @noinspection SqlNoDataSourceInspection */
 return [
 "SET FOREIGN_KEY_CHECKS = 0",
 "DROP TABLE IF EXISTS `{dbPrefix}nav_ng_map`",
@@ -65,7 +66,7 @@ return [
 "CREATE TABLE `{dbPrefix}page` (
   `page_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `url_id` int(11) unsigned NOT NULL,
-  `ng_id` int(11) unsigned NOT NULL,
+  `ng_id` int(11) unsigned NOT NULL COMMENT 'primary nav (menu) displayed on page',
   `tpl_id` int(11) unsigned NOT NULL,
   `page_type` varchar(20) NOT NULL DEFAULT 'text/html',
   `page_title` varchar(100) NOT NULL DEFAULT 'Needs a title',
@@ -78,6 +79,8 @@ return [
   `page_lang` varchar(50) NOT NULL DEFAULT 'en',
   `page_charset` varchar(100) NOT NULL DEFAULT 'utf-8',
   `page_immutable` enum('true','false') NOT NULL DEFAULT 'false',
+  `page_changefreq` enum('always','hourly','daily','weekly','monthly','yearly','never') NOT NULL DEFAULT 'yearly',
+  `page_priority` varchar(5) NOT NULL DEFAULT '0.5',
   PRIMARY KEY (`page_id`),
   KEY `lib_page_ibfk_1` (`url_id`),
   KEY `lib_page_ibfk_2` (`tpl_id`)
@@ -96,7 +99,7 @@ return [
 "CREATE TABLE `{dbPrefix}page_blocks_map` (
   `pbm_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pbm_page_id` int(11) unsigned NOT NULL,
-  `pbm_block_id` int(10) unsigned NOT NULL,
+  `pbm_block_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`pbm_id`),
   UNIQUE KEY `pbm_page_id_2` (`pbm_page_id`,`pbm_block_id`),
   KEY `pbm_page_id` (`pbm_page_id`),

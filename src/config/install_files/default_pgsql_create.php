@@ -35,6 +35,7 @@ $BODY$ language \'plpgsql\'',
 "CREATE TYPE truthy as ENUM ('true', 'false')",
 "CREATE TYPE content_type as ENUM ('text','html','md','mde','xml','raw')",
 "CREATE TYPE block_type as ENUM ('shared', 'solo')",
+"CREATE TYPE changefreq as ENUM ('always','hourly','daily','weekly','monthly','yearly','never')",
 
 "CREATE TABLE {dbPrefix}constants (
   const_id serial NOT NULL,
@@ -89,6 +90,8 @@ $BODY$ language \'plpgsql\'',
   page_lang character varying(50) NOT NULL DEFAULT 'en'::character varying,
   page_charset character varying(100) NOT NULL DEFAULT 'utf-8'::character varying,
   page_immutable truthy NOT NULL DEFAULT 'false'::truthy,
+  page_changefreq changefreq NOT NULL DEFAULT 'yearly'::changefreq,
+  page_priority character varying(5) NOT NULL DEFAULT '0.5'::character varying,
   PRIMARY KEY (page_id)
 )",
 "CREATE INDEX pgm_url_id_idx on {dbPrefix}page USING btree (url_id)",
@@ -252,6 +255,7 @@ $BODY$ language \'plpgsql\'',
     FOREIGN KEY (url_id) REFERENCES {dbPrefix}urls (url_id) 
       ON DELETE CASCADE
       ON UPDATE CASCADE",
+"COMMENT ON COLUMN {dbPrefix}page.ng_id IS 'specifies primary nav (menu) displayed on page'",
 
 "ALTER TABLE {dbPrefix}page 
     ADD CONSTRAINT {dbPrefix}page_ibfk_2 
