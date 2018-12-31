@@ -11,10 +11,10 @@
 @import "../../../../../Ritc/Library/resources/assets/scss/defaults/main_common";
 @import "../../../../../Ritc/Library/resources/assets/scss/defaults/nav";
 // @import "../../../../../Ritc/Library/resources/assets/scss/defaults/form";
-@import "{app_name}";
 @import "../../../../../Ritc/Library/resources/assets/scss/defaults/message";
 @import "../../../../../Ritc/Library/resources/assets/scss/defaults/spacing";
 @import "../../../../../Ritc/Library/resources/assets/scss/defaults/search";
 @import "../../../../../Ritc/Library/resources/assets/scss/defaults/media_queries";
+@import "{app_name}";
 @import "media_queries";
 
