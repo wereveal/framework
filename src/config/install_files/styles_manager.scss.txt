@@ -1,0 +1,21 @@
+// Set app colors and variables overrides before importing the Bootstrap defaults
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/variables";
+@import "variables";
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/colors";
+@import "colors";
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/mixins";
+@import "mixins";
+@import "../../../../../../../public/assets/vendor/bootstrap/scss/bootstrap";
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/fonts";
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/mods_to_bootstrap";
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/main_common";
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/nav";
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/form";
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/manager_forms";
+@import "{app_name}";
+@import "forms";
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/message";
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/spacing";
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/search";
+@import "../../../../../Ritc/Library/resources/assets/scss/defaults/media_queries";
+@import "media_queries";
