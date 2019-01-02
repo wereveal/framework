@@ -1,20 +1,11 @@
 #!/usr/bin/env bash
 if [ -d public/assets/js/ ]; then
   thePublicDir='public/assets/js/'
-  theSrcDir='src/js/'
 elif [ -d ../../public/assets/js/ ]; then
   thePublicDir='../../public/assets/js/'
-  theSrcDir='../js/'
 else
   exit 1
 fi
-
-for thing in $(ls ${theSrcDir}*.js)
-do
-    shortThing=$(basename ${thing})
-    uglifyjs ${thing} --compress --mangle --source-map --output ${thePublicDir}${shortThing}
-done
-
 
 if [ -d src/apps/ ]; then
  appsDir='src/apps'
@@ -31,7 +22,7 @@ do
       for thing in $(ls $theJsDir/*.js)
       do
         shortThing=$(basename ${thing})
-        uglifyjs $thing --compress --mangle --source-map --output $thePublicDir/$shortThing
+        uglifyjs --compress --mangle --source-map --output $thePublicDir/$shortThing $thing
       done
     fi
   done
