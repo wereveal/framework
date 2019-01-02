@@ -4,10 +4,10 @@ useFAPro="no"
 while getopts ":u:f" opt; do
     case $opt in
         u)
-            $useJqueryUi="yes"
+            useJqueryUi="yes"
             ;;
         f)
-            $useFAPro="yes"
+            useFAPro="yes"
             ;;
         \?)
             echo "Valid options are -u" >&2
