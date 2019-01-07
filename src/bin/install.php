@@ -135,45 +135,11 @@ $install_host   = $a_install['install_host'] ?? 'default';
 $db_file_name   = $a_install['db_file'] ?? 'db_config';
 $db_config_file = $db_file_name . '.php';
 $db_local_file  = $db_file_name . '_local.php';
-$specific_host  = '';
-$a_install['db_port'] = $a_install['db_port'] ?? $a_install['db_type'] === 'mysql' ? '3306' : '5432';
 
+$a_install['db_port'] = $a_install['db_port'] ?? $a_install['db_type'] === 'mysql' ? '3306' : '5432';
 if (empty($a_install['db_ro_pass']) || empty($a_install['db_ro_user'])) {
     $a_install['db_ro_user'] = $a_install['db_user'];
     $a_install['db_ro_pass'] = $a_install['db_pass'];
-}
-
-$a_install['db_local_host'] = $a_install['db_local_host'] ?? $a_install['db_host'];
-$a_install['db_local_type'] = $a_install['db_local_type'] ?? $a_install['db_type'];
-if (empty($a_install['db_local_port'])) {
-    $a_install['db_local_port'] = $a_install['db_local_type'] === 'mysql'
-        ? '3306'
-        : '5432';
-}
-$a_install['db_local_name'] = $a_install['db_local_name'] ?? $a_install['db_name'];
-if (empty($a_install['db_local_pass']) || empty($a_install['db_local_user'])) {
-    $a_install['db_local_user'] = $a_install['db_user'];
-    $a_install['db_local_pass'] = $a_install['db_pass'];
-}
-
-if (!empty($a_install['specific_host'])) {
-    $db_site_file = $db_file_name . '_' . $a_install['specific_host'] . '.php';
-    $specific_host = $a_install['specific_host'];
-}
-else {
-    $db_site_file = $db_file_name . '_test.php';
-}
-$a_install['db_site_host'] = $a_install['db_site_host'] ?? $a_install['db_host'];
-$a_install['db_site_type'] = $a_install['db_site_type'] ?? $a_install['db_type'];
-if (empty($a_install['db_site_port'])) {
-    $a_install['db_site_port'] = $a_install['db_site_type'] === 'mysql'
-        ? '3306'
-        : '5432';
-}
-$a_install['db_site_name'] = $a_install['db_site_name'] ?? $a_install['db_name'];
-if (empty($a_install['db_site_pass']) || empty($a_install['db_site_user'])) {
-    $a_install['db_site_user'] = $a_install['db_user'];
-    $a_install['db_site_pass'] = $a_install['db_pass'];
 }
 
 $db_config_file_text =<<<EOT
@@ -195,15 +161,24 @@ return [
 ];
 EOT;
 file_put_contents(SRC_CONFIG_PATH . '/' . $db_config_file, $db_config_file_text);
+
+$db_local_type = $a_install['db_local_type'] ?? $a_install['db_type'];
+$db_local_host = $a_install['db_local_host'] ?? 'localhost';
+$db_local_port = $a_install['db_local_port'] ?? $db_local_type === 'mysql'
+    ? '3306'
+    : '5432';
+$db_local_name = $a_install['db_local_name'] ?? $a_install['db_name'];
+$db_local_user = $a_install['db_local_user'] ?? $a_install['db_user'];
+$db_local_pass = $a_install['db_local_pass'] ?? $a_install['db_pass'];
 $db_config_file_text =<<<EOT
 <?php
 return [
-    'driver'     => '{$a_install['db_local_type']}',
-    'host'       => '{$a_install['db_local_host']}',
-    'port'       => '{$a_install['db_local_port']}',
-    'name'       => '{$a_install['db_local_name']}',
-    'user'       => '{$a_install['db_local_user']}',
-    'password'   => '{$a_install['db_local_pass']}',
+    'driver'     => '{$db_local_type}',
+    'host'       => '{$db_local_host}',
+    'port'       => '{$db_local_port}',
+    'name'       => '{$db_local_name}',
+    'user'       => '{$db_local_user}',
+    'password'   => '{$db_local_pass}',
     'userro'     => '{$a_install['db_ro_user']}',
     'passro'     => '{$a_install['db_ro_pass']}',
     'persist'    => {$a_install['db_persist']},
@@ -214,15 +189,28 @@ return [
 ];
 EOT;
 file_put_contents(SRC_CONFIG_PATH . '/' . $db_local_file, $db_config_file_text);
+
+$specific_host = $a_install['specific_host'] ?? 'test';
+$db_site_file = $db_file_name . '_' . $specific_host . '.php';
+$db_site_type = $a_install['db_site_type'] ?? $a_install['db_type'];
+$db_site_host = $a_install['db_site_host'] ?? $a_install['db_host'];
+$port_maybe   = $a_install['db_site_type'] === 'mysql'
+    ? '3306'
+    : '5432';
+$db_site_port = $a_install['db_site_port'] ?? $port_maybe;
+$db_site_name = $a_install['db_site_name'] ?? $a_install['db_name'];
+$db_site_user = $a_install['db_site_user'] ?? $a_install['db_user'];
+$db_site_pass = $a_install['db_site_pass'] ?? $a_install['db_pass'];
+
 $db_config_file_text =<<<EOT
 <?php
 return [
-    'driver'     => '{$a_install['db_site_type']}',
-    'host'       => '{$a_install['db_site_host']}',
-    'port'       => '{$a_install['db_site_port']}',
-    'name'       => '{$a_install['db_site_name']}',
-    'user'       => '{$a_install['db_site_user']}',
-    'password'   => '{$a_install['db_site_pass']}',
+    'driver'     => '{$db_site_type}',
+    'host'       => '{$db_site_host}',
+    'port'       => '{$db_site_port}',
+    'name'       => '{$db_site_name}',
+    'user'       => '{$db_site_user}',
+    'password'   => '{$db_site_pass}',
     'userro'     => '{$a_install['db_ro_user']}',
     'passro'     => '{$a_install['db_ro_pass']}',
     'persist'    => {$a_install['db_persist']},
@@ -236,16 +224,16 @@ file_put_contents(SRC_CONFIG_PATH . '/' . $db_site_file, $db_config_file_text);
 
 switch ($install_host) {
     case 'localhost':
-        $the_db_config_file = $db_local_file;
-        $db_type = $a_install['db_local_type'];
+        $the_db_config_file  = $db_local_file;
+        $db_type             = $db_local_type;
         break;
     case $specific_host:
         $the_db_config_file = $db_site_file;
-        $db_type = $a_install['db_site_type'];
+        $db_type            = $db_site_type;
         break;
     default:
         $the_db_config_file = $db_config_file;
-        $db_type = $a_install['db_type'];
+        $db_type            = $a_install['db_type'];
 }
 
 $o_loader = require VENDOR_PATH . '/autoload.php';
@@ -513,6 +501,9 @@ try {
 }
 catch (ModelException $e) {
     failIt($o_db, 'Could not commit the transaction.');
+}
+if ($a_install['master_twig'] === 'true') {
+    $o_new_app_helper->changeHomePageTpl();
 }
 
 print "\nCreating the directories for the new app\n";

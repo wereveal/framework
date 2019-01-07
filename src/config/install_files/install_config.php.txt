@@ -1,68 +1,57 @@
 <?php
 return [
-    'namespace'       => 'REQUIRED',                      // specify the root namespace the app will be in
-    'app_name'        => 'REQUIRED',                      // specify the primary app to which generates the home page
-    'master_app'      => 'true',                          // specifies if this is the app called by /index.php
-    'author'          => 'William E Reveal',              // specify the author of the app
-    'short_author'    => 'wer',                           // abbreviation for the author
-    'email'           => '<bill@revealitconsulting.com>', // email of the author
-    'db_file'         => 'db_config',                     // all db_ keys will be used to create the db_file
-    'db_host'         => 'localhost',                     // hostname where the database server resides
+    'namespace'       => 'REQUIRED',
+    'app_name'        => 'REQUIRED',
+    'master_app'      => 'true',
+    'author'          => 'William E Reveal',
+    'short_author'    => 'wer',
+    'email'           => '<bill@revealitconsulting.com>',
+    'db_file'         => 'db_config',
+    'db_host'         => 'localhost',
     'db_type'         => 'mysql',
     'db_port'         => '3306',
     'db_name'         => 'REQUIRED',
     'db_user'         => 'REQUIRED',
     'db_pass'         => 'REQUIRED',
-    'db_ro_user'      => '',                              // if provided with ro_pass this will be set in the {db_file}
-    'db_ro_pass'      => '',
     'db_local_name'   => '',
-    'db_local_host'   => '',                              // hostname where the database server resides if not same as {db_host}
+    'db_local_host'   => '',
     'db_local_type'   => '',
     'db_local_port'   => '',
-    'db_local_user'   => '',                              // if provided the {db_file}_local.php file will be created with local values
+    'db_local_user'   => '',
     'db_local_pass'   => '',
-    'db_site_name'    => '',                              // if provided a {db_file}_{specific_site}.php file will be created with following 3 pieces of info
-    'db_site_host'    => '',                              // hostname where the database server resides if not same as {db_host}
+    'db_site_name'    => '',
+    'db_site_host'    => '',
     'db_site_type'    => '',
     'db_site_port'    => '',
     'db_site_user'    => '',
     'db_site_pass'    => '',
-    'db_persist'      => 'false',                         // normally leave this alone
-    'db_errmode'      => 'exception',                     // normally leave this alone
-    'db_prefix'       => 'REQUIRED',                      // change to be desired prefix or make it empty
-    'lib_db_prefix'   => 'lib_',                          // normally leave this alone
-    'superadmin'      => 'REQUIRED',                      // change this
-    'admin'           => 'REQUIRED',                      // change this
-    'manager'         => 'REQUIRED',                      // change this
-    'developer_mode'  => 'false',                         // or 'true' when in development
-    'public_path'     => '',                              // leave blank for default setting
-    'base_path'       => '',                              // leave blank for default setting
-    'http_host'       => '',                              // $_SERVER['HTTP_HOST'] results or leave blank for default
-	'domain'          => 'REQUIRED',                      // domain name of site
-	'tld'             => 'REQUIRED',                      // top level domain, e.g., com, net, org
-	'specific_host'   => '',                              // e.g. www, test, etc, used for some settings
-	'install_host'    => 'localhost',                     // which host this is being installed on, needed for knowing which {db_file} to use, defaults to {db_file}.php
-    'master_twig'     => 'false',                         // specifies if this app's twig prefix is the default (if false, site_ is default)
-    'app_twig_prefix' => '',                              // specifies the twig prefix, defaults to strtolower(app_name) . '_'
-    'app_db_prefix'   => '',                              // specifies optional prefix for database tables, defaults to use db_prefix
-    'a_groups'        => [                                // optional, if provided, new group records will be created
-//        [
-//            'group_name'        => 'group_name',  // required
-//            'group_description' => 'description', // optional
-//            'group_auth_lvl'    => '0',           // optional
-//            'group_immutable'   => 'false'        // optional
-//        ]
-    ],
-    'a_users'         => [                               // Optional, users that get added with the app
-//        [
-//            'login_id'    => 'new_user',     // Required, person login id
-//            'real_name'   => 'Real Name',    // Required, Display name for person
-//            'password'    => 'new_password', // Required, password for user
-//            'short_name'  => 'RN',           // Optional, initials normally'
-//            'description' => 'description',  // Optional
-//            'active'      => 'true',         // Active user
-//            'immutable'   => 'false',        // Can't be deleted
-//            'group_name'  => 'group_name',   // Optional, name of group to be assigned, defaults to Registered, can also be an array
-//        ]
-    ]
+    'db_ro_user'      => '',
+    'db_ro_pass'      => '',
+    'db_persist'      => 'false',
+    'db_errmode'      => 'exception',
+    'db_prefix'       => 'REQUIRED',
+    'lib_db_prefix'   => 'lib_',
+    'superadmin'      => 'REQUIRED',
+    'admin'           => 'REQUIRED',
+    'manager'         => 'REQUIRED',
+    'developer_mode'  => 'false',
+    'public_path'     => '',
+    'base_path'       => '',
+    'http_host'       => '',
+	'domain'          => 'REQUIRED',
+	'tld'             => 'REQUIRED',
+	'specific_host'   => '',
+	'install_host'    => '',
+    'master_twig'     => 'true',
+    'app_twig_prefix' => '',
+    'app_db_prefix'   => '',
+    'a_groups'        => [],
+    'a_users'         => []
 ];
+### Brief ######################################################################
+# see install_config.commented.txt for details
+# main thing is the db_local_* data is to create a unique db_config_local.php
+# file and db_site_* creates a db_config_{specific_host}.php file which can
+# be used for different locations (e.g., local workstation, test site, and
+# production site (the default))
+################################################################################

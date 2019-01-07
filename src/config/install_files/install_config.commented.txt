@@ -1,0 +1,68 @@
+<?php
+return [
+    'namespace'       => 'REQUIRED',                      // specify the root namespace the app will be in
+    'app_name'        => 'REQUIRED',                      // specify the primary app to which generates the home page
+    'master_app'      => 'true',                          // specifies if this is the app called by /index.php
+    'author'          => 'William E Reveal',              // specify the author of the app
+    'short_author'    => 'wer',                           // abbreviation for the author
+    'email'           => '<bill@revealitconsulting.com>', // email of the author
+    'db_file'         => 'db_config',                     // all db_ keys will be used to create the db_file
+    'db_host'         => 'localhost',                     // hostname where the database server resides
+    'db_type'         => 'mysql',                         // mysql, pgsql, sqlite (sqlite not working)
+    'db_port'         => '3306',                          // mysql defaults to 3306, pgsql defaults to 5432
+    'db_name'         => 'REQUIRED',
+    'db_user'         => 'REQUIRED',
+    'db_pass'         => 'REQUIRED',
+    'db_local_name'   => '',                              // database name to be used in the local db config
+    'db_local_host'   => '',                              // hostname where the database server resides if not same as {db_host}
+    'db_local_type'   => '',
+    'db_local_port'   => '',
+    'db_local_user'   => '',                              // if provided the {db_file}_local.php file will be created with local values
+    'db_local_pass'   => '',
+    'db_site_name'    => '',                              // name of the site specific database: If provided a {db_file}_{specific_host}.php file will be created with following info
+    'db_site_host'    => '',                              // hostname where the database server resides if not same as {db_host}
+    'db_site_type'    => '',
+    'db_site_port'    => '',
+    'db_site_user'    => '',
+    'db_site_pass'    => '',
+    'db_ro_user'      => '',                              // Read only user: if provided with ro_pass this will be set in all db_config files created.
+    'db_ro_pass'      => '',                              // password for the read only user.
+    'db_persist'      => 'false',                         // normally leave this alone
+    'db_errmode'      => 'exception',                     // normally leave this alone
+    'db_prefix'       => 'REQUIRED',                      // change to be desired prefix or make it empty
+    'lib_db_prefix'   => 'lib_',                          // normally leave this alone
+    'superadmin'      => 'REQUIRED',                      // user that is all mighty, change this
+    'admin'           => 'REQUIRED',                      // user that does most site administration, change this
+    'manager'         => 'REQUIRED',                      // user that does all the app specific administration, change this
+    'developer_mode'  => 'false',                         // or 'true' when in development
+    'public_path'     => '',                              // path to the public directory, leave blank for default setting
+    'base_path'       => '',                              // path to the base of the code, leave blank for default setting
+    'http_host'       => '',                              // $_SERVER['HTTP_HOST'] results or leave blank for default
+	'domain'          => 'REQUIRED',                      // domain name of site
+	'tld'             => 'REQUIRED',                      // top level domain, e.g., com, net, org
+	'specific_host'   => '',                              // e.g. www, test, etc, used for some settings
+	'install_host'    => '',                              // which host this is being installed on, needed for knowing which {db_file} to use, defaults to {db_file}.php
+    'master_twig'     => 'true',                          // specifies if this app's twig prefix is the default (if empty, site_ is default)
+    'app_twig_prefix' => '',                              // specifies the twig prefix, defaults to strtolower(app_name) . '_'
+    'app_db_prefix'   => '',                              // specifies optional prefix for database tables, defaults to use db_prefix
+    'a_groups'        => [                                // optional, if provided, new group records will be created in addition to the default ones
+//        [
+//            'group_name'        => 'group_name',  // required
+//            'group_description' => 'description', // optional
+//            'group_auth_lvl'    => '0',           // optional
+//            'group_immutable'   => 'false'        // optional
+//        ]
+    ],
+    'a_users'         => [                               // Optional, users that get added with the app in addition to the default ones specified above
+//        [
+//            'login_id'    => 'new_user',     // Required, person login id
+//            'real_name'   => 'Real Name',    // Required, Display name for person
+//            'password'    => 'new_password', // Required, password for user
+//            'short_name'  => 'RN',           // Optional, initials normally'
+//            'description' => 'description',  // Optional
+//            'active'      => 'true',         // Active user
+//            'immutable'   => 'false',        // Can't be deleted
+//            'group_name'  => 'group_name',   // Optional, name of group to be assigned, defaults to Registered, can also be an array
+//        ]
+    ]
+];
