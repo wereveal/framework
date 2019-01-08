@@ -9,17 +9,18 @@
  * @file      /src/bin/makeDb.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2017-12-15 15:52:40
- * @version   3.0.0
+ * @date      2019-01-08 10:03:26
+ * @version   3.1.0
  * @note   <b>Change Log</b>
- * - v3.0.0 - Changed to use DbCreator and NewAppHelper     - 2017-12-15 wer
- * - v2.5.0 - Added several files to be created in app.            - 2017-05-25 wer
- * - v2.4.0 - changed several settings, defaults, and actions      - 2017-05-11 wer
- * - v2.3.0 - fix to install_files setup.php in public dir         - 2017-05-08 wer
- * - v2.2.0 - bug fixes to get postgresql working                  - 2017-04-18 wer
- * - v2.1.0 - lots of bug fixes and additions                      - 2017-01-24 wer
- * - v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
- * - v1.0.0 - initial version                                      - 2015-11-27 wer
+ * - v3.1.0 - Lot of bug fixes and minor changes to get it to work  - 2019-01-08 wer
+ * - v3.0.0 - Changed to use DbCreator and NewAppHelper             - 2017-12-15 wer
+ * - v2.5.0 - Added several files to be created in app.             - 2017-05-25 wer
+ * - v2.4.0 - changed several settings, defaults, and actions       - 2017-05-11 wer
+ * - v2.3.0 - fix to install_files setup.php in public dir          - 2017-05-08 wer
+ * - v2.2.0 - bug fixes to get postgresql working                   - 2017-04-18 wer
+ * - v2.1.0 - lots of bug fixes and additions                       - 2017-01-24 wer
+ * - v2.0.0 - bug fixes and rewrite of the database insert stuff    - 2017-01-13 wer
+ * - v1.0.0 - initial version                                       - 2015-11-27 wer
  */
 namespace Ritc;
 
@@ -65,7 +66,7 @@ if (isset($argv[1])) {
 if (!file_exists(SRC_CONFIG_PATH . '/' . $db_config_file)) {
     die('You must create the db_config configuration file in '
         . SRC_CONFIG_PATH
-        . "The default name for the file is db_config.php. 
+        . "The default name for the file is db_config.php.
         You may name it anything but it must then be specified on the command line.\n"
     );
 }
@@ -77,8 +78,8 @@ if (!file_exists($a_install_file)) {
     );
 }
 
-$a_db_config = require SRC_CONFIG_PATH . '/' . $db_config_file;
-$a_install = require $a_install_file;
+$a_db_config     = require SRC_CONFIG_PATH . '/' . $db_config_file;
+$a_install       = require $a_install_file;
 $a_required_keys = [
     'driver',
     'host',
@@ -93,7 +94,7 @@ $a_required_keys = [
     'lib_prefix'
 ];
 foreach ($a_required_keys as $key) {
-    if (empty($a_db_config[$key])) {
+    if ($a_db_config[$key] === '') {
         die('The db config file does not have required values');
     }
 }
@@ -140,6 +141,7 @@ catch (FactoryException $e) {
 }
 
 if ($o_pdo !== false) {
+    $o_di->set('pdo', $o_pdo);
     $o_db = new DbModel($o_pdo, $db_config_file);
     if (!$o_db instanceof DbModel) {
         $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
@@ -219,30 +221,36 @@ function failIt(DbModel $o_db, $message = '', $rollback = true) {
             print 'Could not rollback transaction: ' . $e->errorMessage() . "\n";
         }
     }
-    die("\n{$message}\n");
+    die("FAIL: {$message}\n");
 }
-
-try {
-    $o_db->startTransaction();
-}
-catch (ModelException $e) {
-    print 'Could not start transaction: ' . $e->errorMessage() . "\n";
+$using_mysql = false;
+if ($a_db_config['driver'] === 'mysql') {
+    $using_mysql = true;
+    try {
+        $o_db->startTransaction();
+    }
+    catch (ModelException $e) {
+        print 'Could not start transaction: ' . $e->errorMessage() . "\n";
+    }
 }
 $o_installer_model = new DbCreator($o_di);
 print 'Creating Databases: ';
 if (!$o_installer_model->createTables()) {
-    failIt($o_db, $o_installer_model->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage(), $using_mysql);
 }
 print "success\n";
-try {
-    $o_db->commitTransaction();
-}
-catch (ModelException $e) {
-    failIt($o_db, $e->errorMessage());
+
+if ($using_mysql) {
+    try {
+        $o_db->commitTransaction();
+    }
+    catch (ModelException $e) {
+        print 'Could not start transaction: ' . $e->errorMessage() . "\n";
+    }
 }
 
 $rollback = false;
-if ($o_db->getDbType() !== 'pgsql') {
+if ($using_mysql) {
     try {
         $o_db->startTransaction();
     }
@@ -355,9 +363,30 @@ if (!$o_installer_model->insertPage()) {
 }
 print "success\n";
 
+### Enter 'blocks' ###
+print 'Entering Blocks Data; ';
+if (!$o_installer_model->insertBlocks()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
+}
+print "success\n";
+
+### Enter 'Page blocks' ###
+print 'Entering Page Blocks Map Data; ';
+if (!$o_installer_model->insertPBM()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
+}
+print "success\n";
+
+### Enter 'content' ###
+print 'Entering Content Data; ';
+if (!$o_installer_model->insertContent()) {
+    failIt($o_db, $o_db_creator->getErrorMessage());
+}
+print "success\n";
+
 print "\nSetting up the app\n";
 $o_new_app_helper = new NewAppHelper($o_di);
-print 'Creating twig db records';
+print 'Creating twig db records: ';
 $results = $o_new_app_helper->createTwigDbRecords();
 if (\is_string($results)) {
     failIt($o_db, $results);
@@ -365,20 +394,24 @@ if (\is_string($results)) {
 }
 print "success\n";
 
-try {
-    $o_db->commitTransaction();
-    print "Data Insert Complete.\n";
-}
-catch (ModelException $e) {
-    failIt($o_db, 'Could not commit the transaction.', $rollback);
+if ($using_mysql) {
+    try {
+        $o_db->commitTransaction();
+        print "Data Insert Complete.\n";
+    }
+    catch (ModelException $e) {
+        failIt($o_db, 'Could not commit the transaction.', $rollback);
+    }
 }
 
+print 'Changing the Home Page Tpl: ';
 if ($a_install['master_twig'] === 'true') {
     try {
         $o_new_app_helper->changeHomePageTpl();
+        print "Success\n";
     }
     catch (ModelException $e) {
         print "Could not change the home page template.\n";
     }
 }
-
+print "\n";

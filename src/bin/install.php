@@ -280,7 +280,7 @@ else {
     $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
     die("Could not connect to the database\n");
 }
-
+$using_mysql = false;
 switch ($db_type) {
     case 'pgsql':
         $a_sql = require $install_files_path .  '/default_pgsql_create.php';
@@ -290,6 +290,7 @@ switch ($db_type) {
         break;
     case 'mysql':
     default:
+        $using_mysql = true;
         $a_sql = require $install_files_path .  '/default_mysql_create.php';
 }
 $a_data = require $install_files_path .  '/default_data.php';
@@ -344,89 +345,91 @@ function failIt(DbModel $o_db, $message = '') {
     catch (ModelException $e) {
         print 'Could not rollback transaction: ' . $e->errorMessage() . "\n";
     }
-    die("\n{$message}\n");
+    die("\nFAIL!\n{$message}\n");
 }
 
-try {
-    $o_db->startTransaction();
-}
-catch (ModelException $e) {
-    print 'Could not start transaction: ' . $e->errorMessage() . "\n";
+if ($using_mysql) {
+    try {
+        $o_db->startTransaction();
+    }
+    catch (ModelException $e) {
+        die('Could not start transaction: ' . $e->errorMessage());
+    }
 }
 $o_db_creator = new DbCreator($o_di);
 print 'Creating Databases: ';
 if (!$o_db_creator->createTables()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter Constants
 print 'Entering Constants Data: ';
 if (!$o_db_creator->insertConstants()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter Groups
 print 'Entering Groups Data; ';
 if (!$o_db_creator->insertGroups()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter 'urls'
 print 'Entering URLs Data; ';
 if (!$o_db_creator->insertUrls()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter 'people'
 print 'Entering People Data; ';
 if (!$o_db_creator->insertPeople()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter 'navgroups',
 print 'Entering NavGroups Data; ';
 if (!$o_db_creator->insertNavgroups()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter 'people_group_map',
 print 'Entering people_group_map Data; ';
 if (!$o_db_creator->insertPGM()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter 'routes'
 print 'Entering Routes Data; ';
 if (!$o_db_creator->insertRoutes()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter 'routes_group_map'
 print 'Entering routes_group_map Data; ';
 if (!$o_db_creator->insertRGM()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter 'navigation',
 print 'Entering Navigation Data; ';
 if (!$o_db_creator->insertNavigation()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter 'nav_ng_map'
 print 'Entering nav_ng_map Data; ';
 if (!$o_db_creator->insertNNM()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
@@ -438,49 +441,49 @@ $o_db_creator->createTwigAppConfig();
 ### Enter twig prefixes into database ###
 print 'Entering Twig Prefixes Data; ';
 if (!$o_db_creator->insertTwigPrefixes()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter twig directories into database ###
 print 'Entering twig directories Data; ';
 if (!$o_db_creator->insertTwigDirs()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter twig templates into database ###
 print 'Entering twig templates Data; ';
 if (!$o_db_creator->insertTwigTemplates()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter 'page' ###
 print 'Entering Page Data; ';
 if (!$o_db_creator->insertPage()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter 'blocks' ###
 print 'Entering Blocks Data; ';
 if (!$o_db_creator->insertBlocks()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter 'Page blocks' ###
 print 'Entering Page Blocks Map Data; ';
 if (!$o_db_creator->insertPBM()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
 ### Enter 'content' ###
 print 'Entering Content Data; ';
 if (!$o_db_creator->insertContent()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
 }
 print "success\n";
 
@@ -490,24 +493,28 @@ $o_new_app_helper = new NewAppHelper($o_di);
 print 'Creating twig db records';
 $results = $o_new_app_helper->createTwigDbRecords();
 if (\is_string($results)) {
-    failIt($o_db, $results);
-    failIt($o_db, $results);
+    failIt($o_db, $results, $using_mysql);
+    failIt($o_db, $results, $using_mysql);
 }
 print "success\n";
-
-try {
-    $o_db->commitTransaction();
-    print "Data Insert Complete.\n";
-}
-catch (ModelException $e) {
-    failIt($o_db, 'Could not commit the transaction.');
-}
-if ($a_install['master_twig'] === 'true') {
+if ($using_mysql) {
     try {
-        $o_new_app_helper->changeHomePageTpl();
+        $o_db->commitTransaction();
+        print "Data Insert Complete.\n";
     }
     catch (ModelException $e) {
-        print "Could not change the home page template.\n";
+        failIt($o_db, 'Could not commit the transaction.', $using_mysql);
+    }
+}
+
+if ($a_install['master_twig'] === 'true') {
+    print "Changing the home page template: ";
+    try {
+        $o_new_app_helper->changeHomePageTpl();
+        print "Success\n";
+    }
+    catch (ModelException $e) {
+        failIt($o_db, 'Could not change the home page template.', );
     }
 }
 

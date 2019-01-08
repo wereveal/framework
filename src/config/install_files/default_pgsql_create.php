@@ -24,6 +24,7 @@ return [
 "DROP TYPE IF EXISTS truthy CASCADE",
 "DROP TYPE IF EXISTS content_type CASCADE",
 "DROP TYPE IF EXISTS block_type CASCADE",
+"DROP TYPE IF EXISTS changefreq CASCADE",
 'CREATE OR REPLACE FUNCTION change_updated_on() RETURNS trigger AS
 $BODY$
 BEGIN
@@ -85,7 +86,7 @@ $BODY$ language \'plpgsql\'',
   page_up timestamp NOT NULL DEFAULT '1000-01-01 00:00:00',
   page_down timestamp NOT NULL DEFAULT '9999-12-31 23:59:59',
   created_on timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_on timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+  updated_on timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   page_base_url character varying(50) NOT NULL DEFAULT '/'::character varying,
   page_lang character varying(50) NOT NULL DEFAULT 'en'::character varying,
   page_charset character varying(100) NOT NULL DEFAULT 'utf-8'::character varying,
@@ -244,97 +245,97 @@ $BODY$ language \'plpgsql\'',
 )",
 "CREATE UNIQUE INDEX tpl_combo_idx on {dbPrefix}twig_templates USING btree (td_id, tpl_name)",
 
-"ALTER TABLE ONLY {dbPrefix}routes 
-    ADD CONSTRAINT {dbPrefix}routes_ibfk_1 
-    FOREIGN KEY (url_id) REFERENCES {dbPrefix}urls (url_id) 
-      ON DELETE CASCADE 
+"ALTER TABLE ONLY {dbPrefix}routes
+    ADD CONSTRAINT {dbPrefix}routes_ibfk_1
+    FOREIGN KEY (url_id) REFERENCES {dbPrefix}urls (url_id)
+      ON DELETE CASCADE
       ON UPDATE CASCADE",
 
-"ALTER TABLE {dbPrefix}page 
-    ADD CONSTRAINT {dbPrefix}page_ibfk_1 
-    FOREIGN KEY (url_id) REFERENCES {dbPrefix}urls (url_id) 
+"ALTER TABLE {dbPrefix}page
+    ADD CONSTRAINT {dbPrefix}page_ibfk_1
+    FOREIGN KEY (url_id) REFERENCES {dbPrefix}urls (url_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE",
 "COMMENT ON COLUMN {dbPrefix}page.ng_id IS 'specifies primary nav (menu) displayed on page'",
 
-"ALTER TABLE {dbPrefix}page 
-    ADD CONSTRAINT {dbPrefix}page_ibfk_2 
-    FOREIGN KEY (tpl_id) REFERENCES {dbPrefix}twig_templates (tpl_id) 
+"ALTER TABLE {dbPrefix}page
+    ADD CONSTRAINT {dbPrefix}page_ibfk_2
+    FOREIGN KEY (tpl_id) REFERENCES {dbPrefix}twig_templates (tpl_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE",
 
-"ALTER TABLE {dbPrefix}page_blocks_map 
-    ADD CONSTRAINT {dbPrefix}page_blocks_map_ibfk_1 
-    FOREIGN KEY (pbm_page_id) REFERENCES {dbPrefix}page (page_id) 
+"ALTER TABLE {dbPrefix}page_blocks_map
+    ADD CONSTRAINT {dbPrefix}page_blocks_map_ibfk_1
+    FOREIGN KEY (pbm_page_id) REFERENCES {dbPrefix}page (page_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE",
 
-"ALTER TABLE {dbPrefix}page_blocks_map 
-    ADD CONSTRAINT {dbPrefix}page_blocks_map_ibfk_2 
-    FOREIGN KEY (pbm_block_id) REFERENCES {dbPrefix}blocks (b_id) 
+"ALTER TABLE {dbPrefix}page_blocks_map
+    ADD CONSTRAINT {dbPrefix}page_blocks_map_ibfk_2
+    FOREIGN KEY (pbm_block_id) REFERENCES {dbPrefix}blocks (b_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE",
 
-"ALTER TABLE {dbPrefix}content 
-    ADD CONSTRAINT {dbPrefix}content_ibfk_1 
-    FOREIGN KEY (c_pbm_id) REFERENCES {dbPrefix}page_blocks_map (pbm_id) 
+"ALTER TABLE {dbPrefix}content
+    ADD CONSTRAINT {dbPrefix}content_ibfk_1
+    FOREIGN KEY (c_pbm_id) REFERENCES {dbPrefix}page_blocks_map (pbm_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE",
 
-"ALTER TABLE {dbPrefix}navigation 
-    ADD CONSTRAINT {dbPrefix}navigation_ibfk_1 
-    FOREIGN KEY (url_id) REFERENCES {dbPrefix}urls (url_id) 
+"ALTER TABLE {dbPrefix}navigation
+    ADD CONSTRAINT {dbPrefix}navigation_ibfk_1
+    FOREIGN KEY (url_id) REFERENCES {dbPrefix}urls (url_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE",
 
 "ALTER TABLE ONLY {dbPrefix}people_group_map
-    ADD CONSTRAINT {dbPrefix}pgm_ibfk_1 
-    FOREIGN KEY (people_id) REFERENCES {dbPrefix}people (people_id) 
+    ADD CONSTRAINT {dbPrefix}pgm_ibfk_1
+    FOREIGN KEY (people_id) REFERENCES {dbPrefix}people (people_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE",
 "ALTER TABLE ONLY {dbPrefix}people_group_map
-    ADD CONSTRAINT {dbPrefix}pgm_ibfk_2 
-    FOREIGN KEY (group_id) REFERENCES {dbPrefix}groups (group_id) 
+    ADD CONSTRAINT {dbPrefix}pgm_ibfk_2
+    FOREIGN KEY (group_id) REFERENCES {dbPrefix}groups (group_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE",
 
 "ALTER TABLE {dbPrefix}routes_group_map
-    ADD CONSTRAINT {dbPrefix}routes_group_map_ibfk_1 
-    FOREIGN KEY (route_id) REFERENCES {dbPrefix}routes (route_id) 
+    ADD CONSTRAINT {dbPrefix}routes_group_map_ibfk_1
+    FOREIGN KEY (route_id) REFERENCES {dbPrefix}routes (route_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE",
 "ALTER TABLE {dbPrefix}routes_group_map
-    ADD CONSTRAINT {dbPrefix}routes_group_map_ibfk_2 
-    FOREIGN KEY (group_id) REFERENCES {dbPrefix}groups (group_id) 
+    ADD CONSTRAINT {dbPrefix}routes_group_map_ibfk_2
+    FOREIGN KEY (group_id) REFERENCES {dbPrefix}groups (group_id)
       ON DELETE CASCADE
       ON UPDATE CASCADE",
 
 "ALTER TABLE {dbPrefix}nav_ng_map
-  ADD CONSTRAINT {dbPrefix}nav_ng_map_ibfk_1 
-  FOREIGN KEY (ng_id) REFERENCES {dbPrefix}navgroups (ng_id) 
+  ADD CONSTRAINT {dbPrefix}nav_ng_map_ibfk_1
+  FOREIGN KEY (ng_id) REFERENCES {dbPrefix}navgroups (ng_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE",
 "ALTER TABLE {dbPrefix}nav_ng_map
-  ADD CONSTRAINT {dbPrefix}nav_ng_map_ibfk_2 
-  FOREIGN KEY (nav_id) REFERENCES {dbPrefix}navigation (nav_id) 
+  ADD CONSTRAINT {dbPrefix}nav_ng_map_ibfk_2
+  FOREIGN KEY (nav_id) REFERENCES {dbPrefix}navigation (nav_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE",
 
 "ALTER TABLE {dbPrefix}aliases
-  ADD CONSTRAINT {dbPrefix}aliases_ibfk_1 
-  FOREIGN KEY (a_url_id) REFERENCES {dbPrefix}urls (url_id) 
+  ADD CONSTRAINT {dbPrefix}aliases_ibfk_1
+  FOREIGN KEY (a_url_id) REFERENCES {dbPrefix}urls (url_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE",
 
 "ALTER TABLE {dbPrefix}twig_dirs
-  ADD CONSTRAINT {dbPrefix}twig_dirs_ibfk_1 
-  FOREIGN KEY (tp_id) REFERENCES {dbPrefix}twig_prefix (tp_id) 
+  ADD CONSTRAINT {dbPrefix}twig_dirs_ibfk_1
+  FOREIGN KEY (tp_id) REFERENCES {dbPrefix}twig_prefix (tp_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE",
 
 "ALTER TABLE {dbPrefix}twig_templates
-  ADD CONSTRAINT {dbPrefix}twig_templates_ibfk_1 
-  FOREIGN KEY (td_id) REFERENCES {dbPrefix}twig_dirs (td_id) 
+  ADD CONSTRAINT {dbPrefix}twig_templates_ibfk_1
+  FOREIGN KEY (td_id) REFERENCES {dbPrefix}twig_dirs (td_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE"
 ];
