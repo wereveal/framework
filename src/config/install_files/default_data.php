@@ -2164,23 +2164,35 @@ $a_twig_default_dir_names = [
     'tests'
 ];
 
+$a_twig_default_file_names =  [
+    'error.twig',
+    'index.twig',
+    'login.twig',
+    'manager.twig',
+    'sitemap.twig',
+    'test.twig',
+    'test_results.twig',
+    'verify_delete.twig'
+];
+
 return [
-    'constants'         => $a_constants,
-    'groups'            => $a_groups,
-    'urls'              => $a_urls,
-    'people'            => $a_people,
-    'navgroups'         => $a_navgroups,
-    'people_group_map'  => $a_people_group,
-    'routes'            => $a_routes,
-    'routes_group_map'  => $a_route_group_map,
-    'navigation'        => $a_navigation,
-    'nav_ng_map'        => $a_nav_ng_map,
-    'page'              => $a_page,
-    'blocks'            => $a_blocks,
-    'page_block_map'    => $a_pbm,
-    'content'           => $a_content,
-    'twig_prefix'       => $a_twig_prefix,
-    'twig_dirs'         => $a_twig_dirs,
-    'twig_templates'    => $a_twig_tpls,
-    'twig_default_dirs' => $a_twig_default_dir_names
+    'constants'          => $a_constants,
+    'groups'             => $a_groups,
+    'urls'               => $a_urls,
+    'people'             => $a_people,
+    'navgroups'          => $a_navgroups,
+    'people_group_map'   => $a_people_group,
+    'routes'             => $a_routes,
+    'routes_group_map'   => $a_route_group_map,
+    'navigation'         => $a_navigation,
+    'nav_ng_map'         => $a_nav_ng_map,
+    'page'               => $a_page,
+    'blocks'             => $a_blocks,
+    'page_block_map'     => $a_pbm,
+    'content'            => $a_content,
+    'twig_prefix'        => $a_twig_prefix,
+    'twig_dirs'          => $a_twig_dirs,
+    'twig_templates'     => $a_twig_tpls,
+    'twig_default_dirs'  => $a_twig_default_dir_names,
+    'twig_default_files' => $a_twig_default_file_names
 ];

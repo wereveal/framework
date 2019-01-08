@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpIncludeInspection */
 /**
  * @brief     This file sets up standard stuff for the Framework.
  * @details   This creates the database config, some standard directories,
@@ -503,7 +503,12 @@ catch (ModelException $e) {
     failIt($o_db, 'Could not commit the transaction.');
 }
 if ($a_install['master_twig'] === 'true') {
-    $o_new_app_helper->changeHomePageTpl();
+    try {
+        $o_new_app_helper->changeHomePageTpl();
+    }
+    catch (ModelException $e) {
+        print "Could not change the home page template.\n";
+    }
 }
 
 print "\nCreating the directories for the new app\n";

@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpIncludeInspection */
 /**
  * @brief     This file sets up the database.
  * @details   This creates the database tables and inserts default data.
@@ -28,6 +28,7 @@ use Ritc\Library\Exceptions\ModelException;
 use Ritc\Library\Exceptions\ServiceException;
 use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Helper\AutoloadMapper;
+use Ritc\Library\Helper\NewAppHelper;
 use Ritc\Library\Models\DbCreator;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
@@ -42,61 +43,58 @@ $base_path = str_replace('/src/bin', '', __DIR__);
 \define('PUBLIC_PATH', $base_path . '/public');
 
 require_once BASE_PATH . '/src/config/constants.php';
+$install_files_path = SRC_CONFIG_PATH . '/install_files';
 
 if (!file_exists(APPS_PATH . '/Ritc/Library')) {
     die("You must clone the Ritc/Library in the apps dir first and any other desired apps.\n");
 }
-
-$install_files_path = SRC_CONFIG_PATH . '/install_files';
-
-/* allows a custom file to be created. Still must be in src/config dir */
-$install_config = SRC_CONFIG_PATH . '/install_config.php';
+$db_config_file = 'db_config.php';
+/* allows a custom file to be used. Still must be in src/config dir */
 if (isset($argv[1])) {
-    $install_config = SRC_CONFIG_PATH . '/' . $argv[1];
-}
-if (!file_exists($install_config)) {
-    die('You must create the install_configs configuration file in ' . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
-}
-$a_install = require $install_config;
-$a_required_keys = [
-    'app_name',
-    'namespace',
-    'db_file',
-    'db_host',
-    'db_type',
-    'db_port',
-    'db_name',
-    'db_user',
-    'db_pass',
-    'db_persist',
-    'db_errmode',
-    'db_prefix',
-    'lib_db_prefix'
-];
-foreach ($a_required_keys as $key) {
-    if (empty($a_install[$key])) {
-        die('The install config file does not have required values');
+    switch ($argv[1]) {
+        case 'test':
+            $db_config_file = 'db_config_test.php';
+            break;
+        case 'local':
+            $db_config_file = 'db_config_local.php';
+            break;
+        default:
+            $db_config_file = $argv[1];
     }
 }
-$a_needed_keys = [
-    'author',
-    'short_author',
-    'email',
-    'loader',
-    'superadmin',
-    'admin',
-    'manager',
-    'developer_mode',
-    'public_path',
-    'base_path',
-    'http_host',
-    'domain',
-    'tld',
-    'specific_host'
+if (!file_exists(SRC_CONFIG_PATH . '/' . $db_config_file)) {
+    die('You must create the db_config configuration file in '
+        . SRC_CONFIG_PATH
+        . "The default name for the file is db_config.php. 
+        You may name it anything but it must then be specified on the command line.\n"
+    );
+}
+$a_install_file = SRC_CONFIG_PATH . '/install_config.php';
+if (!file_exists($a_install_file)) {
+    die('You must create the install_config.php configuration file in '
+        . SRC_CONFIG_PATH
+        . ".\n"
+    );
+}
+
+$a_db_config = require SRC_CONFIG_PATH . '/' . $db_config_file;
+$a_install = require $a_install_file;
+$a_required_keys = [
+    'driver',
+    'host',
+    'port',
+    'name',
+    'user',
+    'password',
+    'persist',
+    'errmode',
+    'prefix',
+    'db_prefix',
+    'lib_prefix'
 ];
-foreach ($a_needed_keys as $key) {
-    if (!isset($a_install[$key])) {
-        $a_install[$key] = '';
+foreach ($a_required_keys as $key) {
+    if (empty($a_db_config[$key])) {
+        die('The db config file does not have required values');
     }
 }
 
@@ -112,41 +110,14 @@ if (!\is_object($o_cm)) {
     die('Could not instance AutoloadMapper');
 }
 $o_cm->generateMapFiles();
-$app_path = APPS_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
 ### Setup the database ###
-$db_config_file = $a_install['db_file'];
-$db_config_file_text =<<<EOT
-<?php
-return [
-    'driver'     => '{$a_install['db_type']}',
-    'host'       => '{$a_install['db_host']}',
-    'port'       => '{$a_install['db_port']}',
-    'name'       => '{$a_install['db_name']}',
-    'user'       => '{$a_install['db_user']}',
-    'password'   => '{$a_install['db_pass']}',
-    'userro'     => '{$a_install['db_user']}',
-    'passro'     => '{$a_install['db_pass']}',
-    'persist'    => {$a_install['db_persist']},
-    'prefix'     => '{$a_install['db_prefix']}',
-    'errmode'    => '{$a_install['db_errmode']}',
-    'db_prefix'  => '{$a_install['db_prefix']}',
-    'lib_prefix' => '{$a_install['lib_db_prefix']}'
-];
-EOT;
-
-file_put_contents(SRC_CONFIG_PATH . '/' . $db_config_file, $db_config_file_text);
 
 $o_loader = require VENDOR_PATH . '/autoload.php';
-
-if ($a_install['loader'] === 'psr0') {
-    $my_classmap = require SRC_CONFIG_PATH . '/autoload_classmap.php';
-    $o_loader->addClassMap($my_classmap);
-}
-else {
-    $my_namespaces = require SRC_CONFIG_PATH . '/autoload_namespaces.php';
-    foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
-        $o_loader->addPsr4($psr4_prefix, $psr0_paths);
-    }
+$my_classmap = require SRC_CONFIG_PATH . '/autoload_classmap.php';
+$o_loader->addClassMap($my_classmap);
+$my_namespaces = require SRC_CONFIG_PATH . '/autoload_namespaces.php';
+foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
+    $o_loader->addPsr4($psr4_prefix, $psr0_paths);
 }
 
 try {
@@ -182,7 +153,7 @@ else {
     die("Could not connect to the database\n");
 }
 
-switch ($a_install['db_type']) {
+switch ($a_db_config['driver']) {
     case 'pgsql':
         $a_sql = require $install_files_path .  '/default_pgsql_create.php';
         break;
@@ -194,7 +165,7 @@ switch ($a_install['db_type']) {
         $a_sql = require $install_files_path .  '/default_mysql_create.php';
 }
 $a_data = require $install_files_path .  '/default_data.php';
-
+$app_path = SRC_PATH . '/apps/' . $a_install['namespace'] . '/' . $a_install['app_name'];
 $o_di->setVar('a_sql', $a_sql);
 $o_di->setVar('a_data', $a_data);
 $o_di->setVar('a_install_config', $a_install);
@@ -384,6 +355,16 @@ if (!$o_installer_model->insertPage()) {
 }
 print "success\n";
 
+print "\nSetting up the app\n";
+$o_new_app_helper = new NewAppHelper($o_di);
+print 'Creating twig db records';
+$results = $o_new_app_helper->createTwigDbRecords();
+if (\is_string($results)) {
+    failIt($o_db, $results);
+    failIt($o_db, $results);
+}
+print "success\n";
+
 try {
     $o_db->commitTransaction();
     print "Data Insert Complete.\n";
@@ -392,6 +373,12 @@ catch (ModelException $e) {
     failIt($o_db, 'Could not commit the transaction.', $rollback);
 }
 
-### Regenerate Autoload Map files
-$o_cm->generateMapFiles();
+if ($a_install['master_twig'] === 'true') {
+    try {
+        $o_new_app_helper->changeHomePageTpl();
+    }
+    catch (ModelException $e) {
+        print "Could not change the home page template.\n";
+    }
+}
 
