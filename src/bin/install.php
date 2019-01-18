@@ -136,7 +136,9 @@ $db_file_name   = $a_install['db_file'] ?? 'db_config';
 $db_config_file = $db_file_name . '.php';
 $db_local_file  = $db_file_name . '_local.php';
 
-$a_install['db_port'] = $a_install['db_port'] ?? $a_install['db_type'] === 'mysql' ? '3306' : '5432';
+if (empty($a_install['db_port'])) {
+    $a_install['db_port'] = $a_install['db_type'] === 'mysql' ? '3306' : '5432';
+}
 if (empty($a_install['db_ro_pass']) || empty($a_install['db_ro_user'])) {
     $a_install['db_ro_user'] = $a_install['db_user'];
     $a_install['db_ro_pass'] = $a_install['db_pass'];
@@ -162,14 +164,12 @@ return [
 EOT;
 file_put_contents(SRC_CONFIG_PATH . '/' . $db_config_file, $db_config_file_text);
 
-$db_local_type = $a_install['db_local_type'] ?? $a_install['db_type'];
-$db_local_host = $a_install['db_local_host'] ?? 'localhost';
-$db_local_port = $a_install['db_local_port'] ?? $db_local_type === 'mysql'
-    ? '3306'
-    : '5432';
-$db_local_name = $a_install['db_local_name'] ?? $a_install['db_name'];
-$db_local_user = $a_install['db_local_user'] ?? $a_install['db_user'];
-$db_local_pass = $a_install['db_local_pass'] ?? $a_install['db_pass'];
+$db_local_type = empty($a_install['db_local_type']) ? $a_install['db_type'] : $a_install['db_local_type'];
+$db_local_host = empty($a_install['db_local_host']) ? 'localhost'           : $a_install['db_local_host'];
+$db_local_port = empty($a_install['db_local_port']) ? $a_install['db_port'] : $a_install['db_local_port'];
+$db_local_name = empty($a_install['db_local_name']) ? $a_install['db_name'] : $a_install['db_local_name'];
+$db_local_user = empty($a_install['db_local_user']) ? $a_install['db_user'] : $a_install['db_local_user'];
+$db_local_pass = empty($a_install['db_local_pass']) ? $a_install['db_pass'] : $a_install['db_local_pass'];
 $db_config_file_text =<<<EOT
 <?php
 return [
@@ -192,15 +192,12 @@ file_put_contents(SRC_CONFIG_PATH . '/' . $db_local_file, $db_config_file_text);
 
 $specific_host = $a_install['specific_host'] ?? 'test';
 $db_site_file = $db_file_name . '_' . $specific_host . '.php';
-$db_site_type = $a_install['db_site_type'] ?? $a_install['db_type'];
-$db_site_host = $a_install['db_site_host'] ?? $a_install['db_host'];
-$port_maybe   = $a_install['db_site_type'] === 'mysql'
-    ? '3306'
-    : '5432';
-$db_site_port = $a_install['db_site_port'] ?? $port_maybe;
-$db_site_name = $a_install['db_site_name'] ?? $a_install['db_name'];
-$db_site_user = $a_install['db_site_user'] ?? $a_install['db_user'];
-$db_site_pass = $a_install['db_site_pass'] ?? $a_install['db_pass'];
+$db_site_type = empty($a_install['db_site_type']) ? $a_install['db_type'] : $a_install['db_site_type'];
+$db_site_host = empty($a_install['db_site_host']) ? $a_install['db_host'] : $a_install['db_site_host'];
+$db_site_port = empty($a_install['db_site_port']) ? $a_install['db_port'] : $a_install['db_site_port'];
+$db_site_name = empty($a_install['db_site_name']) ? $a_install['db_name'] : $a_install['db_site_name'];
+$db_site_user = empty($a_install['db_site_user']) ? $a_install['db_user'] : $a_install['db_site_user'];
+$db_site_pass = empty($a_install['db_site_pass']) ? $a_install['db_pass'] : $a_install['db_site_pass'];
 
 $db_config_file_text =<<<EOT
 <?php
