@@ -322,6 +322,7 @@ function createStrings(array $a_records = []) {
 
 /**
  * Reorganizes the array.
+ *
  * @param array $a_org_values
  * @return array
  */
@@ -335,15 +336,19 @@ function reorgArray(array $a_org_values = []) {
 
 /**
  * Rolls back the transaction and exits the script.
+ *
  * @param DbModel $o_db
- * @param string  $message
+ * @param string $message
+ * @param bool $using_mysql
  */
-function failIt(DbModel $o_db, $message = '') {
-    try {
-        $o_db->rollbackTransaction();
-    }
-    catch (ModelException $e) {
-        print 'Could not rollback transaction: ' . $e->errorMessage() . "\n";
+function failIt(DbModel $o_db, $message = '', $using_mysql = false) {
+    if ($using_mysql) {
+        try {
+            $o_db->rollbackTransaction();
+        }
+        catch (ModelException $e) {
+            print 'Could not rollback transaction: ' . $e->errorMessage() . "\n";
+        }
     }
     die("\nFAIL!\n{$message}\n");
 }
@@ -514,7 +519,7 @@ if ($a_install['master_twig'] === 'true') {
         print "Success\n";
     }
     catch (ModelException $e) {
-        failIt($o_db, 'Could not change the home page template.', );
+        failIt($o_db, 'Could not change the home page template.', $using_mysql);
     }
 }
 
