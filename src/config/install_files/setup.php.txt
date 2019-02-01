@@ -4,18 +4,18 @@
  * BASE_PATH is the directory where everything else is
  * see PUBLIC_PATH . '/example_setup.php for more'
  */
-switch ($_SERVER['HTTP_HOST']) {
+switch ($_SERVER['HTTP_HOST']) { {host_text}
     case 'localhost':
         define('DEVELOPER_MODE', true);
         define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(PUBLIC_PATH));
         $db_config_file = 'db_config_local.php';
         break;
-    case '{specific_host}.{domain}.{tld}': // {specific_host} server
+    case '{server_http_host}.{domain}.{tld}': // {server_http_host} server
         define('DEVELOPER_MODE', true);
         define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
         define('BASE_PATH', dirname(PUBLIC_PATH));
-        $db_config_file = 'db_config_{specific_host}.php';
+        $db_config_file = 'db_config_{server_http_host}.php';
         break;
     default: // simple setup and this could be the only two lines needed in this file.
         define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);

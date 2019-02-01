@@ -190,8 +190,8 @@ return [
 EOT;
 file_put_contents(SRC_CONFIG_PATH . '/' . $db_local_file, $db_config_file_text);
 
-$specific_host = $a_install['specific_host'] ?? 'test';
-$db_site_file = $db_file_name . '_' . $specific_host . '.php';
+$site_host = $a_install['server_http_host'] ?? 'test';
+$db_site_file = $db_file_name . '_' . $site_host . '.php';
 $db_site_type = empty($a_install['db_site_type']) ? $a_install['db_type'] : $a_install['db_site_type'];
 $db_site_host = empty($a_install['db_site_host']) ? $a_install['db_host'] : $a_install['db_site_host'];
 $db_site_port = empty($a_install['db_site_port']) ? $a_install['db_port'] : $a_install['db_site_port'];
@@ -219,18 +219,24 @@ return [
 EOT;
 file_put_contents(SRC_CONFIG_PATH . '/' . $db_site_file, $db_config_file_text);
 
-switch ($install_host) {
-    case 'localhost':
-        $the_db_config_file  = $db_local_file;
-        $db_type             = $db_local_type;
-        break;
-    case $specific_host:
-        $the_db_config_file = $db_site_file;
-        $db_type            = $db_site_type;
-        break;
-    default:
-        $the_db_config_file = $db_config_file;
-        $db_type            = $a_install['db_type'];
+if ($a_install['specific_host'] !== '' && $a_install['specific_host'] === $install_host) {
+    $the_db_config_file  = $db_local_file;
+    $db_type             = $db_local_type;
+}
+else {
+    switch ($install_host) {
+        case 'localhost':
+            $the_db_config_file  = $db_local_file;
+            $db_type             = $db_local_type;
+            break;
+        case $site_host:
+            $the_db_config_file = $db_site_file;
+            $db_type            = $db_site_type;
+            break;
+        default:
+            $the_db_config_file = $db_config_file;
+            $db_type            = $a_install['db_type'];
+    }
 }
 
 $o_loader = require VENDOR_PATH . '/autoload.php';
@@ -510,7 +516,7 @@ if ($using_mysql) {
 }
 
 if ($a_install['master_twig'] === 'true') {
-    print "Changing the home page template: ";
+    print 'Changing the home page template: ';
     try {
         $o_new_app_helper->changeHomePageTpl();
         print "Success\n";
