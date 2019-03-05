@@ -41,7 +41,11 @@ fi
 if [ -f src/config/install_config.php ]; then
     if [ ! -d src/apps/Ritc/Library ]; then
         echo "Installing the Library."
-        git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
+        if [ -d /srv/git/ritc/library.git ]; then
+            git clone /srv/git/ritc/library src/apps/Ritc/Library
+        else
+            git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
+        fi
     else
         echo "Updating the Library."
         cd src/apps/Ritc/Library
@@ -100,9 +104,10 @@ if [ -f src/config/install_config.php ]; then
 
     echo "Running uglifyJs"
     bash src/bin/doUglifyJS.sh
-
+    mv src/config/install_config.php private/
 else
     echo "The src/config/install_config.php file must be created and configured first.\nSee src/config/install_files/install_config.commented.txt for full details."
     cp src/config/install_files/install_config.php.txt src/config/install_config.php
     vi src/config/install_config.php
+    echo "Now re-run install.sh"
 fi
