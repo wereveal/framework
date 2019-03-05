@@ -1,7 +1,8 @@
 #!/bin/bash
 useJqueryUi="no"
 useFAPro="no"
-while getopts ":u:f" opt; do
+useGit="no"
+while getopts ":u:f:g" opt; do
     case $opt in
         u)
             useJqueryUi="yes"
@@ -9,8 +10,11 @@ while getopts ":u:f" opt; do
         f)
             useFAPro="yes"
             ;;
+        g)
+            useGit="yes"
+            ;;
         \?)
-            echo "Valid options are -u" >&2
+            echo "Valid options are -u (JqueryUI) -f (FAPro) -g (update git repos)" >&2
             ;;
     esac
 done
@@ -37,18 +41,24 @@ if [ ! -x $(command -v php) ]; then
     echo "php must be installed"
     exit 1
 fi
-echo "Updating this site"
-git pull
 
-echo "Updating the Library."
-cd src/apps/Ritc/Library
-git pull
-cd ../../../../
+if [ "$useGit" = "yes" ]; then
+    echo "Updating this site"
+    git pull
+    echo ""
+    echo "Updating the Library."
+    cd src/apps/Ritc/Library
+    git pull
+    cd ../../../../
+    echo ""
+fi
 
 if [ ! -f composer.json ]
 then
     echo "The composer.json file must exist at the base of the site."
 else
+    echo "Updating composer installed files."
+    echo ""
     if [ -x $(command -v composer.phar) ]; then
         composer.phar update
     else
@@ -61,11 +71,16 @@ if [ "$useFAPro" = "yes" ]; then
     cp src/apps/Ritc/Library/resources/config/package.json.txt public/assets/package.json
     cp src/apps/Ritc/Library/resources/config/npmrc.txt public/assets/.npmrc
 fi
+echo "Yarn stuff"
 bash src/bin/doYarn.sh
 
 if [ "$useJqueryUi" = "yes" ]; then
+    echo "JqueryUi stuff"
     bash src/bin/doJqueryUi.sh
 fi
+echo "Uglifying JS"
 bash src/bin/doUglifyJS.sh
+echo "Doing Sass stuff"
 bash src/bin/doSass.sh
+echo ""
 
