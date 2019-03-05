@@ -102,5 +102,7 @@ if [ -f src/config/install_config.php ]; then
     bash src/bin/doUglifyJS.sh
 
 else
-    echo "The src/config/install_config.php file must be created and configured first.\nSee src/config/install_files/install_config.php.txt"
+    echo "The src/config/install_config.php file must be created and configured first.\nSee src/config/install_files/install_config.commented.txt for full details."
+    cp src/config/install_files/install_config.php.txt src/config/install_config.php
+    vi src/config/install_config.php
 fi
