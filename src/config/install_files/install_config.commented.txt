@@ -44,6 +44,7 @@ return [
 	'install_host'     => '',                              // which host this is being installed on, needed for knowing which {db_file} to use, defaults to {db_file}.php
     'master_twig'      => 'true',                          // specifies if this app's twig prefix is the default (if empty, site_ is default)
     'app_twig_prefix'  => '',                              // specifies the twig prefix, defaults to strtolower(app_name) . '_'
+    'app_twig_theme'   => 'base_fluid',                    // specifies the prefix's theme name which should have a corresponding twig file of same name.
     'app_db_prefix'    => '',                              // specifies optional prefix for database tables, defaults to use db_prefix
     'a_groups'         => [                                // optional, if provided, new group records will be created in addition to the default ones
 //        [
