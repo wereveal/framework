@@ -366,21 +366,21 @@ print "success\n";
 ### Enter 'blocks' ###
 print 'Entering Blocks Data; ';
 if (!$o_installer_model->insertBlocks()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'Page blocks' ###
 print 'Entering Page Blocks Map Data; ';
 if (!$o_installer_model->insertPBM()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage());
 }
 print "success\n";
 
 ### Enter 'content' ###
 print 'Entering Content Data; ';
 if (!$o_installer_model->insertContent()) {
-    failIt($o_db, $o_db_creator->getErrorMessage());
+    failIt($o_db, $o_installer_model->getErrorMessage());
 }
 print "success\n";
 
