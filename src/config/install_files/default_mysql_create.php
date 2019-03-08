@@ -208,6 +208,7 @@ return [
   `tp_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `tp_prefix` varchar(32) NOT NULL DEFAULT 'site_',
   `tp_path` varchar(150) NOT NULL DEFAULT '/src/templates' COMMENT 'Does not include the BASE_PATH of the site',
+  `tp_theme` varchar(64) NOT NULL DEFAULT 'base_fluid',
   `tp_active` enum('true','false') NOT NULL DEFAULT 'true',
   `tp_default` enum('true','false') NOT NULL DEFAULT 'false',
   PRIMARY KEY (`tp_id`),

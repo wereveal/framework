@@ -1925,12 +1925,14 @@ $a_twig_prefix = [
     'site' => [
         'tp_prefix'  => 'site_',
         'tp_path'    => '/src/templates',
+        'tp_theme'   => 'base_fluid',
         'tp_active'  => 'true',
         'tp_default' => 'true'
     ],
     'lib' => [
         'tp_prefix'  => 'lib_',
         'tp_path'    => '/src/apps/Ritc/Library/resources/templates',
+        'tp_theme'   => 'base_fluid',
         'tp_active'  => 'true',
         'tp_default' => 'false'
     ]

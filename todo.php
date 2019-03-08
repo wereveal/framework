@@ -1,6 +1,4 @@
 <?php
 /*
-### Framework needs ###
-- todo - Create a standalone tail page in the tools directory
-- TODO - rewrite the makeDb.php script to use the files in /src/install_files directory.
+ * @todo first thing to do at this point is have a site_theme constant, app_theme constant, lib_theme constant. Maybe in database.
 */

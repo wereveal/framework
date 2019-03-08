@@ -220,8 +220,9 @@ $BODY$ language \'plpgsql\'',
 
 "CREATE TABLE {dbPrefix}twig_prefix (
   tp_id serial NOT NULL,
-  tp_prefix character varying(32) NOT NULL,
-  tp_path character varying(150) NOT NULL,
+  tp_prefix character varying(32) NOT NULL DEFAULT 'site_'::character varying,
+  tp_path character varying(150) NOT NULL DEFAULT '/src/templates'::character varying,
+  tp_theme character varying(64) NOT NULL DEFAULT 'base_fluid'::character varying,
   tp_active truthy NOT NULL DEFAULT 'true'::truthy,
   tp_default truthy NOT NULL DEFAULT 'false'::truthy,
   PRIMARY KEY (tp_id)
