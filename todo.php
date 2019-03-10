@@ -1,4 +1,6 @@
 <?php
 /*
- * @todo first thing to do at this point is have a site_theme constant, app_theme constant, lib_theme constant. Maybe in database.
+ * Working on multiple themes
+ * At this point, each theme will have its own twig prefix and associated twig dirs and twig tpls
+ * However, there is nothing to prevent the themes to share directories, KEY!
 */

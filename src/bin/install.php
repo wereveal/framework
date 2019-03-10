@@ -446,6 +446,13 @@ print "Starting the Twig db stuff. \n";
 print "Updating data for app specific\n";
 $o_db_creator->createTwigAppConfig();
 
+### Enter twig themes into database ###
+print 'Entering Twig Themes Data; ';
+if (!$o_db_creator->insertTwigThemes()) {
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
+}
+print "success\n";
+
 ### Enter twig prefixes into database ###
 print 'Entering Twig Prefixes Data; ';
 if (!$o_db_creator->insertTwigPrefixes()) {

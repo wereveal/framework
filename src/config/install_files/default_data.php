@@ -1921,18 +1921,29 @@ $a_content = [
    ]
 ];
 
+$a_twig_themes = [
+    'base_fixed' => [
+        'theme_name'      => 'base_fixed',
+        'theme_default'   => 'false',
+        'theme_immutable' => 'true'
+    ],
+    'base_fluid' => [
+        'theme_name'      => 'base',
+        'theme_default'   => 'true',
+        'theme_immutable' => 'true'
+    ]
+];
+
 $a_twig_prefix = [
     'site' => [
         'tp_prefix'  => 'site_',
         'tp_path'    => '/src/templates',
-        'tp_theme'   => 'base_fluid',
         'tp_active'  => 'true',
         'tp_default' => 'true'
     ],
     'lib' => [
         'tp_prefix'  => 'lib_',
         'tp_path'    => '/src/apps/Ritc/Library/resources/templates',
-        'tp_theme'   => 'base_fluid',
         'tp_active'  => 'true',
         'tp_default' => 'false'
     ]
@@ -1992,166 +2003,199 @@ $a_twig_dirs = [
 $a_twig_tpls = [
     'index' => [
         'td_id'         => 'site_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'index',
         'tpl_immutable' => 'true'
     ],
     'man_login' =>  [
         'td_id'         => 'site_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'login',
         'tpl_immutable' => 'true'
     ],
     'manager' => [
         'td_id'         => 'site_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'manager',
         'tpl_immutable' => 'true'
     ],
     'verify_delete' => [
         'td_id'         => 'site_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'verify_delete',
         'tpl_immutable' => 'true'
     ],
     'sitemap' => [
         'td_id'         => 'site_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'sitemap',
         'tpl_immutable' => 'true'
     ],
     'error' => [
         'td_id'         => 'site_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'error',
         'tpl_immutable' => 'true'
     ],
     'test' => [
         'td_id'         => 'site_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'test',
         'tpl_immutable' => 'true'
     ],
     'man_test_results' => [
         'td_id'         => 'site_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'man_test_results',
         'tpl_immutable' => 'true'
     ],
     'library' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'index',
         'tpl_immutable' => 'true'
     ],
     'lib_alias' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'alias',
         'tpl_immutable' => 'true'
     ],
     'lib_blocks' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'blocks',
         'tpl_immutable' => 'true'
     ],
     'lib_cache' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'cache',
         'tpl_immutable' => 'true'
     ],
     'lib_content' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'content',
         'tpl_immutable' => 'true'
     ],
     'lib_constants' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'constants',
         'tpl_immutable' => 'true'
     ],
     'lib_error' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'error',
         'tpl_immutable' => 'true'
     ],
     'lib_groups' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'groups',
         'tpl_immutable' => 'true'
     ],
     'lib_login' =>  [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'login',
         'tpl_immutable' => 'true'
     ],
     'lib_nav' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'navigation_list',
         'tpl_immutable' => 'true'
     ],
     'lib_nav_form' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'navigation_form',
         'tpl_immutable' => 'true'
     ],
     'lib_navgroups' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'navgroups',
         'tpl_immutable' => 'true'
     ],
     'lib_pages' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'pages',
         'tpl_immutable' => 'true'
     ],
     'lib_page_form' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'page_form',
         'tpl_immutable' => 'true'
     ],
     'lib_peeps' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'people',
         'tpl_immutable' => 'true'
     ],
     'lib_person_form' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'person_form',
         'tpl_immutable' => 'true'
     ],
     'lib_routes' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'routes',
         'tpl_immutable' => 'true'
     ],
     'lib_shared' => [
         'td_id'         => 'lib_snippets',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'shared',
         'tpl_immutable' => 'true'
     ],
     'lib_sitemap' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'lib_sitemap',
         'tpl_immutable' => 'true'
     ],
     'lib_tail' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'tail',
         'tpl_immutable' => 'true'
     ],
     'lib_test' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'test_list',
         'tpl_immutable' => 'true'
     ],
     'lib_test_results' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'man_test_results',
         'tpl_immutable' => 'true'
     ],
     'lib_twig' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'twig',
         'tpl_immutable' => 'true'
     ],
     'lib_urls' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'urls',
         'tpl_immutable' => 'true'
     ],
     'lib_vd' => [
         'td_id'         => 'lib_pages',
+        'theme_id'      => 'base_fluid',
         'tpl_name'      => 'verify_delete',
         'tpl_immutable' => 'true'
     ]
@@ -2192,6 +2236,7 @@ return [
     'blocks'             => $a_blocks,
     'page_block_map'     => $a_pbm,
     'content'            => $a_content,
+    'twig_themes'        => $a_twig_themes,
     'twig_prefix'        => $a_twig_prefix,
     'twig_dirs'          => $a_twig_dirs,
     'twig_templates'     => $a_twig_tpls,

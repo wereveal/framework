@@ -44,7 +44,7 @@ return [
 	'install_host'    => '',
     'master_twig'     => 'true',
     'app_twig_prefix' => '',
-    'app_twig_theme'  => 'base_fluid',
+    'app_theme_name'  => 'base_fluid',
     'app_db_prefix'   => '',
     'a_groups'        => [],
     'a_users'         => []
