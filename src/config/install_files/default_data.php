@@ -1922,16 +1922,18 @@ $a_content = [
 ];
 
 $a_twig_themes = [
+    'base_fluid' => [
+        'theme_name'      => 'base_fluid',
+        'theme_default'   => 'true'
+    ],
     'base_fixed' => [
         'theme_name'      => 'base_fixed',
-        'theme_default'   => 'false',
-        'theme_immutable' => 'true'
+        'theme_default'   => 'false'
     ],
-    'base_fluid' => [
+    'base' => [
         'theme_name'      => 'base',
-        'theme_default'   => 'true',
-        'theme_immutable' => 'true'
-    ]
+        'theme_default'   => 'false'
+    ],
 ];
 
 $a_twig_prefix = [
