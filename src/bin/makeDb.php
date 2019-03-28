@@ -24,6 +24,7 @@
  */
 namespace Ritc;
 
+use PDO;
 use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ModelException;
 use Ritc\Library\Exceptions\ServiceException;
@@ -39,9 +40,9 @@ if (strpos(__DIR__, 'Library') !== false) {
     die('Please Run this script from the src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
-\define('DEVELOPER_MODE', true);
-\define('BASE_PATH', $base_path);
-\define('PUBLIC_PATH', $base_path . '/public');
+define('DEVELOPER_MODE', true);
+define('BASE_PATH', $base_path);
+define('PUBLIC_PATH', $base_path . '/public');
 
 require_once BASE_PATH . '/src/config/constants.php';
 $install_files_path = SRC_CONFIG_PATH . '/install_files';
@@ -107,7 +108,7 @@ $a_dirs = [
     'apps_path'   => APPS_PATH
 ];
 $o_cm = new AutoloadMapper($a_dirs);
-if (!\is_object($o_cm)) {
+if (!is_object($o_cm)) {
     die('Could not instance AutoloadMapper');
 }
 $o_cm->generateMapFiles();
@@ -133,7 +134,7 @@ catch (ServiceException $e) {
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
 try {
-    /** @var \PDO $o_pdo */
+    /** @var PDO $o_pdo */
     $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
 }
 catch (FactoryException $e) {
@@ -388,7 +389,7 @@ print "\nSetting up the app\n";
 $o_new_app_helper = new NewAppHelper($o_di);
 print 'Creating twig db records: ';
 $results = $o_new_app_helper->createTwigDbRecords();
-if (\is_string($results)) {
+if (is_string($results)) {
     failIt($o_db, $results);
     failIt($o_db, $results);
 }

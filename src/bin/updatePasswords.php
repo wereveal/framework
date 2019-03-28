@@ -11,6 +11,7 @@
  */
 namespace Ritc;
 
+use PDO;
 use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ModelException;
 use Ritc\Library\Exceptions\ServiceException;
@@ -25,17 +26,15 @@ if (strpos(__DIR__, 'Library') !== false) {
     die('Please Run this script from the src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
-\define('DEVELOPER_MODE', true);
-\define('BASE_PATH', $base_path);
-\define('PUBLIC_PATH', $base_path . '/public');
+define('DEVELOPER_MODE', true);
+define('BASE_PATH', $base_path);
+define('PUBLIC_PATH', $base_path . '/public');
 
 require_once BASE_PATH . '/src/config/constants.php';
 
 if (!file_exists(APPS_PATH . '/Ritc/Library')) {
     die("You must clone the Ritc/Library in the apps dir first and any other desired apps.\n");
 }
-
-$install_files_path = SRC_CONFIG_PATH . '/install_files';
 
 /* allows a custom file to be created. Still must be in src/config dir */
 $people_config = SRC_CONFIG_PATH . '/people_config.php';
@@ -45,7 +44,6 @@ if (isset($argv[1])) {
 if (!file_exists($people_config)) {
     die('You must create the install_configs configuration file in ' . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
 }
-$a_people = require $people_config;
 $db_config_file = isset($argv[2])
     ? SRC_CONFIG_PATH . '/' . $argv[2]
     : SRC_CONFIG_PATH . '/db_config.php';
@@ -57,7 +55,7 @@ $a_dirs = [
     'apps_path'   => APPS_PATH
 ];
 $o_cm = new AutoloadMapper($a_dirs);
-if (!\is_object($o_cm)) {
+if (!is_object($o_cm)) {
     die('Could not instance AutoloadMapper');
 }
 $o_loader = require VENDOR_PATH . '/autoload.php';
@@ -79,7 +77,7 @@ catch (ServiceException $e) {
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
 try {
-    /** @var \PDO $o_pdo */
+    /** @var PDO $o_pdo */
     $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
 }
 catch (FactoryException $e) {

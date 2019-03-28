@@ -6,11 +6,12 @@ use Ritc\Library\Factories\TwigFactory;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
+use Twig\Environment as TwigEnvironment;
 
 $base_path = str_replace('/src/bin', '', __DIR__);
-\define('DEVELOPER_MODE', true);
-\define('BASE_PATH', $base_path);
-\define('PUBLIC_PATH', $base_path . '/public');
+define('DEVELOPER_MODE', true);
+define('BASE_PATH', $base_path);
+define('PUBLIC_PATH', $base_path . '/public');
 
 echo 'Base Path: ' . BASE_PATH . "\n";
 echo 'Site Path: ' . PUBLIC_PATH . "\n";
@@ -51,7 +52,7 @@ catch (Library\Exceptions\FactoryException $e) {
 
 if ($o_pdo !== false) {
     $o_db = new DbModel($o_pdo, $db_config_file);
-    if (!\is_object($o_db)) {
+    if (!is_object($o_db)) {
         $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
         die("Could not get the database to work\n");
     }
@@ -69,7 +70,7 @@ try {
 catch (Library\Exceptions\FactoryException $e) {
     $o_twig = false;
 }
-if ($o_twig instanceof \Twig_Environment) {
+if ($o_twig instanceof TwigEnvironment) {
     print "Yes!\n";
 }
 else {

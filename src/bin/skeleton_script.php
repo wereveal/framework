@@ -26,9 +26,9 @@ if (strpos(__DIR__, '/src/bin') !== false) {
     die('Please Run this script from the /src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
-\define('DEVELOPER_MODE', true);
-\define('BASE_PATH', $base_path);
-\define('PUBLIC_PATH', $base_path . '/public');
+define('DEVELOPER_MODE', true);
+define('BASE_PATH', $base_path);
+define('PUBLIC_PATH', $base_path . '/public');
 
 require_once BASE_PATH . '/src/config/constants.php';
 
@@ -44,7 +44,7 @@ if (!file_exists(SRC_CONFIG_PATH . '/autoload_namespaces.php')) {
         'apps_path'   => APPS_PATH
     ];
     $o_cm = new AutoloadMapper($a_dirs);
-    if (!\is_object($o_cm)) {
+    if (!is_object($o_cm)) {
         die('Could not instance AutoloadMapper');
     }
     $o_cm->generateMapFiles();
@@ -80,7 +80,7 @@ catch (FactoryException $e) {
 
 if ($o_pdo !== false) {
     $o_db = new DbModel($o_pdo, $db_config_file);
-    if (!\is_object($o_db)) {
+    if (!is_object($o_db)) {
         $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
         die("Could not get the database to work\n");
     }

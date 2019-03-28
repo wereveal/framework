@@ -17,6 +17,8 @@
 */
 namespace Ritc;
 
+use Error;
+use PDO;
 use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ModelException;
 use Ritc\Library\Exceptions\ServiceException;
@@ -30,23 +32,24 @@ use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 use Ritc\Library\Services\Router;
 use Ritc\Library\Services\Session;
+use Twig\Environment as TwigEnvironment;
 
 ## Define Various Constants and Variables
-if (!\defined('PUBLIC_PATH')) {
+if (!defined('PUBLIC_PATH')) {
     /**
      * Server document root
      *
      * @var string PUBLIC_PATH
      */
-    \define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
+    define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
 }
-if (!\defined('BASE_PATH')) {
+if (!defined('BASE_PATH')) {
     /**
      * Path to the root of the code.
      *
      * @var string BASE_PATH
      */
-    \define('BASE_PATH', \dirname(__FILE__, 2));
+    define('BASE_PATH', dirname(__FILE__, 2));
 }
 require_once BASE_PATH . '/src/config/constants.php';
 
@@ -90,7 +93,7 @@ catch (ServiceException $e) {
 try {
     $o_di = new Di();
 }
-catch (\Error $e) {
+catch (Error $e) {
     $o_elog->write($e->getMessage(), LOG_ALWAYS);
     die('Unable to start Di');
 }
@@ -100,7 +103,7 @@ $o_di->setVar('dbConfig', $db_config_file);
 
 try {
     $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
-    if (!$o_pdo instanceof \PDO) {
+    if (!$o_pdo instanceof PDO) {
         die('PDO instance was not created');
     }
     $o_di->set('pdo', $o_pdo);
@@ -112,7 +115,7 @@ catch (FactoryException $e) {
 try {
     $o_db = new DbModel($o_pdo, $db_config_file);
 }
-catch (\Error $e) {
+catch (Error $e) {
     die('Could not get the database to work: ' . $e->getMessage());
 }
 
@@ -121,7 +124,7 @@ $o_di->set('db', $o_db);
 if (RODB) {
     try {
         $o_pdo_ro = PdoFactory::start($db_config_file, 'ro', $o_di);
-        if (!$o_pdo_ro instanceof \PDO) {
+        if (!$o_pdo_ro instanceof PDO) {
             die('Could not start the RO PDOFactory.');
         }
         $o_di->set('pdo_ro', $o_pdo_ro);
@@ -132,7 +135,7 @@ if (RODB) {
     try {
         $o_db_ro = new DbModel($o_pdo_ro, $db_config_file);
     }
-    catch (\Error $e) {
+    catch (Error $e) {
         die('Could not get the ro database to work: ' . $e->getMessage());
     }
     $o_di->set('rodb', $o_db_ro);
@@ -153,7 +156,7 @@ catch (ModelException $e) {
     $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
     require_once SRC_CONFIG_PATH . '/fallback_constants.php';
 }
-catch (\Error $e) {
+catch (Error $e) {
     $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
     require_once SRC_CONFIG_PATH . '/fallback_constants.php';
 }
@@ -168,10 +171,10 @@ unset($o_const_creator); // probably unneeded but just in case something gets he
 // $o_elog->write(var_export($a_constants['user'], true), LOG_ON);
 
 if (USE_CACHE && ini_get('opcache.enable')) {
-    $cache_type = \defined('CACHE_TYPE')
+    $cache_type = defined('CACHE_TYPE')
         ? CACHE_TYPE
         : 'PhpFiles';
-    $cache_ttl = \defined('CACHE_TTL')
+    $cache_ttl = defined('CACHE_TTL')
         ? CACHE_TTL
         : 604800; // 7 days
     $cache_namespace = 'RITC';
@@ -183,7 +186,7 @@ if (USE_CACHE && ini_get('opcache.enable')) {
         'directory'  => $cache_directory
     ];
     $o_cache = CacheFactory::start($a_cache_config);
-    if (\is_object($o_cache)) {
+    if (is_object($o_cache)) {
         $o_ch = new CacheHelper($o_cache);
         $o_di->set('cache', $o_ch);
     }
@@ -196,7 +199,7 @@ $o_session->setIdleTime(SESSION_IDLE_TIME); // has to be here since it relies on
 try {
     $o_router = new Router($o_di);
 }
-catch (\Error $e) {
+catch (Error $e) {
     $message = 'Could not create new instance of Router: ' . $e->getMessage();
     $o_elog->write($message);
     die($message);
@@ -205,7 +208,7 @@ $o_di->set('router',  $o_router);
 
 if ($twig_config === 'db') {
     if (empty($twig_use_cache)) {
-        $twig_use_cache = !\defined('DEVELOPER_MODE') || !DEVELOPER_MODE;
+        $twig_use_cache = !defined('DEVELOPER_MODE') || !DEVELOPER_MODE;
     }
     try {
         $o_twig = TwigFactory::getTwig($o_di, $twig_use_cache);
@@ -222,7 +225,7 @@ else {
         die("Couldn't create twig instance from file. " . $e->errorMessage());
     }
 }
-if ($o_twig instanceof \Twig_Environment) {
+if ($o_twig instanceof TwigEnvironment) {
     $o_di->set('twig', $o_twig);
 }
 else {
