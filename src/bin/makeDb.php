@@ -1,4 +1,4 @@
-<?php /** @noinspection PhpIncludeInspection */
+<?php
 /**
  * @brief     This file sets up the database.
  * @details   This creates the database tables and inserts default data.
@@ -335,6 +335,12 @@ if (!$o_installer_model->insertNNM()) {
 print "Starting the Twig db stuff. \n";
 print "Updating data for app specific\n";
 $o_installer_model->createTwigAppConfig();
+
+### Enter twig themes into database ###
+print 'Creating Twig Themes: ';
+if (!$o_installer_model->insertTwigThemes()) {
+    failIt($o_db, $o_installer_model->getErrorMessage(), $rollback);
+}
 
 ### Enter twig prefixes into database ###
 print 'Creating Twig Prefixes: ';

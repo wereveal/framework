@@ -17,7 +17,7 @@ if (!defined('ASSETS_DIR_NAME')) {
     define('ASSETS_DIR_NAME', 'assets');
 }
 if (!defined('CACHE_TYPE')) {
-    define('CACHE_TYPE', 'SimplePhpFiles');
+    define('CACHE_TYPE', 'PhpFiles');
 }
 if (!defined('CACHE_TTL')) {
     define('CACHE_TTL', 604800);
