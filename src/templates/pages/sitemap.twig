@@ -1,5 +1,5 @@
 {% extends '@' ~ page_prefix ~ 'themes/' ~ theme_name ~ '.twig' %}
 {% block body %}
-    {% include '@' ~ lib_prefix ~ 'snippets/sitemap.twig' %}
+    {{ include(lib_snippets ~ 'sitemap.twig') }}
 {% endblock %}
 
