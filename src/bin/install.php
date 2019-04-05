@@ -24,6 +24,7 @@
  */
 namespace Ritc;
 
+use PDO;
 use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ModelException;
 use Ritc\Library\Exceptions\ServiceException;
@@ -46,19 +47,19 @@ print "Starting the php script.\n";
  *
  * @var bool DEVELOPER_MODE
  */
-\define('DEVELOPER_MODE', true);
+define('DEVELOPER_MODE', true);
 /**
  * Server path to the base of the code.
  *
  * @var string BASE_PATH
  */
-\define('BASE_PATH', $base_path);
+define('BASE_PATH', $base_path);
 /**
  * Server path to the root of the public website files.
  *
  * @var string PUBLIC_PATH
  */
-\define('PUBLIC_PATH', $base_path . '/public');
+define('PUBLIC_PATH', $base_path . '/public');
 
 require_once BASE_PATH . '/src/config/constants.php';
 
@@ -125,7 +126,7 @@ $a_dirs = [
     'apps_path'   => APPS_PATH
 ];
 $o_cm = new AutoloadMapper($a_dirs);
-if (!\is_object($o_cm)) {
+if (!is_object($o_cm)) {
     die('Could not instance AutoloadMapper');
 }
 $o_cm->generateMapFiles();
@@ -259,9 +260,9 @@ catch (ServiceException $e) {
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
 try {
-    /** @var \PDO $o_pdo */
+    /** @var PDO $o_pdo */
     $o_pdo = PdoFactory::start($the_db_config_file, 'rw', $o_di);
-    if (! $o_pdo instanceof \PDO) {
+    if (! $o_pdo instanceof PDO) {
         die('Unable to create the Pdo instance.');
     }
     $o_di->set('pdo', $o_pdo);
@@ -446,6 +447,13 @@ print "Starting the Twig db stuff. \n";
 print "Updating data for app specific\n";
 $o_db_creator->createTwigAppConfig();
 
+### Enter twig themes into database ###
+print 'Entering Twig Themes Data; ';
+if (!$o_db_creator->insertTwigThemes()) {
+    failIt($o_db, $o_db_creator->getErrorMessage(), $using_mysql);
+}
+print "success\n";
+
 ### Enter twig prefixes into database ###
 print 'Entering Twig Prefixes Data; ';
 if (!$o_db_creator->insertTwigPrefixes()) {
@@ -500,7 +508,7 @@ print "\nSetting up the app\n";
 $o_new_app_helper = new NewAppHelper($o_di);
 print 'Creating twig db records';
 $results = $o_new_app_helper->createTwigDbRecords();
-if (\is_string($results)) {
+if (is_string($results)) {
     failIt($o_db, $results, $using_mysql);
     failIt($o_db, $results, $using_mysql);
 }

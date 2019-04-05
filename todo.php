@@ -1,6 +1,4 @@
 <?php
 /*
-### Framework needs ###
-- todo - Create a standalone tail page in the tools directory
-- TODO - rewrite the makeDb.php script to use the files in /src/install_files directory.
+ * Test all changes to default templates to use the new twig shortcuts.
 */

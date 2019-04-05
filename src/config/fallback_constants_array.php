@@ -2,7 +2,7 @@
 return [
     ['ADMIN_DIR_NAME', 'manager', 'true'],
     ['ASSETS_DIR_NAME', 'assets', 'true'],
-    ['CACHE_TYPE', 'SimplePhpFiles', 'true'],
+    ['CACHE_TYPE', 'PhpFiles', 'true'],
     ['CACHE_TLL', 604800, 'true'],
     ['CONTENT_VCS', true, 'true'],
     ['COPYRIGHT_DATE', '2018', 'true'],
@@ -26,5 +26,5 @@ return [
     ['TMP_DIR_NAME', 'tmp', 'true'],
     ['VENDOR_DIR_NAME', 'vendor', 'true'],
     ['USE_CACHE', 'true', 'true'],
-    ['DEVELOPER_MODE', false, 'true'],
+    ['DEVELOPER_MODE', false, 'true']
 ];

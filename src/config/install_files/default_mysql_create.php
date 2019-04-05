@@ -20,6 +20,7 @@ return [
 "DROP TABLE IF EXISTS `{dbPrefix}twig_templates`",
 "DROP TABLE IF EXISTS `{dbPrefix}twig_dirs`",
 "DROP TABLE IF EXISTS `{dbPrefix}twig_prefix`",
+"DROP TABLE IF EXISTS `{dbPrefix}twig_themes`",
 "SET FOREIGN_KEY_CHECKS = 1",
 
 
@@ -204,6 +205,14 @@ return [
   KEY `a_url_id` (`a_url_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
+"CREATE TABLE `{dbPrefix}twig_themes` (
+  `theme_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `theme_name` varchar(64) NOT NULL DEFAULT 'base_fluid',
+  `theme_default` varchar(6) NOT NULL DEFAULT 'false',
+  PRIMARY KEY (`theme_id`),
+  UNIQUE KEY `theme_name` (`theme_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
+
 "CREATE TABLE `{dbPrefix}twig_prefix` (
   `tp_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `tp_prefix` varchar(32) NOT NULL DEFAULT 'site_',
@@ -225,6 +234,7 @@ return [
 "CREATE TABLE `{dbPrefix}twig_templates` (
   `tpl_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `td_id` int(11) unsigned NOT NULL,
+  `theme_id` int(11) unsigned NOT NULL,
   `tpl_name` varchar(128) NOT NULL DEFAULT '',
   `tpl_immutable` varchar(10) NOT NULL DEFAULT 'false',
   PRIMARY KEY (`tpl_id`),
@@ -247,4 +257,5 @@ return [
 "ALTER TABLE `{dbPrefix}aliases` ADD CONSTRAINT `{dbPrefix}aliases_ibfk_1` FOREIGN KEY (`a_url_id`) REFERENCES `{dbPrefix}urls` (`url_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE `{dbPrefix}twig_dirs` ADD CONSTRAINT `lib_twig_dirs_ibfk_1` FOREIGN KEY (`tp_id`) REFERENCES `{dbPrefix}twig_prefix` (`tp_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 "ALTER TABLE `{dbPrefix}twig_templates` ADD CONSTRAINT `{dbPrefix}twig_templates_ibfk_1` FOREIGN KEY (`td_id`) REFERENCES `{dbPrefix}twig_dirs` (`td_id`) ON DELETE CASCADE ON UPDATE CASCADE",
+"ALTER TABLE `{dbPrefix}twig_templates` ADD CONSTRAINT `{dbPrefix}twig_templates_ibfk_2` FOREIGN KEY (`theme_id`) REFERENCES `{dbPrefix}twig_themes` (`theme_id`) ON DELETE CASCADE ON UPDATE CASCADE",
 ];

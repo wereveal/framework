@@ -24,7 +24,7 @@ $a_places = [
     'Library' => [
         'path'   => APPS_PATH . '/Ritc/Library/resources/templates',
         'prefix' => LIB_TWIG_PREFIX
-    ],
+    ]
 ];
 
 $a_additional_paths = [];

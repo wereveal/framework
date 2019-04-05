@@ -20,7 +20,7 @@ $a_dirs = [
     'config_path' => $config_path,
     'apps_path'   => $apps_path];
 $o_cm = new AutoloadMapper($a_dirs);
-if (!\is_object($o_cm)) {
+if (!is_object($o_cm)) {
     die('Could not instance AutoloadMapper');
 }
 // print $o_cm->getAppPath() . "\n";
