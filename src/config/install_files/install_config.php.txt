@@ -46,8 +46,8 @@ return [
     'app_twig_prefix' => '',
     'app_theme_name'  => 'base_fluid',
     'app_db_prefix'   => '',
-    'a_groups'        => [],
-    'a_users'         => []
+    'a_groups'        => [], // see install_config.commented.txt!
+    'a_users'         => []  // see install_config.commented.txt!
 ];
 ### Brief ######################################################################
 # see install_config.commented.txt for details
