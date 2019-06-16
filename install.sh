@@ -1,16 +1,16 @@
 #!/bin/bash
 useJqueryUi="no"
-useFAPro="no"
-while getopts ":u:f" opt; do
+useLibPackageJson="no"
+while getopts ":u:l" opt; do
     case $opt in
         u)
             useJqueryUi="yes"
             ;;
-        f)
-            useFAPro="yes"
+        l)
+            useLibPackageJson="yes"
             ;;
         \?)
-            echo "Valid options are -u" >&2
+            echo "Valid options are -u (jQueryUI) -l (Library package.json)" >&2
             ;;
     esac
 done
@@ -82,8 +82,8 @@ if [ -f src/config/install_config.php ]; then
     php src/bin/install.php
 
     echo "Installing public/assets/vendor files"
-    echo $useFAPro
-    if [ "$useFAPro" = "yes" ]; then
+    echo $useLibPackageJson
+    if [ "$useLibPackageJson" = "yes" ]; then
         cp src/apps/Ritc/Library/resources/config/package.json.txt public/assets/package.json
         cp src/apps/Ritc/Library/resources/config/npmrc.txt public/assets/.npmrc
     else
