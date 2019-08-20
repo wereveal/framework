@@ -1,14 +1,14 @@
 #!/bin/bash
 useJqueryUi="no"
-useFAPro="no"
+useLibPackageJson="no"
 useGit="no"
-while getopts ":u:f:g" opt; do
+while getopts ":u:l:g" opt; do
     case $opt in
         u)
             useJqueryUi="yes"
             ;;
-        f)
-            useFAPro="yes"
+        l)
+            useLibPackageJson="yes"
             ;;
         g)
             useGit="yes"
@@ -67,7 +67,7 @@ else
 fi
 
 echo "Installing public/assets/vendor files"
-if [ "$useFAPro" = "yes" ]; then
+if [ "$useLibPackageJson" = "yes" ]; then
     cp src/apps/Ritc/Library/resources/config/package.json.txt public/assets/package.json
     cp src/apps/Ritc/Library/resources/config/npmrc.txt public/assets/.npmrc
 fi

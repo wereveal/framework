@@ -510,7 +510,6 @@ print 'Creating twig db records';
 $results = $o_new_app_helper->createTwigDbRecords();
 if (is_string($results)) {
     failIt($o_db, $results, $using_mysql);
-    failIt($o_db, $results, $using_mysql);
 }
 print "success\n";
 if ($using_mysql) {
