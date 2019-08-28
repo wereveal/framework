@@ -3,9 +3,9 @@ return [
     'namespace'        => 'REQUIRED',                      // specify the root namespace the app will be in
     'app_name'         => 'REQUIRED',                      // specify the primary app to which generates the home page
     'master_app'       => 'true',                          // specifies if this is the app called by /index.php
-    'author'           => 'William E Reveal',              // specify the author of the app
-    'short_author'     => 'wer',                           // abbreviation for the author
-    'email'            => '<bill@revealitconsulting.com>', // email of the author
+    'author'           => 'REQUIRED',                      // specify the author of the app
+    'short_author'     => 'REQUIRED',                      // abbreviation for the author
+    'email'            => '<REQUIRED>',                    // email of the author (leave the <>)
     'db_file'          => 'db_config',                     // all db_ keys will be used to create the db_file
     'db_host'          => 'localhost',                     // hostname where the database server resides
     'db_type'          => 'mysql',                         // mysql, pgsql, sqlite (sqlite not working)

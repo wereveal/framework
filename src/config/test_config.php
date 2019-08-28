@@ -26,7 +26,7 @@ return [
     'developer_mode'  => 'false',                         // or 'true' when in development
     'public_path'     => '',                              // leave blank for default setting
     'base_path'       => '',                              // leave blank for default setting
-    'http_host'       => '',                              // $_SERVER['HTTP_HOST'] results or leave blank for default
+    'server_http_host' => '',                             // $_SERVER['HTTP_HOST'] results or leave blank for default
 	'domain'          => 'wereveal',                      // domain name of site
 	'tld'             => 'com'                            // top level domain, e.g., com, net, org
 ];

@@ -109,7 +109,7 @@ $a_needed_keys = [
     'developer_mode',
     'public_path',
     'base_path',
-    'http_host',
+    'server_http_host',
     'specific_host'
 ];
 foreach ($a_needed_keys as $key) {
