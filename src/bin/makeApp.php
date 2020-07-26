@@ -200,15 +200,19 @@ $o_new_app_helper = new NewAppHelper($o_di);
 print 'Creating twig db records';
 $results = $o_new_app_helper->createTwigDbRecords();
 // var_dump($results);
-if ($results === false) {
+if (is_string($results)) {
     die("\n". $results);
 }
 print "New Twig records: success\n";
-$a_results = $o_new_app_helper->createUsers();
-if ($a_results['type'] === 'error') {
-    die("\n". $results);
+if (!empty($a_install['a_groups']) || !empty($a_install['a_users'])) {
+    print "Creating new user records: \n";
+    $results = $o_new_app_helper->createUsers();
+    if (is_string($results)) {
+        die($results);
+    }
+    print "New User records: success\n";
 }
-print "New User records: success\n";
+
 
 print "\nCreating the directories for the new app\n";
 if ($o_new_app_helper->createDirectories()) {

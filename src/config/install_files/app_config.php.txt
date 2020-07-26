@@ -21,6 +21,7 @@ return [
     'master_app'      => 'false',                         // specifies if this is the app called by /index.php
     'master_twig'     => 'false',                         // specifies if this app's twig prefix is the default (if false, site_ is default)
     'app_twig_prefix' => '',                              // specifies the twig prefix, defaults to strtolower(app_name) . '_'
+    'app_theme_name'  => 'base_fluid',                    // default theme to be used for templates
     'app_db_prefix'   => '',                              // specifies optional prefix for database tables, defaults to use db_prefix
     'a_groups'        => [                                // optional, if provided, new group records will be created
 //        [

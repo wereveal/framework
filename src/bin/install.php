@@ -40,7 +40,6 @@ if (strpos(__DIR__, 'Library') !== false) {
     die('Please Run this script from the src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
-print "Starting the php script.\n";
 
 /**
  * Switch to use the elog
@@ -75,7 +74,7 @@ if (isset($argv[1])) {
     $install_config = SRC_CONFIG_PATH . '/' . $argv[1];
 }
 if (!file_exists($install_config)) {
-    die('You must create the install_configs configuration file in ' . SRC_CONFIG_PATH . "The default name for the file is install_config.php. You may name it anything but it must then be specified on the command line.\n");
+    die('You must create the install_configs configuration file in ' . SRC_CONFIG_PATH . "\nThe default name for the file is install_config.php.\nYou may name it anything but it must then be specified on the command line.\n");
 }
 $a_install = require $install_config;
 $a_required_keys = [
@@ -512,6 +511,14 @@ if (is_string($results)) {
     failIt($o_db, $results, $using_mysql);
 }
 print "success\n";
+
+if (!empty($a_install['a_groups']) || !empty($a_install['a_users'])) {
+    $results = $o_new_app_helper->createUsers();
+    if (is_string($results)) {
+        failIt($o_db, $results, $using_mysql);
+    }
+}
+
 if ($using_mysql) {
     try {
         $o_db->commitTransaction();

@@ -15,25 +15,25 @@ while getopts ":u:l" opt; do
     esac
 done
 
-if [ ! -x $(command -v composer) ]; then
-    if [ ! -x $(command -v composer.phar) ]; then
+if [ ! -x "$(command -v composer)" ]; then
+    if [ ! -x "$(command -v composer.phar)" ]; then
         echo "composer must be installed"
         exit 1
     fi
 fi
-if [ ! -x $(command -v npm) ]; then
+if [ ! -x "$(command -v npm)" ]; then
     echo "npm and yarn must be installed"
     exit 1
 fi
-if [ ! -x $(command -v yarn) ]; then
+if [ ! -x "$(command -v yarn)" ]; then
     echo "yarn must be installed"
     exit 1
 fi
-if [ ! -x $(command -v git) ]; then
+if [ ! -x "$(command -v git)" ]; then
     echo "git must be installed"
     exit 1
 fi
-if [ ! -x $(command -v php) ]; then
+if [ ! -x "$(command -v php)" ]; then
     echo "php must be installed"
     exit 1
 fi
@@ -48,7 +48,7 @@ if [ -f src/config/install_config.php ]; then
         fi
     else
         echo "Updating the Library."
-        cd src/apps/Ritc/Library
+        cd src/apps/Ritc/Library || exit
         git pull
         cd ../../../../
     fi
@@ -59,7 +59,7 @@ if [ -f src/config/install_config.php ]; then
             echo "The composer.json file must exist at the base of the site."
             exit 1
         else
-            if [ -x $(command -v composer.phar) ]; then
+            if [ -x "$(command -v composer.phar)" ]; then
                 composer.phar install
             else
                 composer install
@@ -70,7 +70,7 @@ if [ -f src/config/install_config.php ]; then
             echo "The composer.json file must exist at the base of the site."
             exit 1
         else
-            if [ -x $(command -v composer.phar) ]; then
+            if [ -x "$(command -v composer.phar)" ]; then
                 composer.phar update
             else
                 composer update
@@ -106,8 +106,16 @@ if [ -f src/config/install_config.php ]; then
     bash src/bin/doUglifyJS.sh
     mv src/config/install_config.php private/
 else
-    echo "The src/config/install_config.php file must be created and configured first.\nSee src/config/install_files/install_config.commented.txt for full details."
-    cp src/config/install_files/install_config.php.txt src/config/install_config.php
-    vi src/config/install_config.php
-    echo "Now re-run install.sh"
+    echo "The src/config/install_config.php file must be created and configured first."
+    echo "See src/config/install_files/install_config.commented.txt for full details."
+    echo "Do you wish to create the file and configure it now? (y, n)"
+    read theAnswer
+    if [ "$theAnswer" = "y" ]; then
+        echo "The file will be created in the config directory."
+        cp src/config/install_files/install_config.php.txt src/config/install_config.php
+        vi src/config/install_config.php
+        echo "Now re-run install.sh"
+    else
+        echo "Be sure to create the file and update its configuration then re-run this script (install.sh)."
+    fi
 fi
