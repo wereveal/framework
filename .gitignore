@@ -12,10 +12,7 @@
 /src/config/install_db*.php
 /src/config/people_config.php
 /src/twig_cache/*
-/src/apps/Admospheres/*
-/src/apps/Ritc/*
-/src/apps/Wer*
-/src/apps/Terramark*
+/src/apps/*
 /public/assets/.npmrc
 /public/assets/.sass-cache
 /public/assets/css/*.css
