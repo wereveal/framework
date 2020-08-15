@@ -83,6 +83,7 @@ if [ -f src/config/install_config.php ]; then
 
     echo "Installing public/assets/vendor files"
     echo $useLibPackageJson
+    # LibPackageJson installs additional node packages
     if [ "$useLibPackageJson" = "yes" ]; then
         cp src/apps/Ritc/Library/resources/config/package.json.txt public/assets/package.json
         cp src/apps/Ritc/Library/resources/config/npmrc.txt public/assets/.npmrc
