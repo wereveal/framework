@@ -1,6 +1,5 @@
 {
   "name": "ritc/framework",
-  "version": "3.0.0",
   "require": {
     "php": ">=7.1.0",
     "ext-fileinfo": "*",
@@ -17,5 +16,8 @@
   },
   "require-dev": {
     "roave/security-advisories": "dev-master"
+  },
+  "autoload": {
+    "psr-4": { "Ritc\\": ""}
   }
 }
