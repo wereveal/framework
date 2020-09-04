@@ -13,18 +13,19 @@
  * @date      2017-05-25 15:28:28
  * @version   2.5.0
  * @note   <b>Change Log</b>
- * - v3.0.0 - Changed to use DbCreator and NewAppHelper     - 2017-12-15 wer
- * - v2.5.0 - Added several files to be created in app.            - 2017-05-25 wer
- * - v2.4.0 - changed several settings, defaults, and actions      - 2017-05-11 wer
- * - v2.3.0 - fix to install_files setup.php in public dir         - 2017-05-08 wer
- * - v2.2.0 - bug fixes to get postgresql working                  - 2017-04-18 wer
- * - v2.1.0 - lots of bug fixes and additions                      - 2017-01-24 wer
- * - v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
- * - v1.0.0 - initial version                                      - 2015-11-27 wer
+ * - v4.0.0 - Moved the Library to be installed vi Composer         - 2020-08-28 wer
+ * - v3.0.0 - Changed to use DbCreator and NewAppHelper             - 2017-12-15 wer
+ * - v2.5.0 - Added several files to be created in app.             - 2017-05-25 wer
+ * - v2.4.0 - changed several settings, defaults, and actions       - 2017-05-11 wer
+ * - v2.3.0 - fix to install_files setup.php in public dir          - 2017-05-08 wer
+ * - v2.2.0 - bug fixes to get postgresql working                   - 2017-04-18 wer
+ * - v2.1.0 - lots of bug fixes and additions                       - 2017-01-24 wer
+ * - v2.0.0 - bug fixes and rewrite of the database insert stuff    - 2017-01-13 wer
+ * - v1.0.0 - initial version                                       - 2015-11-27 wer
  */
 namespace Ritc;
 
-use PDO;
+use \PDO;
 use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ModelException;
 use Ritc\Library\Exceptions\ServiceException;
@@ -62,8 +63,8 @@ define('PUBLIC_PATH', $base_path . '/public');
 
 require_once BASE_PATH . '/src/config/constants.php';
 
-if (!file_exists(APPS_PATH . '/Ritc/Library')) {
-    die("You must clone the Ritc/Library in the apps dir first and any other desired apps.\n");
+if (!file_exists(LIBRARY_PATH)) {
+    die("The ritc/library must be installed either by Composer or git first.\n");
 }
 
 $install_files_path = SRC_CONFIG_PATH . '/install_files';
@@ -116,9 +117,9 @@ foreach ($a_needed_keys as $key) {
         $a_install[$key] = '';
     }
 }
+$o_loader = require VENDOR_PATH . '/autoload.php';
 
 ### generate files for autoloader ###
-require APPS_PATH . '/Ritc/Library/Helper/AutoloadMapper.php';
 $a_dirs = [
     'src_path'    => SRC_PATH,
     'config_path' => SRC_CONFIG_PATH,
@@ -239,7 +240,6 @@ else {
     }
 }
 
-$o_loader = require VENDOR_PATH . '/autoload.php';
 $my_namespaces = require SRC_CONFIG_PATH . '/autoload_namespaces.php';
 foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
     $o_loader->addPsr4($psr4_prefix, $psr0_paths);

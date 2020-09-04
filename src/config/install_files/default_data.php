@@ -1945,7 +1945,7 @@ $a_twig_prefix = [
     ],
     'lib' => [
         'tp_prefix'  => 'lib_',
-        'tp_path'    => '/src/apps/Ritc/Library/resources/templates',
+        'tp_path'    => '/vendor/ritc/library/resources/templates',
         'tp_active'  => 'true',
         'tp_default' => 'false'
     ]

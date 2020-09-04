@@ -1,5 +1,5 @@
 {
-  "name": "node_stuff",
+  "name": "node_installed_stuff",
   "version": "1.0.0",
   "authors": [
     "William E Reveal (from Mac) <bill@revealitconsulting.com>"
@@ -10,7 +10,6 @@
   "homepage": "",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.6.0",
-    "bootstrap": "^4.0.0",
     "html5shiv": "^3.7.3",
     "jquery": "^3.1.1",
     "jquery-datetimepicker": "^2.5.20",

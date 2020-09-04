@@ -39,20 +39,6 @@ if [ ! -x "$(command -v php)" ]; then
 fi
 
 if [ -f src/config/install_config.php ]; then
-    if [ ! -d src/apps/Ritc/Library ]; then
-        echo "Installing the Library."
-        if [ -d /srv/git/ritc/library.git ]; then
-            git clone /srv/git/ritc/library src/apps/Ritc/Library
-        else
-            git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
-        fi
-    else
-        echo "Updating the Library."
-        cd src/apps/Ritc/Library || exit
-        git pull
-        cd ../../../../
-    fi
-
     if [ ! -d ./vendor ]
     then
         if [ ! -f composer.json ]; then
