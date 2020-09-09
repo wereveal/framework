@@ -1,13 +1,17 @@
 #!/bin/bash
 useJqueryUi="no"
 useLibPackageJson="no"
-while getopts ":u:l" opt; do
+useYarn="no"
+while getopts ":u:l:y" opt; do
     case $opt in
         u)
             useJqueryUi="yes"
             ;;
         l)
             useLibPackageJson="yes"
+            ;;
+        y)
+            useYarn="yes"
             ;;
         \?)
             echo "Valid options are -u (jQueryUI) -l (Library package.json)" >&2
@@ -25,9 +29,11 @@ if [ ! -x "$(command -v npm)" ]; then
     echo "npm and yarn must be installed"
     exit 1
 fi
-if [ ! -x "$(command -v yarn)" ]; then
+if [ "$useYarn" = "yes" ]; then
+  if [ ! -x "$(command -v yarn)" ]; then
     echo "yarn must be installed"
     exit 1
+  fi
 fi
 if [ ! -x "$(command -v git)" ]; then
     echo "git must be installed"
@@ -68,7 +74,7 @@ if [ -f src/config/install_config.php ]; then
     php src/bin/install.php
 
     echo "Installing public/assets/vendor files"
-    echo $useLibPackageJson
+    echo "Using the package.json file from Library: " $useLibPackageJson
     # LibPackageJson installs additional node packages
     if [ "$useLibPackageJson" = "yes" ]; then
         cp src/apps/Ritc/Library/resources/config/package.json.txt public/assets/package.json
@@ -79,7 +85,8 @@ if [ -f src/config/install_config.php ]; then
             rm public/assets/.npmrc
         fi
     fi
-    bash src/bin/doYarn.sh
+    # bash src/bin/doYarn.sh
+    bash src/bin/doNpm.sh
 
     if [ "$useJqueryUi" = "yes" ]; then
         echo "Installing jQueryUi"
