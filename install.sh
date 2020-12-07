@@ -1,8 +1,9 @@
 #!/bin/bash
 useJqueryUi="no"
 useLibPackageJson="no"
-useYarn="no"
-while getopts ":u:l:y" opt; do
+useBootstrap="yes"
+useBulma="no"
+while getopts ":u:l:b" opt; do
     case $opt in
         u)
             useJqueryUi="yes"
@@ -10,8 +11,9 @@ while getopts ":u:l:y" opt; do
         l)
             useLibPackageJson="yes"
             ;;
-        y)
-            useYarn="yes"
+        b)
+            useBootstrap="no"
+            useBulma="yes"
             ;;
         \?)
             echo "Valid options are -u (jQueryUI) -l (Library package.json)" >&2
@@ -26,14 +28,8 @@ if [ ! -x "$(command -v composer)" ]; then
     fi
 fi
 if [ ! -x "$(command -v npm)" ]; then
-    echo "npm and yarn must be installed"
+    echo "npm must be installed"
     exit 1
-fi
-if [ "$useYarn" = "yes" ]; then
-  if [ ! -x "$(command -v yarn)" ]; then
-    echo "yarn must be installed"
-    exit 1
-  fi
 fi
 if [ ! -x "$(command -v git)" ]; then
     echo "git must be installed"
