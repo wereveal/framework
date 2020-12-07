@@ -270,19 +270,8 @@ catch (FactoryException $e) {
     die('Unable to start the PdoFactory. ' . $e->errorMessage());
 }
 
-if ($o_pdo !== false) {
-    $o_db = new DbModel($o_pdo, $the_db_config_file);
-    if (!$o_db instanceof DbModel) {
-        $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
-        die("Could not get the database to work\n");
-    }
-
-    $o_di->set('db', $o_db);
-}
-else {
-    $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
-    die("Could not connect to the database\n");
-}
+$o_db = new DbModel($o_pdo, $the_db_config_file);
+$o_di->set('db', $o_db);
 $using_mysql = false;
 switch ($db_type) {
     case 'pgsql':
@@ -525,7 +514,7 @@ if ($using_mysql) {
         print "Data Insert Complete.\n";
     }
     catch (ModelException $e) {
-        failIt($o_db, 'Could not commit the transaction.', $using_mysql);
+        failIt($o_db, 'Could not commit the transaction.', true);
     }
 }
 
