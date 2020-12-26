@@ -155,7 +155,7 @@ $a_constants = [
     ],
     'vendor_dir_name' => [
         'const_name'      => 'VENDOR_DIR_NAME',
-        'const_value'     => 'vendor',
+        'const_value'     => 'node_modules',
         'const_immutable' => 'true'
     ],
     'developer_mode' => [
@@ -1945,7 +1945,7 @@ $a_twig_prefix = [
     ],
     'lib' => [
         'tp_prefix'  => 'lib_',
-        'tp_path'    => '/src/apps/Ritc/Library/resources/templates',
+        'tp_path'    => '/vendor/ritc/library/resources/templates',
         'tp_active'  => 'true',
         'tp_default' => 'false'
     ]

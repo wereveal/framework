@@ -1,6 +1,6 @@
 {
   "name": "ritc/framework",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "repositories": [{
     "type": "composer",
     "url": "https://packages.qca.net"

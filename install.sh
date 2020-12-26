@@ -1,13 +1,19 @@
 #!/bin/bash
 useJqueryUi="no"
 useLibPackageJson="no"
-while getopts ":u:l" opt; do
+useBootstrap="yes"
+useBulma="no"
+while getopts ":u:l:b" opt; do
     case $opt in
         u)
             useJqueryUi="yes"
             ;;
         l)
             useLibPackageJson="yes"
+            ;;
+        b)
+            useBootstrap="no"
+            useBulma="yes"
             ;;
         \?)
             echo "Valid options are -u (jQueryUI) -l (Library package.json)" >&2
@@ -22,11 +28,7 @@ if [ ! -x "$(command -v composer)" ]; then
     fi
 fi
 if [ ! -x "$(command -v npm)" ]; then
-    echo "npm and yarn must be installed"
-    exit 1
-fi
-if [ ! -x "$(command -v yarn)" ]; then
-    echo "yarn must be installed"
+    echo "npm must be installed"
     exit 1
 fi
 if [ ! -x "$(command -v git)" ]; then
@@ -39,20 +41,6 @@ if [ ! -x "$(command -v php)" ]; then
 fi
 
 if [ -f src/config/install_config.php ]; then
-    if [ ! -d src/apps/Ritc/Library ]; then
-        echo "Installing the Library."
-        if [ -d /srv/git/ritc/library.git ]; then
-            git clone /srv/git/ritc/library src/apps/Ritc/Library
-        else
-            git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
-        fi
-    else
-        echo "Updating the Library."
-        cd src/apps/Ritc/Library || exit
-        git pull
-        cd ../../../../
-    fi
-
     if [ ! -d ./vendor ]
     then
         if [ ! -f composer.json ]; then
@@ -82,7 +70,7 @@ if [ -f src/config/install_config.php ]; then
     php src/bin/install.php
 
     echo "Installing public/assets/vendor files"
-    echo $useLibPackageJson
+    echo "Using the package.json file from Library: " $useLibPackageJson
     # LibPackageJson installs additional node packages
     if [ "$useLibPackageJson" = "yes" ]; then
         cp src/apps/Ritc/Library/resources/config/package.json.txt public/assets/package.json
@@ -93,7 +81,8 @@ if [ -f src/config/install_config.php ]; then
             rm public/assets/.npmrc
         fi
     fi
-    bash src/bin/doYarn.sh
+    # bash src/bin/doYarn.sh
+    bash src/bin/doNpm.sh
 
     if [ "$useJqueryUi" = "yes" ]; then
         echo "Installing jQueryUi"

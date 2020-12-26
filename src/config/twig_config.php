@@ -22,7 +22,7 @@ $a_places = [
         'prefix' => TWIG_PREFIX
     ],
     'Library' => [
-        'path'   => APPS_PATH . '/Ritc/Library/resources/templates',
+        'path'   => LIBRARY_PATH . '/resources/templates',
         'prefix' => LIB_TWIG_PREFIX
     ]
 ];

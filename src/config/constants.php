@@ -54,7 +54,16 @@ if (!defined('RODB')) {
     define('RODB', false);
 }
 if (!defined('LIBRARY_PATH')) {
-    if(file_exists(APPS_PATH . '/Ritc/Library')) {
+    if (file_exists(VENDOR_PATH . '/ritc/library')) {
+        define('LIBRARY_PATH', VENDOR_PATH . '/ritc/library');
+        if (file_exists(LIBRARY_PATH . '/resources/config')) {
+            define('LIBRARY_CONFIG_PATH', LIBRARY_PATH . '/resources/config');
+        }
+        else {
+            define('LIBRARY_CONFIG_PATH', SRC_CONFIG_PATH);
+        }
+    }
+    elseif(file_exists(APPS_PATH . '/Ritc/Library')) {
         define('LIBRARY_PATH', APPS_PATH . '/Ritc/Library');
         if (file_exists(LIBRARY_PATH . '/resources/config')) {
             define('LIBRARY_CONFIG_PATH', LIBRARY_PATH . '/resources/config');
