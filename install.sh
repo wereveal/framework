@@ -1,22 +1,16 @@
 #!/bin/bash
-useJqueryUi="no"
 useLibPackageJson="no"
-useBootstrap="yes"
-useBulma="no"
-while getopts ":u:l:b" opt; do
+useBootstrap="no"
+while getopts ":l:b" opt; do
     case $opt in
-        u)
-            useJqueryUi="yes"
-            ;;
         l)
             useLibPackageJson="yes"
             ;;
         b)
-            useBootstrap="no"
-            useBulma="yes"
+            useBootstrap="yes"
             ;;
         \?)
-            echo "Valid options are -u (jQueryUI) -l (Library package.json)" >&2
+            echo "Valid options are -b (Bootstrap) -l (Library package.json)" >&2
             ;;
     esac
 done
@@ -49,8 +43,14 @@ if [ -f src/config/install_config.php ]; then
         else
             if [ -x "$(command -v composer.phar)" ]; then
                 composer.phar install
+                if [ "$useBootstrap" = "yes" ]; then
+                  composer.phar install bootstrap
+                fi
             else
                 composer install
+                if [ "$useBootstrap" = "yes" ]; then
+                  composer install bootstrap
+                fi
             fi
         fi
     else
@@ -84,11 +84,6 @@ if [ -f src/config/install_config.php ]; then
     # bash src/bin/doYarn.sh
     bash src/bin/doNpm.sh
 
-    if [ "$useJqueryUi" = "yes" ]; then
-        echo "Installing jQueryUi"
-        bash src/bin/doJqueryUi.sh
-    fi
-
     echo "Running Sass"
     bash src/bin/doSass.sh
 
@@ -99,6 +94,7 @@ else
     echo "The src/config/install_config.php file must be created and configured first."
     echo "See src/config/install_files/install_config.commented.txt for full details."
     echo "Do you wish to create the file and configure it now? (y, n)"
+    # shellcheck disable=SC2162
     read theAnswer
     if [ "$theAnswer" = "y" ]; then
         echo "The file will be created in the config directory."
