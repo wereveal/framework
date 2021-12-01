@@ -23,7 +23,6 @@
  */
 namespace Ritc;
 
-use JetBrains\PhpStorm\ArrayShape;
 use PDO;
 use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ModelException;
