@@ -21,6 +21,7 @@
     "psr/log": "^1.0",
     "psr/simple-cache": "^3.0",
     "symfony/cache": "^6.0",
+    "twbs/bootstrap": "^4.0",
     "twig/twig": "^3.0"
   },
   "require-dev": {
