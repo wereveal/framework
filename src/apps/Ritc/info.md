@@ -1,0 +1,1 @@
+# This is the required namespace for the whole shebang to work

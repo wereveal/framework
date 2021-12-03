@@ -1,10 +1,10 @@
 #!/bin/bash
-useLibPackageJson="no"
+useLibPackageJson="yes"
 useBootstrap="no"
 while getopts ":l:b" opt; do
     case $opt in
         l)
-            useLibPackageJson="yes"
+            useLibPackageJson="no"
             ;;
         b)
             useBootstrap="yes"
@@ -66,6 +66,11 @@ if [ -f src/config/install_config.php ]; then
         fi
     fi
 
+    ### Must install the Library First
+    if [ ! -d src/apps/Ritc/Libray ]; then
+      echo "Installing the Library"
+      git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
+    fi
     echo "Running the php install script"
     php src/bin/install.php
 

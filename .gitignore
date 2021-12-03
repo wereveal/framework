@@ -12,8 +12,7 @@
 /src/config/install_db*.php
 /src/config/people_config.php
 /src/twig_cache/*
-/src/apps/*
-/public/assets/.npmrc
+/src/apps/Ritc/Library
 /public/assets/.sass-cache
 /public/assets/css/*.css
 /public/assets/css/*.map
@@ -24,7 +23,7 @@
 /public/assets/images/touch/*.xml
 /public/assets/js/*.js
 /public/assets/js/*.js.map
-/public/assets/package.json
+/public/assets/node_modules
 /public/assets/vendor
 /public/doxy
 /public/index.php
