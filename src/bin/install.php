@@ -1,4 +1,7 @@
-<?php /** @noinspection PhpIncludeInspection */
+<?php
+/**
+ * @noinspection DuplicatedCode
+ */
 /**
  * @brief     This file sets up standard stuff for the Framework.
  * @details   This creates the database config, some standard directories,
@@ -27,7 +30,7 @@
  */
 namespace Ritc;
 
-use \PDO;
+use PDO;
 use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ModelException;
 use Ritc\Library\Exceptions\ServiceException;
@@ -39,7 +42,7 @@ use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 
-if (strpos(__DIR__, 'Library') !== false) {
+if (str_contains(__DIR__, 'Library')) {
     die('Please Run this script from the src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
@@ -300,7 +303,8 @@ $o_di->setVar('app_path', $app_path);
  * @param array $a_records
  * @return array
  */
-function createStrings(array $a_records = []) {
+function createStrings(array $a_records = []): array
+{
     $a_record = array_shift($a_records);
     $fields = '';
     $values = '';
@@ -320,7 +324,8 @@ function createStrings(array $a_records = []) {
  * @param array $a_org_values
  * @return array
  */
-function reorgArray(array $a_org_values = []) {
+function reorgArray(array $a_org_values = []): array
+{
     $a_values = [];
     foreach ($a_org_values as $a_value) {
         $a_values[] = $a_value;
@@ -332,10 +337,10 @@ function reorgArray(array $a_org_values = []) {
  * Rolls back the transaction and exits the script.
  *
  * @param DbModel $o_db
- * @param string $message
- * @param bool $using_mysql
+ * @param string  $message
+ * @param bool    $using_mysql
  */
-function failIt(DbModel $o_db, $message = '', $using_mysql = false) {
+function failIt(DbModel $o_db, string $message = '', bool $using_mysql = false) {
     if ($using_mysql) {
         try {
             $o_db->rollbackTransaction();
@@ -505,8 +510,8 @@ print "success\n";
 
 if (!empty($a_install['a_groups']) || !empty($a_install['a_users'])) {
     $results = $o_new_app_helper->createUsers();
-    if (is_string($results)) {
-        failIt($o_db, $results, $using_mysql);
+    if ($results['type'] === 'error') {
+        failIt($o_db, $results['message'], $using_mysql);
     }
 }
 

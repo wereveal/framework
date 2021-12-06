@@ -22,13 +22,13 @@ elif [ -d ../apps/ ]; then
  appsDir='../apps'
 fi
 
-for dir in $(ls $appsDir)
+for theAppNamespace in "$appsDir"/*
 do
-  for inner_dir in $(ls $appsDir/$dir/)
+  for theApp in "$appsDir"/"$theAppNamespace"/*
   do
-    theScssDir=$appsDir/$dir/$inner_dir/resources/assets/scss
-    if [ -d $theScssDir ]; then
-      sass --update --style=compressed ${theScssDir}:${thePublicDir}
+    theScssDir=$appsDir/$theAppNamespace/$theApp/resources/assets/scss
+    if [ -d "$theScssDir" ]; then
+      sass --update --style=compressed "$theScssDir":"$thePublicDir"
     fi
   done
 done

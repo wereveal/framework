@@ -1,6 +1,7 @@
 #!/bin/bash
 useLibPackageJson="yes"
 useBootstrap="no"
+whereIam=$(pwd)
 while getopts ":l:b" opt; do
     case $opt in
         l)
@@ -70,29 +71,20 @@ if [ -f src/config/install_config.php ]; then
     if [ ! -d src/apps/Ritc/Libray ]; then
       echo "Installing the Library"
       git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
+    else
+      cd src/apps/Ritc/Library
+      git pull
+      cd $whereIam
     fi
     echo "Running the php install script"
     php src/bin/install.php
 
-    echo "Installing public/assets/vendor files"
-    echo "Using the package.json file from Library: " $useLibPackageJson
-    # LibPackageJson installs additional node packages
-    if [ "$useLibPackageJson" = "yes" ]; then
-        cp src/apps/Ritc/Library/resources/config/package.json.txt public/assets/package.json
-        cp src/apps/Ritc/Library/resources/config/npmrc.txt public/assets/.npmrc
-    else
-        cp src/config/install_files/package.json.txt public/assets/package.json
-        if [ -f public/assets/.npmrc ]; then
-            rm public/assets/.npmrc
-        fi
-    fi
-    # bash src/bin/doYarn.sh
+    echo "Updating the public/assets"
+    echo "First npm install"
     bash src/bin/doNpm.sh
-
-    echo "Running Sass"
+    echo "Next Running Sass"
     bash src/bin/doSass.sh
-
-    echo "Running uglifyJs"
+    echo "Finally Running uglifyJs"
     bash src/bin/doUglifyJS.sh
     mv src/config/install_config.php private/
 else

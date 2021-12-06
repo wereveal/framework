@@ -13,16 +13,16 @@ elif [ -d ../apps/ ]; then
  appsDir='../apps'
 fi
 
-for dir in $(ls $appsDir)
+for dir in "$appsDir"/*
 do
-  for inner_dir in $(ls $appsDir/$dir/)
+  for inner_dir in "$appsDir"/"$dir"/*
   do
     theJsDir=$appsDir/$dir/$inner_dir/resources/assets/js
-    if [ -f $theJsDir/*.js ]; then
-      for thing in $(ls $theJsDir/*.js)
+    if [ -d "$theJsDir" ]; then
+      for thing in "$theJsDir"/*.js
       do
-        shortThing=$(basename ${thing})
-        uglifyjs --compress --mangle --source-map --output $thePublicDir/$shortThing $thing
+        shortThing=$(basename "$thing")
+        uglifyjs --compress --mangle --source-map --output "$thePublicDir"/"$shortThing" "$thing"
       done
     fi
   done

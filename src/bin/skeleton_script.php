@@ -22,7 +22,7 @@ use Ritc\Library\Services\Elog;
 
 ini_set('date.timezone', 'America/Chicago');
 
-if (strpos(__DIR__, '/src/bin') !== false) {
+if (str_contains(__DIR__, '/src/bin')) {
     die('Please Run this script from the /src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
@@ -78,18 +78,7 @@ catch (FactoryException $e) {
     die('Unable to start the PdoFactory. ' . $e->errorMessage());
 }
 
-if ($o_pdo !== false) {
-    $o_db = new DbModel($o_pdo, $db_config_file);
-    if (!is_object($o_db)) {
-        $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
-        die("Could not get the database to work\n");
-    }
-
-    $o_di->set('db', $o_db);
-}
-else {
-    $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
-    die("Could not connect to the database\n");
-}
+$o_db = new DbModel($o_pdo, $db_config_file);
+$o_di->set('db', $o_db);
 
 

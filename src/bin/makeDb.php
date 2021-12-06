@@ -9,22 +9,24 @@
  * @file      /src/bin/makeDb.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2019-01-08 10:03:26
- * @version   3.1.0
- * @note   <b>Change Log</b>
- * - v3.1.0 - Lot of bug fixes and minor changes to get it to work  - 2019-01-08 wer
- * - v3.0.0 - Changed to use DbCreator and NewAppHelper             - 2017-12-15 wer
- * - v2.5.0 - Added several files to be created in app.             - 2017-05-25 wer
- * - v2.4.0 - changed several settings, defaults, and actions       - 2017-05-11 wer
- * - v2.3.0 - fix to install_files setup.php in public dir          - 2017-05-08 wer
- * - v2.2.0 - bug fixes to get postgresql working                   - 2017-04-18 wer
- * - v2.1.0 - lots of bug fixes and additions                       - 2017-01-24 wer
- * - v2.0.0 - bug fixes and rewrite of the database insert stuff    - 2017-01-13 wer
- * - v1.0.0 - initial version                                       - 2015-11-27 wer
+ * @date      2021-12-04 17:05:44
+ * @version   4.0.0-alpha.1
+ * @todo      Test makeDb.php
+ * @change_log
+ * - 4.0.0-alpha.1                                                  - 2021-12-04 wer
+ *          - updated for php 8 and other changes
+ * - 3.1.0 - Lot of bug fixes and minor changes to get it to work   - 2019-01-08 wer
+ * - 3.0.0 - Changed to use DbCreator and NewAppHelper              - 2017-12-15 wer
+ * - 2.5.0 - Added several files to be created in app.              - 2017-05-25 wer
+ * - 2.4.0 - changed several settings, defaults, and actions        - 2017-05-11 wer
+ * - 2.3.0 - fix to install_files setup.php in public dir           - 2017-05-08 wer
+ * - 2.2.0 - bug fixes to get postgresql working                    - 2017-04-18 wer
+ * - 2.1.0 - lots of bug fixes and additions                        - 2017-01-24 wer
+ * - 2.0.0 - bug fixes and rewrite of the database insert stuff     - 2017-01-13 wer
+ * - 1.0.0 - initial version                                        - 2015-11-27 wer
  */
 namespace Ritc;
 
-use PDO;
 use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ModelException;
 use Ritc\Library\Exceptions\ServiceException;
@@ -36,7 +38,7 @@ use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 
-if (strpos(__DIR__, 'Library') !== false) {
+if (str_contains(__DIR__, 'Library')) {
     die('Please Run this script from the src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
@@ -53,16 +55,11 @@ if (!file_exists(APPS_PATH . '/Ritc/Library')) {
 $db_config_file = 'db_config.php';
 /* allows a custom file to be used. Still must be in src/config dir */
 if (isset($argv[1])) {
-    switch ($argv[1]) {
-        case 'test':
-            $db_config_file = 'db_config_test.php';
-            break;
-        case 'local':
-            $db_config_file = 'db_config_local.php';
-            break;
-        default:
-            $db_config_file = $argv[1];
-    }
+    $db_config_file = match ($argv[1]) {
+        'test'  => 'db_config_test.php',
+        'local' => 'db_config_local.php',
+        default => $argv[1],
+    };
 }
 if (!file_exists(SRC_CONFIG_PATH . '/' . $db_config_file)) {
     die('You must create the db_config configuration file in '
@@ -134,39 +131,20 @@ catch (ServiceException $e) {
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
 try {
-    /** @var PDO $o_pdo */
     $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
 }
 catch (FactoryException $e) {
     die('Unable to start the PdoFactory. ' . $e->errorMessage());
 }
 
-if ($o_pdo !== false) {
-    $o_di->set('pdo', $o_pdo);
-    $o_db = new DbModel($o_pdo, $db_config_file);
-    if (!$o_db instanceof DbModel) {
-        $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
-        die("Could not get the database to work\n");
-    }
-
-    $o_di->set('db', $o_db);
-}
-else {
-    $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
-    die("Could not connect to the database\n");
-}
-
-switch ($a_db_config['driver']) {
-    case 'pgsql':
-        $a_sql = require $install_files_path .  '/default_pgsql_create.php';
-        break;
-    case 'sqlite':
-        $a_sql = array();
-        break;
-    case 'mysql':
-    default:
-        $a_sql = require $install_files_path .  '/default_mysql_create.php';
-}
+$o_di->set('pdo', $o_pdo);
+$o_db = new DbModel($o_pdo, $db_config_file);
+$o_di->set('db', $o_db);
+$a_sql    = match ($a_db_config['driver']) {
+    'pgsql'  => require $install_files_path . '/default_pgsql_create.php',
+    'sqlite' => array(),
+    default  => require $install_files_path . '/default_mysql_create.php',
+};
 $a_data = require $install_files_path .  '/default_data.php';
 $app_path = SRC_PATH . '/apps/' . $a_install['namespace'] . '/' . $a_install['app_name'];
 $o_di->setVar('a_sql', $a_sql);
@@ -176,10 +154,12 @@ $o_di->setVar('app_path', $app_path);
 
 /**
  * Creates the strings needed for sql.
+ *
  * @param array $a_records
  * @return array
  */
-function createStrings(array $a_records = []) {
+function createStrings(array $a_records = []): array
+{
     $a_record = array_shift($a_records);
     $fields = '';
     $values = '';
@@ -198,7 +178,8 @@ function createStrings(array $a_records = []) {
  * @param array $a_org_values
  * @return array
  */
-function reorgArray(array $a_org_values = []) {
+function reorgArray(array $a_org_values = []): array
+{
     $a_values = [];
     foreach ($a_org_values as $a_value) {
         $a_values[] = $a_value;
@@ -213,7 +194,7 @@ function reorgArray(array $a_org_values = []) {
  * @param string  $message
  * @param bool    $rollback
  */
-function failIt(DbModel $o_db, $message = '', $rollback = true) {
+function failIt(DbModel $o_db, string $message = '', bool $rollback = true) {
     if ($rollback) {
         try {
             $o_db->rollbackTransaction();

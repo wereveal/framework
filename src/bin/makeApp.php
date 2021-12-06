@@ -10,21 +10,23 @@
  * @file      /src/bin/makeApp.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2017-05-25 15:28:28
- * @version   2.5.0
- * @note   <b>Change Log</b>
- * - v3.0.0 - Changed to use DbCreator and NewAppHelper     - 2017-12-15 wer
- * - v2.5.0 - Added several files to be created in app.            - 2017-05-25 wer
- * - v2.4.0 - changed several settings, defaults, and actions      - 2017-05-11 wer
- * - v2.3.0 - fix to install_files setup.php in public dir         - 2017-05-08 wer
- * - v2.2.0 - bug fixes to get postgresql working                  - 2017-04-18 wer
- * - v2.1.0 - lots of bug fixes and additions                      - 2017-01-24 wer
- * - v2.0.0 - bug fixes and rewrite of the database insert stuff   - 2017-01-13 wer
- * - v1.0.0 - initial version                                      - 2015-11-27 wer
+ * @date      2021-12-04 17:01:25
+ * @version   4.0.0-alpha.1
+ * @todo      Test makeApp.php
+ * @change_log
+ * - 4.0.0-alpha.1                                                  - 2021-12-04 wer
+ *         - updated for php8 and other changes
+ * - 3.0.0 - Changed to use DbCreator and NewAppHelper              - 2017-12-15 wer
+ * - 2.5.0 - Added several files to be created in app.              - 2017-05-25 wer
+ * - 2.4.0 - changed several settings, defaults, and actions        - 2017-05-11 wer
+ * - 2.3.0 - fix to install_files setup.php in public dir           - 2017-05-08 wer
+ * - 2.2.0 - bug fixes to get postgresql working                    - 2017-04-18 wer
+ * - 2.1.0 - lots of bug fixes and additions                        - 2017-01-24 wer
+ * - 2.0.0 - bug fixes and rewrite of the database insert stuff     - 2017-01-13 wer
+ * - 1.0.0 - initial version                                        - 2015-11-27 wer
  */
 namespace Ritc;
 
-use PDO;
 use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ServiceException;
 use Ritc\Library\Factories\PdoFactory;
@@ -34,7 +36,7 @@ use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 
-if (strpos(__DIR__, 'Library') !== false) {
+if (str_contains(__DIR__, 'Library')) {
     die('Please Run this script from the src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
@@ -155,38 +157,20 @@ catch (ServiceException $e) {
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
 try {
-    /** @var PDO $o_pdo */
     $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
 }
 catch (FactoryException $e) {
     die('Unable to start the PdoFactory. ' . $e->errorMessage());
 }
 
-if ($o_pdo !== false) {
-    $o_db = new DbModel($o_pdo, $db_config_file);
-    if (!$o_db instanceof DbModel) {
-        $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
-        die("Could not get the database to work\n");
-    }
+$o_db = new DbModel($o_pdo, $db_config_file);
+$o_di->set('db', $o_db);
 
-    $o_di->set('db', $o_db);
-}
-else {
-    $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
-    die("Could not connect to the database\n");
-}
-
-switch ($a_install['db_type']) {
-    case 'pgsql':
-        $a_sql = require $install_files_path .  '/default_pgsql_create.php';
-        break;
-    case 'sqlite':
-        $a_sql = array();
-        break;
-    case 'mysql':
-    default:
-        $a_sql = require $install_files_path .  '/default_mysql_create.php';
-}
+$a_sql  = match ($a_install['db_type']) {
+    'pgsql'  => require $install_files_path . '/default_pgsql_create.php',
+    'sqlite' => array(),
+    default  => require $install_files_path . '/default_mysql_create.php',
+};
 $a_data = require $install_files_path .  '/default_data.php';
 
 $o_di->setVar('a_sql', $a_sql);
@@ -199,20 +183,18 @@ print "\nSetting up the app\n";
 $o_new_app_helper = new NewAppHelper($o_di);
 print 'Creating twig db records';
 $results = $o_new_app_helper->createTwigDbRecords();
-// var_dump($results);
 if (is_string($results)) {
     die("\n". $results);
 }
 print "New Twig records: success\n";
 if (!empty($a_install['a_groups']) || !empty($a_install['a_users'])) {
     print "Creating new user records: \n";
-    $results = $o_new_app_helper->createUsers();
-    if (is_string($results)) {
-        die($results);
+    $a_results = $o_new_app_helper->createUsers();
+    if ($a_results['type'] !== 'success') {
+        die($a_results);
     }
     print "New User records: success\n";
 }
-
 
 print "\nCreating the directories for the new app\n";
 if ($o_new_app_helper->createDirectories()) {
