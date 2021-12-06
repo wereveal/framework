@@ -1,17 +1,13 @@
 #!/bin/bash
-useLibPackageJson="yes"
-useBootstrap="no"
+useBootstrap="n"
 whereIam=$(pwd)
 while getopts ":l:b" opt; do
     case $opt in
-        l)
-            useLibPackageJson="no"
-            ;;
         b)
-            useBootstrap="yes"
+            useBootstrap="y"
             ;;
         \?)
-            echo "Valid options are -b (Bootstrap) -l (Library package.json)" >&2
+            echo "Valid options are -b (use Bootstrap instead of Bulma)" >&2
             ;;
     esac
 done
@@ -83,7 +79,11 @@ if [ -f src/config/install_config.php ]; then
     echo "First npm install"
     bash src/bin/doNpm.sh
     echo "Next Running Sass"
-    bash src/bin/doSass.sh
+    if [ "$useBootstrap" = "y" ]
+      bash src/bin/doSassBs.sh
+    else
+      bash src/bin/doSass.sh
+    fi
     echo "Finally Running uglifyJs"
     bash src/bin/doUglifyJS.sh
     mv src/config/install_config.php private/
