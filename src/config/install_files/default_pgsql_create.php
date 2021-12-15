@@ -1,5 +1,8 @@
 <?php
-/** @noinspection SqlNoDataSourceInspection */
+/**
+ * @noinspection PhpUnnecessaryDoubleQuotesInspection
+ * @noinspection SqlNoDataSourceInspection
+ */
 return [
 "DROP TABLE IF EXISTS {dbPrefix}nav_ng_map CASCADE",
 "DROP TABLE IF EXISTS {dbPrefix}people_group_map CASCADE",

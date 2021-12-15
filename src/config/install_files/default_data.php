@@ -1923,16 +1923,24 @@ $a_content = [
 
 $a_twig_themes = [
     'base_fluid' => [
-        'theme_name'      => 'base_fluid',
-        'theme_default'   => 'true'
+        'theme_name'    => 'base_fluid',
+        'theme_default' => 'true'
+    ],
+    'base_bs' => [
+        'theme_name'    => 'base_bs',
+        'theme_default' => 'false',
+    ],
+    'base_bulma' => [
+        'theme_name'    => 'base_bulma',
+        'theme_default' => 'false',
     ],
     'base_fixed' => [
-        'theme_name'      => 'base_fixed',
-        'theme_default'   => 'false'
+        'theme_name'    => 'base_fixed',
+        'theme_default' => 'false'
     ],
     'base' => [
-        'theme_name'      => 'base',
-        'theme_default'   => 'false'
+        'theme_name'    => 'base',
+        'theme_default' => 'false'
     ],
 ];
 

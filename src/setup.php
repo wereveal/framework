@@ -102,7 +102,7 @@ $o_di->set('session', $o_session);
 $o_di->setVar('dbConfig', $db_config_file);
 
 try {
-    $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+    $o_pdo = PdoFactory::start($db_config_file, 'rw');
     if (!$o_pdo instanceof PDO) {
         die('PDO instance was not created');
     }
@@ -123,7 +123,7 @@ $o_db->setElog($o_elog);
 $o_di->set('db', $o_db);
 if (RODB) {
     try {
-        $o_pdo_ro = PdoFactory::start($db_config_file, 'ro', $o_di);
+        $o_pdo_ro = PdoFactory::start($db_config_file, 'ro');
         if (!$o_pdo_ro instanceof PDO) {
             die('Could not start the RO PDOFactory.');
         }

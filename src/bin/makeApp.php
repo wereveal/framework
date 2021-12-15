@@ -1,5 +1,8 @@
 <?php
 /**
+ * @noinspection DuplicatedCode
+ */
+/**
  * @brief     This file sets up standard stuff for a single app.
  * @details   This creates the database config, some standard directories,
  *            and some standard files needed, e.g. index.php and MainController.
@@ -43,6 +46,8 @@ $base_path = str_replace('/src/bin', '', __DIR__);
 define('DEVELOPER_MODE', true);
 define('BASE_PATH', $base_path);
 define('PUBLIC_PATH', $base_path . '/public');
+define('PRIVATE_DIR_NAME', 'private');
+define('PRIVATE_PATH', $base_path . '/' . PRIVATE_DIR_NAME);
 
 require_once BASE_PATH . '/src/config/constants.php';
 
@@ -65,16 +70,6 @@ $a_required_keys = [
     'app_name',
     'namespace',
     'db_file',
-    'db_host',
-    'db_type',
-    'db_port',
-    'db_name',
-    'db_user',
-    'db_pass',
-    'db_persist',
-    'db_errmode',
-    'db_prefix',
-    'lib_db_prefix'
 ];
 foreach ($a_required_keys as $key) {
     if (empty($a_install[$key])) {
@@ -82,12 +77,14 @@ foreach ($a_required_keys as $key) {
     }
 }
 $a_needed_keys = [
+    'master_app',
     'author',
     'short_author',
     'email',
-    'domain',
-    'tld',
-    'master_app'
+    'master_twig',
+    'app_twig_prefix',
+    'app_theme_name',
+    'app_db_prefix'
 ];
 foreach ($a_needed_keys as $key) {
     if (!isset($a_install[$key])) {
@@ -106,27 +103,34 @@ $o_cm = new AutoloadMapper($a_dirs);
 if (!is_object($o_cm)) {
     die('Could not instance AutoloadMapper');
 }
-# $o_cm->generateMapFiles();
-
-$app_path = APPS_PATH . '/' . $a_install['namespace'] . '/' . $a_install['app_name'];
+$app_namespace = ucfirst(strtolower($a_install['namespace']));
+$app_name = ucfirst(strtolower($a_install['app_name']));
+$app_path = APPS_PATH . '/' . $app_namespace . '/' . $app_name;
+$a_install['app_path'] = $app_path;
 ### Setup the database ###
 $db_config_file = $a_install['db_file'];
+$a_db_config = require SRC_CONFIG_PATH . '/' . $db_config_file;
+$array_key_values = '';
+foreach ($a_db_config as $key => $value) {
+    $array_key_values .= '    ' . $key . ' => ' . $value . ",\n";
+}
+$array_key_values .= '    ' .
 $db_config_file_text =<<<EOT
 <?php
 return [
-    'driver'     => '{$a_install['db_type']}',
-    'host'       => '{$a_install['db_host']}',
-    'port'       => '{$a_install['db_port']}',
-    'name'       => '{$a_install['db_name']}',
-    'user'       => '{$a_install['db_user']}',
-    'password'   => '{$a_install['db_pass']}',
-    'userro'     => '{$a_install['db_user']}',
-    'passro'     => '{$a_install['db_pass']}',
-    'persist'    => {$a_install['db_persist']},
-    'prefix'     => '{$a_install['db_prefix']}',
-    'errmode'    => '{$a_install['db_errmode']}',
-    'db_prefix'  => '{$a_install['db_prefix']}',
-    'lib_prefix' => '{$a_install['lib_db_prefix']}'
+    'driver'     => '{$a_db_config['db_type']}',
+    'host'       => '{$a_db_config['db_host']}',
+    'port'       => '{$a_db_config['db_port']}',
+    'name'       => '{$a_db_config['db_name']}',
+    'user'       => '{$a_db_config['db_user']}',
+    'password'   => '{$a_db_config['db_pass']}',
+    'userro'     => '{$a_db_config['db_user']}',
+    'passro'     => '{$a_db_config['db_pass']}',
+    'persist'    => {$a_db_config['db_persist']},
+    'prefix'     => '{$a_db_config['db_prefix']}',
+    'errmode'    => '{$a_db_config['db_errmode']}',
+    'db_prefix'  => '{$a_db_config['db_prefix']}',
+    'lib_prefix' => '{$a_db_config['lib_db_prefix']}'
 ];
 EOT;
 
@@ -157,7 +161,7 @@ catch (ServiceException $e) {
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
 try {
-    $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+    $o_pdo = PdoFactory::start($db_config_file, 'rw');
 }
 catch (FactoryException $e) {
     die('Unable to start the PdoFactory. ' . $e->errorMessage());

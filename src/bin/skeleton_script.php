@@ -72,7 +72,7 @@ $o_di->set('elog', $o_elog);
 
 $db_config_file = SRC_CONFIG_PATH . '/db_config_local.php';
 try {
-    $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+    $o_pdo = PdoFactory::start($db_config_file, 'rw');
 }
 catch (FactoryException $e) {
     die('Unable to start the PdoFactory. ' . $e->errorMessage());

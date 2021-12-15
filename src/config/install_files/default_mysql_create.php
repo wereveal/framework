@@ -1,5 +1,8 @@
 <?php
-/** @noinspection SqlNoDataSourceInspection */
+/**
+ * @noinspection PhpUnnecessaryDoubleQuotesInspection
+ * @noinspection SqlNoDataSourceInspection i
+ */
 return [
 "SET FOREIGN_KEY_CHECKS = 0",
 "DROP TABLE IF EXISTS `{dbPrefix}nav_ng_map`",

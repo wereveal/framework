@@ -1,7 +1,7 @@
 #!/bin/bash
 useBootstrap="n"
 whereIam=$(pwd)
-while getopts ":l:b" opt; do
+while getopts ":b" opt; do
     case $opt in
         b)
             useBootstrap="y"
@@ -64,13 +64,14 @@ if [ -f src/config/install_config.php ]; then
     fi
 
     ### Must install the Library First
-    if [ ! -d src/apps/Ritc/Libray ]; then
+    if [ ! -d src/apps/Ritc/Library ]; then
       echo "Installing the Library"
       git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
     else
-      cd src/apps/Ritc/Library
+      echo "Updating the Library"
+      cd src/apps/Ritc/Library || exit
       git pull
-      cd $whereIam
+      cd "$whereIam" || exit
     fi
     echo "Running the php install script"
     php src/bin/install.php
@@ -79,7 +80,7 @@ if [ -f src/config/install_config.php ]; then
     echo "First npm install"
     bash src/bin/doNpm.sh
     echo "Next Running Sass"
-    if [ "$useBootstrap" = "y" ]
+    if [ "$useBootstrap" = "y" ]; then
       bash src/bin/doSassBs.sh
     else
       bash src/bin/doSass.sh

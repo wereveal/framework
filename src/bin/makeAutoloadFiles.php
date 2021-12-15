@@ -23,8 +23,8 @@ $o_cm = new AutoloadMapper($a_dirs);
 if (!is_object($o_cm)) {
     die('Could not instance AutoloadMapper');
 }
-// print $o_cm->getAppPath() . "\n";
-// print $o_cm->getConfigPath() . "\n";
-// print $o_cm->getAppsPath() . "\n";
+// echo $o_cm->getAppsPath() . "\n";
+// echo $o_cm->getConfigPath() . "\n";
+// echo $o_cm->getSrcPath() . "\n";
 $o_cm->generateMapFiles();
 
