@@ -1922,25 +1922,25 @@ $a_content = [
 ];
 
 $a_twig_themes = [
-    'base_fluid' => [
-        'theme_name'    => 'base_fluid',
+    'base' => [
+        'theme_name'    => 'base',
         'theme_default' => 'true'
-    ],
-    'base_bs' => [
-        'theme_name'    => 'base_bs',
-        'theme_default' => 'false',
-    ],
-    'base_bulma' => [
-        'theme_name'    => 'base_bulma',
-        'theme_default' => 'false',
     ],
     'base_fixed' => [
         'theme_name'    => 'base_fixed',
         'theme_default' => 'false'
     ],
-    'base' => [
-        'theme_name'    => 'base',
-        'theme_default' => 'false'
+    'base_bs' => [
+        'theme_name'    => 'base_bs',
+        'theme_default' => 'false',
+    ],
+    'base_bs_fixed' => [
+        'theme_name'    => 'base_bs_fixed',
+        'theme_default' => 'false',
+    ],
+    'base_bulma' => [
+        'theme_name'    => 'base_bulma',
+        'theme_default' => 'false',
     ],
 ];
 
@@ -2013,199 +2013,199 @@ $a_twig_dirs = [
 $a_twig_tpls = [
     'index' => [
         'td_id'         => 'site_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'index',
         'tpl_immutable' => 'true'
     ],
     'man_login' =>  [
         'td_id'         => 'site_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'login',
         'tpl_immutable' => 'true'
     ],
     'manager' => [
         'td_id'         => 'site_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'manager',
         'tpl_immutable' => 'true'
     ],
     'verify_delete' => [
         'td_id'         => 'site_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'verify_delete',
         'tpl_immutable' => 'true'
     ],
     'sitemap' => [
         'td_id'         => 'site_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'sitemap',
         'tpl_immutable' => 'true'
     ],
     'error' => [
         'td_id'         => 'site_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'error',
         'tpl_immutable' => 'true'
     ],
     'test' => [
         'td_id'         => 'site_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'test',
         'tpl_immutable' => 'true'
     ],
     'man_test_results' => [
         'td_id'         => 'site_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'man_test_results',
         'tpl_immutable' => 'true'
     ],
     'library' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'index',
         'tpl_immutable' => 'true'
     ],
     'lib_alias' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'alias',
         'tpl_immutable' => 'true'
     ],
     'lib_blocks' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'blocks',
         'tpl_immutable' => 'true'
     ],
     'lib_cache' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'cache',
         'tpl_immutable' => 'true'
     ],
     'lib_content' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'content',
         'tpl_immutable' => 'true'
     ],
     'lib_constants' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'constants',
         'tpl_immutable' => 'true'
     ],
     'lib_error' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'error',
         'tpl_immutable' => 'true'
     ],
     'lib_groups' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'groups',
         'tpl_immutable' => 'true'
     ],
     'lib_login' =>  [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'login',
         'tpl_immutable' => 'true'
     ],
     'lib_nav' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'navigation_list',
         'tpl_immutable' => 'true'
     ],
     'lib_nav_form' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'navigation_form',
         'tpl_immutable' => 'true'
     ],
     'lib_navgroups' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'navgroups',
         'tpl_immutable' => 'true'
     ],
     'lib_pages' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'pages',
         'tpl_immutable' => 'true'
     ],
     'lib_page_form' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'page_form',
         'tpl_immutable' => 'true'
     ],
     'lib_peeps' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'people',
         'tpl_immutable' => 'true'
     ],
     'lib_person_form' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'person_form',
         'tpl_immutable' => 'true'
     ],
     'lib_routes' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'routes',
         'tpl_immutable' => 'true'
     ],
     'lib_shared' => [
         'td_id'         => 'lib_snippets',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'shared',
         'tpl_immutable' => 'true'
     ],
     'lib_sitemap' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'lib_sitemap',
         'tpl_immutable' => 'true'
     ],
     'lib_tail' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'tail',
         'tpl_immutable' => 'true'
     ],
     'lib_test' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'test_list',
         'tpl_immutable' => 'true'
     ],
     'lib_test_results' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'man_test_results',
         'tpl_immutable' => 'true'
     ],
     'lib_twig' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'twig',
         'tpl_immutable' => 'true'
     ],
     'lib_urls' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'urls',
         'tpl_immutable' => 'true'
     ],
     'lib_vd' => [
         'td_id'         => 'lib_pages',
-        'theme_id'      => 'base_fluid',
+        'theme_id'      => 'base',
         'tpl_name'      => 'verify_delete',
         'tpl_immutable' => 'true'
     ]

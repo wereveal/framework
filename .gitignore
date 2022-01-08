@@ -40,3 +40,4 @@ sitemap.xml
 /test.sh
 /hmm.sh
 ritc_web.sqlite
+src/apps/Ritc/Web

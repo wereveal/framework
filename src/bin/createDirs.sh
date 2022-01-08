@@ -1,5 +1,5 @@
 #!/bin/bash
-// be sure to be in the root directory for the app, e.g. /src/app/MyNamespace/MyApp
+# be sure to be in the root directory for the app, e.g. /src/app/MyNamespace/MyApp
 mkdir Abstracts
 mkdir Controllers
 mkdir Entities

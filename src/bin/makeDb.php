@@ -8,6 +8,7 @@
  *            called on the cli, e.g. php makeDb.php my_install_config.php
  * @file      /src/bin/makeDb.php
  * @namespace Ritc
+ * @package   Ritc_Framework
  * @author    William E Reveal <bill@revealitconsulting.com>
  * @date      2021-12-04 17:05:44
  * @version   4.0.0-alpha.1
@@ -375,7 +376,11 @@ print "success\n";
 print "\nSetting up the app\n";
 $o_new_app_helper = new NewAppHelper($o_di);
 print 'Creating twig db records: ';
-$results = $o_new_app_helper->createTwigDbRecords();
+try {
+    $results = $o_new_app_helper->createTwigDbRecords();
+}
+catch (Library\Exceptions\HelperException $e) {
+}
 if (is_string($results)) {
     failIt($o_db, $results);
     failIt($o_db, $results);

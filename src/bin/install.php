@@ -1,6 +1,7 @@
 <?php
 /**
  * @noinspection DuplicatedCode
+ * @noinspection PhpUndefinedVariableInspection
  */
 /**
  * @brief     This file sets up standard stuff for the Framework.
@@ -12,6 +13,7 @@
  *            called on the cli, e.g. php install.php my_install_config.php
  * @file      /src/bin/install.php
  * @namespace Ritc
+ * @package   Ritc_Framework
  * @author    William E Reveal <bill@revealitconsulting.com>
  * @date      2021-12-03 10:30:30
  * @version   5.0.0-alpha.1
@@ -31,141 +33,16 @@
  */
 namespace Ritc;
 
-use PDO;
-use Ritc\Library\Exceptions\FactoryException;
+use Ritc\Library\Exceptions\HelperException;
 use Ritc\Library\Exceptions\ModelException;
-use Ritc\Library\Exceptions\ServiceException;
-use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Helper\AutoloadMapper;
-use Ritc\Library\Helper\InstallHelper;
 use Ritc\Library\Helper\NewAppHelper;
 use Ritc\Library\Models\DbCreator;
-use Ritc\Library\Services\DbModel;
-use Ritc\Library\Services\Di;
-use Ritc\Library\Services\Elog;
+use function Ritc\failIt;
 
-if (str_contains(__DIR__, 'Library')) {
-    die('Please Run this script from the src/bin directory');
-}
-$base_path = str_replace('/src/bin', '', __DIR__);
+$me = str_replace(__DIR__ . '/', '', __FILE__);
+include 'setup.php';
 
-/**
- * Switch to use the elog
- *
- * @var bool DEVELOPER_MODE
- */
-define('DEVELOPER_MODE', true);
-/**
- * Server path to the base of the code.
- *
- * @var string BASE_PATH
- */
-define('BASE_PATH', $base_path);
-/**
- * Server path to the root of the public website files.
- *
- * @var string PUBLIC_PATH
- */
-define('PUBLIC_PATH', $base_path . '/public');
-define('PRIVATE_DIR_NAME', 'private');
-define('PRIVATE_PATH', $base_path . '/' . PRIVATE_DIR_NAME);
-
-require_once BASE_PATH . '/src/config/constants.php';
-
-if (!file_exists(LIBRARY_PATH)) {
-    die("The ritc/library must be installed via git first.\n");
-}
-
-$install_files_path = SRC_CONFIG_PATH . '/install_files';
-
-/* allows a custom file to be created. Still must be in src/config dir */
-$install_config = SRC_CONFIG_PATH . '/install_config.php';
-if (isset($argv[1])) {
-    $install_config = SRC_CONFIG_PATH . '/' . $argv[1];
-}
-if (!file_exists($install_config)) {
-    die('You must create the install_configs configuration file in ' . SRC_CONFIG_PATH . "\nThe default name for the file is install_config.php.\nYou may name it anything but it must then be specified on the command line.\n");
-}
-$a_install_config = require $install_config;
-$a_required_keys = [
-    'app_name',
-    'namespace',
-    'db_file',
-    'db_host',
-    'db_type',
-    'db_name',
-    'db_user',
-    'db_pass',
-    'db_persist',
-    'db_errmode',
-    'db_prefix',
-    'lib_db_prefix',
-    'superadmin',
-    'admin',
-    'manager',
-    'domain',
-    'tld'
-];
-foreach ($a_required_keys as $key) {
-    if (empty($a_install_config[$key]) || $a_install_config[$key] === 'REQUIRED' ) {
-        die('The install config file does not have required values');
-    }
-}
-$a_needed_keys = [
-    'author',
-    'short_author',
-    'email',
-    'developer_mode',
-    'public_path',
-    'base_path',
-    'server_http_host',
-    'specific_host'
-];
-foreach ($a_needed_keys as $key) {
-    if (!isset($a_install_config[$key])) {
-        $a_install_config[$key] = '';
-    }
-}
-$app_namespace = ucfirst(strtolower($a_install_config['namespace']));
-$app_name = ucfirst(strtolower($a_install_config['app_name']));
-$app_path = APPS_PATH . '/' . $app_namespace . '/' . $app_name;
-
-$a_install_config['app_path'] = $app_path;
-
-$o_loader = require VENDOR_PATH . '/autoload.php';
-$o_di = new Di();
-
-$o_installer = new InstallHelper();
-$o_installer->setConfig($a_install_config);
-$o_installer->createDbConfigFiles();
-$the_db_config_file = $o_installer->getTheDbConfigFileName();
-$db_type            = $o_installer->getDbType();
-
-try {
-    $o_elog = Elog::start();
-    $o_elog->write("Test\n", LOG_OFF);
-    $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
-    $o_di->set('elog', $o_elog);
-}
-catch (ServiceException $e) {
-    die('Unable to start Elog' . $e->errorMessage());
-}
-
-$o_di->set('elog', $o_elog);
-try {
-    $o_pdo = PdoFactory::start($the_db_config_file);
-    $o_di->set('pdo', $o_pdo);
-}
-catch (FactoryException $e) {
-    die('Unable to start the PdoFactory. ' . $e->errorMessage());
-}
-
-$o_db = new DbModel($o_pdo, $the_db_config_file);
-if (!is_object($o_db)) {
-    die('Unable to create a DbModel instance');
-}
-
-$o_di->set('db', $o_db);
 $use_transactions = true;
 $a_sql            = match ($db_type) {
     'pgsql'  => require $install_files_path . '/default_pgsql_create.php',
@@ -173,25 +50,6 @@ $a_sql            = match ($db_type) {
     default  => require $install_files_path . '/default_mysql_create.php',
 };
 $a_data = require $install_files_path .  '/default_data.php';
-
-/**
- * Rolls back the transaction and exits the script.
- *
- * @param DbModel $o_db
- * @param string  $message
- * @param bool    $use_transactions
- */
-function failIt(DbModel $o_db, string $message = '', bool $use_transactions = false) {
-    if ($use_transactions) {
-        try {
-            $o_db->rollbackTransaction();
-        }
-        catch (ModelException $e) {
-            print 'Could not rollback transaction: ' . $e->errorMessage() . "\n";
-        }
-    }
-    die("\nFAIL!\n{$message}\n");
-}
 
 if ($use_transactions) {
     try {
@@ -345,7 +203,7 @@ print "success\n";
 if ($use_transactions) {
     try {
         $o_db->commitTransaction();
-        print "Data Insert Complete.\n";
+        print "Base Data Insert Complete.\n";
     }
     catch (ModelException $e) {
         failIt($o_db, 'Could not commit the transaction.', true);
@@ -354,30 +212,62 @@ if ($use_transactions) {
 
 ### New App Stuff
 print "\nSetting up the app\n";
-if ($use_transactions) {
-    try {
-        $o_db->startTransaction();
-    }
-    catch (ModelException $e) {
-        die('Could not start transaction: ' . $e->errorMessage());
-    }
-}
 $o_new_app_helper = new NewAppHelper($o_di);
-$o_new_app_helper->setConfig($a_install_config);
-print 'Creating twig db records';
 try {
-    $results = $o_new_app_helper->createTwigDbRecords();
+    $o_new_app_helper->setupProperties($a_install_config);
 }
-catch (Library\Exceptions\HelperException $e) {
+catch (HelperException $e) {
+    failIt($o_db, 'Could not set the configuration in the NewAppHelper.', $use_transactions);
+}
+print "Creating twig db records\n";
+try {
+    if ($use_transactions) {
+        try {
+            $o_db->startTransaction();
+        }
+        catch (ModelException $e) {
+            die('Could not start transaction: ' . $e->errorMessage());
+        }
+    }
+    $results = $o_new_app_helper->createTwigDbRecords();
+    // need to commit the transaction for subsequent actions
+    if ($use_transactions) {
+        try {
+            $o_db->commitTransaction();
+            print "App Twig Data Insert Complete.\n";
+        }
+        catch (ModelException $e) {
+            failIt($o_db, 'Could not commit the transaction.', true);
+        }
+    }
+}
+catch (HelperException $e) {
     failIt($o_db, 'Could not create app twig db records.', $use_transactions);
 }
 print "success\n";
 
 if (!empty($a_install_config['a_groups']) || !empty($a_install_config['a_users'])) {
     try {
+        if ($use_transactions) {
+            try {
+                $o_db->startTransaction();
+            }
+            catch (ModelException $e) {
+                die('Could not start transaction: ' . $e->errorMessage());
+            }
+        }
         print $o_new_app_helper->createUsers();
+        if ($use_transactions) {
+            try {
+                $o_db->commitTransaction();
+                print "App User Data Insert Complete.\n";
+            }
+            catch (ModelException $e) {
+                failIt($o_db, 'Could not commit the transaction.', true);
+            }
+        }
     }
-    catch (Library\Exceptions\HelperException $e) {
+    catch (HelperException $e) {
         failIt($o_db, $e->getMessage(), $use_transactions);
     }
 }
@@ -385,7 +275,24 @@ if (!empty($a_install_config['a_groups']) || !empty($a_install_config['a_users']
 if ($a_install_config['master_twig'] === 'true') {
     print 'Changing the home page template: ';
     try {
+        if ($use_transactions) {
+            try {
+                $o_db->startTransaction();
+            }
+            catch (ModelException $e) {
+                die('Could not start transaction: ' . $e->errorMessage());
+            }
+        }
         $o_new_app_helper->changeHomePageTpl();
+        if ($use_transactions) {
+            try {
+                $o_db->commitTransaction();
+                print "App Home Page Update Complete.\n";
+            }
+            catch (ModelException $e) {
+                failIt($o_db, 'Could not commit the transaction.', true);
+            }
+        }
         print "Success\n";
     }
     catch (ModelException $e) {
@@ -399,15 +306,6 @@ if ($o_new_app_helper->createDirectories()) {
         ? 'Success!'
         : 'Opps, could not create default files';
     print $results;
-}
-if ($use_transactions) {
-    try {
-        $o_db->commitTransaction();
-        print "Data Insert Complete.\n";
-    }
-    catch (ModelException $e) {
-        failIt($o_db, 'Could not commit the transaction.', true);
-    }
 }
 ### generate files for autoloader ###
 $a_dirs = [
