@@ -3,14 +3,15 @@
  * This file sets up the site.
  * Required to get the entire site to work.
  *
+ * @package   Ritc_Framework
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2018-04-03 16:29:01
- * @version   2.1.0
- * ## Change Log
- * - v2.1.0 - Modification to ConstantsCreator reflected here     - 2018-04-03 wer
- * - v2.0.0 - Next gen start script                               - 2017-05-12 wer
- *
- * ## NOTE
+ * @date      2021-12-17 13:41:17
+ * @version   2.2.0
+ * @change_log
+ * - 2.2.0 - updated to php8 standards and features
+ * - 2.1.0 - Modification to ConstantsCreator reflected here    - 2018-04-03 wer
+ * - 2.0.0 - Next gen start script                              - 2017-05-12 wer
+ * @note
  * - _path and _PATH indicates a full server path
  * - _dir and _DIR indicates the path in the site (URI)
  * - Both path and dir do not end with a slash
@@ -37,7 +38,7 @@ use Twig\Environment as TwigEnvironment;
 ## Define Various Constants and Variables
 if (!defined('PUBLIC_PATH')) {
     /**
-     * Server document root
+     * Website document root
      *
      * @var string PUBLIC_PATH
      */
@@ -102,10 +103,8 @@ $o_di->set('session', $o_session);
 $o_di->setVar('dbConfig', $db_config_file);
 
 try {
-    $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
-    if (!$o_pdo instanceof PDO) {
-        die('PDO instance was not created');
-    }
+    /** @noinspection PhpRedundantOptionalArgumentInspection */
+    $o_pdo = PdoFactory::start($db_config_file, 'rw');
     $o_di->set('pdo', $o_pdo);
 }
 catch (FactoryException $e) {
@@ -123,10 +122,7 @@ $o_db->setElog($o_elog);
 $o_di->set('db', $o_db);
 if (RODB) {
     try {
-        $o_pdo_ro = PdoFactory::start($db_config_file, 'ro', $o_di);
-        if (!$o_pdo_ro instanceof PDO) {
-            die('Could not start the RO PDOFactory.');
-        }
+        $o_pdo_ro = PdoFactory::start($db_config_file, 'ro');
         $o_di->set('pdo_ro', $o_pdo_ro);
     }
     catch (FactoryException $e) {
@@ -142,7 +138,6 @@ if (RODB) {
 }
 
 try {
-    /** @var ConstantsCreator $o_const_creator */
     $o_const_creator = ConstantsCreator::start($o_di);
     try {
         $o_const_creator->defineConstants();
@@ -152,11 +147,7 @@ try {
         require_once SRC_CONFIG_PATH . '/fallback_constants.php';
     }
 }
-catch (ModelException $e) {
-    $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
-    require_once SRC_CONFIG_PATH . '/fallback_constants.php';
-}
-catch (Error $e) {
+catch (ModelException|Error $e) {
     $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
     require_once SRC_CONFIG_PATH . '/fallback_constants.php';
 }
@@ -220,15 +211,10 @@ if ($twig_config === 'db') {
 else {
     try {
         $o_twig = TwigFactory::getTwig('twig_config.php');
+        $o_di->set('twig', $o_twig);
+        $o_di->setVar('twigConfig', $twig_config);
     }
     catch (FactoryException $e) {
         die("Couldn't create twig instance from file. " . $e->errorMessage());
     }
 }
-if ($o_twig instanceof TwigEnvironment) {
-    $o_di->set('twig', $o_twig);
-}
-else {
-    die('Unable to set the Twig instance');
-}
-$o_di->setVar('twigConfig', $twig_config);

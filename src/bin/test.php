@@ -44,7 +44,7 @@ $o_di->set('elog', $o_elog);
 
 $db_config_file = SRC_CONFIG_PATH . '/db_config.php';
 try {
-    $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+    $o_pdo = PdoFactory::start($db_config_file, 'rw');
 }
 catch (Library\Exceptions\FactoryException $e) {
     $o_pdo = false;

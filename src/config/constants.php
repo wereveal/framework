@@ -32,7 +32,7 @@ if (!defined('SRC_CONFIG_PATH')) {
     define('SRC_CONFIG_PATH', SRC_PATH . '/config');
 }
 if (!defined('SITE_PROTOCOL')) {
-    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
         define('SITE_PROTOCOL', 'https');
     }
     else {

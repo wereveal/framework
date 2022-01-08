@@ -153,7 +153,7 @@ $o_di = new Di();
 $o_di->set('elog', $o_elog);
 
 try {
-    $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+    $o_pdo = PdoFactory::start($db_config_file, 'rw');
 }
 catch (Library\Exceptions\FactoryException $e) {
 }

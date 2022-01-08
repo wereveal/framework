@@ -1,0 +1,35 @@
+<?php
+return [
+    'namespace'        => 'REQUIRED',                      // specify the root namespace the app will be in
+    'app_name'         => 'REQUIRED',                      // specify the primary app to which generates the home page
+    'master_app'       => 'REQUIRED',                      // specifies if this is the app called by /index.php
+    'author'           => 'REQUIRED',                      // specify the author of the app
+    'short_author'     => 'REQUIRED',                      // abbreviation for the author
+    'email'            => '<REQUIRED>',                    // email of the author (leave the <>)
+    'db_file'          => 'db_config.php',                     // which db config file to use to create new db records
+    'master_twig'      => 'true',                          // specifies if this app's twig prefix is the default (if empty, site_ is default)
+    'app_twig_prefix'  => '',                              // specifies the twig prefix, defaults to strtolower(app_name) . '_'
+    'app_theme_name'   => 'base',                          // specifies the default theme twig file of same name which will be created. Name can contain fluid or fixed to specify which library template to use, if not provided, base_fluid.twig will be used.
+    'app_db_prefix'    => '',                              // specifies optional prefix for database tables, defaults to use db_prefix, use max of 5 chars
+    'a_groups'         => [                                // optional, new groups plus the default ones
+        [
+            'group_name'        => 'group_name',           // required
+            'group_description' => 'description',          // optional
+            'group_auth_lvl'    => '0',                    // optional
+            'group_immutable'   => 'false'                 // optional
+        ]
+    ],
+    'a_users'         => [                                 // Optional, users that get added with the app plus the default ones
+        [
+             'login_id'    => 'new_user',                  // Required, person login id
+             'real_name'   => 'Real Name',                 // Required, Display name for person
+             'password'    => 'new_password',              // Required, password for user
+             'short_name'  => 'RN',                        // Optional, initials normally'
+             'description' => 'description',               // Optional
+             'active'      => 'true',                      // Optional, Active user
+             'immutable'   => 'false',                     // Optional, Can't be deleted
+             'group_name'  => 'group_name'                 // Optional, name of group to be assigned, 
+                                                           //           defaults to Registered, can be an array
+        ]
+    ]
+];

@@ -4,10 +4,12 @@
  * @file      /src/bin/makeApp.php
  * @namespace Ritc
  * @author    William E Reveal <bill@revealitconsulting.com>
- * @date      2018-11-21 10:23:32
- * @version   1.0.0
+ * @date      idate
+ * @version   2.0.0-beta.1
+ * @todo      Test, maybe even write a test
  * ## Change Log
- * - v1.0.0 - initial version                                      - 2018-11-21 wer
+ * - 2.0.0-beta.1 - updated for php8 standards and compatibility                - 2021-12-06 wer
+ * - 1.0.0 - initial version                                                    - 2018-11-21 wer
  */
 namespace Ritc;
 
@@ -22,7 +24,7 @@ use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 
-if (strpos(__DIR__, 'Library') !== false) {
+if (str_contains(__DIR__, 'Library')) {
     die('Please Run this script from the src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
@@ -77,26 +79,14 @@ catch (ServiceException $e) {
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
 try {
-    /** @var PDO $o_pdo */
-    $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+    $o_pdo = PdoFactory::start($db_config_file, 'rw');
 }
 catch (FactoryException $e) {
     die('Unable to start the PdoFactory. ' . $e->errorMessage());
 }
 
-if ($o_pdo !== false) {
-    $o_db = new DbModel($o_pdo, $db_config_file);
-    if (!$o_db instanceof DbModel) {
-        $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
-        die("Could not get the database to work\n");
-    }
-
-    $o_di->set('db', $o_db);
-}
-else {
-    $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
-    die("Could not connect to the database\n");
-}
+$o_db = new DbModel($o_pdo, $db_config_file);
+$o_di->set('db', $o_db);
 
 $o_people = new PeopleModel($o_db);
 $o_people->setupElog($o_di);

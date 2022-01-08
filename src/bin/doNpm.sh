@@ -8,8 +8,10 @@ else
     theDir=''
   fi
 fi
-cd $theDir
-npm install
-if [ ! -d vendor ]; then
-  ln -s node_modules vendor
+if [ ! -f "$theDir"/package.json ]; then
+    if [ -f ../config/install_files/package.json.txt ]; then
+        cp ../config/install_files/package.json.txt "$theDir"/
+    fi
 fi
+cd "$theDir" || exit
+npm install

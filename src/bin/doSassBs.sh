@@ -19,8 +19,8 @@ elif [ -d ../scss/ ]; then
 else
   exit 1
 fi
-cp "$theDir"/styles.scss.txt "$theDir"/styles.scss
-sass --load-path="$nmDir"/bulma --update --style=compressed ${theDir}:${thePublicDir}
+cp "$theDir"/styles_bootstrap.scss.txt "$theDir"/styles.scss
+sass --load-path="$nmDir"/bootstrap/scss --update --style=compressed ${theDir}:${thePublicDir}
 
 if [ -d src/apps/ ]; then
  appsDir='src/apps'
@@ -34,7 +34,7 @@ do
   do
     theScssDir=$appsDir/$theAppNamespace/$theApp/resources/assets/scss
     if [ -d "$theScssDir" ]; then
-      sass --load-path="$nmDir"/bulma --update --style=compressed "$theScssDir":"$thePublicDir"
+      sass --load-path="$nmDir"/bootstrap/scss --update --style=compressed "$theScssDir":"$thePublicDir"
     fi
   done
 done

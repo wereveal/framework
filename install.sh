@@ -1,16 +1,13 @@
 #!/bin/bash
-useLibPackageJson="no"
-useBootstrap="no"
-while getopts ":l:b" opt; do
+useBootstrap="n"
+whereIam=$(pwd)
+while getopts ":b" opt; do
     case $opt in
-        l)
-            useLibPackageJson="yes"
-            ;;
         b)
-            useBootstrap="yes"
+            useBootstrap="y"
             ;;
         \?)
-            echo "Valid options are -b (Bootstrap) -l (Library package.json)" >&2
+            echo "Valid options are -b (use Bootstrap instead of Bulma)" >&2
             ;;
     esac
 done
@@ -66,28 +63,29 @@ if [ -f src/config/install_config.php ]; then
         fi
     fi
 
+    ### Must install the Library First
+    if [ ! -d src/apps/Ritc/Library ]; then
+      echo "Installing the Library"
+      git clone ritc:/srv/git/ritc/library src/apps/Ritc/Library
+    else
+      echo "Updating the Library"
+      cd src/apps/Ritc/Library || exit
+      git pull
+      cd "$whereIam" || exit
+    fi
     echo "Running the php install script"
     php src/bin/install.php
 
-    echo "Installing public/assets/vendor files"
-    echo "Using the package.json file from Library: " $useLibPackageJson
-    # LibPackageJson installs additional node packages
-    if [ "$useLibPackageJson" = "yes" ]; then
-        cp src/apps/Ritc/Library/resources/config/package.json.txt public/assets/package.json
-        cp src/apps/Ritc/Library/resources/config/npmrc.txt public/assets/.npmrc
-    else
-        cp src/config/install_files/package.json.txt public/assets/package.json
-        if [ -f public/assets/.npmrc ]; then
-            rm public/assets/.npmrc
-        fi
-    fi
-    # bash src/bin/doYarn.sh
+    echo "Updating the public/assets"
+    echo "First npm install"
     bash src/bin/doNpm.sh
-
-    echo "Running Sass"
-    bash src/bin/doSass.sh
-
-    echo "Running uglifyJs"
+    echo "Next Running Sass"
+    if [ "$useBootstrap" = "y" ]; then
+      bash src/bin/doSassBs.sh
+    else
+      bash src/bin/doSass.sh
+    fi
+    echo "Finally Running uglifyJs"
     bash src/bin/doUglifyJS.sh
     mv src/config/install_config.php private/
 else

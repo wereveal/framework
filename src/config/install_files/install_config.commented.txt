@@ -7,9 +7,9 @@ return [
     'short_author'     => 'REQUIRED',                      // abbreviation for the author
     'email'            => '<REQUIRED>',                    // email of the author (leave the <>)
     'db_file'          => 'db_config',                     // all db_ keys will be used to create the db_file
-    'db_host'          => 'localhost',                     // hostname where the database server resides
-    'db_type'          => 'mysql',                         // mysql, pgsql, sqlite (sqlite not working)
-    'db_port'          => '3306',                          // mysql defaults to 3306, pgsql defaults to 5432
+    'db_host'          => 'localhost',                     // hostname where the database server resides OR for sqlite, path to db file
+    'db_type'          => 'mysql',                         // mysql, pgsql, sqlite (sqlite a work in progress)
+    'db_port'          => '3306',                          // mysql defaults to 3306, pgsql defaults to 5432, sqlite is null
     'db_name'          => 'REQUIRED',
     'db_user'          => 'REQUIRED',
     'db_pass'          => 'REQUIRED',
