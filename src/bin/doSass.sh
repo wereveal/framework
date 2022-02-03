@@ -1,4 +1,25 @@
 #!/bin/bash
+useBulma="n"
+useBootstrap="y"
+while getopts ":b:d:n" opt; do
+    case $opt in
+        b)
+            useBulma="y"
+            useBootstrap="n"
+            ;;
+        d)
+          useBulma="n"
+          useBootstrap="y"
+          ;;
+        n)
+          useBulma="n"
+          useBootstrap="n"
+          ;;
+        \?)
+            echo "Valid options are -b for Bulma, -d Bootstrap (default), -n doesn't use either" >&2
+            ;;
+    esac
+done
 if [ -d public/assets/css ]; then
   thePublicDir='public/assets/css/'
   nmDir='public/assets/node_modules'
@@ -19,8 +40,16 @@ elif [ -d ../scss/ ]; then
 else
   exit 1
 fi
-cp "$theDir"/styles.scss.txt "$theDir"/styles.scss
-sass --load-path="$nmDir"/bulma --update --style=compressed ${theDir}:${thePublicDir}
+
+if [ "$useBulma" = "y" ]; then
+  sass --load-path="$nmDir"/bulma --update --style=compressed ${theDir}:${thePublicDir}
+fi
+if [ "$useBootstrap" = "y" ]; then
+  sass --load-path="$nmDir"/bootstrap --update --style=compressed ${theDir}:${thePublicDir}
+fi
+if [ "$useBootstrap" = "n" ] && [ "$useBootstrap" = "n" ]; then
+  sass --update --style=compressed ${theDir}:${thePublicDir}
+fi
 
 if [ -d src/apps/ ]; then
  appsDir='src/apps'
@@ -34,7 +63,15 @@ do
   do
     theScssDir=$appsDir/$theAppNamespace/$theApp/resources/assets/scss
     if [ -d "$theScssDir" ]; then
-      sass --load-path="$nmDir"/bulma --update --style=compressed "$theScssDir":"$thePublicDir"
+      if [ "$useBulma" = "y" ]; then
+        sass --load-path="$nmDir"/bulma --update --style=compressed "$theScssDir":"$thePublicDir"
+      fi
+      if [ "$useBootstrap" = "y" ]; then
+        sass --load-path="$nmDir"/bootstrap --update --style=compressed "$theScssDir":"$thePublicDir"
+      fi
+      if [ "$useBootstrap" = "n" ] && [ "$useBootstrap" = "n" ]; then
+        sass --update --style=compressed  "$theScssDir":"$thePublicDir"
+      fi
     fi
   done
 done

@@ -1,6 +1,7 @@
 <?php
 /**
  *  @brief Define Constants that will be used throughout the website.
+ *         These have to be defined before the constants defined in the database.
  *  @file constants.php
  *  @note <pre>
  *      _PATH = Full server path
@@ -18,6 +19,9 @@ if (!defined('BASE_PATH')) {
 }
 if (!defined('PUBLIC_DIR')) {
     define('PUBLIC_DIR', '');
+}
+if (!defined('PRIVATE_DIR_NAME')) {
+    define('PRIVATE_DIR_NAME', 'private');
 }
 if (!defined('SRC_PATH')) {
     define('SRC_PATH', BASE_PATH . '/src');

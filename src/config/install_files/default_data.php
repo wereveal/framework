@@ -123,11 +123,6 @@ $a_constants = [
         'const_value'     => 'index.twig',
         'const_immutable' => 'true'
     ],
-    'private_dir_name' => [
-        'const_name'      => 'PRIVATE_DIR_NAME',
-        'const_value'     => 'private',
-        'const_immutable' => 'true'
-    ],
     'rights_holder' => [
         'const_name'      => 'RIGHTS_HOLDER',
         'const_value'     => 'Reveal IT Consulting',

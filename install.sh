@@ -1,13 +1,24 @@
 #!/bin/bash
-useBootstrap="n"
+useBootstrap="y"
+useBulma="n"
 whereIam=$(pwd)
-while getopts ":b" opt; do
+today=`date +%Y-%m-%d`
+while getopts ":b:d:n" opt; do
     case $opt in
-        b)
+        d)
             useBootstrap="y"
+            useBulma="n"
+            ;;
+        b)
+            useBulma="y"
+            useBootstrap="n"
+            ;;
+        n)
+            useBulma="n"
+            useBootstrap="n"
             ;;
         \?)
-            echo "Valid options are -b (use Bootstrap instead of Bulma)" >&2
+            echo "Valid options are -d (use Bootstrap - the default), -b (use Bulma), or -n for neither Bootstrap or Bulma" >&2
             ;;
     esac
 done
@@ -40,14 +51,8 @@ if [ -f src/config/install_config.php ]; then
         else
             if [ -x "$(command -v composer.phar)" ]; then
                 composer.phar install
-                if [ "$useBootstrap" = "yes" ]; then
-                  composer.phar install bootstrap
-                fi
             else
                 composer install
-                if [ "$useBootstrap" = "yes" ]; then
-                  composer install bootstrap
-                fi
             fi
         fi
     else
@@ -80,14 +85,18 @@ if [ -f src/config/install_config.php ]; then
     echo "First npm install"
     bash src/bin/doNpm.sh
     echo "Next Running Sass"
-    if [ "$useBootstrap" = "y" ]; then
-      bash src/bin/doSassBs.sh
-    else
-      bash src/bin/doSass.sh
+    if [ "$useBootstrap" = "y" ]
+      bash src/bin/doSass.sh -d
+    fi
+    if [ "$useBulma" = "y" ]; then
+      bash src/bin/doSass.sh -b
+    fi
+    if [ "$useBulma" = "n" && "$useBootstrap" = "n" ]; then
+      base src/bin/doSass.sh -n
     fi
     echo "Finally Running uglifyJs"
     bash src/bin/doUglifyJS.sh
-    mv src/config/install_config.php private/
+    mv src/config/install_config.php private/install_config."$today".php
 else
     echo "The src/config/install_config.php file must be created and configured first."
     echo "See src/config/install_files/install_config.commented.txt for full details."
