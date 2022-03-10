@@ -164,7 +164,7 @@ unset($o_const_creator); // probably unneeded but just in case something gets he
 if (USE_CACHE && ini_get('opcache.enable')) {
     $cache_type = defined('CACHE_TYPE')
         ? CACHE_TYPE
-        : 'PhpFiles';
+        : 'Db';
     $cache_ttl = defined('CACHE_TTL')
         ? CACHE_TTL
         : 604800; // 7 days
@@ -176,7 +176,7 @@ if (USE_CACHE && ini_get('opcache.enable')) {
         'namespace'  => $cache_namespace,
         'directory'  => $cache_directory
     ];
-    $o_cache = CacheFactory::start($a_cache_config);
+    $o_cache = CacheFactory::start($o_di, $a_cache_config);
     if (is_object($o_cache)) {
         $o_ch = new CacheHelper($o_cache);
         $o_di->set('cache', $o_ch);

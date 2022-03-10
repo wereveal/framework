@@ -7,6 +7,9 @@ return [
 "DROP TABLE IF EXISTS {dbPrefix}nav_ng_map CASCADE",
 "DROP TABLE IF EXISTS {dbPrefix}people_group_map CASCADE",
 "DROP TABLE IF EXISTS {dbPrefix}routes_group_map CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}cache_ct_map CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}cache CASCADE",
+"DROP TABLE IF EXISTS {dbPrefix}cache_tags CASCADE",
 "DROP TABLE IF EXISTS {dbPrefix}constants CASCADE",
 "DROP TABLE IF EXISTS {dbPrefix}page_blocks_map CASCADE",
 "DROP TABLE IF EXISTS {dbPrefix}blocks CASCADE",
@@ -41,6 +44,36 @@ $BODY$ language \'plpgsql\'',
 "CREATE TYPE content_type as ENUM ('text','html','md','mde','xml','raw')",
 "CREATE TYPE block_type as ENUM ('shared', 'solo')",
 "CREATE TYPE changefreq as ENUM ('always','hourly','daily','weekly','monthly','yearly','never')",
+"DROP SEQUENCE IF EXISTS {dbPrefix}cache_cache_id_seq",
+"CREATE SEQUENCE {dbPrefix}cache_cache_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1",
+"DROP SEQUENCE IF EXISTS {dbPrefix}cache_tags_ct_id_seq",
+"CREATE SEQUENCE {dbPrefix}cache_tags_ct_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1",
+"DROP SEQUENCE IF EXISTS {dbPrefix}cache_ct_map_ctm_id_seq",
+"CREATE SEQUENCE {dbPrefix}cache_ct_map_ctm_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1",
+
+"CREATE TABLE {dbPrefix}cache (
+    cache_id integer DEFAULT nextval('{dbPrefix}cache_cache_id_seq') NOT NULL,
+    cache_name character varying(64) NOT NULL,
+    cache_value text,
+    cache_ttl integer DEFAULT '36000' NOT NULL,
+    CONSTRAINT cache_name_idx UNIQUE (cache_name),
+    CONSTRAINT {dbPrefix}cache_cache_id PRIMARY KEY (cache_id),
+    CONSTRAINT {dbPrefix}cache_cache_name_key UNIQUE (cache_name)
+)",
+
+"CREATE TABLE {dbPrefix}cache_tags (
+    ct_id integer DEFAULT nextval('{dbPrefix}cache_tags_ct_id_seq') NOT NULL,
+    ct_name character varying(64) NOT NULL,
+    CONSTRAINT {dbPrefix}cache_tags_ct_name UNIQUE (ct_name),
+    CONSTRAINT {dbPrefix}cache_tags_pkey PRIMARY KEY (ct_id)
+)",
+
+"CREATE TABLE {dbPrefix}cache_ct_map (
+    ctm_id integer DEFAULT nextval('{dbPrefix}cache_ct_map_ctm_id_seq') NOT NULL,
+    cache_id integer NOT NULL,
+    ct_id integer NOT NULL,
+    CONSTRAINT {dbPrefix}cache_ct_map_pkey PRIMARY KEY (ctm_id)
+)",
 
 "CREATE TABLE {dbPrefix}constants (
   const_id serial NOT NULL,
@@ -99,7 +132,9 @@ $BODY$ language \'plpgsql\'',
   page_priority character varying(5) NOT NULL DEFAULT '0.5'::character varying,
   PRIMARY KEY (page_id)
 )",
+
 "CREATE INDEX pgm_url_id_idx on {dbPrefix}page USING btree (url_id)",
+
 "CREATE TRIGGER page_updated_on
   BEFORE UPDATE
   ON {dbPrefix}page
@@ -256,6 +291,18 @@ $BODY$ language \'plpgsql\'',
     PRIMARY KEY (tpl_id)
 )",
 "CREATE UNIQUE INDEX tpl_combo_idx on {dbPrefix}twig_templates USING btree (td_id, tpl_name)",
+
+"ALTER TABLE ONLY {dbPrefix}cache_ct_map 
+    ADD CONSTRAINT {dbPrefix}cache_ct_map_cache_id_fkey 
+    FOREIGN KEY (cache_id) REFERENCES {dbPrefix}cache(cache_id) 
+    ON UPDATE CASCADE 
+    ON DELETE CASCADE",
+
+"ALTER TABLE ONLY {dbPrefix}cache_ct_map 
+    ADD CONSTRAINT {dbPrefix}cache_ct_map_ct_id_fkey
+    FOREIGN KEY (ct_id) REFERENCES {dbPrefix}cache_tags(ct_id) 
+    ON UPDATE CASCADE 
+    ON DELETE CASCADE",
 
 "ALTER TABLE ONLY {dbPrefix}routes
     ADD CONSTRAINT {dbPrefix}routes_ibfk_1

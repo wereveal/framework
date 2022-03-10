@@ -6,6 +6,9 @@ return [
     'PRAGMA foreign_keys = off',
     'DROP TABLE IF EXISTS {dbPrefix}aliases',
     'DROP TABLE IF EXISTS {dbPrefix}blocks',
+    'DROP TABLE IF EXISTS {dbPrefix}cache_ct_map',
+    'DROP TABLE IF EXISTS {dbPrefix}cache_tags',
+    'DROP TABLE IF EXISTS {dbPrefix}cache',
     'DROP TABLE IF EXISTS {dbPrefix}constants',
     'DROP TABLE IF EXISTS {dbPrefix}content',
     'DROP TABLE IF EXISTS {dbPrefix}groups',
@@ -46,6 +49,44 @@ return [
         b_immutable VARCHAR (10) CHECK (b_immutable IN ("true", "false") )
                                  NOT NULL
                                  DEFAULT "false"
+    )',
+
+    'CREATE TABLE lib_cache_tags (
+        ct_id   INTEGER      PRIMARY KEY AUTOINCREMENT,
+        ct_name VARCHAR (64) CONSTRAINT ct_name_idx UNIQUE
+                             DEFAULT phred
+    )',
+
+    'CREATE TABLE {dbPrefix}cache (
+        cache_id    INTEGER      PRIMARY KEY AUTOINCREMENT
+                                 NOT NULL,
+        cache_name  VARCHAR (64) UNIQUE
+                                 NOT NULL
+                                 DEFAULT "bad",
+        cache_value TEXT,
+        cache_ttl   INTEGER      DEFAULT (36000) 
+                                 NOT NULL
+      )',
+
+    'CREATE TABLE {dbPrefix}cache_ct_map (
+        ctm_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        cache_id INTEGER CONSTRAINT cache_id_fk 
+            REFERENCES lib_cache (cache_id) 
+                ON DELETE CASCADE 
+                ON UPDATE CASCADE 
+                MATCH SIMPLE 
+            NOT NULL,
+        ct_id INTEGER CONSTRAINT ct_id_fk 
+            REFERENCES lib_cache_tags (ct_id) 
+                ON DELETE CASCADE 
+                ON UPDATE CASCADE 
+                MATCH SIMPLE
+            NOT NULL,
+        CONSTRAINT ctm_ids_idx UNIQUE (
+            cache_id,
+            ct_id
+        )
+        ON CONFLICT ROLLBACK
     )',
 
     'CREATE TABLE {dbPrefix}constants (
