@@ -8,8 +8,6 @@ return [
 "DROP TABLE IF EXISTS `{dbPrefix}nav_ng_map`",
 "DROP TABLE IF EXISTS `{dbPrefix}people_group_map`",
 "DROP TABLE IF EXISTS `{dbPrefix}routes_group_map`",
-"DROP TABLE IF EXISTS `{dbPrefix}cache_ct_map`",
-"DROP TABLE IF EXISTS `{dbPrefix}cache_tags",
 "DROP TABLE IF EXISTS `{dbPrefix}cache`",
 "DROP TABLE IF EXISTS `{dbPrefix}constants`",
 "DROP TABLE IF EXISTS `{dbPrefix}page_blocks_map`",
@@ -31,27 +29,12 @@ return [
 
 "CREATE TABLE `{dbPrefix}cache` (
   `cache_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `cache_name` varchar(64) NOT NULL DEFAULT 'bad',
+  `cache_key` varchar(250) NOT NULL DEFAULT 'bad',
   `cache_value` text,
-  `cache_ttl` int(11) NOT NULL DEFAULT '36000',
+  `cache_expires` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`cache_id`),
   KEY `cache_name_iex` (`cache_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
-
-"CREATE TABLE `{dbPrefix}cache_tags` (
-  `ct_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `ct_name` varchar(64) NOT NULL DEFAULT 'phred',
-  PRIMARY KEY (`ct_id`),
-  KEY `ct_name_idx` (`ct_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
-
-"CREATE TABLE `{dbPrefix}cache_ct_map` (
-  `ctm_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `cache_id` int(11) NOT NULL,
-  `ct_id` int(11) NOT NULL,
-  PRIMARY KEY (`ctm_id`),
-  UNIQUE KEY `ctm_ids_idx` (`cache_id`,`ct_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4",
 
 "CREATE TABLE `{dbPrefix}constants` (
   `const_id` int(11) unsigned NOT NULL AUTO_INCREMENT,

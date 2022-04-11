@@ -35,6 +35,12 @@ if (!defined('APPS_PATH')) {
 if (!defined('SRC_CONFIG_PATH')) {
     define('SRC_CONFIG_PATH', SRC_PATH . '/config');
 }
+if (!defined('CACHE_DIR_NAME')) {
+    define('CACHE_DIR_NAME', 'cache');
+}
+if (!defined('CACHE_PATH')) {
+    define('CACHE_PATH', BASE_PATH . '/' . CACHE_DIR_NAME);
+}
 if (!defined('SITE_PROTOCOL')) {
     if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
         define('SITE_PROTOCOL', 'https');

@@ -26,7 +26,7 @@ use Ritc\Library\Exceptions\ServiceException;
 use Ritc\Library\Factories\CacheFactory;
 use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Factories\TwigFactory;
-use Ritc\Library\Helper\CacheHelper;
+use Ritc\Library\Helper\CacheHelperSymfony;
 use Ritc\Library\Models\ConstantsCreator;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
@@ -161,25 +161,29 @@ unset($o_const_creator); // probably unneeded but just in case something gets he
 // die();
 // $o_elog->write(var_export($a_constants['user'], true), LOG_ON);
 
-if (USE_CACHE && ini_get('opcache.enable')) {
+if (USE_CACHE) {
     $cache_type = defined('CACHE_TYPE')
         ? CACHE_TYPE
         : 'Db';
     $cache_ttl = defined('CACHE_TTL')
         ? CACHE_TTL
         : 604800; // 7 days
-    $cache_namespace = 'RITC';
-    $cache_directory = BASE_PATH . '/cache';
+    $cache_directory = defined('CACHE_PATH')
+        ? CACHE_PATH
+        : BASE_PATH . '/cache';
     $a_cache_config = [
         'cache_type' => $cache_type,
         'lifetime'   => $cache_ttl,
-        'namespace'  => $cache_namespace,
         'directory'  => $cache_directory
     ];
-    $o_cache = CacheFactory::start($o_di, $a_cache_config);
+    try {
+        $o_cache = CacheFactory::start($o_di, $a_cache_config);
+    }
+    catch (FactoryException $e) {
+        die($e->getMessage());
+    }
     if (is_object($o_cache)) {
-        $o_ch = new CacheHelper($o_cache);
-        $o_di->set('cache', $o_ch);
+        $o_di->set('cache', $o_cache);
     }
     else {
         die('Unable to create the Cache instance.');

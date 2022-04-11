@@ -43,6 +43,11 @@ $a_constants = [
         'const_value'     => 'assets',
         'const_immutable' => 'true'
     ],
+    'cache_path' => [
+        'const_name'      => 'CACHE_PATH',
+        'const_value'     => BASE_PATH . '/cache',
+        'const_immutable' => 'true'
+    ],
     'cache_ttl' => [
         'const_name'      => 'CACHE_TTL',
         'const_value'     => '604800', // 7 days
@@ -50,7 +55,7 @@ $a_constants = [
     ],
     'cache_type' => [
         'const_name'      => 'CACHE_TYPE',
-        'const_value'     => 'PhpFiles',
+        'const_value'     => 'Db',
         'const_immutable' => 'true'
     ],
     'content_vcs' => [
