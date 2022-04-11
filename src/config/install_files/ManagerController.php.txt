@@ -29,7 +29,7 @@ class ManagerController implements ControllerInterface
     protected $o_view;
 
     /**
-     * LibraryController constructor.
+     * MainController constructor.
      *
      * @param Di $o_di
      */

@@ -2,7 +2,7 @@
 /**
  * @brief     This file sets up standard stuff for the Framework.
  * @details   This creates the database config, some standard directories,
- *            and some standard files needed, e.g. index.php and MasterController.
+ *            and some standard files needed, e.g. index.php and MainController.
  *            This should be run from the cli in the /src/bin directory of the site.
  *            Copy /src/config/install_files/install_config.php.txt to /src/config/install_config.php.
  *            The copied file may have any name as long as it is in /src/config directory but then it needs to be
@@ -942,7 +942,7 @@ EOF;
     $a_replace[5] = file_get_contents(SRC_CONFIG_PATH . '/install_files/main_controller.snippet');
     $controller_text = file_get_contents(SRC_CONFIG_PATH . '/install_files/controller.php.txt');
     $controller_text = str_replace($a_find, $a_replace, $controller_text);
-    file_put_contents($app_path . '/Controllers/MasterController.php', $controller_text);
+    file_put_contents($app_path . '/Controllers/MainController.php', $controller_text);
 
 ### Create the home controller for the app ###
     print "Creating the home controller for the app\n";

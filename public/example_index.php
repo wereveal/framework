@@ -1,29 +1,29 @@
 <?php
+/** @noinspection PhpUndefinedVariableInspection
+ * @noinspection PhpUndefinedNamespaceInspection
+ * @noinspection PhpUndefinedClassInspection
+ */
 ob_start();
 /**
- * Three possible ways of doing this:
+ * Couple possible ways of doing this:
  *
- * ## Multi-site configuration as shown below ##
+ * ## Safe site configuration as shown below ##
  * - See /public/example_setup.php file for examples for the $_SERVER['DOCUMENT_ROOT'] . '/setup.php' file.
  * - Most frequent use of this is with development, test and production sites.
  *
- * ## Single Site using a non-default layout ##
+ * ## Site using a non-default layout ##
  * - replace the two require_once lines with the following
- * define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT'] . '/subdirectory/public);
- * define('PUBLIC_DIR', '/subdirectory/public');
- * define('BASE_PATH', '/subdirectory');
+ * define('PUBLIC_PATH', /path/to/public_name);
+ * define('PUBLIC_DIR', 'public_name if not / which would be empty');
+ * define('BASE_PATH', '/path/to/dir/containing_public');
  * require_once BASE_PATH . '/src/setup.php';
- *
- * ## Single site using default layout ##
- * - replace the two require_once lines with the following
- * require_once $_SERVER['DOCUMENT_ROOT'] . '/../site/setup.php';
  */
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/setup.php';
 require_once BASE_PATH . '/src/setup.php';
 
-$o_master_controller = new Example\App\Controllers\MasterController($o_di);
-$o_di->set('MasterController', $o_master_controller);
+$o_master_controller = new Example\App\Controllers\MainController($o_di); // $o_di set in setup.php
+$o_di->set('MainController', $o_master_controller);
 $html     = $o_master_controller->renderPage();
 $flotsam = ob_get_clean();
 ob_start();
