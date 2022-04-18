@@ -5,7 +5,7 @@
 /**
  * @brief     This file sets up standard stuff for a single app.
  * @details   This creates the database config, some standard directories,
- *            and some standard files needed, e.g. index.php and MainController.
+ *            and some standard files needed, e.g. index.php and WebController.
  *            This should be run from the cli in the /src/bin directory of the site.
  *            Copy /src/config/install_files/app_config.php.txt to /src/config/app_config.php.
  *            The copied file may have any name as long as it is in /src/config directory but then it needs to be
@@ -77,11 +77,11 @@ foreach ($a_required_keys as $key) {
     }
 }
 $a_needed_keys = [
-    'master_app',
+    'main_app',
     'author',
     'short_author',
     'email',
-    'master_twig',
+    'main_twig',
     'app_twig_prefix',
     'app_theme_name',
     'app_db_prefix'
@@ -91,7 +91,7 @@ foreach ($a_needed_keys as $key) {
         $a_install[$key] = '';
     }
 }
-$master_app = $a_install['master_app'] === 'true';
+$main_app = $a_install['main_app'] === 'true';
 ### generate files for autoloader ###
 require APPS_PATH . '/Ritc/Library/Helper/AutoloadMapper.php';
 $a_dirs = [
@@ -161,7 +161,7 @@ catch (ServiceException $e) {
 $o_di = new Di();
 $o_di->set('elog', $o_elog);
 try {
-    $o_pdo = PdoFactory::start($db_config_file, 'rw');
+    $o_pdo = PdoFactory::start($db_config_file);
 }
 catch (FactoryException $e) {
     die('Unable to start the PdoFactory. ' . $e->errorMessage());
@@ -186,16 +186,20 @@ $o_di->setVar('app_path', $app_path);
 print "\nSetting up the app\n";
 $o_new_app_helper = new NewAppHelper($o_di);
 print 'Creating twig db records';
-$results = $o_new_app_helper->createTwigDbRecords();
-if (is_string($results)) {
-    die("\n". $results);
+try {
+    $o_new_app_helper->createTwigDbRecords();
+}
+catch (Library\Exceptions\HelperException $e) {
+    die("\n". $e->getMessage());
 }
 print "New Twig records: success\n";
 if (!empty($a_install['a_groups']) || !empty($a_install['a_users'])) {
     print "Creating new user records: \n";
-    $a_results = $o_new_app_helper->createUsers();
-    if ($a_results['type'] !== 'success') {
-        die($a_results);
+    try {
+        $o_new_app_helper->createUsers();
+    }
+    catch (Library\Exceptions\HelperException $e) {
+        die("\n" . $e->getMessage());
     }
     print "New User records: success\n";
 }
@@ -203,7 +207,7 @@ if (!empty($a_install['a_groups']) || !empty($a_install['a_users'])) {
 print "\nCreating the directories for the new app\n";
 if ($o_new_app_helper->createDirectories()) {
     print "\nCreating default files.\n";
-    $o_new_app_helper->createDefaultFiles($master_app);
+    $o_new_app_helper->createDefaultFiles($main_app);
 }
 
 ### Regenerate Autoload Map files

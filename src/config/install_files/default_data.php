@@ -430,140 +430,140 @@ $a_routes = [
     ],
 	'library' => [
 	    'url_id'          => 'library',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => '',
         'route_immutable' => 'true'
 	],
     'lib_alias' => [
         'url_id'          => 'lib_alias',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'alias',
         'route_immutable' => 'true'
     ],
     'lib_ajax' => [
         'url_id'          => 'lib_ajax',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'ajax',
         'route_immutable' => 'true'
     ],
     'lib_blocks' => [
         'url_id'          => 'lib_blocks',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'blocks',
         'route_immutable' => 'true'
     ],
     'lib_cache' => [
         'url_id'          => 'lib_cache',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'cache',
         'route_immutable' => 'true'
     ],
 	'lib_constants' => [
 	    'url_id'          => 'lib_constants',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'constants',
         'route_immutable' => 'true'
 	],
     'lib_content' => [
         'url_id'          => 'lib_content',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'content',
         'route_immutable' => 'true'
     ],
 	'lib_groups' => [
 	    'url_id'          => 'lib_groups',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'groups',
         'route_immutable' => 'true'
 	],
 	'lib_nav' => [
 	    'url_id'          => 'lib_nav',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'navigation',
         'route_immutable' => 'true'
 	],
     'lib_navgroups' => [
         'url_id'          => 'lib_navgroups',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'navgroups',
         'route_immutable' => 'true'
     ],
     'lib_pages' => [
         'url_id'          => 'lib_pages',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'pages',
         'route_immutable' => 'true'
     ],
 	'lib_peeps' => [
 	    'url_id'          => 'lib_peeps',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'people',
         'route_immutable' => 'true'
 	],
     'lib_routes' => [
         'url_id'          => 'lib_routes',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'routes',
         'route_immutable' => 'true'
     ],
     'lib_sitemap' => [
         'url_id'          => 'lib_sitemap',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'sitemap',
         'route_immutable' => 'true'
     ],
     'lib_tests' => [
         'url_id'          => 'lib_tests',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'tests',
         'route_immutable' => 'true'
     ],
     'lib_test_results' => [
         'url_id'          => 'lib_test_results',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'tests',
         'route_immutable' => 'true'
     ],
     'lib_twig' => [
         'url_id'          => 'lib_twig',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'twig',
         'route_immutable' => 'true'
     ],
 	'lib_urls' => [
 	    'url_id'          => 'lib_urls',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'urls',
         'route_immutable' => 'true'
 	],
     'lib_login' => [
         'url_id'          => 'lib_login',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'login',
         'route_immutable' => 'true'
     ],
     'lib_logout' => [
         'url_id'          => 'lib_logout',
-        'route_class'     => 'MainController',
+        'route_class'     => 'WebController',
         'route_method'    => 'route',
         'route_action'    => 'logout',
         'route_immutable' => 'true'
@@ -1831,7 +1831,7 @@ $a_content = [
 - Route Path is what appears in the browser address bar, e.g., '/about/charlie/'
   - Is taken from the URL manager.
   - The URL must be created first [Here](/manager/config/urls/)
-- Route Class is the name of the class associated with the path, e.g., MainController.
+- Route Class is the name of the class associated with the path, e.g., WebController.
   - The class is required and must match the class name exactly.
   - The class is normally a controller.
 - The method is the name of the method to be used.

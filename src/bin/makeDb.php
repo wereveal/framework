@@ -398,7 +398,7 @@ if ($using_mysql) {
 }
 
 print 'Changing the Home Page Tpl: ';
-if ($a_install['master_twig'] === 'true') {
+if ($a_install['main_twig'] === 'true') {
     try {
         $o_new_app_helper->changeHomePageTpl();
         print "Success\n";

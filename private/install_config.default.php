@@ -2,7 +2,7 @@
 return [
     'namespace'        => 'REQUIRED',
     'app_name'         => 'REQUIRED',
-    'master_app'       => 'true',
+    'main_app'       => 'true',
     'author'           => 'REQUIRED',
     'short_author'     => 'REQUIRED',
     'email'            => 'REQUIRED',
@@ -42,7 +42,7 @@ return [
 	'tld'              => 'REQUIRED',
 	'specific_host'    => '',
 	'install_host'     => '',
-    'master_twig'      => 'true',
+    'main_twig'      => 'true',
     'app_twig_prefix'  => '',
     'app_theme_name'   => 'base_fluid',
     'app_db_prefix'    => '',

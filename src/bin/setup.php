@@ -89,11 +89,11 @@ foreach ($a_required_keys as $key) {
     }
 }
 $a_needed_keys = [
-        'master_app',
+        'main_app',
         'author',
         'short_author',
         'email',
-        'master_twig',
+        'main_twig',
         'developer_mode',
         'public_path',
         'base_path',

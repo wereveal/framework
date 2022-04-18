@@ -1,33 +1,33 @@
 <?php
 /**
- * Class MasterController.
+ * Class {APPNAME}Controller.
  * @package {NAMESPACE}_{APPNAME}
  */
 namespace {NAMESPACE}\{APPNAME}\Controllers;
 
 use Ritc\Library\Controllers\MainController;
 use Ritc\Library\Controllers\SitemapController;
-use Ritc\Library\Interfaces\MasterControllerInterface;
+use Ritc\Library\Interfaces\MainControllerInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;
 use Ritc\Library\Traits\LogitTraits;
 
 /**
- * Master Controller for {APPNAME}.
+ * Main Controller for {APPNAME}.
  *
  * @author    {author} <{email}>
  * @version   1.0.0-alpha.0
  * @date      {idate}
  * ## Change Log
  * - v1.0.0-alpha.0 - Initial version        - {sdate} {sauthor}
- * @todo {NAMESPACE}/{APPNAME}/Controllers/MasterController.php - Everything
+ * @todo {NAMESPACE}/{APPNAME}/Controllers/{APPNAME}Controller.php - Everything
  */
-class MasterController implements MasterControllerInterface
+class {APPNAME}Controller implements MainControllerInterface
 {
     use ControllerTraits, LogitTraits;
 
     /**
-     * MasterController constructor.
+     * {APPNAME}Controller constructor.
      *
      * @param Di $o_di
      */
@@ -39,8 +39,8 @@ class MasterController implements MasterControllerInterface
     }
 
     /**
-     * Master Router and Puker outer.
-     * Turns over the hard work to the specific controllers specified by the router.
+     * Main Router and Puker outer.
+     * Turns over the hard work to the specific controllers specified by the router.
      *
      * @return string
      * @TODO: Round out method.

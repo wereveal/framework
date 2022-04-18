@@ -6,7 +6,7 @@
 /**
  * @brief     This file sets up standard stuff for the Framework.
  * @details   This creates the database config, some standard directories,
- *            and some standard files needed, e.g. index.php and MainController.
+ *            and some standard files needed, e.g. index.php and WebController.
  *            This should be run from the cli in the /src/bin directory of the site.
  *            Copy /src/config/install_files/install_config.php.txt to /src/config/install_config.php.
  *            The copied file may have any name as long as it is in /src/config directory but then it needs to be
@@ -272,7 +272,7 @@ if (!empty($a_install_config['a_groups']) || !empty($a_install_config['a_users']
     }
 }
 
-if ($a_install_config['master_twig'] === 'true') {
+if ($a_install_config['main_twig'] === 'true') {
     print 'Changing the home page template: ';
     try {
         if ($use_transactions) {
