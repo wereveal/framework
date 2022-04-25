@@ -149,17 +149,7 @@ else {
     }
 }
 
-try {
-    $o_elog = Elog::start();
-    $o_elog->write("Test\n", LOG_OFF);
-    $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
-}
-catch (ServiceException $e) {
-    die('Unable to start Elog' . $e->errorMessage());
-}
-
 $o_di = new Di();
-$o_di->set('elog', $o_elog);
 try {
     $o_pdo = PdoFactory::start($db_config_file);
 }

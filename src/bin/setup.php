@@ -1,35 +1,25 @@
-<?php /** @noinspection PhpUndefinedVariableInspection */
+<?php /** @noinspection PhpUnusedLocalVariableInspection */
+/** @noinspection PhpUndefinedVariableInspection */
 /**
  * Basic setup used/included by several scripts
  */
 namespace Ritc;
 
-use PDO;
 use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ModelException;
-use Ritc\Library\Exceptions\ServiceException;
 use Ritc\Library\Factories\PdoFactory;
-use Ritc\Library\Helper\AutoloadMapper;
 use Ritc\Library\Helper\InstallHelper;
-use Ritc\Library\Helper\NewAppHelper;
-use Ritc\Library\Models\DbCreator;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
-use Ritc\Library\Services\Elog;
 
 if (str_contains(__DIR__, 'Library')) {
     die('Please Run this script from the src/bin directory');
 }
 $base_path = str_replace('/src/bin', '', __DIR__);
 
-/**
- * Switch to use the elog
- *
- * @var bool DEVELOPER_MODE
- */
+/** @var bool DEVELOPER_MODE */
 define('DEVELOPER_MODE', true);
-/**
- * Server path to the base of the code.
+/** Server path to the base of the code.
  *
  * @var string BASE_PATH
  */
@@ -117,15 +107,6 @@ $a_install_config['app_path'] = $app_path;
 
 $o_loader = require VENDOR_PATH . '/autoload.php';
 $o_di = new Di();
-try {
-    $o_elog = Elog::start();
-    $o_elog->write("Test\n", LOG_OFF);
-    $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
-    $o_di->set('elog', $o_elog);
-}
-catch (ServiceException $e) {
-    die('Unable to start Elog' . $e->errorMessage());
-}
 
 if ($me !== 'newApp.php') {
     $o_installer = new InstallHelper();
@@ -159,7 +140,8 @@ $o_di->set('db', $o_db);
  * @param string  $message
  * @param bool    $use_transactions
  */
-function failIt(DbModel $o_db, string $message = '', bool $use_transactions = false) {
+function failIt(DbModel $o_db, string $message = '', bool $use_transactions = false): void
+{
     if ($use_transactions) {
         try {
             $o_db->rollbackTransaction();

@@ -11,8 +11,9 @@
  * @author    William E Reveal <bill@revealitconsulting.com>
  * @date      2017-12-15 15:52:40
  * @version   3.0.0
+ * @TODO      Actually get this script to work.
  * @note   <b>Change Log</b>
- * - v3.0.0 - Changed to use DbCreator and NewAppHelper     - 2017-12-15 wer
+ * - v3.0.0 - Changed to use DbCreator and NewAppHelper            - 2017-12-15 wer
  * - v2.5.0 - Added several files to be created in app.            - 2017-05-25 wer
  * - v2.4.0 - changed several settings, defaults, and actions      - 2017-05-11 wer
  * - v2.3.0 - fix to install_files setup.php in public dir         - 2017-05-08 wer
@@ -150,20 +151,9 @@ else {
     }
 }
 
-try {
-    $o_elog = Elog::start();
-    $o_elog->write("Test\n", LOG_OFF);
-    $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
-}
-catch (ServiceException $e) {
-    die('Unable to start Elog' . $e->errorMessage());
-}
-
 $o_di = new Di();
-$o_di->set('elog', $o_elog);
 try {
-    /** @var PDO $o_pdo */
-    $o_pdo = PdoFactory::start($db_config_file, 'rw', $o_di);
+    $o_pdo = PdoFactory::start($db_config_file, 'rw');
 }
 catch (FactoryException $e) {
     die('Unable to start the PdoFactory. ' . $e->errorMessage());
@@ -172,14 +162,12 @@ catch (FactoryException $e) {
 if ($o_pdo !== false) {
     $o_db = new DbModel($o_pdo, $db_config_file);
     if (!$o_db instanceof DbModel) {
-        $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
         die("Could not get the database to work\n");
     }
 
     $o_di->set('db', $o_db);
 }
 else {
-    $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
     die("Could not connect to the database\n");
 }
 

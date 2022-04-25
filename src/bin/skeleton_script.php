@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection DuplicatedCode */
+
 /**
  * @brief     This is a skeleton file for running cli scripts.
  * @file      /src/bin/skeleton.php
@@ -13,12 +14,10 @@
 namespace Ritc;
 
 use Ritc\Library\Exceptions\FactoryException;
-use Ritc\Library\Exceptions\ServiceException;
 use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Helper\AutoloadMapper;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
-use Ritc\Library\Services\Elog;
 
 ini_set('date.timezone', 'America/Chicago');
 
@@ -57,22 +56,11 @@ foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
     $o_loader->addPsr4($psr4_prefix, $psr0_paths);
 }
 
-try {
-    $o_elog = Elog::start();
-    $o_elog->setErrorHandler(E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR);
-    $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
-    $o_elog->write("Test\n", LOG_OFF);
-}
-catch (ServiceException $e) {
-    die('Unable to start Elog' . $e->errorMessage());
-}
-
 $o_di = new Di();
-$o_di->set('elog', $o_elog);
 
 $db_config_file = SRC_CONFIG_PATH . '/db_config_local.php';
 try {
-    $o_pdo = PdoFactory::start($db_config_file, 'rw');
+    $o_pdo = PdoFactory::start($db_config_file);
 }
 catch (FactoryException $e) {
     die('Unable to start the PdoFactory. ' . $e->errorMessage());

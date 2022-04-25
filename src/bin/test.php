@@ -29,18 +29,7 @@ foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
     $o_loader->addPsr4($psr4_prefix, $psr0_paths);
 }
 
-try {
-    $o_elog = Elog::start();
-}
-catch (Library\Exceptions\ServiceException $e) {
-    $o_elog = false;
-}
-if ($o_elog) {
-    $o_elog->write("Test\n", LOG_OFF);
-    $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
-}
 $o_di = new Di();
-$o_di->set('elog', $o_elog);
 
 $db_config_file = SRC_CONFIG_PATH . '/db_config.php';
 try {
@@ -53,14 +42,12 @@ catch (Library\Exceptions\FactoryException $e) {
 if ($o_pdo !== false) {
     $o_db = new DbModel($o_pdo, $db_config_file);
     if (!is_object($o_db)) {
-        $o_elog->write("Could not create a new DbModel\n", LOG_ALWAYS);
         die("Could not get the database to work\n");
     }
 
     $o_di->set('db', $o_db);
 }
 else {
-    $o_elog->write("Couldn't connect to database\n", LOG_ALWAYS);
     die("Could not connect to the database\n");
 }
 

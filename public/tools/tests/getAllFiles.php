@@ -1,7 +1,7 @@
 <?php
 $directory = '/Users/wer/Documents/active_projects/ritc/libraryDev/cache';
 
-$it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
+$it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory), RecursiveIteratorIterator::LEAVES_ONLY);
 $it->rewind();
 $starts_with = 'fred';
 $ends_with = 'txt';

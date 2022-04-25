@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection DuplicatedCode */
+
 /**
  * @brief     This file updates the passwords for the users in the config file.
  * @file      /src/bin/makeApp.php
@@ -13,16 +14,13 @@
  */
 namespace Ritc;
 
-use PDO;
 use Ritc\Library\Exceptions\FactoryException;
 use Ritc\Library\Exceptions\ModelException;
-use Ritc\Library\Exceptions\ServiceException;
 use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Helper\AutoloadMapper;
 use Ritc\Library\Models\PeopleModel;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
-use Ritc\Library\Services\Elog;
 
 if (str_contains(__DIR__, 'Library')) {
     die('Please Run this script from the src/bin directory');
@@ -67,19 +65,10 @@ foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
     $o_loader->addPsr4($psr4_prefix, $psr0_paths);
 }
 
-try {
-    $o_elog = Elog::start();
-    $o_elog->write("Test\n", LOG_OFF);
-    $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
-}
-catch (ServiceException $e) {
-    die('Unable to start Elog' . $e->errorMessage());
-}
 
 $o_di = new Di();
-$o_di->set('elog', $o_elog);
 try {
-    $o_pdo = PdoFactory::start($db_config_file, 'rw');
+    $o_pdo = PdoFactory::start($db_config_file);
 }
 catch (FactoryException $e) {
     die('Unable to start the PdoFactory. ' . $e->errorMessage());

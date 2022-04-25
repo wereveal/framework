@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection DuplicatedCode */
+
 /**
  * @brief     This file sets up the database.
  * @details   This creates the database tables and inserts default data.
@@ -120,17 +121,7 @@ foreach ($my_namespaces as $psr4_prefix => $psr0_paths) {
     $o_loader->addPsr4($psr4_prefix, $psr0_paths);
 }
 
-try {
-    $o_elog = Elog::start();
-    $o_elog->write("Test\n", LOG_OFF);
-    $o_elog->setIgnoreLogOff(true); // turns on logging globally ignoring LOG_OFF when set to true
-}
-catch (ServiceException $e) {
-    die('Unable to start Elog' . $e->errorMessage());
-}
-
 $o_di = new Di();
-$o_di->set('elog', $o_elog);
 try {
     $o_pdo = PdoFactory::start($db_config_file);
 }

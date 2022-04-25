@@ -28,7 +28,6 @@ use Ritc\Library\Factories\TwigFactory;
 use Ritc\Library\Models\ConstantsCreator;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
-use Ritc\Library\Services\Elog;
 use Ritc\Library\Services\Router;
 use Ritc\Library\Services\Session;
 
@@ -71,31 +70,18 @@ $my_classmap = require SRC_CONFIG_PATH . '/autoload_classmap.php';
 $o_loader->addClassMap($my_classmap);
 
 try {
-    $o_elog = Elog::start();
-}
-catch (ServiceException $e) {
-    die($e->errorMessage());
-}
-$o_elog->setIgnoreLogOff(false); // turns on logging globally ignoring LOG_OFF when set to true
-$o_elog->setErrorHandler(E_USER_WARNING | E_USER_NOTICE | E_USER_ERROR | E_USER_DEPRECATED); // Elog only handles user errors
-$o_elog->write("Testing the elog at the very start.\n", LOG_OFF);
-
-try {
     $o_session = Session::start();
 }
-catch (ServiceException $e) {
-    $o_elog->write($e->errorMessage(), LOG_ALWAYS);
+catch (ServiceException) {
     die('Unable to start the session.');
 }
 
 try {
     $o_di = new Di();
 }
-catch (Error $e) {
-    $o_elog->write($e->getMessage(), LOG_ALWAYS);
+catch (Error) {
     die('Unable to start Di');
 }
-$o_di->set('elog', $o_elog);
 $o_di->set('session', $o_session);
 $o_di->setVar('dbConfig', $db_config_file);
 
@@ -115,7 +101,6 @@ catch (Error $e) {
     die('Could not get the database to work: ' . $e->getMessage());
 }
 
-$o_db->setElog($o_elog);
 $o_di->set('db', $o_db);
 if (RODB) {
     try {
@@ -140,12 +125,10 @@ try {
         $o_const_creator->defineConstants();
     }
     catch (ModelException $e) {
-        $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
         require_once SRC_CONFIG_PATH . '/fallback_constants.php';
     }
 }
 catch (ModelException|Error $e) {
-    $o_elog->write("Couldn't create the constants\n", LOG_ALWAYS);
     require_once SRC_CONFIG_PATH . '/fallback_constants.php';
 }
 unset($o_const_creator); // probably unneeded but just in case something gets heavy along the way
@@ -156,7 +139,6 @@ unset($o_const_creator); // probably unneeded but just in case something gets he
 // print_r($a_constants['user']);
 // print '<pre>';
 // die();
-// $o_elog->write(var_export($a_constants['user'], true), LOG_ON);
 
 if (USE_CACHE) {
     $cache_type = defined('CACHE_TYPE')
@@ -193,7 +175,6 @@ try {
 }
 catch (Error $e) {
     $message = 'Could not create new instance of Router: ' . $e->getMessage();
-    $o_elog->write($message);
     die($message);
 }
 $o_di->set('router',  $o_router);
@@ -212,10 +193,10 @@ if ($twig_config === 'db') {
 else {
     try {
         $o_twig = TwigFactory::getTwig('twig_config.php');
-        $o_di->set('twig', $o_twig);
-        $o_di->setVar('twigConfig', $twig_config);
     }
     catch (FactoryException $e) {
         die("Couldn't create twig instance from file. " . $e->errorMessage());
     }
 }
+$o_di->set('twig', $o_twig);
+$o_di->setVar('twigConfig', $twig_config);
