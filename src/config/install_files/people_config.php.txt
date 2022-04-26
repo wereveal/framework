@@ -1,6 +1,6 @@
 <?php
 return [
-    'SuperAdmin' => 'letGSAin',
-    'Admin'      => 'letADMin',
-    'Manager'    => 'letMANin'
+    'SuperAdmin' => 'let.GSA.in.p1ease',
+    'Admin'      => 'let.ADM.in.p1ease',
+    'Manager'    => 'let.MAN.in.p1ease'
 ];

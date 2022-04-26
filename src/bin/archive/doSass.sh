@@ -22,13 +22,13 @@ while getopts ":b:d:n" opt; do
 done
 if [ -d public/assets/css ]; then
   thePublicDir='public/assets/css/'
-  nmDir='node_modules'
+  nmDir='public/assets/node_modules'
 elif [ -d ../public/assets/css ]; then
   thePublicDir='../public/assets/css'
-  nmDir='../node_modules'
+  nmDir='../public/assets/node_modules'
 elif [ -d ../../public/assets/css ]; then
   thePublicDir='../../public/assets/css/'
-  nmDir='../../node_modules'
+  nmDir='../../public/assets/node_modules'
 else
   exit 1
 fi

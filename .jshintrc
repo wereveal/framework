@@ -4,5 +4,5 @@
 	"eqnull": true,
 	"noarg": true,
 	"undef": true,
-	"unused": true,
+	"unused": true
 }
