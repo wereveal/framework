@@ -81,21 +81,21 @@ if [ -f src/config/install_config.php ]; then
     echo "Running the php install script"
     php src/bin/install.php
 
-    echo "Updating the public/assets"
+    echo "getting public assets in place"
     echo "First npm install"
-    bash src/bin/doNpm.sh
+    bash src/scripts/doNpm.sh
     echo "Next Running Sass"
     if [ "$useBootstrap" = "y" ]
-      bash src/bin/doSass.sh -d
+      bash src/scripts/doSass.sh -d
     fi
     if [ "$useBulma" = "y" ]; then
-      bash src/bin/doSass.sh -b
+      bash src/scripts/doSass.sh -b
     fi
     if [ "$useBulma" = "n" && "$useBootstrap" = "n" ]; then
-      base src/bin/doSass.sh -n
+      base src/scripts/doSass.sh -n
     fi
     echo "Finally Running uglifyJs"
-    bash src/bin/doUglifyJS.sh
+    bash src/scripts/doUglifyJS.sh
     mv src/config/install_config.php private/install_config."$today".php
 else
     echo "The src/config/install_config.php file must be created and configured first."
