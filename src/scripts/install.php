@@ -9,7 +9,7 @@
  *            and some standard files needed, e.g. index.php and WebController.
  *            This should be run from the cli in the /src/bin directory of the site.
  *            Copy /src/config/install_files/install_config.php.txt to /src/config/install_config.php.
- *            The copied file may have any name as long as it is in /src/config directory but then it needs to be
+ *            The copied file may have any name as long as it is in /src/config directory, but then it needs to be
  *            called on the cli, e.g. php install.php my_install_config.php
  * @file      /src/bin/install.php
  * @namespace Ritc
@@ -38,7 +38,6 @@ use Ritc\Library\Exceptions\ModelException;
 use Ritc\Library\Helper\AutoloadMapper;
 use Ritc\Library\Helper\NewAppHelper;
 use Ritc\Library\Models\DbCreator;
-use function Ritc\failIt;
 
 $me = str_replace(__DIR__ . '/', '', __FILE__);
 include 'setup.php';

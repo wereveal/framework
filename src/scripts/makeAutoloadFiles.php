@@ -1,15 +1,15 @@
 <?php
 /**
  * Generates the autoload_classmap.php file that sits in the /src/config directory.
- * This file should sit in the /src/bin directory run from there, e.g., php makeAutoloadFiles.php.
+ * This file should sit in the /src/scripts directory run from there, e.g., php makeAutoloadFiles.php.
  */
 namespace Ritc\Library\Helper;
 
 ini_set('date.timezone', 'America/Chicago');
-if (!str_contains(__DIR__, '/src/bin')) {
-    die("Please Run this script from the /src/bin directory\n");
+if (!str_contains(__DIR__, '/src/scripts')) {
+    die("Please Run this script from the /src/scripts directory\n");
 }
-$base_path = str_replace('/src/bin', '', __DIR__);
+$base_path = str_replace('/src/scripts', '', __DIR__);
 $src_path    = $base_path . '/src';
 $apps_path   = $src_path . '/apps';
 $config_path = $src_path . '/config';

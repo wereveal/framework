@@ -1,14 +1,11 @@
 <?php
 /**
- * @noinspection DuplicatedCode
- */
-/**
  * @brief     This file sets up standard stuff for a single app.
  * @details   This creates the database config, some standard directories,
  *            and some standard files needed, e.g. index.php and WebController.
  *            This should be run from the cli in the /src/bin directory of the site.
  *            Copy /src/config/install_files/app_config.php.txt to /src/config/app_config.php.
- *            The copied file may have any name as long as it is in /src/config directory but then it needs to be
+ *            The copied file may have any name as long as it is in /src/config directory, but then it needs to be
  *            called on the cli, e.g. php makeApp.php my_install_config.php
  * @file      /src/bin/makeApp.php
  * @namespace Ritc
@@ -31,18 +28,16 @@
 namespace Ritc;
 
 use Ritc\Library\Exceptions\FactoryException;
-use Ritc\Library\Exceptions\ServiceException;
 use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Helper\AutoloadMapper;
 use Ritc\Library\Helper\NewAppHelper;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
-use Ritc\Library\Services\Elog;
 
-if (str_contains(__DIR__, 'Library')) {
-    die('Please Run this script from the src/bin directory');
+if (str_contains(__DIR__, 'Library') || !str_contains(__DIR__, '/src/scripts')) {
+    die('Please Run this script from the src/scripts directory');
 }
-$base_path = str_replace('/src/bin', '', __DIR__);
+$base_path = str_replace('/src/scripts', '', __DIR__);
 define('DEVELOPER_MODE', true);
 define('BASE_PATH', $base_path);
 define('PUBLIC_PATH', $base_path . '/public');
@@ -137,7 +132,6 @@ EOT;
 file_put_contents(SRC_CONFIG_PATH . '/' . $db_config_file, $db_config_file_text);
 
 $o_loader = require VENDOR_PATH . '/autoload.php';
-
 if ($a_install['loader'] === 'psr0') {
     $my_classmap = require SRC_CONFIG_PATH . '/autoload_classmap.php';
     $o_loader->addClassMap($my_classmap);

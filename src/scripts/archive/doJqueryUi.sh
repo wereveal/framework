@@ -11,6 +11,6 @@ else
     theOtherDir='../../.'
   fi
 fi
-cd ${theDir}
+cd ${theDir} || exit
 npm install && npm test && grunt
-cd ${theOtherDir}
+cd ${theOtherDir} || exit

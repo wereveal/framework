@@ -8,9 +8,9 @@ else
     theDir=''
   fi
 fi
-if [ -f ${theDir}package.json ]; then
-    yarn config set modules-folder vendor --cwd ${theDir}
-    yarn install --cwd ${theDir} --modules-folder ${theDir}vendor
+if [ -f "${theDir}"package.json ]; then
+    yarn config set modules-folder vendor --cwd "${theDir}"
+    yarn install --cwd "${theDir}" --modules-folder "${theDir}" vendor
 else
     echo "The package.json file is missing"
     exit 1

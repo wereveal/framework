@@ -79,7 +79,7 @@ if [ -f src/config/install_config.php ]; then
       cd "$whereIam" || exit
     fi
     echo "Running the php install script"
-    php src/bin/install.php
+    php src/scripts/install.php
 
     echo "getting public assets in place"
     echo "First npm install"

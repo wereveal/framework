@@ -1,10 +1,16 @@
 <?php
-/** @noinspection PhpUndefinedVariableInspection */
+/**
+ * @noinspection DuplicatedCode
+ * @noinspection PhpUndefinedVariableInspection
+ */
 
 use Ritc\Library\Exceptions\ModelException;
 use Ritc\Library\Models\DbCreator;
 use function Ritc\failIt;
 
+if (!str_contains(__DIR__, '/src/scripts')) {
+    die('Please Run this script from the /src/scripts directory');
+}
 $me = str_replace(__DIR__ . '/', '', __FILE__);
 include 'setup.php';
 

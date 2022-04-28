@@ -5,10 +5,12 @@ use Ritc\Library\Factories\PdoFactory;
 use Ritc\Library\Factories\TwigFactory;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
-use Ritc\Library\Services\Elog;
 use Twig\Environment as TwigEnvironment;
 
-$base_path = str_replace('/src/bin', '', __DIR__);
+if (!str_contains(__DIR__, '/src/scripts')) {
+    die('Please Run this script from the /src/scripts directory');
+}
+$base_path = str_replace('/src/scripts', '', __DIR__);
 define('DEVELOPER_MODE', true);
 define('BASE_PATH', $base_path);
 define('PUBLIC_PATH', $base_path . '/public');

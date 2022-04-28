@@ -1,5 +1,4 @@
-<?php /** @noinspection DuplicatedCode */
-
+<?php
 /**
  * @brief     This file updates the passwords for the users in the config file.
  * @file      /src/bin/makeApp.php
@@ -22,10 +21,10 @@ use Ritc\Library\Models\PeopleModel;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 
-if (str_contains(__DIR__, 'Library')) {
-    die('Please Run this script from the src/bin directory');
+if (!str_contains(__DIR__, '/src/scripts')) {
+    die('Please Run this script from the /src/scripts directory');
 }
-$base_path = str_replace('/src/bin', '', __DIR__);
+$base_path = str_replace('/src/scripts', '', __DIR__);
 define('DEVELOPER_MODE', true);
 define('BASE_PATH', $base_path);
 define('PUBLIC_PATH', $base_path . '/public');
@@ -78,7 +77,6 @@ $o_db = new DbModel($o_pdo, $db_config_file);
 $o_di->set('db', $o_db);
 
 $o_people = new PeopleModel($o_db);
-$o_people->setupElog($o_di);
 $a_people = require $people_config;
 foreach ($a_people as $login_id => $password) {
     $password = $o_people->hashPass($password);

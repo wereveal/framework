@@ -4,7 +4,7 @@
  * @details   This creates the database tables and inserts default data.
  *            This should be run from the cli in the /src/bin directory of the site.
  *            Copy /src/config/install_files/install_config.php.txt to /src/config/install_config.php.
- *            The copied file may have any name as long as it is in /src/config directory but then it needs to be
+ *            The copied file may have any name as long as it is in /src/config directory, but then it needs to be
  *            called on the cli, e.g. php makeDb.php my_install_config.php
  * @file      /src/bin/makeDb.php
  * @namespace Ritc
@@ -35,10 +35,10 @@ use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Services\Elog;
 
-if (strpos(__DIR__, 'Library') !== false) {
-    die('Please Run this script from the src/bin directory');
+if (!str_contains(__DIR__, '/src/scripts')) {
+    die('Please Run this script from the src/scripts directory');
 }
-$base_path = str_replace('/src/bin', '', __DIR__);
+$base_path = str_replace('/src/scripts', '', __DIR__);
 define('DEVELOPER_MODE', true);
 define('BASE_PATH', $base_path);
 define('PUBLIC_PATH', $base_path . '/public');

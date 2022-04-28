@@ -12,10 +12,10 @@ use Ritc\Library\Helper\InstallHelper;
 use Ritc\Library\Services\DbModel;
 use Ritc\Library\Services\Di;
 
-if (str_contains(__DIR__, 'Library')) {
-    die('Please Run this script from the src/bin directory');
+if (!str_contains(__DIR__, '/src/scripts')) {
+    die('Please Run this script from the src/scripts directory');
 }
-$base_path = str_replace('/src/bin', '', __DIR__);
+$base_path = str_replace('/src/scripts', '', __DIR__);
 
 /** @var bool DEVELOPER_MODE */
 define('DEVELOPER_MODE', true);
@@ -44,7 +44,13 @@ $install_files_path = SRC_CONFIG_PATH . '/install_files';
 $install_config_file_name = $argv[1] ?? 'install_config.php';
 $install_config = SRC_CONFIG_PATH . '/' . $install_config_file_name;
 if (!file_exists($install_config)) {
-    die('You must create the install_configs configuration file in ' . SRC_CONFIG_PATH . "\nThe default name for the file is install_config.php.\nYou may name it anything but it must then be specified on the command line.\n");
+    $message =<<<MESSAGE
+    You must create the install_configs configuration file in SRC_CONFIG_PATH
+    The default name for the file is install_config.php.
+    
+    You may name it anything but it must then be specified on the command line.
+    MESSAGE;
+    die($message  . "\n\n\n");
 }
 $a_install_config = require $install_config;
 $a_required_keys  = match ($me) {
@@ -150,5 +156,5 @@ function failIt(DbModel $o_db, string $message = '', bool $use_transactions = fa
             print 'Could not rollback transaction: ' . $e->errorMessage() . "\n";
         }
     }
-    die("\nFAIL!\n{$message}\n");
+    die("\nFAIL!\n$message\n");
 }

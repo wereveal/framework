@@ -1,5 +1,4 @@
-<?php /** @noinspection DuplicatedCode */
-
+<?php
 /**
  * @brief     This is a skeleton file for running cli scripts.
  * @file      /src/bin/skeleton.php
@@ -21,10 +20,10 @@ use Ritc\Library\Services\Di;
 
 ini_set('date.timezone', 'America/Chicago');
 
-if (str_contains(__DIR__, '/src/bin')) {
-    die('Please Run this script from the /src/bin directory');
+if (!str_contains(__DIR__, '/src/scripts')) {
+    die('Please Run this script from the /src/scripts directory');
 }
-$base_path = str_replace('/src/bin', '', __DIR__);
+$base_path = str_replace('/src/scripts', '', __DIR__);
 define('DEVELOPER_MODE', true);
 define('BASE_PATH', $base_path);
 define('PUBLIC_PATH', $base_path . '/public');
