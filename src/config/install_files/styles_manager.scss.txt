@@ -1,10 +1,11 @@
 // Set app colors and variables overrides before importing the Bootstrap defaults
-@use "../../../../../Ritc/Library/resources/assets/scss/defaults/variables" as lvars;
 @use "variables";
-@use "../../../../../Ritc/Library/resources/assets/scss/defaults/colors" as lcolors;
+@use "../../../../../Ritc/Library/resources/assets/scss/defaults/variables" as lvars;
 @use "colors";
-@use "../../../../../Ritc/Library/resources/assets/scss/defaults/mixins" as lmix;
+@use "../../../../../Ritc/Library/resources/assets/scss/theme_colors/blue" as ltcolor;
+@use "../../../../../Ritc/Library/resources/assets/scss/defaults/colors" as lcolors;
 @use "mixins";
+@use "../../../../../Ritc/Library/resources/assets/scss/defaults/mixins" as lmix;
 @use "../../../../../Ritc/Library/resources/assets/scss/defaults/mixins" as lmix;
 @use "../../../../../Ritc/Library/resources/assets/scss/defaults/fonts";
 @use "../../../../../Ritc/Library/resources/assets/scss/defaults/mods_to_bootstrap";

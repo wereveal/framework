@@ -62,6 +62,8 @@ do
   for theApp in "$appsDir"/"$theAppNamespace"/*
   do
     theScssDir=$appsDir/$theAppNamespace/$theApp/resources/assets/scss
+    echo $theScssDir;
+    echo "---";
     if [ -d "$theScssDir" ]; then
       if [ "$useBulma" = "y" ]; then
         sass --load-path="$nmDir"/bulma --update --style=compressed "$theScssDir":"$thePublicDir"
