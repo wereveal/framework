@@ -5,7 +5,7 @@
  */
 namespace {NAMESPACE}\{APPNAME}\Controllers;
 
-use Ritc\Library\Controllers\MainController;
+use Ritc\Library\Controllers\LibraryController;
 use Ritc\Library\Controllers\SitemapController;
 use Ritc\Library\Interfaces\MainControllerInterface;
 use Ritc\Library\Services\Di;
@@ -58,8 +58,8 @@ class {APPNAME}Controller implements MainControllerInterface
             case 'ManagerController':
                 $o_controller = new ManagerController($this->o_di);
                 break;
-            case 'MainController':
-                $o_controller = new MainController($this->o_di);
+            case 'LibraryController':
+                $o_controller = new LibraryController($this->o_di);
                 break;
             case 'SitemapController':
                 $o_controller = new SitemapController($this->o_di);

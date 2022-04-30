@@ -1,5 +1,20 @@
 // Style sheet for a unified look for the site.
-// defaults to using the styles of the Library
-@use "../apps/Ritc/Library/resources/assets/scss/bs5/styles_top";
-@use "local";
+// defaults to using the styles of the Library and bootstrap 5
+// make changes in the site directory instead of making changes to bootstrap
+// and the Library
+@use "site/variables";
+@use "../apps/Ritc/Library/resources/assets/scss/defaults/variables" as lvars;
+@use "site/colors";
+@use "../apps/Ritc/Library/resources/assets/scss/colors/blue" as ltcolor;
+@use "../apps/Ritc/Library/resources/assets/scss/defaults/colors" as lcolors;
+@use "../../node_modules/bootstrap/scss/bootstrap" as boot;
+@use "site/mixins";
+@use "../apps/Ritc/Library/resources/assets/scss/defaults/mixins" as lmix;
+@use "../apps/Ritc/Library/resources/assets/scss/bs5/mods_to_bootstrap";
+@use "../apps/Ritc/Library/resources/assets/scss/defaults/fonts";
+@use "../apps/Ritc/Library/resources/assets/scss/defaults/main_common";
+@use "../apps/Ritc/Library/resources/assets/scss/defaults/nav";
 @use "../apps/Ritc/Library/resources/assets/scss/defaults/styles_bottom";
+// @use "../apps/Ritc/Library/resources/assets/scss/defaults/form";
+@use "site/site";
+@use "site/media_queries";

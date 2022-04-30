@@ -1,5 +1,0 @@
-// Style sheet for a unified look for the site.
-// defaults to using the styles of the Library
-@use "../apps/Ritc/Library/resources/assets/scss/styles_top";
-@use "local";
-@use "../apps/Ritc/Library/resources/assets/scss/styles_bottom";

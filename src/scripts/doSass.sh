@@ -32,6 +32,8 @@ elif [ -d ../../public/assets/css ]; then
 else
   exit 1
 fi
+echo "Public Dir -- "$thePublicDir;
+echo "";
 
 if [ -d src/scss/ ]; then
   theDir='src/scss/'
@@ -40,6 +42,8 @@ elif [ -d ../scss/ ]; then
 else
   exit 1
 fi
+echo "theDir -- "$theDir;
+echo "";
 
 if [ "$useBulma" = "y" ]; then
   sass --load-path="$nmDir"/bulma --update --style=compressed ${theDir}:${thePublicDir}
@@ -59,9 +63,9 @@ fi
 
 for theAppNamespace in "$appsDir"/*
 do
-  for theApp in "$appsDir"/"$theAppNamespace"/*
+  for theApp in $theAppNamespace/*
   do
-    theScssDir=$appsDir/$theAppNamespace/$theApp/resources/assets/scss
+    theScssDir=$theApp/resources/assets/scss
     echo $theScssDir;
     echo "---";
     if [ -d "$theScssDir" ]; then

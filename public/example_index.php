@@ -22,7 +22,7 @@ ob_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/setup.php';
 require_once BASE_PATH . '/src/setup.php';
 
-$o_main_controller = new Example\App\Controllers\MainController($o_di); // $o_di set in setup.php
+$o_main_controller = new Example\App\Controllers\AppController($o_di); // $o_di set in setup.php
 $o_di->set('WebController', $o_main_controller);
 $html     = $o_main_controller->renderPage();
 $flotsam = ob_get_clean();

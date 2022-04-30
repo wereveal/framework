@@ -32,20 +32,16 @@ use Ritc\Library\Services\Router;
 use Ritc\Library\Services\Session;
 
 ## Define Various Constants and Variables
+/**
+ * PUBLIC PATH refers to the location of the public website files.
+ */
 if (!defined('PUBLIC_PATH')) {
-    /**
-     * Website document root
-     *
-     * @var string PUBLIC_PATH
-     */
-    define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT']);
+    define('PUBLIC_PATH', $_SERVER["DOCUMENT_ROOT"]);
 }
+/**
+ * BASE PATH refers to the path to the base directory where everything lives.
+ */
 if (!defined('BASE_PATH')) {
-    /**
-     * Path to the root of the code.
-     *
-     * @var string BASE_PATH
-     */
     define('BASE_PATH', dirname(__FILE__, 2));
 }
 require_once BASE_PATH . '/src/config/constants.php';

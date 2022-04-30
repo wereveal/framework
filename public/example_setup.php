@@ -1,6 +1,6 @@
 <?php
 /**
- * PUBLIC_PATH is where all the public web site files are
+ * PUBLIC_PATH is where all the public website files are
  * BASE_PATH is the directory where everything else is
  */
 switch ($_SERVER['HTTP_HOST']) { // Allows for different development and production environments. If only the default is used,
