@@ -54,21 +54,12 @@ class {APPNAME}Controller implements MainControllerInterface
             ? $this->a_router_parts['route_method']
             : 'route';
 
-        switch ($route_class) {
-            case 'ManagerController':
-                $o_controller = new ManagerController($this->o_di);
-                break;
-            case 'LibraryController':
-                $o_controller = new LibraryController($this->o_di);
-                break;
-            case 'SitemapController':
-                $o_controller = new SitemapController($this->o_di);
-                break;
-            case 'HomeController':
-            default:
-                $o_controller = new HomeController($this->o_di);
-                break;
-        }
+        $o_controller = match ($route_class) {
+            'ManagerController' => new ManagerController($this->o_di),
+            'LibraryController' => new LibraryController($this->o_di),
+            'SitemapController' => new SitemapController($this->o_di),
+            default             => new HomeController($this->o_di),
+        };
         return $o_controller->$route_method();
     }
 
@@ -80,7 +71,6 @@ class {APPNAME}Controller implements MainControllerInterface
     public function goHome():string
     {
         $this->o_router->setRouteParts('/');
-        $o_controller = new HomeController($this->o_di);
-        return $o_controller->route();
+        return (new HomeController($this->o_di))->route();
     }
 }

@@ -26,7 +26,7 @@ class ManagerController implements ControllerInterface
     use ManagerControllerTraits, LogitTraits;
 
     /** var ManagerView view object */
-    protected $o_view;
+    protected ManagerView $o_view;
 
     /**
      * MainController constructor.
@@ -62,17 +62,13 @@ class ManagerController implements ControllerInterface
                     return $this->$action();
             }
         }
-        elseif ($this->form_action == 'verifyLogin') {
+        elseif ($this->form_action === 'verifyLogin') {
             $a_message = $this->verifyLogin();
-            if ($a_message['type'] == 'success') {
+            if ($a_message['type'] === 'success') {
                 return $this->o_view->render($a_message);
             }
-            else {
-                $login_id = isset($this->a_post['login_id'])
-                    ? $this->a_post['login_id']
-                    : '';
-                return $this->login($login_id, $a_message);
-            }
+            $login_id = $this->a_post['login_id'] ?? '';
+            return $this->login($login_id, $a_message);
         }
         else {
             return $this->login();
@@ -86,7 +82,7 @@ class ManagerController implements ControllerInterface
      * @param array  $a_message
      * @return string
      */
-    protected function login($login_id = '', array $a_message = []):string
+    protected function login(string $login_id = '', array $a_message = []):string
     {
             $this->o_session->resetSession();
             $a_values = [
