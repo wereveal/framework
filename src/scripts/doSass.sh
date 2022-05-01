@@ -56,27 +56,29 @@ if [ "$useBootstrap" = "n" ] && [ "$useBootstrap" = "n" ]; then
 fi
 
 if [ -d src/apps/ ]; then
- appsDir='src/apps'
+ appsDir="src/apps";
 elif [ -d ../apps/ ]; then
- appsDir='../apps'
+ appsDir="../apps";
 fi
 
 for theAppNamespace in "$appsDir"/*
 do
-  for theApp in $theAppNamespace/*
+  for theApp in "$theAppNamespace"/*
   do
-    theScssDir=$theApp/resources/assets/scss
-    echo $theScssDir;
-    echo "---";
-    if [ -d "$theScssDir" ]; then
-      if [ "$useBulma" = "y" ]; then
-        sass --load-path="$nmDir"/bulma --update --style=compressed "$theScssDir":"$thePublicDir"
-      fi
-      if [ "$useBootstrap" = "y" ]; then
-        sass --load-path="$nmDir"/bootstrap --update --style=compressed "$theScssDir":"$thePublicDir"
-      fi
-      if [ "$useBootstrap" = "n" ] && [ "$useBootstrap" = "n" ]; then
-        sass --update --style=compressed  "$theScssDir":"$thePublicDir"
+    if [ -d "$theApp" ]; then
+      theScssDir=$theApp/resources/assets/scss
+      echo "$theScssDir";
+      echo "---";
+      if [ -d "$theScssDir" ]; then
+        if [ "$useBulma" = "y" ]; then
+          sass --load-path="$nmDir"/bulma --update --style=compressed "$theScssDir":"$thePublicDir"
+        fi
+        if [ "$useBootstrap" = "y" ]; then
+          sass --load-path="$nmDir"/bootstrap --update --style=compressed "$theScssDir":"$thePublicDir"
+        fi
+        if [ "$useBootstrap" = "n" ] && [ "$useBootstrap" = "n" ]; then
+          sass --update --style=compressed  "$theScssDir":"$thePublicDir"
+        fi
       fi
     fi
   done
