@@ -8,7 +8,6 @@ namespace {NAMESPACE}\{APPNAME}\Controllers;
 use Ritc\Library\Helper\ViewHelper;
 use Ritc\Library\Interfaces\ControllerInterface;
 use Ritc\Library\Services\Di;
-use Ritc\Library\Traits\LogitTraits;
 use Ritc\Library\Traits\ManagerControllerTraits;
 use {NAMESPACE}\{APPNAME}\Views\ManagerView;
 
@@ -23,7 +22,7 @@ use {NAMESPACE}\{APPNAME}\Views\ManagerView;
  */
 class ManagerController implements ControllerInterface
 {
-    use ManagerControllerTraits, LogitTraits;
+    use ManagerControllerTraits;
 
     /** var ManagerView view object */
     protected ManagerView $o_view;
@@ -37,8 +36,6 @@ class ManagerController implements ControllerInterface
     {
         $this->setupManagerController($o_di);
         $this->o_view = new ManagerView($o_di);
-        $this->a_object_names = [];
-        $this->setupElog($o_di);
     }
 
     /**

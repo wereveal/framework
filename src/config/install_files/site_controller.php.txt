@@ -8,7 +8,6 @@ namespace {NAMESPACE}\{APPNAME}\Controllers;
 use Ritc\Library\Interfaces\ControllerInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;
-use Ritc\Library\Traits\LogitTraits;
 use {NAMESPACE}\{APPNAME}\Views\{controller_name}View
 
 /**
@@ -23,7 +22,7 @@ use {NAMESPACE}\{APPNAME}\Views\{controller_name}View
  */
 class {controller_name}Controller implements ControllerInterface
 {
-    use ControllerTraits, LogitTraits;
+    use ControllerTraits;
 
     /** @var {controller_name}View $o_view view for the controller */
     private $o_view;
@@ -37,8 +36,6 @@ class {controller_name}Controller implements ControllerInterface
     {
         $this->setupController($o_di);
         $this->o_view = new {controller_name}View($o_di);
-        $this->a_object_names = [];
-        $this->setupElog($o_di);
     }
     {controller_method}
 }

@@ -8,7 +8,6 @@ namespace {NAMESPACE}\{APPNAME}\Controllers;
 use Ritc\Library\Interfaces\ControllerInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;
-use Ritc\Library\Traits\LogitTraits;
 use {NAMESPACE}\{APPNAME}\Views\HomeView;
 
 /**
@@ -23,7 +22,7 @@ use {NAMESPACE}\{APPNAME}\Views\HomeView;
  */
 class HomeController implements ControllerInterface
 {
-    use ControllerTraits, LogitTraits;
+    use ControllerTraits;
 
     /** @var HomeView $o_view view for the controller */
     private $o_view;
@@ -37,8 +36,6 @@ class HomeController implements ControllerInterface
     {
         $this->setupController($o_di);
         $this->o_view = new HomeView($o_di);
-        $this->a_object_names = [];
-        $this->setupElog($o_di);
     }
 
     /**

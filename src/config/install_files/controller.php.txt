@@ -8,7 +8,6 @@ namespace {NAMESPACE}\{APPNAME}\Controllers;
 use Ritc\Library\Interfaces\ControllerInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;
-use Ritc\Library\Traits\LogitTraits;
 {controller_use}
 /**
  * {controller_name} Controller for {APPNAME}.
@@ -22,7 +21,7 @@ use Ritc\Library\Traits\LogitTraits;
  */
 class {controller_name}Controller implements ControllerInterface
 {
-    use ControllerTraits, LogitTraits;
+    use ControllerTraits;
     {controller_vars}
     /**
      * {controller_name}Controller constructor.
@@ -32,9 +31,7 @@ class {controller_name}Controller implements ControllerInterface
     public function __construct(Di $o_di)
     {
         $this->setupController($o_di);
-        $this->a_object_names = [];
         {controller_construct}
-        $this->setupElog($o_di);
     }
     {controller_method}
 }

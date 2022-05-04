@@ -5,10 +5,8 @@
  */
 namespace {NAMESPACE}\{APPNAME}\Views;
 
-use Ritc\Library\Helper\ViewHelper;
 use Ritc\Library\Interfaces\ViewInterface;
 use Ritc\Library\Services\Di;
-use Ritc\Library\Traits\LogitTraits;
 use Ritc\Library\Traits\ManagerViewTraits;
 
 /**
@@ -22,7 +20,7 @@ use Ritc\Library\Traits\ManagerViewTraits;
  */
 class ManagerView implements ViewInterface
 {
-    use ManagerViewTraits, LogitTraits;
+    use ManagerViewTraits;
 
     /**
      * ManagerView constructor.
@@ -32,8 +30,6 @@ class ManagerView implements ViewInterface
     public function __construct(Di $o_di)
     {
         $this->setupView($o_di);
-        $this->a_object_names = [];
-        $this->setupElog($o_di);
     }
 
    /**

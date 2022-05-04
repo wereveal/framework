@@ -7,7 +7,6 @@ namespace {NAMESPACE}\{APPNAME}\Views;
 
 use Ritc\Library\Interfaces\ViewInterface;
 use Ritc\Library\Services\Di;
-use Ritc\Library\Traits\LogitTraits;
 use Ritc\Library\Traits\ViewTraits;
 
 /**
@@ -22,7 +21,7 @@ use Ritc\Library\Traits\ViewTraits;
  */
 class HomeView implements ViewInterface
 {
-    use ViewTraits, LogitTraits;
+    use ViewTraits;
 
     /**
      * HomeView constructor.
@@ -32,8 +31,6 @@ class HomeView implements ViewInterface
     public function __construct(Di $o_di)
     {
         $this->setupView($o_di);
-        $this->a_object_names = [];
-        $this->setupElog($o_di);
     }
 
     /**

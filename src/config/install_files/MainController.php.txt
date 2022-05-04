@@ -10,7 +10,6 @@ use Ritc\Library\Controllers\SitemapController;
 use Ritc\Library\Interfaces\MainControllerInterface;
 use Ritc\Library\Services\Di;
 use Ritc\Library\Traits\ControllerTraits;
-use Ritc\Library\Traits\LogitTraits;
 
 /**
  * Main Controller for {APPNAME}.
@@ -24,7 +23,7 @@ use Ritc\Library\Traits\LogitTraits;
  */
 class {APPNAME}Controller implements MainControllerInterface
 {
-    use ControllerTraits, LogitTraits;
+    use ControllerTraits;
 
     /**
      * {APPNAME}Controller constructor.
@@ -34,8 +33,6 @@ class {APPNAME}Controller implements MainControllerInterface
     public function __construct(Di $o_di)
     {
         $this->setupController($o_di);
-        $this->a_object_names = [];
-        $this->setupElog($o_di);
     }
 
     /**
