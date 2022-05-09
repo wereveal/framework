@@ -1,0 +1,10 @@
+/*! src/scss/colors  Site specific color */
+@forward "../apps/Ritc/Library/resources/assets/scss/defaults/colors" as dc-*;
+@forward "../apps/Ritc/Library/resources/assets/scss/colors/slate" as tc-*;
+/* Note: if you want a different theme color that doesn't exist in the library
+         colors directory, modify the app/_colors.scss file
+         and change the forward for the library colors/slate as tc-* to this
+         app color, i.e.
+         @forward "app/colors" as tc-*;
+         also submit a patch to the library for the new color file if so desired.
+ */

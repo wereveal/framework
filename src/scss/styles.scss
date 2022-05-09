@@ -2,17 +2,15 @@
 // defaults to using the styles of the Library and bootstrap 5
 // make changes in the site directory instead of making changes to bootstrap
 // and the Library
-@use "site/variables" as svars;
-@use "../apps/Ritc/Library/resources/assets/scss/defaults/variables" as lvars;
-@use "site/colors" as scolors;
+@use "variables" as sv;
+@use "colors" as sc;
+@use "mixins" as sm;
 @use "../../node_modules/bootstrap/scss/bootstrap" as boot;
-@use "site/mixins" as smix;
-@use "../apps/Ritc/Library/resources/assets/scss/defaults/mixins" as lmix;
 @use "../apps/Ritc/Library/resources/assets/scss/bs5/mods_to_bootstrap" as mtb;
-@use "../apps/Ritc/Library/resources/assets/scss/defaults/fonts" as dfonts;
+@use "../apps/Ritc/Library/resources/assets/scss/defaults/fonts" as df;
 @use "../apps/Ritc/Library/resources/assets/scss/defaults/main_common" as dmc;
 @use "../apps/Ritc/Library/resources/assets/scss/defaults/nav" as dnav;
 @use "../apps/Ritc/Library/resources/assets/scss/defaults/styles_bottom" as dsb;
 // @use "../apps/Ritc/Library/resources/assets/scss/defaults/form";
-@use "site/site";
-@use "site/media_queries" as smq;
+@use "site";
+@use "media_queries" as smq;
