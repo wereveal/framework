@@ -1,0 +1,3 @@
+/*! {app_name}/resources/assets/scss/site/variables App specific variables */
+@forward "../../../../../../apps/Ritc/Library/resources/assets/scss/defaults/variables" as dv-*;
+@forward "app/variables" as tv-*;

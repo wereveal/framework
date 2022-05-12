@@ -1,2 +1,3 @@
-/*! src/scss/site/mixins   Site specific mixins */
+/*! site/scss/site/mixins - app specific mixins */
 @forward "../apps/Ritc/Library/resources/assets/scss/defaults/mixins" as dm-*;
+@forward "app/mixins" as am-*;

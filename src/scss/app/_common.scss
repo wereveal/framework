@@ -1,0 +1,131 @@
+/*! site/scss/app/site - theme/app specific stuff that modifies lib/defaults/main_common */
+@use "sass:meta";
+@use "../colors" as c;
+@use "../variables" as v;
+@use "../mixins" as m;
+
+$gradient_direction: v.$tv-gradient-direction;
+$gradient-midpoint:  v.$tv-gradient-midpoint;
+
+body{
+  background-color:  c.$tc-color-body;
+}
+
+.btn-big {
+  text-shadow: 1px 1px 1px c.$tc-color-shadow;
+}
+
+.container {
+  background-color: c.$tc-color-container;
+
+  &.container-footer {
+    @include m.dm-linearGradientTwoColor(c.$tc-gradient-stop, c.$tc-gradient-start, $gradient-direction, $gradient-midpoint);
+  }
+
+  &.container-gradient-down {
+    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, $gradient-direction, $gradient-midpoint)
+  }
+
+  &.container-gradient-up {
+    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, -$gradient_direction, $gradient-midpoint)
+  }
+}
+
+.row-fluid {
+  [class*="span"] {
+    background-color: c.$tc-color-body;
+    border:           1px solid c.$tc-color-border;
+  }
+}
+
+.row {
+  background-color: c.$tc-color-body;
+
+  [class*="col"] {
+    background-color: c.$tc-color-body;
+  }
+
+  &.boxed {
+    [class*="col"] {
+      background-color: c.$tc-color-body;
+      border:           1px solid c.$tc-color-border;
+    }
+  }
+
+  &.no-box {
+    [class*="col"] {
+      background-color: c.$tc-color-body;
+    }
+  }
+
+  &.row-light, &.odd, &.odd-inner-odd, &.even-inner-odd {
+    @include m.dm-colorRow(c.$tc-row-dark, c.$tc-row-light);
+  }
+
+  &.row-medium, &.even, &.even-inner-even {
+    @include m.dm-colorRow(c.$tc-row-dark, c.$tc-row-medium);
+  }
+
+  &.row-med-light, &.odd-inner-even {
+    @include m.dm-colorRow(c.$tc-row-dark, c.$tc-row-light);
+  }
+
+  &.row-white {
+    @include m.dm-colorRow(c.$tc-row-dark, c.$dc-white-color);
+  }
+}
+
+.container-fluid {
+  &.container-footer {
+    @include m.dm-linearGradientTwoColor(c.$tc-gradient-stop, c.$tc-gradient-start, v.$dv-gradient-direction, v.$dv-gradient-shortpoint);
+  }
+
+  &.container-gradient-down {
+    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, v.$dv-gradient-direction, v.$dv-gradient-midpoint)
+  }
+
+  &.container-gradient-up {
+    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, -$gradient_direction, v.$dv-gradient-midpoint)
+  }
+
+  &.container-body {
+    background-color: c.$tc-gradient-stop;
+  }
+}
+
+.bordered-rounded, .bordered {
+  border: 1px solid c.$tc-color-border;
+}
+
+.bordered-square {
+  border: 1px solid c.$tc-color-border;
+}
+
+.shadowed {
+  box-shadow: 0.15rem 0.15rem 0.15rem c.$tc-color-shadow;
+}
+
+.list-stripped {
+  &.odd, &.row-light {
+    @include m.dm-colorRow(c.$tc-row-dark, c.$tc-row-light);
+  }
+
+  &.even, &.row-dark {
+    @include m.dm-colorRow(c.$tc-row-dark, c.$tc-row-medium);;
+  }
+
+  &.row-med {
+    @include m.dm-colorRow(c.$tc-row-dark, c.$tc-row-medium)
+  }
+
+  a {
+    &.odd {
+      @include m.dm-colorRow(c.$tc-row-dark, c.$tc-row-light);
+    }
+
+    &.even {
+      @include m.dm-colorRow(c.$tc-row-dark, c.$tc-row-medium);;
+
+    }
+  }
+}

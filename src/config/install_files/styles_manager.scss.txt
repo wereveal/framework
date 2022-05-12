@@ -1,19 +1,19 @@
-// Set app colors and variables overrides before importing the Bootstrap defaults
-@use "app/variables";
-@use "../../../../../Ritc/Library/resources/assets/scss/defaults/variables" as lvars;
-@use "app/colors";
-@use "../../../../../Ritc/Library/resources/assets/scss/colors/blue" as ltcolor;
-@use "../../../../../Ritc/Library/resources/assets/scss/defaults/colors" as lcolors;
-@use "app/mixins";
-@use "../../../../../Ritc/Library/resources/assets/scss/defaults/mixins" as lmix;
+/*! Set app colors and variables overrides before importing the Bootstrap defaults
+// defaults to using the styles of the Library and bootstrap 5
+// make changes in the site directory instead of making changes to bootstrap
+// and the Library
+@use "variables" as amv;
+@use "colors" as as amc;
+@use "mixins" as amm;
 @use "../../../../../../../node_modules/bootstrap/scss/bootstrap" as boot;
-@use "../../../../../Ritc/Library/resources/assets/scss/defaults/fonts";
 @use "../../../../../Ritc/Library/resources/assets/scss/bs5/mods_to_bootstrap";
+@use "../../../../../Ritc/Library/resources/assets/scss/defaults/fonts";
 @use "../../../../../Ritc/Library/resources/assets/scss/defaults/main_common";
+@use "app/common";
 @use "../../../../../Ritc/Library/resources/assets/scss/defaults/nav";
 @use "../../../../../Ritc/Library/resources/assets/scss/defaults/form";
 @use "../../../../../Ritc/Library/resources/assets/scss/defaults/manager_forms";
 @use "../../../../../Ritc/Library/resources/assets/scss/defaults/styles_bottom";
-@use "app/{app_name}";
-@use "app/forms";
-@use "app/media_queries";
+@use "{app_name}";
+@use "app/forms" as af;
+@use "media_queries" as ammq;

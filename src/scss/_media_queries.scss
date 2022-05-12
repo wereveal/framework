@@ -1,2 +1,3 @@
-/*! src/scss/site/media_queries Site specific forms */
-// @forward "../src/apps/Ritc/Library/resources/assets/scss/defaults/media_queries" as dmq-*;
+/*! site/scss/site/media_queries App specific media queries */
+@use "../apps/Ritc/Library/resources/assets/scss/defaults/media_queries" as dmq;
+@use "app/media_queries" as smq;

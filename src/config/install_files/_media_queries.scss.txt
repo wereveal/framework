@@ -1,0 +1,3 @@
+/*! {app_name}/resources/assets/scss/site/media_queries App specific media queries */
+@use "../../../../../apps/Ritc/Library/resources/assets/scss/defaults/media_queries";
+@use "app/media_queries";

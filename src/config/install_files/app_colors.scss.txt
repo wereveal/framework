@@ -1,8 +1,8 @@
-/*! src/scss/app/colors - use this file instead of the library colors to set the theme */
+/*! {app_name}/resources/assets/scss/app/colors - use this file instead of the library colors to set the theme */
 // change the color to the colors you desire and uncomment the line.
 // this file is set to a gray theme based on library default colors.
 @use "sass:color";
-@use "../../apps/Ritc/Library/resources/assets/scss/defaults/colors" as c;
+@use "../../../../../../apps/Ritc/Library/resources/assets/scss/defaults/colors" as c;
 
 // $color-default:          c.$gray-darkest !default;
 // $color-darkest:          c.$gray-darkest !default;

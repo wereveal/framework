@@ -1,4 +1,4 @@
-/*! src/scss/site/variables Site specific variables */
+/*! {app_name}/resources/assets/scss/app/variables - app specific variables */
 $gradient-direction:      180deg;
 $gradient-longpoint:      65%;
 $gradient-midpoint:       50%;

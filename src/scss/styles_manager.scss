@@ -13,5 +13,5 @@
 @use "../apps/Ritc/Library/resources/assets/scss/defaults/nav" as dnav;
 @use "../apps/Ritc/Library/resources/assets/scss/defaults/styles_bottom" as dsb;
 @use "../apps/Ritc/Library/resources/assets/scss/defaults/form";
-@use "site";
+@use "app/site";
 @use "media_queries" as smq;
