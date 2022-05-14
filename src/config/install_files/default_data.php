@@ -65,7 +65,7 @@ $a_constants = [
     ],
     'copyright_date' => [
         'const_name'      => 'COPYRIGHT_DATE',
-        'const_value'     => '2018',
+        'const_value'     => '2001-2022',
         'const_immutable' => 'true'
     ],
     'css_dir_name' => [
