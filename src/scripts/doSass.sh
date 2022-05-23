@@ -1,6 +1,7 @@
 #!/bin/bash
 useBulma="n"
 useBootstrap="y"
+rootDir=$(pwd)
 while getopts ":b:d:n" opt; do
     case $opt in
         b)
@@ -20,8 +21,8 @@ while getopts ":b:d:n" opt; do
             ;;
     esac
 done
-if [ -d public/assets/css ]; then
-  thePublicDir='public/assets/css/'
+if [ -d "$rootDir"/public/assets/css ]; then
+  thePublicDir=$rootDir'/public/assets/css/'
   nmDir='node_modules'
 elif [ -d ../public/assets/css ]; then
   thePublicDir='../public/assets/css'
@@ -32,18 +33,18 @@ elif [ -d ../../public/assets/css ]; then
 else
   exit 1
 fi
-echo "Public Dir -- "$thePublicDir;
-echo "";
+# echo "Public Dir -- "$thePublicDir;
+# echo "";
 
-if [ -d src/scss/ ]; then
-  theDir='src/scss/'
+if [ -d "$rootDir"/src/scss/ ]; then
+  theDir=$rootDir'/src/scss/'
 elif [ -d ../scss/ ]; then
   theDir='../scss/'
 else
   exit 1
 fi
-echo "theDir -- "$theDir;
-echo "";
+# echo "theDir -- "$theDir;
+# echo "";
 
 if [ "$useBulma" = "y" ]; then
   sass --load-path="$nmDir"/bulma --update --style=compressed ${theDir}:${thePublicDir}
@@ -55,25 +56,30 @@ if [ "$useBootstrap" = "n" ] && [ "$useBootstrap" = "n" ]; then
   sass --update --style=compressed ${theDir}:${thePublicDir}
 fi
 
-if [ -d src/apps/ ]; then
- appsDir="src/apps";
+if [ -d "$rootDir"/src/apps/ ]; then
+ appsDir=$rootDir"/src/apps";
 elif [ -d ../apps/ ]; then
  appsDir="../apps";
 fi
-
+# echo $appsDir
+# echo '';
 for theAppNamespace in "$appsDir"/*
 do
   for theApp in "$theAppNamespace"/*
   do
+#    echo "$theApp"
+#    echo '';
     if [ -d "$theApp" ]; then
       theScssDir=$theApp/resources/assets/scss
-      echo "$theScssDir";
-      echo "---";
+#      echo "$theScssDir";
+#      echo "---";
       if [ -d "$theScssDir" ]; then
         if [ "$useBulma" = "y" ]; then
           sass --load-path="$nmDir"/bulma --update --style=compressed "$theScssDir":"$thePublicDir"
         fi
         if [ "$useBootstrap" = "y" ]; then
+#          echo "$theScssDir" '----' "$thePublicDir"
+#          echo '-'
           sass --load-path="$nmDir"/bootstrap --update --style=compressed "$theScssDir":"$thePublicDir"
         fi
         if [ "$useBootstrap" = "n" ] && [ "$useBootstrap" = "n" ]; then
