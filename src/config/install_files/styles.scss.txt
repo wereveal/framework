@@ -10,7 +10,8 @@
 @use "../../../../../Ritc/Library/resources/assets/scss/defaults/fonts";
 @use "../../../../../Ritc/Library/resources/assets/scss/defaults/main_common";
 @use "app/common";
-@use "../../../../../Ritc/Library/resources/assets/scss/defaults/nav";
+@use "../../../../../Ritc/Library/resources/assets/scss/defaults/nav" as dn;
+@use "app/nav" as an;
 @use "../../../../../Ritc/Library/resources/assets/scss/defaults/styles_bottom";
 // @use "../../../../../Ritc/Library/resources/assets/scss/defaults/form" as df;
 // @use "app/forms" af;

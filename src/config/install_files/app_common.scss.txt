@@ -1,11 +1,11 @@
-/*! app/site - theme/app specific stuff that modifies lib/defaults/main_common */
+/*! site/scss/app/site - theme/app specific stuff that modifies lib/defaults/main_common */
 @use "sass:meta";
 @use "../colors" as c;
 @use "../variables" as v;
 @use "../mixins" as m;
 
-$gradient_direction: v.$tv-gradient-direction;
-$gradient-midpoint:  v.$tv-gradient-midpoint;
+$gradient-direction: v.$tv-gradient-direction;
+$gradient-midpoint : v.$tv-gradient-midpoint;
 
 body{
   background-color:  c.$tc-color-body;
@@ -27,7 +27,7 @@ body{
   }
 
   &.container-gradient-up {
-    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, -$gradient_direction, $gradient-midpoint)
+    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, -$gradient-direction, $gradient-midpoint)
   }
 }
 
@@ -85,7 +85,7 @@ body{
   }
 
   &.container-gradient-up {
-    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, -$gradient_direction, v.$dv-gradient-midpoint)
+    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, -$gradient-direction, v.$dv-gradient-midpoint)
   }
 
   &.container-body {

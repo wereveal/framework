@@ -1,7 +1,7 @@
 # README #
 
 * The Framework upon which I build my apps.
-* Version 5
+* Version 6
 
 ### How do I get set up? ###
 
@@ -72,6 +72,16 @@
                      // do the default thing
                  }
               ```
+  * **Git Commits** MAY follow [Conventional Commits][commits]
+    * For Reference for commit types possible 
+      - feat (new feature for the user, not a new feature for build script)
+      - fix (bug fix for the user, not a fix to a build script)
+      - docs (changes to the documentation)
+      - style (formatting, missing semi colons, etc; no production code change)
+      - refactor (refactoring production code, eg. renaming a variable)
+      - test (adding missing tests, refactoring tests; no production code change)
+      - chore (updating grunt tasks etc; no production code change)
+
   * **Javascript** MAY follow [Airbnb JavaScript Style Guide][airbnb] (but old js code for now may not)
   * **CSS/SASS** MAY follow [Airbnb CSS/Sass Style Guide][airbnbsass] (old sass may not for now)
 
@@ -83,3 +93,4 @@
 [fig12]: https://www.php-fig.org/psr/psr-12/
 [airbnb]: https://github.com/airbnb/javascript/
 [airbnbsass]: https://github.com/airbnb/css
+[commits]: https://www.conventionalcommits.org/en/v1.0.0/

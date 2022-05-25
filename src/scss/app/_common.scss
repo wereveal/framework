@@ -4,8 +4,16 @@
 @use "../variables" as v;
 @use "../mixins" as m;
 
-$gradient_direction: v.$tv-gradient-direction;
-$gradient-midpoint:  v.$tv-gradient-midpoint;
+$gradient-direction: v.$tv-gradient-direction;
+$gradient-midpoint : v.$tv-gradient-midpoint;
+// nav variables
+$p_border_width    : v.$dv-pagination-border-width;
+$p_line_height     : v.$dv-pagination-line-height;
+$grid-gutter-width : v.$dv-grid-gutter-width; // seems to be needed to do a negative
+$pad-x             : v.$dv-pagination-padding-x;
+$pad-x-sm          : v.$dv-pagination-padding-x-sm;
+$pad-y             : v.$dv-pagination-padding-y;
+$pad-y-sm          : v.$dv-pagination-padding-y-sm;
 
 body{
   background-color:  c.$tc-color-body;
@@ -27,7 +35,7 @@ body{
   }
 
   &.container-gradient-up {
-    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, -$gradient_direction, $gradient-midpoint)
+    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, -$gradient-direction, $gradient-midpoint)
   }
 }
 
@@ -85,7 +93,7 @@ body{
   }
 
   &.container-gradient-up {
-    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, -$gradient_direction, v.$dv-gradient-midpoint)
+    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, -$gradient-direction, v.$dv-gradient-midpoint)
   }
 
   &.container-body {
@@ -127,5 +135,78 @@ body{
       @include m.dm-colorRow(c.$tc-row-dark, c.$tc-row-medium);;
 
     }
+  }
+}
+
+.navbar {
+  &.navbar-color {
+    @include m.dm-linearGradientTwoColor(c.$tc-gradient-start, c.$tc-gradient-stop, v.$dv-gradient-direction, v.$dv-gradient-longpoint);
+    color: c.$tc-navbar-text-color;
+    a {
+      &.nav-link {
+        color: c.$tc-navbar-text-color;
+        &.active {
+          color: c.$tc-navbar-link-active;
+        }
+      }
+    }
+    div {
+      &.dropdown-menu {
+        &.show {
+          background-color: c.$tc-navbar-text-color;
+          a {
+            &.dropdown-item {
+              color: c.$tc-gradient-start;
+              &.active {
+                color: c.$tc-navbar-text-color;
+                background-color: c.$tc-gradient-stop;
+              }
+              &.active:active {
+                color: c.$tc-navbar-text-color;
+                background-color: c.$tc-gradient-stop;
+              }
+              &.active:hover {
+                color: c.$tc-navbar-sub-link-hover;
+                background-color: c.$tc-navbar-sub-bg-hover;
+              }
+            }
+            &.dropdown-item:hover {
+              color: c.$tc-navbar-sub-link-hover;
+              background-color: c.$tc-navbar-sub-bg-hover;
+            }
+          }
+        }
+      }
+    }
+    a:hover {
+      color: c.$tc-navbar-link-hover;
+    }
+    li {
+      &.show > .nav-link {
+        color: c.$tc-navbar-text-color;
+      }
+      &.nav-item {
+        a:hover {
+          color: c.$tc-navbar-link-hover;
+        }
+      }
+    }
+  }
+  &.no-margin {
+    @include m.dm-marginSizePx(-$grid-gutter-width, 'lr', 'important');
+  }
+}
+
+span.no-link {
+  padding: $pad-y $pad-x;
+  margin-left: -$p_border_width;
+  line-height: $p_line_height;
+  color: c.$dc-green-medium;
+  background-color: c.$tc-color-body;
+  border:  solid c.$tc-border-color;
+  &.no-link-sm {
+    padding: $pad-y-sm $pad-x-sm;
+    font-size: v.$dv-font-size-sm;
+    line-height: v.$dv-line-height-sm;
   }
 }
