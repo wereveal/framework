@@ -153,9 +153,9 @@ $a_constants = [
         'const_value'     => 'false',
         'const_immutable' => 'true'
     ],
-    'vendor_dir_name' => [
-        'const_name'      => 'VENDOR_DIR_NAME',
-        'const_value'     => 'node_modules',
+    'public_vendor_dir_name' => [
+        'const_name'      => 'PUBLIC_VENDOR_DIR_NAME',
+        'const_value'     => 'vendor',
         'const_immutable' => 'true'
     ],
     'developer_mode' => [

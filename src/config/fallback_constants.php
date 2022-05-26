@@ -82,8 +82,8 @@ if (!defined('TMP_DIR_NAME')) {
 if (!defined('USE_CACHE')) {
     define('USE_CACHE', true);
 }
-if (!defined('VENDOR_DIR_NAME')) {
-    define('VENDOR_DIR_NAME', 'vendor');
+if (!defined('PUBLIC_VENDOR_DIR_NAME')) {
+    define('PUBLIC_VENDOR_DIR_NAME', 'vendor');
 }
 if (!defined('DEVELOPER_MODE')) {
     define('DEVELOPER_MODE', false);

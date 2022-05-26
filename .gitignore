@@ -24,7 +24,8 @@
 /public/assets/js/*.js
 /public/assets/js/*.js.map
 /public/assets/node_modules
-/public/assets/vendor
+/public/assets/vendor/**
+!/public/assets/vendor/index.php
 /public/doxy
 /public/index.php
 /public/setup.php
