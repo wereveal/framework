@@ -14,11 +14,14 @@
   "author": "William E Reveal",
   "license": "MIT",
   "dependencies": {
+    "bulma": "^0.9.3",
+    "bulma-extensions": "^6.2.7",
     "html5shiv": "^3.7.3",
     "leaflet": "^1.7.1",
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-pro": "^6.1.1",
+    "@vizuaalog/bulmajs": "^0.12.1"
   }
 }

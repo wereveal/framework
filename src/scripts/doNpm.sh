@@ -30,10 +30,20 @@ while getopts ":b:d:n" opt; do
     esac
 done
 if [ ! -f "$theDir"package.json ]; then
-    if [ -f ../config/install_files/package.json.txt ]; then
-        cp ../config/install_files/package.json.txt "$theDir"/
+  if [ "$useBulma" = "Y" ]; then
+    if [ -f ../config/install_files/package_bulma.json.txt ]; then
+        cp ../config/install_files/package_bulma.json.txt "$theDir"/package.json
     fi
+  elif [ -f ../config/install_files/package_bs.json.txt ]; then
+        cp ../config/install_files/package_bs.json.txt "$theDir"/package.json
+  else
+    if [ -f ../config/install_files/package.json.txt ]; then
+      cp ../config/install_files/package.json.txt "$theDir"/package.json
+    fi
+  fi
+
 fi
+
 cd "$theDir" || exit
 npm install
 if [ "$useBulma" = "y" ]; then
