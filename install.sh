@@ -85,7 +85,7 @@ if [ -f src/config/install_config.php ]; then
     echo "First npm install"
     bash src/scripts/doNpm.sh
     echo "Next Running Sass"
-    if [ "$useBootstrap" = "y" ]
+    if [ "$useBootstrap" = "y" ]; then
       bash src/scripts/doSass.sh -d
     fi
     if [ "$useBulma" = "y" ]; then
