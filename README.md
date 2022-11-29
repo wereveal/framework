@@ -3,7 +3,7 @@
 * The Framework upon which I build my apps.
 * Version 6
 
-### How do I get set up? ###
+## How do I get set up? ###
 
 * Once cloned, immediately create a fresh app. The framework is intended to give a fresh start, so new git repo, not a fork.
     1. rm -Rf .git
@@ -24,17 +24,8 @@
           7. copy src/config/install_files/install_config.php.txt to src/config/install_config.php
           8. Change settings in src/config/install_config.php to match new app(s)
           9. php src/bin/install.php
-    5. Optionally install jquery-ui
-       1. In the /public/assets dir  bash ./doJqueryUi
 
-	   or
-
-       1. cd public/assets/vendor/jquery-ui/
-       2. npm install
-       3. npm test
-       4. if a different theme desired for jquery-ui, download it from jqueryui (http://jqueryui.com/themeroller/).
-
-### Contribution guidelines ###
+## Contribution guidelines ###
 
 * Writing tests - yes
 * Code review - yes
@@ -85,7 +76,7 @@
   * **Javascript** MAY follow [Airbnb JavaScript Style Guide][airbnb] (but old js code for now may not)
   * **CSS/SASS** MAY follow [Airbnb CSS/Sass Style Guide][airbnbsass] (old sass may not for now)
 
-### Who do I talk to? ###
+## Who do I talk to? ###
 
 * William E Reveal <bill@revealitconsulting.com>
 

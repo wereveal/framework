@@ -2,7 +2,7 @@
 useBootstrap="y"
 useBulma="n"
 whereIam=$(pwd)
-today=`date +%Y-%m-%d`
+today=$(date +%Y-%m-%d)
 while getopts ":b:d:n" opt; do
     case $opt in
         d)
@@ -91,7 +91,7 @@ if [ -f src/config/install_config.php ]; then
     if [ "$useBulma" = "y" ]; then
       bash src/scripts/doSass.sh -b
     fi
-    if [ "$useBulma" = "n" && "$useBootstrap" = "n" ]; then
+    if [ "$useBulma" = "n" ] && [ "$useBootstrap" = "n" ]; then
       base src/scripts/doSass.sh -n
     fi
     echo "Finally Running uglifyJs"
