@@ -92,7 +92,7 @@ if [ -f src/config/install_config.php ]; then
       bash src/scripts/doSass.sh -b
     fi
     if [ "$useBulma" = "n" ] && [ "$useBootstrap" = "n" ]; then
-      base src/scripts/doSass.sh -n
+      bash src/scripts/doSass.sh -n
     fi
     echo "Finally Running uglifyJs"
     bash src/scripts/doUglifyJS.sh
